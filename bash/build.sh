@@ -9,7 +9,7 @@ echo '# Bash学习笔记
 <https://manpages.debian.org/>  
 <https://www.kernel.org/doc/man-pages/>'
 
-dirs="syntax file builtin CLI"
+dirs="syntax file builtin CLI lib"
 for dir in $dirs;
 do
     cd $dir
@@ -30,6 +30,10 @@ do
         builtin)
         title="## 内置命令"
         file='.md'
+        ;;
+        lib)
+        title='## lib'
+        file='.sh'
         ;;
     esac
 

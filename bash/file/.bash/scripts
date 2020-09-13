@@ -6,5 +6,5 @@ mkcd() {
 
 gcp() {
     git commit -m "$(date '+%F %T')"
-    git push
+    git push $1 $2
 }

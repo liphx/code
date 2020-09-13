@@ -13,6 +13,7 @@
 [builtin](syntax/builtin.md)  
 [case](syntax/case.md)  
 [exec](syntax/exec.md)  
+[expansion](syntax/expansion.md)  
 [function](syntax/function.md)  
 [grouping_commands](syntax/grouping_commands.md)  
 [IFS](syntax/IFS.md)  
@@ -78,3 +79,7 @@
 [vim](CLI/vim.md)  
 [wc](CLI/wc.md)  
 [xargs](CLI/xargs.md)  
+
+## lib
+
+[string](lib/string.sh)  
