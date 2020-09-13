@@ -13,7 +13,5 @@ int main()
     uint8_t ui8 = i8;
     printf("%d, %d\n", i8, ui8); // -128, 128
 
-    
-
     return 0;
 }

@@ -34,6 +34,8 @@
 ## 内置命令
 
 [alias](builtin/alias.md)  
+[pwd](builtin/pwd.md)  
+[return](builtin/return.md)  
 
 ## 一天一个命令行
 
@@ -63,7 +65,6 @@
 [nl](CLI/nl.md)  
 [printf](CLI/printf.md)  
 [ps](CLI/ps.md)  
-[pwd](CLI/pwd.md)  
 [read](CLI/read.md)  
 [rm,cp,mv](CLI/rm,cp,mv.md)  
 [script,scriptreplay](CLI/script,scriptreplay.md)  
