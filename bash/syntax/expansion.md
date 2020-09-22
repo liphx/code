@@ -62,14 +62,12 @@ echo ${var}             # abc
 ```shell
 # ${!prefix*}
 # ${!prefix@} 扩展为名称中含有前缀的变量，以IFS的第一个字符分隔。如果使用了@，并且在双引号内扩展，则每个变量都扩展成单独的单词
-
 var1=hello
 var2=world
 echo ${!var*}           # var1 var2
 
 # ${!name[@]}
 # ${!name[*]} 如果名称是个数组，扩展成数组下标或者key列表
-
 array=(a b c)
 echo ${!array[*]}       # 0 1 2
 array[100]=xyz
@@ -80,10 +78,52 @@ echo ${#var1}           # 5
 echo ${#array[*]}       # 4
 echo ${#array}          # 1
 
+# ${parameter#word}
+# ${parameter##word} 单词被扩展成一个模式，如果模式匹配参数扩展后的开始部分，则替换的结果是该模式最短(#)或最长(##)匹配参数扩展的部分被删除后的字符串
+var='a1a1a1'
+echo ${var#a*a}       # 1a1
+echo ${var##a*a}      # 1
+
+# ${parameter%word}
+# ${parameter%%word} 同上，从后匹配
+echo ${var%1*1}       # a1a
+echo ${var%%1*1}      # a
+
+# ${parameter/pattern/string}
+var=0a1a
+echo ${var/a/A}     # 0A1a 替换第一个
+echo ${var//a/A}    # 0A1A 全替换
+echo ${var/#a/A}    # 0a1a 替换开头的第一个
+echo ${var/%a/A}    # 0a1A 替换结尾的第一个
+echo ${var/a/}      # 01a
+
+# ${parameter^pattern}
+# ${parameter^^pattern}
+# ${parameter,pattern}
+# ${parameter,,pattern} 大小写替换
+var=abCD
+echo ${var^*}   # AbCD 
+echo ${var^^*}  # ABCD
+echo ${var,*}   # abCD, 把a替换小写，无变化
+echo ${var,,*}  # abcd
+
+# ${parameter@operator} Q E P A a
+var=abc\ d
+echo ${var@Q}   # 'abc d', 即quote
+echo ${var@E}   # abc d, 即escape
+var='\u'
+echo ${var@P}   # liph, 即prompt, 按PS1方式展开
+echo ${var@A}   # var='\u', 即assignment
+readonly var
+echo ${var@A}   # declare -r var='\u'
+echo ${var@a}   # r, 即attribute，获取属性
 ```
 
-
 ## 命令替换
+
+```
+$(cmd) or `cmd`
+```
 
 ## 算术扩展
 
