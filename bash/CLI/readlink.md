@@ -1,9 +1,9 @@
 # readlink
 
 ```shell
-$ readlink /usr/bin/vim
-/etc/alternatives/vim
-$ readlink /usr/bin/vim -f
+$ readlink /usr/bin/vi
+/etc/alternatives/vi
+$ readlink /usr/bin/vi -f
 /usr/bin/vim.basic
 ```
 
