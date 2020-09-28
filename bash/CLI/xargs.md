@@ -16,7 +16,7 @@ $ cat example.txt | xargs -n 3 # -n选项可以限制每次调用命令时用到
 $ find . -iname '*.docx' -print0 | xargs -0 grep -L image 
 $ find . -type f -name "*.txt" -print0 | xargs -0 rm -f 
 $ find . -type f -name "*.c" -print0 | xargs -0 wc –l 
-$ cat args.txt | xargs -I {} .cmd -1 {} -2
+$ cat args.txt | xargs -I {} cmd -1 {} -2
 ```
 
 `xargs [选项]... 命令 [初始参数]...`
