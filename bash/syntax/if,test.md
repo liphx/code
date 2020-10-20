@@ -17,7 +17,7 @@ fi
 if condition;  
 then     
     commands; 
-else if condition; 
+elif condition; 
 then     
     commands; 
 else     
