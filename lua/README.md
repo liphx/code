@@ -2,8 +2,9 @@
 
 参考书籍
 
-+ `Lua程序设计（第4版）`
-+ `Lua设计与实现`
++ Programming in Lua, Fourth Edition
++ Lua程序设计（第4版）
++ Lua设计与实现
 
 参考网站
 
