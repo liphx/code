@@ -4,7 +4,9 @@ mkcd() {
     cd "${dir}";
 }
 
-gcp() {
-    git commit -m "$(date '+%F %T')"
-    git push $1 $2
+add_alias() {
+    if [[ -n $1 ]]; then
+        echo "alias $1" >> ~/.bash/aliases
+    fi
+    source ~/.bashrc
 }
