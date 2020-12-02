@@ -17,10 +17,10 @@ alias mv='mv -i'
 
 # terminal
 alias c=clear
-alias r=reset
 
 # history
 alias h=history
+alias r='fc -s'
 alias hgrep='history | grep'
 
 # apt 
@@ -46,3 +46,12 @@ alias vi=vim
 alias nginxreload='sudo nginx -s reload'
 alias nginxtest='sudo nginx -t'
 alias tree='tree --charset=ansi'
+
+# git
+alias g=git
+alias gs='git status -s'
+alias gv='git remote -v'
+alias ga='git add'
+alias gc='git commit'
+alias gl='git log --oneline -n5'
+alias last='git log --oneline -n1'
