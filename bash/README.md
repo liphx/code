@@ -35,12 +35,19 @@
 ## 内置命令
 
 [alias](builtin/alias.md)  
+[bg,fg,jobs,kill,wait,disown,suspend](builtin/bg,fg,jobs,kill,wait,disown,suspend.md)  
+[fc,history](builtin/fc,history.md)  
 [pwd](builtin/pwd.md)  
 [return](builtin/return.md)  
+[set](builtin/set.md)  
+[type](builtin/type.md)  
 
 ## 一天一个命令行
 
 [apt](CLI/apt.md)  
+[arch](CLI/arch.md)  
+[base64](CLI/base64.md)  
+[basename,dirname](CLI/basename,dirname.md)  
 [bash](CLI/bash.md)  
 [cat,tac](CLI/cat,tac.md)  
 [cd](CLI/cd.md)  
@@ -66,9 +73,11 @@
 [nl](CLI/nl.md)  
 [printf](CLI/printf.md)  
 [ps](CLI/ps.md)  
+[readlink](CLI/readlink.md)  
 [read](CLI/read.md)  
 [rm,cp,mv](CLI/rm,cp,mv.md)  
 [script,scriptreplay](CLI/script,scriptreplay.md)  
+[sed](CLI/sed.md)  
 [shift](CLI/shift.md)  
 [sleep](CLI/sleep.md)  
 [tee](CLI/tee.md)  
