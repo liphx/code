@@ -10,3 +10,39 @@ add_alias() {
     fi
     source ~/.bashrc
 }
+
+code_init_c()
+{
+    filename=$1
+    echo '#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    return 0;
+}' > ${filename}
+
+}
+
+code_init_cpp()
+{
+    filename=$1
+    echo '#include <iostream>
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    return 0;
+}' > ${filename}
+}
+
+code_init_h()
+{
+    filename=$1
+    name="$(basename ${filename} .h)"
+    macro="${name^^}_H_"
+    echo "#ifndef ${macro}
+#define ${macro}
+
+#endif // ${macro}" > ${filename}
+}
