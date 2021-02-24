@@ -1,9 +1,14 @@
+#ifndef COMMON_H_
+#define COMMON_H_
+
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stdexcept>
 
 template<class T>
-T fromString(const std::string& s){
+T fromString(const std::string& s)
+{
     std::istringstream is(s);
     T t;
     is >> t;
@@ -11,7 +16,8 @@ T fromString(const std::string& s){
 }
 
 template<class T>
-std::string toString(const T& t){
+std::string toString(const T& t)
+{
     std::ostringstream os;
     os << t;
     return os.str();
@@ -24,7 +30,12 @@ void print(const Args&... args)
     std::cout << std::endl;
 }
 
-// 参数不合法返回空串，有多余参数不是错误
+class format_error: public std::runtime_error {
+public:
+    format_error(std::string msg): std::runtime_error(msg) {};
+};
+
+// 参数不合法抛出异常，有多余参数不是错误
 template<class... Args>
 std::string format(std::string fmt, const Args&... args)
 {
@@ -34,6 +45,7 @@ std::string format(std::string fmt, const Args&... args)
     int state = 0;
     int arg = 0;
     int arg_size = sizeof...(args);
+
     for (int i = 0; i < len; i++) {
         if (state == 0 && fmt[i] != '{' && fmt[i] != '}') {
             ret += fmt[i];
@@ -48,20 +60,22 @@ std::string format(std::string fmt, const Args&... args)
             state = 0;
             ret += '}';
         } else if (state == 1 && fmt[i] != '{' && fmt[i] != '}') { // 非法
-            return "";
+            throw format_error("Illegal format string");
         } else if (state == 2 && fmt[i] != '}') { // 非法
-            return "";
+            throw format_error("Illegal format string");
         } else if (state == 1 && fmt[i] == '}') { // 替换域
             state = 0;
             int i = 0;
-            std::initializer_list<int> { ([&ret, arg, &i](auto t){ 
+            std::initializer_list<int> { ([&ret, arg, &i](auto t) { 
                 if (i++ == arg) ret += toString(t);
             }(args), 0)... };
             arg++;
         }
     }
     if (arg > arg_size)
-        return "";
+        throw format_error("Missing format parameters");
 
     return ret;
 }
+
+#endif // COMMON_H_
