@@ -1,5 +1,14 @@
 #!/bin/bash
 
+start_with()
+{
+    if [[ $1 =~ ^$2.* ]]; then
+        true
+    else
+        false
+    fi
+}
+
 ssh_login()
 {
     username=$1
@@ -10,7 +19,11 @@ ssh_login()
     cmd="
         spawn ssh ${username}@${ip} -p ${port}
         expect { 
-            \"password\" { send "${passwd}\\r" } 
+            \"Connection refused\" exit
+            \"Name or service not known\" exit
+            \"continue connecting\" { send \"yes\\r\"; exp_continue }
+            \"password:\" { send \"${passwd}\\r\" } 
+            \"Password:\" { send \"${passwd}\\r\" } 
         } 
         interact
     "
@@ -37,10 +50,33 @@ read -d "" -ra ip_arr <<< $(awk '{print $3}' ${config_file})
 read -d "" -ra port_arr <<< $(awk '{print $4}' ${config_file})
 read -d "" -ra passwd_arr <<< $(awk '{print $5}' ${config_file})
 
-echo "select ssh connection:"
-for i in ${!name_arr[@]}; do
-    echo "  $((i + 1)). ${name_arr[$i]} - ${user_arr[$i]}@${ip_arr[$i]}:${port_arr[$i]}"
-done
-read select
-let "select -= 1"
-ssh_login ${user_arr[${select}]} ${ip_arr[${select}]} ${port_arr[${select}]} ${passwd_arr[${select}]}
+if [[ -z $2 ]]; then
+    echo "ssh information:"
+    printf "  %-6s%-16s%-30s%s\n" id identifier username@ip port
+    for i in ${!name_arr[@]}; do
+        printf "  %-6s%-16s%-30s%s\n" "$((i + 1))" "${name_arr[$i]}" "${user_arr[$i]}@${ip_arr[$i]}" "${port_arr[$i]}"
+    done
+    printf "input id or identifier: "
+    read select
+else
+    select=$2
+fi
+
+if start_with $select '^[1-9][0-9]*$'; then
+    let "select -= 1"
+    ssh_login ${user_arr[${select}]} ${ip_arr[${select}]} ${port_arr[${select}]} ${passwd_arr[${select}]}
+else
+    match=no
+    for i in ${!name_arr[@]}; do
+        if start_with ${name_arr[$i]} ${select}; then
+            match=yes
+            ssh_login ${user_arr[$i]} ${ip_arr[$i]} ${port_arr[$i]} ${passwd_arr[$i]}
+            break
+        fi
+    done
+    if [[ $match = "no" ]]; then
+        echo "no connection match $select"
+    fi
+fi
+
+exit 0
