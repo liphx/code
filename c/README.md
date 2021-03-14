@@ -2,19 +2,21 @@
 
 ## 标准库
 
-[assert](standard-library/assert.h)  
-[ctype](standard-library/ctype.h)  
-[errno](standard-library/errno.h)  
-[stdint](standard-library/stdint.h)  
-[stdlib](standard-library/stdlib.h)  
+[assert](standard-library/assert.md)  
+[ctype](standard-library/ctype.md)  
+[errno](standard-library/errno.md)  
+[stdint](standard-library/stdint.md)  
+[stdio](standard-library/stdio.md)  
+[stdlib](standard-library/stdlib.md)  
+[string](standard-library/string.md)  
 
 ## 算法
 
-## C语言书籍
+## 一些书籍
 
-The C Programming Language, 2nd Eition, K&R  
-C Primer Plus, 6th Eition, Stephen Prata  
-Advanced Programming in the UNIX Environment, 3rd Edition  
+* The C Programming Language, 2nd Eition, K&R  
+* C Primer Plus, 6th Eition, Stephen Prata  
+* Advanced Programming in the UNIX Environment, 3rd Edition  
 
 ## 在线文档
 
@@ -22,6 +24,3 @@ Advanced Programming in the UNIX Environment, 3rd Edition
 [最新c99标准草案](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf)  
 [C/C++参考手册](https://en.cppreference.com/w/)  
 
-## 编程社区
-
-[github](https://github.com/)
