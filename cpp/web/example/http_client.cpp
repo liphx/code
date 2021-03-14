@@ -5,11 +5,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    http_connection conn("127.0.0.1", 80);
+    http_connection conn("124.70.71.134", 80);
     http_request req;
     req.method("get");
     req.url("/");
-    req.host("localhost");
+    req.host("124.70.71.134");
     conn.send_req(req);
 
     http_response res;

@@ -221,7 +221,19 @@ int http_connection::recv_res(http_response& res)
         }
 
     } else if (res.header_.find("Content-Length") != res.header_.end()) {
-
+        int length = 0;
+        try {
+            length = std::stoi(res.header_["Content-Length"]);
+        } catch (std::exception &) {
+            return -1;
+        }
+        char buf[BUFSIZ];
+        int left = length;
+        while (left > 0) {
+            int size = read(buf, std::min(BUFSIZ, left));
+            res.content_ += std::string(buf, size);
+            left -= size;
+        }
     }
 
 
