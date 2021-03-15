@@ -1,4 +1,6 @@
-#include "sort.h"
+# 排序
+
+```c
 #include <string.h>
 
 static void swap(void *ptr1, void *ptr2, size_t size)
@@ -56,4 +58,4 @@ void quick_sort(void *ptr, size_t count, size_t size,
 {
     _quick_sort(ptr, 0, count - 1, size, comp);
 }
-
+```
