@@ -44,6 +44,7 @@
 * C Primer Plus, 6th Eition, Stephen Prata
 * Advanced Programming in the UNIX Environment, 3rd Edition, Richard Stevens
 * The Linux Programming Interface, Michael Kerrisk
+* Linux Kernel Development, 3rd, Robert Love
 
 ## 在线文档
 
