@@ -22,5 +22,5 @@
 
 ## Algorithm
 
-[BigInteger.h](Algorithm/BigInteger.h)  
-[BigInteger.cpp](Algorithm/BigInteger.cpp)  
+[BigInteger.h](algorithm/BigInteger.h)  
+[BigInteger.cpp](algorithm/BigInteger.cpp)  

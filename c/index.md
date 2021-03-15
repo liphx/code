@@ -35,7 +35,7 @@
 
 ## UNIX/Linux
 
-* [dirent]()
+* [dirent](unix-linux/dirent.md)
 * [dlopen,dlsym](unix-linux/dlopen-dlsym.md)
 
 ## 一些书籍
