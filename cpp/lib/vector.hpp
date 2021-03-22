@@ -12,7 +12,7 @@ public:
     vector();
     vector(const vector& other);
     vector<T>& operator=(const vector& other);
-    ~vector() { delete []data_; }
+    ~vector() { if (size_ > 0) delete []data_; }
     size_t size() { return size_; }
     bool empty() { return size_ == 0; }
     T *data() { return data_; }
@@ -72,7 +72,8 @@ void vector<T>::push_back(const T& x)
             capacity_ *= 2;
         T *tmp = new T[capacity_];
         std::copy(data_, data_ + size_, tmp);
-        delete data_;
+        if (size_ > 1)
+            delete []data_;
         data_ = tmp;
         data_[size_++] = x;
     }
