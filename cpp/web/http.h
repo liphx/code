@@ -27,6 +27,8 @@ public:
 
     std::string host() const;
     void host(const std::string &);
+    void parse_header(const std::string &);
+    std::map<std::string, std::string> header_;
 private:
     std::string method_;
     std::string url_;
@@ -47,8 +49,11 @@ public:
 class http_connection: public tcp::tcp_connection {
 public:
     http_connection(const char *ip, int port = 80);
+    http_connection(const tcp_connection &);
+    int recv_req(http_request &);
     int send_req(const http_request &);
     int recv_res(http_response &);
+    int send_res(const http_response &);
 };
 
 class http_server: public tcp::tcp_server {
@@ -61,6 +66,7 @@ public:
     void handle(const std::string& url, http_handle func);
     // 开启 http server
     void start();
+    http_handle find_handle_func(const http_request &);
 private:
     std::map<std::string, http_handle> url_map_;
 };
