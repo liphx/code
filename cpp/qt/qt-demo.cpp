@@ -14,22 +14,21 @@ public:
     LoginWindow(QWidget *parent = 0): QMainWindow(parent) {
         setWindowTitle("登录");
         QWidget *center = new QWidget;
-        // QFormLayout* layout = new QFormLayout();
-        // QLineEdit *username_text = new QLineEdit;
-        // QLineEdit *passwd_text = new QLineEdit;
-        // layout->addRow("账号", username_text);
-        // layout->addRow("密码", passwd_text);
+        this->setCentralWidget(center);
 
-        // QPushButton *login_button = new QPushButton("登录");
-        // layout->addRow(login_button);
-        // layout->setLabelAlignment(Qt::AlignLeft);
-        // center->setLayout(layout);
-        center->setParent(this);
-    }
-    ~LoginWindow() {
-        
-    }
+        QFormLayout* layout = new QFormLayout();
+        center->setLayout(layout);
 
+        QLineEdit *username_text = new QLineEdit;
+        QLineEdit *passwd_text = new QLineEdit;
+        layout->addRow("账号", username_text);
+        layout->addRow("密码", passwd_text);
+
+        QPushButton *login_button = new QPushButton("登录");
+        layout->addRow(login_button);
+        layout->setLabelAlignment(Qt::AlignLeft);
+    }
+    ~LoginWindow() {}
 };
 
 class MainWindow : public QMainWindow {

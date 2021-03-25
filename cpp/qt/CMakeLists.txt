@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.19)
 project(qt-demo VERSION 1.0
                 DESCRIPTION "first qt project")
 
-set(QT_INSTALL_DIR "/data/qt5.12.10/5.12.10/gcc_64")
+set(QT_INSTALL_DIR "/opt/Qt5.14.2/5.14.2/gcc_64/")
 
 add_definitions(-DQT_NO_VERSION_TAGGING)
 add_compile_options(-fPIC)
