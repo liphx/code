@@ -1,10 +1,17 @@
 #include "http.h"
 #include <algorithm>
 #include <vector>
+#include <functional>
 using namespace tcp;
 using namespace http;
 
 #include <iostream>
+template<class... Args>
+void print(const Args&... args)
+{
+    // std::initializer_list<int> { ([](auto i){ std::cout << i << ' '; }(args), 0)... };
+    // std::cout << std::endl;
+}
 
 http_error::http_error(std::string msg): std::runtime_error(msg)
 {
@@ -27,6 +34,31 @@ void http_server::handle(const std::string& url, http_handle func)
 
 void http_server::start()
 {
+    std::function<void(const tcp_connection &)> handle = [this](const tcp_connection& client){
+        print("start");
+        http_connection conn(client);
+        http_request req;
+        conn.recv_req(req);
+        http_response res;
+        http_handle func = find_handle_func(req);
+        if (func != nullptr) {
+            func(req, res);
+            if (res.content_ != "")
+                conn.send_res(res);
+        }
+    };
+
+    tcp_server::start(handle);
+}
+
+http_server::http_handle http_server::find_handle_func(const http_request& req)
+{
+    if (req.header_.find("http_url") == req.header_.end())
+        return nullptr;
+    std::string url = req.header_.at("http_url");
+    if (url_map_.find(url) == url_map_.end())
+        return nullptr;
+    return url_map_.at(url);
 }
 
 // ------------------- http_request --------------------------------
@@ -94,6 +126,42 @@ static void split(std::vector<std::string>& lines, const std::string& str, const
     }
 }
 
+void http_request::parse_header(const std::string& str)
+{
+    std::vector<std::string> lines;
+    split(lines, str, "\r\n");
+    // 第一行，方法行
+    if (!lines.empty()) {
+        std::string method_line = lines[0];
+        std::vector<std::string> tokens;
+        split(tokens, method_line, " ");
+        if (tokens.size() == 3) {
+            if (tokens[0] != "GET")
+               return;
+            header_["http_method"] = tokens[0];
+            method_ = tokens[0];
+            header_["http_url"] = tokens[1];
+            url_ = tokens[1];
+            header_["http_version"] = tokens[2];
+            print(tokens[0], tokens[1], tokens[2]);
+        }
+    }
+
+    for (int i = 1; i < lines.size(); i++) {
+        std::string& line = lines[i];
+        // std::cout << "origin line: " << line << std::endl;
+        auto pos = line.find_first_of(":");
+        if (pos != std::string::npos) {
+            std::string key = std::string(line, 0, pos);
+            while (line[++pos] == ' ');
+            if (pos != std::string::npos) {
+                std::string value = std::string(line, pos);
+                header_[key] = value;
+            }
+        }
+    }
+}
+
 void http_response::parse_header(const std::string& str)
 {
     std::vector<std::string> lines;
@@ -137,7 +205,12 @@ void http_response::parse_header(const std::string& str)
 
 void http_response::set_content(const std::string& co, const std::string& type)
 {
-
+    header_["Content-Type"] = type;
+    header_["Content-Length"] = std::to_string(co.length());
+    content_ = co;
+    for (auto i: header_) {
+        print(i.first, i.second);
+    }
 }
 
 // ------------------- http_connection --------------------------------
@@ -145,6 +218,34 @@ void http_response::set_content(const std::string& co, const std::string& type)
 http_connection::http_connection(const char *ip, int port): tcp_connection(ip, port)
 {
 
+}
+
+http_connection::http_connection(const tcp_connection &conn): tcp_connection(conn)
+{
+
+}
+
+int http_connection::recv_req(http_request& req)
+{
+    // read header
+    std::string str;
+    int prev = 0;
+    char ch;
+    while (prev < 4) {
+        if (read(&ch, 1) != 1) {
+            return -1;
+        }
+        str += ch;
+        if (ch == '\r' && (prev == 0 || prev == 2))
+            prev++;
+        else if (ch == '\n' && (prev == 1 || prev == 3))
+            prev++;
+        else
+            prev = 0;
+    }
+    print(str);
+    req.parse_header(str);
+    return 0;
 }
 
 int http_connection::send_req(const http_request& req)
@@ -234,8 +335,26 @@ int http_connection::recv_res(http_response& res)
             res.content_ += std::string(buf, size);
             left -= size;
         }
+
     }
 
+    return 0;
+}
 
+int http_connection::send_res(const http_response& res)
+{
+    try {
+        std::string msg =   "HTTP/1.1 200 OK\r\n"
+                            "Content-Type: " + res.header_.at("Content-Type") + "\r\n"
+                            "Content-Length: " + res.header_.at("Content-Length") + "\r\n"
+                            "\r\n";
+        
+        if (writen(msg.data(), msg.length()) != msg.length())
+            return -1;
+        if (writen(res.content_.data(), res.content_.length()) != res.content_.length())
+            return -1;
+    } catch (std::exception&) {
+        return -1;
+    }
     return 0;
 }

@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <functional>
 
 namespace tcp {
 
@@ -19,7 +20,7 @@ public:
     tcp_connection(int sockfd);
     // 构造函数，客户端主动打开，参数为服务器ip与端口，失败则抛出异常
     tcp_connection(const char *ip, int port);
-    ~tcp_connection();
+    virtual ~tcp_connection();
     // 返回套接字描述符
     int get_sockfd() const;
     ssize_t read(void *buf, size_t nbytes) const; 
@@ -41,7 +42,7 @@ public:
     tcp_server(const tcp_server&) = delete;
     virtual ~tcp_server();
     // 启动服务，对每个tcp连接以handle处理
-    void start(void (*handle)(const tcp_connection &));
+    void start(std::function<void(const tcp_connection&)> handle);
     // 返回监听套接字描述符
     int get_sockfd() const;
     // 返回监听端口号

@@ -68,7 +68,7 @@ static inline void epoll_add(int epfd, tcp_info *ptr)
     }
 }
 
-void tcp_server::start(void (*handle)(const tcp_connection&))
+void tcp_server::start(std::function<void(const tcp_connection&)> handle)
 {
     int epfd = epoll_create1(EPOLL_CLOEXEC);
     if (epfd == -1) {
