@@ -1,5 +1,5 @@
 #include "tcp.h"
-using namespace tcp;
+#include "common.hpp"
 #include <string>
 #include <memory>
 #include <cstring>
@@ -9,6 +9,7 @@ using namespace tcp;
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <sys/epoll.h>
+#include <fcntl.h>
 
 tcp_error::tcp_error(std::string msg): std::runtime_error(msg)
 {
@@ -19,6 +20,9 @@ tcp_server::tcp_server(int port): port_(port)
     sockfd_ = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd_ == -1)
         throw tcp_error(std::string("create socket fail: ") + strerror(errno));
+
+    if (set_fl(sockfd_, O_NONBLOCK) == -1)
+        throw tcp_error(std::string("set noblock fail: ") + strerror(errno));
 
     struct sockaddr_in name;
     memset(&name, 0, sizeof(name));
@@ -52,35 +56,24 @@ tcp_server::~tcp_server()
     close(sockfd_);
 }
 
-struct tcp_info {
-    int fd;
-    int type; // type = 0: tcp server
-    tcp_connection *data;
-};
-
-static inline void epoll_add(int epfd, tcp_info *ptr)
+static inline void epoll_add(int epfd, int fd, tcp_connection *ptr)
 {
     struct epoll_event ev;
     ev.events = EPOLLIN;
     ev.data.ptr = ptr;
-    if (epoll_ctl(epfd, EPOLL_CTL_ADD, ptr->fd, &ev) == -1) {
+    if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, &ev) == -1) {
         throw tcp_error("epoll_ctl error");
     }
 }
 
-void tcp_server::start(std::function<void(const tcp_connection&)> handle)
+void tcp_server::start(std::function<void(tcp_connection&)> handle)
 {
     int epfd = epoll_create1(EPOLL_CLOEXEC);
     if (epfd == -1) {
         throw tcp_error(std::string("epoll_create1 fail: ") + strerror(errno));
     }
 
-    tcp_info data = {
-        .fd = sockfd_,
-        .type = 0,
-        .data = nullptr
-    };
-    epoll_add(epfd, &data);
+    epoll_add(epfd, sockfd_, nullptr);
     const int maxevents = 16;
     struct epoll_event evlist[maxevents];
     int fds;
@@ -94,21 +87,30 @@ void tcp_server::start(std::function<void(const tcp_connection&)> handle)
             }
         }
         for (int i = 0; i < fds; i++) {
-            tcp_info *ptr = (tcp_info *)evlist[i].data.ptr;
-            if (ptr->type == 0) { // accept
+            if (evlist[i].data.ptr == nullptr) { // accept
                 tcp_connection *pclient = new tcp_connection(sockfd_);
                 if (pclient != nullptr) {
-                    tcp_info data = {
-                        .fd = pclient->get_sockfd(),
-                        .type = 1,
-                        .data = pclient
-                    };
-                    epoll_add(epfd, &data);
+                    epoll_add(epfd, pclient->get_sockfd(), pclient);
                 }
-            } else {
-                std::unique_ptr<tcp_connection> client(ptr->data);
-                if (handle != nullptr)
+            } else { // handle
+                tcp_connection *client = (tcp_connection *)(evlist[i].data.ptr);
+                char buf[BUFSIZ];
+                for (;;) {
+                    int size = client->read(buf, sizeof(buf));
+                    if (size < 0 && errno == EAGAIN) { // 数据读完
+                        break; 
+                    } else if (size <= 0) { // 断开连接 or 读出错
+                        epoll_ctl(epfd, EPOLL_CTL_DEL, client->get_sockfd(), nullptr);
+                        delete client;
+                        client = nullptr;
+                        break;
+                    }
+                    client->read_buf_.insert(client->read_buf_.end(), buf, buf + size);
+                }
+                if (handle != nullptr && client != nullptr) {
                     handle(*client);
+                    client->write(client->write_buf_.data(), client->write_buf_.size());
+                }
             }
         }
     }
@@ -132,6 +134,9 @@ tcp_connection::tcp_connection(int sockfd)
     if (sockfd_ == -1) {
         throw tcp_error(std::string("accept fail: ") + strerror(errno));
     }
+
+    if (set_fl(sockfd_, O_NONBLOCK) == -1)
+        throw tcp_error(std::string("set noblock fail: ") + strerror(errno));
 }
 
 tcp_connection::tcp_connection(const char *ip, int port)
