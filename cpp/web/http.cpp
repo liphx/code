@@ -1,17 +1,8 @@
 #include "http.h"
+#include "common.hpp"
 #include <algorithm>
 #include <vector>
 #include <functional>
-using namespace tcp;
-using namespace http;
-
-#include <iostream>
-template<class... Args>
-void print(const Args&... args)
-{
-    // std::initializer_list<int> { ([](auto i){ std::cout << i << ' '; }(args), 0)... };
-    // std::cout << std::endl;
-}
 
 http_error::http_error(std::string msg): std::runtime_error(msg)
 {
@@ -147,7 +138,7 @@ void http_request::parse_header(const std::string& str)
         }
     }
 
-    for (int i = 1; i < lines.size(); i++) {
+    for (size_t i = 1; i < lines.size(); i++) {
         std::string& line = lines[i];
         // std::cout << "origin line: " << line << std::endl;
         auto pos = line.find_first_of(":");
@@ -183,7 +174,7 @@ void http_response::parse_header(const std::string& str)
         
     }
 
-    for (int i = 1; i < lines.size(); i++) {
+    for (size_t i = 1; i < lines.size(); i++) {
         std::string& line = lines[i];
         // std::cout << "origin line: " << line << std::endl;
         auto pos = line.find_first_of(":");
@@ -252,7 +243,7 @@ int http_connection::send_req(const http_request& req)
 {
     std::string msg = req.method() + " " + req.url() + " " + "HTTP/1.1\r\n";
     msg += "Host: " + req.host() + "\r\n\r\n";
-    if (writen(msg.data(), msg.length()) == msg.length())
+    if (size_t(writen(msg.data(), msg.length())) == msg.length())
         return 0;
     return -1; // error
 }
@@ -349,9 +340,9 @@ int http_connection::send_res(const http_response& res)
                             "Content-Length: " + res.header_.at("Content-Length") + "\r\n"
                             "\r\n";
         
-        if (writen(msg.data(), msg.length()) != msg.length())
+        if (size_t(writen(msg.data(), msg.length())) != msg.length())
             return -1;
-        if (writen(res.content_.data(), res.content_.length()) != res.content_.length())
+        if (size_t(writen(res.content_.data(), res.content_.length())) != res.content_.length())
             return -1;
     } catch (std::exception&) {
         return -1;

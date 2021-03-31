@@ -1,4 +1,5 @@
-#include "../tcp.h"
+#include "tcp.h"
+#include "common.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
@@ -11,17 +12,8 @@
 #include <arpa/inet.h>
 #include <sys/epoll.h>
 #include <netdb.h>
-using namespace tcp;
 using namespace std;
 
-template<class... Args>
-void print(const Args&... args)
-{
-#if 1
-    std::initializer_list<int> { ([](auto i){ std::cout << i << ' '; }(args), 0)... };
-    std::cout << std::endl;
-#endif
-}
 
 const int BUFFSIZE = 1024;
 
@@ -157,7 +149,7 @@ int main(int argc, char *argv[])
         }
 
         size = remote->writen(req.data(), req.length());
-        if (size != req.length()) {
+        if (size_t(size) != req.length()) {
             cerr << "write error: " << strerror(errno) << endl;
             delete remote;
             return;

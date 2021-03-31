@@ -5,8 +5,6 @@
 #include <string>
 #include <map>
 
-namespace http {
-
 // tcp 异常类
 class http_error: public std::runtime_error {
 public:
@@ -46,7 +44,7 @@ public:
     std::string content_;
 };
 
-class http_connection: public tcp::tcp_connection {
+class http_connection: public tcp_connection {
 public:
     http_connection(const char *ip, int port = 80);
     http_connection(const tcp_connection &);
@@ -56,7 +54,7 @@ public:
     int send_res(const http_response &);
 };
 
-class http_server: public tcp::tcp_server {
+class http_server: public tcp_server {
 public:
     typedef void (*http_handle)(const http_request& req, http_response& res);
     // 构造函数，默认端口为80
@@ -70,7 +68,5 @@ public:
 private:
     std::map<std::string, http_handle> url_map_;
 };
-
-} // namespace http
 
 #endif // HTTP_H_

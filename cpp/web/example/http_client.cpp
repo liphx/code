@@ -1,9 +1,8 @@
-#include "../http.h"
+#include "http.h"
 #include <iostream>
-using namespace http;
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
     http_connection conn("124.70.71.134", 80);
     http_request req;

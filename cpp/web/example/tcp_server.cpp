@@ -1,5 +1,5 @@
-#include "../tcp.h"
-#include "../common.hpp"
+#include "tcp.h"
+#include "common.hpp"
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    tcp_server server(9000);
+    tcp_server server(8000);
     server.start([](tcp_connection& client) {
         auto& req = client.read_buf_;
         cout << "req: " << req.data() << endl;

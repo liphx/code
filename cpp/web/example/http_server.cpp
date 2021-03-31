@@ -1,7 +1,6 @@
-#include "../http.h"
-using namespace http;
+#include "http.h"
 
-int main(int argc, char *argv[])
+int main()
 {
     http_server server(8080);
     server.handle("/hello", [](auto req, auto res){
