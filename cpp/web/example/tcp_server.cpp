@@ -1,14 +1,17 @@
 #include "../tcp.h"
-using namespace tcp;
+#include "../common.hpp"
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
     tcp_server server(9000);
-    server.start([](const tcp_connection& client){
-        char buf[BUFSIZ];
-        int size = client.read(buf, BUFSIZ);
-        if (size > 0 && size <= BUFSIZ) {
-            client.writen(buf, size);
-        }
+    server.start([](tcp_connection& client) {
+        auto& req = client.read_buf_;
+        cout << "req: " << req.data() << endl;
+        auto& res = client.write_buf_;
+        res.insert(res.end(), req.begin(), req.end());
     });
 }
