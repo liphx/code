@@ -4,8 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <functional>
-
-namespace tcp {
+#include <vector>
 
 // tcp 异常类
 class tcp_error: public std::runtime_error {
@@ -31,6 +30,9 @@ public:
     ssize_t writen(const void *buf, size_t nbytes) const;
     ssize_t recv(void *buf, size_t nbytes, int flags) const;
     ssize_t send(const void *buf, size_t nbytes, int flags) const;
+
+    std::vector<uint8_t> read_buf_;
+    std::vector<uint8_t> write_buf_;
 private:
     int sockfd_;
 };
@@ -42,7 +44,7 @@ public:
     tcp_server(const tcp_server&) = delete;
     virtual ~tcp_server();
     // 启动服务，对每个tcp连接以handle处理
-    void start(std::function<void(const tcp_connection&)> handle);
+    void start(std::function<void(tcp_connection&)> handle);
     // 返回监听套接字描述符
     int get_sockfd() const;
     // 返回监听端口号
@@ -51,7 +53,5 @@ private:
     int sockfd_;
     int port_;
 };
-
-} // namespace tcp
 
 #endif // TCP_H_
