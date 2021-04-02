@@ -34,6 +34,23 @@ inline bool is_heap(RandomIt first, RandomIt last)
     return liph::is_heap_until(first, last) == last;
 }
     
+template<class RandomIt>
+void push_heap(RandomIt first, RandomIt last)
+{
+    using Distance = typename std::iterator_traits<RandomIt>::difference_type;
+    using Value = typename std::iterator_traits<RandomIt>::value_type;
+    Distance child = std::distance(first, last) - 1;
+    Distance parent = (child - 1) / 2;
+    Value value = *(first + child);
+
+    while (child > 0 && *(first + parent) < value) {
+        *(first + child) = std::move(*(first + parent));
+        child = parent;
+        parent = (child - 1) / 2;
+    }
+    *(first + child) = std::move(value);
+}
+    
 } // namespace liph
 
 #endif // HEAP_HPP_
