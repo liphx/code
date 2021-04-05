@@ -11,9 +11,7 @@
 #include <sys/epoll.h>
 #include <fcntl.h>
 
-tcp_error::tcp_error(std::string msg): std::runtime_error(msg)
-{
-}
+tcp_error::tcp_error(std::string msg): std::runtime_error(msg) {}
 
 tcp_server::tcp_server(int port): port_(port)
 {
@@ -34,7 +32,6 @@ tcp_server::tcp_server(int port): port_(port)
         throw tcp_error(std::string("bind fail: ") + strerror(errno));
     }
         
-    
     if (port_ == 0) { // 是否动态分配端口 
         socklen_t namelen = sizeof(name);
         if (getsockname(sockfd_, (struct sockaddr *)&name, &namelen) == -1) {
