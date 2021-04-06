@@ -198,10 +198,13 @@ void vector<T>::reserve(size_t n)
         data_ = new T[n];
         capacity_ = n;
     } else {
-        data_ = (T *)realloc(data_, n);
-        if (data_ == nullptr) { // realloc fail
+        T *tmp = new T[n];
+        if (tmp == nullptr) 
             throw std::bad_alloc();
-        }
+        std::copy(data_, data_ + size_, tmp);
+        delete []data_;
+        data_ = tmp;
+        
         capacity_ = n;
     }
 }
