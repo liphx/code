@@ -1,7 +1,9 @@
 tmp/
-.vscode
+build/
+.vscode/
+a.out
 *.o
 *.so
-a.out
+*.exe
+*.swp
 *.class
-build/
