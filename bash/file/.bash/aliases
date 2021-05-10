@@ -35,11 +35,12 @@ alias top='htop'
 # git
 alias g=git
 alias gs='git status -s'
-alias gv='git remote -v'
+alias gr='git remote -v'
 alias ga='git add'
 alias gc='git commit -m'
 alias gl='git log --oneline -n5'
 alias glast='git log -n1'
+alias gd='git diff'
 
 # vim
 alias vi=vim
