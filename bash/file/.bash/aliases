@@ -42,6 +42,8 @@ alias gl='git log --oneline -n5'
 alias glast='git log -n1'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gpl='git pull'
+alias gph='git push'
 
 # vim
 alias vi=vim
