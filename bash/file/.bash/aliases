@@ -41,6 +41,7 @@ alias gc='git commit -m'
 alias gl='git log --oneline -n5'
 alias glast='git log -n1'
 alias gd='git diff'
+alias gdc='git diff --cached'
 
 # vim
 alias vi=vim
