@@ -43,6 +43,10 @@ set ignorecase              " 忽略大小写搜索
 set encoding=utf-8          " 使用utf-8
 
 " 单词检查
-" set spell spelllang=en_us   " 英文单词拼写检查，中文文档下建议关闭
+set spell spelllang=en_us,cjk   
 
 set history=1000
+
+# map
+nnoremap <silent> <C-l>  :<C-u>nohlsearch<CR><C-l>
+
