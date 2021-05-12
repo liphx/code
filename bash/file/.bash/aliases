@@ -49,6 +49,7 @@ alias gph='git push'
 alias vi=vim
 alias vimrc='vim ~/.vimrc'
 alias vim-default='vim -u NONE -N'
+alias neovim='nvim'
 
 # shorter
 alias pu=pushd
