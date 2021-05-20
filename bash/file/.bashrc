@@ -46,3 +46,5 @@ fi
 
 test -f ~/.bash/aliases && . ~/.bash/aliases
 test -f ~/.bash/scripts && . ~/.bash/scripts
+
+set -o vi

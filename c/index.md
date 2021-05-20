@@ -33,11 +33,6 @@
 * [分治法](algorithm/divide-and-conquer.md)
 * [动态规划](algorithm/dynamic-programming.md)
 
-## UNIX/Linux
-
-* [dirent](unix-linux/dirent.md)
-* [dlopen,dlsym](unix-linux/dlopen-dlsym.md)
-
 ## 一些书籍
 
 * The C Programming Language, 2nd Eition, K&R

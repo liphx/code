@@ -65,3 +65,7 @@ alias nginxreload='sudo nginx -s reload'
 alias nginxtest='sudo nginx -t'
 alias tree='tree --charset=ansi'
 alias remote='bash ~/.bash/ssh.sh ~/.config/ssh_passwd'
+
+# copy
+alias copy='xclip -sel clip'
+# alias copy='xsel -ib' # or
