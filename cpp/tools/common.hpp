@@ -6,6 +6,19 @@
 #include <sstream>
 #include <stdexcept>
 
+template<typename T>
+ostream& operator<<(ostream& o, const vector<T>& vc)
+{
+    o << "[";
+    string sep;
+    for (auto x: vc) {
+        o << sep << x;
+        sep = ", ";
+    }
+    o << "]";
+    return o;
+}
+
 template<class T>
 T fromString(const std::string& s)
 {
