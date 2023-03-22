@@ -1,0 +1,6 @@
+#ifndef LTL_LIST_
+#define LTL_LIST_
+
+#include "detail/list.h"
+
+#endif  // LTL_LIST_

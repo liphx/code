@@ -1,0 +1,6 @@
+#ifndef LTL_ITERATOR_
+#define LTL_ITERATOR_
+
+#include "detail/iterator.h"
+
+#endif  // LTL_ITERATOR_

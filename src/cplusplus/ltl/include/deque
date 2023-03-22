@@ -1,0 +1,12 @@
+#ifndef LTL_DEQUE_
+#define LTL_DEQUE_
+
+#include <deque>
+
+namespace ltl {
+
+using std::deque;
+
+}  // namespace ltl
+
+#endif  // LTL_DEQUE_

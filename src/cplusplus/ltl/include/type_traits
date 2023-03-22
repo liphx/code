@@ -1,0 +1,6 @@
+#ifndef LTL_TYPE_TRAITS_
+#define LTL_TYPE_TRAITS_
+
+#include "detail/type_traits.h"
+
+#endif  // LTL_TYPE_TRAITS_

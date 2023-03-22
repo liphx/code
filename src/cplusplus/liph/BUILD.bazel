@@ -1,0 +1,30 @@
+cc_library(
+    name = "liph",
+    srcs = glob(
+        include = ["*.cpp",],
+        exclude = ["*_test.cpp",],
+    ),
+    hdrs = glob(["*.h"]),
+	linkopts = ["-lstdc++fs"],
+    visibility = ["//visibility:public"],
+)
+
+[cc_test(
+    name = test_name.split('.')[0],
+    srcs = [test_name],
+    deps = [
+        ":liph",
+        "@com_google_googletest//:gtest_main",
+    ],
+) for test_name in glob(["*_test.cpp"])]
+
+cc_test(
+    name = "test",
+    srcs = glob(
+        include = ["*_test.cpp"],
+    ),
+    deps = [
+        ":liph",
+        "@com_google_googletest//:gtest_main",
+    ],
+)

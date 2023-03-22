@@ -1,0 +1,6 @@
+#ifndef LTL_VECTOR_H_
+#define LTL_VECTOR_H_
+
+#include "detail/vector.h"
+
+#endif  // LTL_VECTOR_H_

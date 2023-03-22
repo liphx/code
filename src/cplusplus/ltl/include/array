@@ -1,0 +1,6 @@
+#ifndef LTL_ARRAY_
+#define LTL_ARRAY_
+
+#include "detail/array.h"
+
+#endif  // LTL_ARRAY_

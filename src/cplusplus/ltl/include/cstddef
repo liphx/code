@@ -1,0 +1,15 @@
+#ifndef LTL_CSTDDEF_
+#define LTL_CSTDDEF_
+
+#include <stddef.h>
+
+namespace ltl {
+
+using ::ptrdiff_t;
+using ::size_t;
+
+using nullptr_t = decltype(nullptr);
+
+}  // namespace ltl
+
+#endif  // LTL_CSTDDEF_

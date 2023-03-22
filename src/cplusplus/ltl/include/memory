@@ -1,0 +1,8 @@
+#ifndef LTL_MEMORY_
+#define LTL_MEMORY_
+
+#include "detail/allocator.h"
+#include "detail/construct.h"
+#include "detail/unique_ptr.h"
+
+#endif  // LTL_MEMORY_

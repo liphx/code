@@ -1,0 +1,6 @@
+#ifndef LTL_NUMERIC_
+#define LTL_NUMERIC_
+
+#include "detail/numeric.h"
+
+#endif  // LTL_NUMERIC_

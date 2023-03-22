@@ -1,0 +1,7 @@
+#ifndef LTL_UTILITY_
+#define LTL_UTILITY_
+
+#include "detail/utility.h"
+#include "detail/pair.h"
+
+#endif  // LTL_UTILITY_

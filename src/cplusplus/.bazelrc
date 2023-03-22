@@ -1,0 +1,5 @@
+build --cxxopt=-g
+build --cxxopt=-std=c++2a
+build --cxxopt=-fdiagnostics-color
+build --cxxopt=-Wfatal-errors
+build --spawn_strategy=standalone
