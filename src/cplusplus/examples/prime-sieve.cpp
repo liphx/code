@@ -1,4 +1,4 @@
-#include "common.h"
+#include "liph/liph.h"
 using namespace std;
 
 const int max_i = 10000000;

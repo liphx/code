@@ -1,4 +1,4 @@
-#include "http.h"
+#include "liph/http.h"
 
 #include <algorithm>
 #include <functional>
@@ -6,10 +6,10 @@
 #include <stdexcept>
 #include <vector>
 
-#include "logger.h"
-#include "singleton.h"
-#include "string.h"
-#include "threadpool.h"
+#include "liph/logger.h"
+#include "liph/singleton.h"
+#include "liph/string.h"
+#include "liph/threadpool.h"
 
 namespace liph {
 

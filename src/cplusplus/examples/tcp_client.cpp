@@ -3,8 +3,9 @@
 #include <iostream>
 #include <thread>
 
-#include "tcp.h"
+#include "liph/tcp.h"
 using namespace std;
+using namespace liph;
 
 void oneloop() {
     auto sock = std::make_shared<Socket>(Socket::TCP | Socket::IPV4);

@@ -6,10 +6,10 @@
 namespace liph {
 
 template <class T>
-class Singleton {
+class singleton {
 public:
     template <class... Args>
-    static T *GetInstance(Args&&...args) {
+    static T *instance(Args&&...args) {
         static T obj(std::forward<Args>(args)...);
         return &obj;
     }

@@ -1,3 +1,4 @@
+#include <iostream>
 // 不在构造与析构函数中调用虚函数
 
 class A {

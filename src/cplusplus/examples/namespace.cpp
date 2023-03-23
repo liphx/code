@@ -76,3 +76,5 @@ int A::i = 1;
 在C++中使用C库函数 extern "C" float(int a,char b);
 告诉编译器f()是C连接，这样就不会转换函数名
 */
+
+int main() {}

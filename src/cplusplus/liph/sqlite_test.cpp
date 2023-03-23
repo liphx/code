@@ -4,9 +4,11 @@
 #include <fstream>
 #include <iostream>
 
+#include "gtest/gtest.h"
+
 using namespace liph;
 
-int main() {
+TEST(sqlite, db) {
     const char *db_path = "./.test.db";
     Sqlite db(db_path);
     int ret = SQLITE_OK;
@@ -14,9 +16,7 @@ int main() {
     ret |= db.execute("insert into t values('kkk', 123, 'hello')");
     ret |= db.execute("insert into t values('liph', -98, 'cc')");
     ret |= db.execute("insert into t(aaa) values('okk')");
-    if (ret != SQLITE_OK) {
-        return 1;
-    }
+    EXPECT_EQ(ret, SQLITE_OK);
     auto result = db.query("select * from t");
     for (auto x : result) {
         for (auto y : x) std::cout << y << "\t";

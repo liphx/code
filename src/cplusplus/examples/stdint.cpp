@@ -53,13 +53,13 @@
  * 例如, UINT64_C(0x123) 可以展开成 0x123ULL 或 0x123UL
  */
 
-#include "common.h"
+#include "liph/liph.h"
 
 int main() {
-    print(sizeof(int8_t), sizeof(int64_t), sizeof(uint8_t), sizeof(uint64_t));
+    liph::print(sizeof(int8_t), sizeof(int64_t), sizeof(uint8_t), sizeof(uint64_t));
     // 1 8 1 8
 
     int8_t i8 = static_cast<int8_t>(128);
     uint8_t ui8 = static_cast<uint8_t>(i8);
-    print(static_cast<int>(i8), static_cast<int>(ui8));  // -128, 128
+    liph::print(static_cast<int>(i8), static_cast<int>(ui8));  // -128, 128
 }

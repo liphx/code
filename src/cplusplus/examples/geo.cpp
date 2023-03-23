@@ -1,4 +1,5 @@
-#include "common.h"
+#include <cmath>
+#include <iostream>
 using namespace std;
 
 // 单位为角度

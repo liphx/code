@@ -1,6 +1,7 @@
 #ifndef LIPH_PRINT_H_
 #define LIPH_PRINT_H_
 
+#include <cstring>
 #include <iostream>
 #include <string>
 #include <vector>

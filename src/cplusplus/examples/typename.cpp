@@ -1,3 +1,6 @@
+#include "liph/liph.h"
+using namespace std;
+
 template <class T>
 void print(const vector<T>& vc) {
     if (vc.empty()) return;
@@ -42,3 +45,5 @@ public:
         typename A<T>::Nested tmp;
     }
 };
+
+int main() {}

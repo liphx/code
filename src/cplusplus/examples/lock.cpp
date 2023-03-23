@@ -1,3 +1,8 @@
+#include <iostream>
+#include <mutex>
+#include <thread>
+using namespace std;
+
 class A {
 public:
     A(int i) : i_(i) {}

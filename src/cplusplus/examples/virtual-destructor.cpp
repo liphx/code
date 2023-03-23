@@ -1,5 +1,7 @@
 // 带多态性质的基类应该声明 virtual destructor, 即如果基类带有 virtual 成员函数, 就应该带虚析构函数
 
+#include <iostream>
+
 class A {};
 
 class B : public A {

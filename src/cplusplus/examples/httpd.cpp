@@ -3,11 +3,9 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "http.h"
-#include "logger.h"
-#include "singleton.h"
-#include "util.h"
+#include "liph/liph.h"
 using namespace std;
+using namespace liph;
 
 int main(int argc, char **argv) {
     int port = 80;
@@ -23,7 +21,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    singleton<logger>::GetInstance("std.log")->start();
+    singleton<logger>::instance("std.log")->start();
     logging("logger started");
 
     /* if (become_daemon(0) == -1) { */
@@ -34,6 +32,6 @@ int main(int argc, char **argv) {
     logging("server started, port:", port);
     svr.start();
 
-    singleton<logger>::GetInstance("std.log")->stop();
+    singleton<logger>::instance("std.log")->stop();
     return 0;
 }

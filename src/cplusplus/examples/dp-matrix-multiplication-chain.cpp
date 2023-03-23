@@ -1,5 +1,6 @@
 // 输入整数n，随后输入 n + 1 个整数表示矩阵的维度（矩阵A a×b ×B c×d 需要满足b = c）计算矩阵乘法最少次数
 #include <algorithm>
+#include <climits>
 #include <iostream>
 using namespace std;
 

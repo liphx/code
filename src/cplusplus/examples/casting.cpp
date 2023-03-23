@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+namespace tmp {
+
 class A {
     int a;
 };
@@ -9,7 +11,7 @@ class B : public A {
     virtual void f() {}
 };
 
-int main() {
+void f() {
     {
         int x = int(1.5);
         int y = (int)1.5;
@@ -27,6 +29,8 @@ int main() {
         cout << "pb = " << pb << endl;
     }
 }
+
+}  // namespace tmp
 
 class A {
 public:

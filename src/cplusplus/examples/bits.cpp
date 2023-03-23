@@ -231,3 +231,5 @@ unsigned floatPower2(int x) {
     if (exp <= 0) return 0;
     return exp << 23;
 }
+
+int main() {}

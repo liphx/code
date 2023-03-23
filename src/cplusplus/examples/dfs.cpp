@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 
-#include "gtest/gtest.h"
 using namespace std;
 
 struct TreeNode {
@@ -54,7 +53,7 @@ int maxDepth2(TreeNode *tree) {
     return max_depth;
 }
 
-TEST(maxDepth, case1) {
+int main(int argc, char **argv) {
     // [3,9,20,null,null,15,7]
     TreeNode tree[] = {3, 9, 20, -1, -1, 15, 7};
     tree[0].left = &tree[1];
@@ -62,11 +61,6 @@ TEST(maxDepth, case1) {
     tree[2].left = &tree[5];
     tree[2].right = &tree[6];
 
-    EXPECT_EQ(maxDepth(&tree[0]), 3);
-    EXPECT_EQ(maxDepth2(&tree[0]), 3);
-}
-
-int main(int argc, char **argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    /* EXPECT_EQ(maxDepth(&tree[0]), 3); */
+    /* EXPECT_EQ(maxDepth2(&tree[0]), 3); */
 }

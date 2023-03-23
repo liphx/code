@@ -5,7 +5,11 @@ cc_library(
         exclude = ["*_test.cpp",],
     ),
     hdrs = glob(["*.h"]),
-	linkopts = ["-lstdc++fs"],
+    linkopts = [
+        "-lstdc++fs",
+        "-lpthread",
+        "-lsqlite3",
+    ],
     visibility = ["//visibility:public"],
 )
 

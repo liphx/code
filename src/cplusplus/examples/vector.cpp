@@ -1,5 +1,6 @@
-#include "common.h"
+#include "liph/liph.h"
 using namespace std;
+using namespace liph;
 
 int main() {
     // 创建vector

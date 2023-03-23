@@ -11,7 +11,7 @@
 #include <thread>
 #include <vector>
 
-#include "singleton.h"
+#include "liph/singleton.h"
 
 namespace liph {
 
@@ -57,7 +57,7 @@ private:
 #define __FILENAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
 #endif
 
-#define logging(...) Singleton<logger>::GetInstance("std.log")->log(__FILENAME__, __LINE__, __VA_ARGS__)
+#define logging(...) singleton<logger>::instance("std.log")->log(__FILENAME__, __LINE__, __VA_ARGS__)
 
 }  // namespace liph
 
