@@ -17,6 +17,7 @@ static void std_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
         // This code gets timed
+        std::copy(data.begin(), data.end(), tmp.begin());
         std::sort(tmp.begin(), tmp.end());
     }
 }
@@ -24,6 +25,7 @@ static void std_sort(benchmark::State& state) {
 static void std_stable_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         std::stable_sort(tmp.begin(), tmp.end());
     }
 }
@@ -41,6 +43,7 @@ void std_merge_sort(Iter first, Iter last) {
 static void std_merge_sort_by_inplace_merge(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         std_merge_sort(tmp.begin(), tmp.end());
     }
 }
@@ -48,6 +51,7 @@ static void std_merge_sort_by_inplace_merge(benchmark::State& state) {
 static void liph_quick_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::quick_sort(tmp.begin(), tmp.end());
     }
 }
@@ -55,6 +59,7 @@ static void liph_quick_sort(benchmark::State& state) {
 static void liph_bubble_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::bubble_sort(tmp.begin(), tmp.end());
     }
 }
@@ -62,6 +67,7 @@ static void liph_bubble_sort(benchmark::State& state) {
 static void liph_selection_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::selection_sort(tmp.begin(), tmp.end());
     }
 }
@@ -69,6 +75,7 @@ static void liph_selection_sort(benchmark::State& state) {
 static void liph_merge_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::merge_sort(tmp.begin(), tmp.end());
     }
 }
@@ -76,6 +83,7 @@ static void liph_merge_sort(benchmark::State& state) {
 static void liph_insert_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::insert_sort(tmp.begin(), tmp.end());
     }
 }
@@ -83,6 +91,7 @@ static void liph_insert_sort(benchmark::State& state) {
 static void liph_shell_sort(benchmark::State& state) {
     std::vector<int> tmp(data);
     for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
         liph::shell_sort(tmp.begin(), tmp.end());
     }
 }

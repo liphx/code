@@ -2,6 +2,7 @@
 #define LIPH_LOCK_H_
 
 #include <atomic>
+#include <thread>
 
 namespace liph {
 
@@ -11,7 +12,7 @@ public:
 
     void lock() noexcept {
         while (!try_lock()) {
-            ;
+            std::this_thread::yield();
         }
     }
 
