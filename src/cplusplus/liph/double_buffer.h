@@ -23,7 +23,7 @@ private:
     std::atomic<int> idx_{0};
 };
 
-#if __cplusplus < 202002L
+/* #if __cplusplus < 202002L */
 
 template <class T>
 class DoubleBufferWithSharedPtr {
@@ -43,29 +43,27 @@ private:
     std::shared_ptr<T> v1_;
 };
 
-#else  // C++20
+/* #else  // C++20 */
 
-template <class T>
-class DoubleBufferWithSharedPtr {
-public:
-    template <class... Args>
-    DoubleBufferWithSharedPtr(Args&&...args) : v0_(std::make_shared<T>(args...)) {}
+/* template <class T> */
+/* class DoubleBufferWithSharedPtr { */
+/* public: */
+/*     std::shared_ptr<T> Get() const { return v0_; } */
 
-    std::shared_ptr<T> Get() const { return v0_; }
+/*     template <class... Args> */
+/*     std::shared_ptr<T> GetFree(Args&&...args) { */
+/*         v1_ = std::make_shared<T>(std::forward<Args>(args)...); */
+/*         return v1_; */
+/*     } */
 
-    std::shared_ptr<T> GetFree() {
-        v1_ = std::make_shared<T>(*(v0_.load()));
-        return v1_;
-    }
+/*     void Switch() { v0_ = v1_; } */
 
-    void Switch() { v0_ = std::make_shared<T>(*(v1_.load())); }
+/* private: */
+/*     std::atomic<std::shared_ptr<T> > v0_; */
+/*     std::atomic<std::shared_ptr<T> > v1_; */
+/* }; */
 
-private:
-    std::atomic<std::shared_ptr<T> > v0_;
-    std::atomic<std::shared_ptr<T> > v1_;
-};
-
-#endif
+/* #endif */
 
 }  // namespace liph
 

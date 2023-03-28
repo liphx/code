@@ -14,10 +14,17 @@ auto logger = spdlog::basic_logger_mt("basic_logger", "std.log");
 
 DEFINE_string(host, "0.0.0.0", "default host");
 DEFINE_int32(port, 8000, "default port");
+DEFINE_string(db_path, "./", "");
 
-liph::Sqlite db("liph.db");
-liph::Sqlite db2("jasmine.db");
-liph::Sqlite db3("library.db");
+std::vector<liph::Sqlite> db;
+
+void init_db() {
+    db.resize(3);
+    if (!db[0].open(FLAGS_db_path + "/liph.db") || !db[1].open(FLAGS_db_path + "/jasmine.db") ||
+            !db[2].open(FLAGS_db_path + "/library.db")) {
+        exit(1);
+    }
+}
 
 void toJson(const std::vector<std::vector<std::string>>& in, json& j) {
     j = nullptr;
@@ -47,10 +54,10 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
     std::vector<std::vector<std::string>> result;
     ret["data"] = nullptr;
     if (user == "liph") {
-        result = db.query(sql.c_str());
+        result = db[0].query(sql.c_str());
         toJson(result, ret["data"]);
     } else if (user == "jasmine") {
-        result = db2.query(sql.c_str());
+        result = db[1].query(sql.c_str());
         toJson(result, ret["data"]);
     }
 
@@ -74,10 +81,10 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
     std::vector<std::vector<std::string>> result;
     ret["data"] = nullptr;
     if (user == "liph") {
-        result = db.query(sql.c_str());
+        result = db[0].query(sql.c_str());
         toJson(result, ret["data"]);
     } else if (user == "jasmine") {
-        result = db2.query(sql.c_str());
+        result = db[1].query(sql.c_str());
         toJson(result, ret["data"]);
     }
 
@@ -91,7 +98,7 @@ void MyLibrary(const httplib::Request&, httplib::Response& res) {
 
     std::vector<std::vector<std::string>> result;
     ret["data"] = nullptr;
-    result = db3.query(sql.c_str());
+    result = db[2].query(sql.c_str());
     toJson(result, ret["data"]);
     res.set_content(ret.dump(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
@@ -121,9 +128,9 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
 
     int db_ret = SQLITE_OK;
     if (user == "liph") {
-        db_ret = db.execute(ss.str().c_str());
+        db_ret = db[0].execute(ss.str().c_str());
     } else if (user == "jasmine") {
-        db_ret = db2.execute(ss.str().c_str());
+        db_ret = db[1].execute(ss.str().c_str());
     }
     logger->info(ss.str());
 
@@ -154,9 +161,9 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
 
     int db_ret = SQLITE_OK;
     if (user == "liph") {
-        db_ret = db.execute(ss.str().c_str());
+        db_ret = db[0].execute(ss.str().c_str());
     } else if (user == "jasmine") {
-        db_ret = db2.execute(ss.str().c_str());
+        db_ret = db[1].execute(ss.str().c_str());
     }
     logger->info(ss.str());
 
@@ -193,7 +200,7 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
     ss << "values('" << title << "', '" << origin_title << "', '" << author << "', '" << publisher << "', "
        << publish_year << ", '" << translator << "', '" << isbn << "', '" << douban << "', '" << tag << "');";
 
-    int db_ret = db3.execute(ss.str().c_str());
+    int db_ret = db[2].execute(ss.str().c_str());
     logger->info(ss.str());
 
     ret["status"] = db_ret == SQLITE_OK;
@@ -203,6 +210,7 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
 
 int main(int argc, char *argv[]) {
     google::ParseCommandLineFlags(&argc, &argv, true);
+    init_db();
 
     logger->set_level(spdlog::level::info);
     logger->flush_on(spdlog::level::info);
