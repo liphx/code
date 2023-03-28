@@ -2,7 +2,10 @@ cc_library(
     name = "liph",
     srcs = glob(
         include = ["*.cpp",],
-        exclude = ["*_test.cpp",],
+        exclude = [
+            "*_test.cpp",
+            "*_benchmark.cpp",
+        ],
     ),
     hdrs = glob(["*.h"]),
     linkopts = [
@@ -32,3 +35,12 @@ cc_test(
         "@com_google_googletest//:gtest_main",
     ],
 )
+
+[cc_binary(
+    name = cc_name.split('.')[0],
+    srcs = [cc_name],
+    deps = [
+        ":liph",
+        "@com_google_benchmark//:benchmark_main",
+    ],
+) for cc_name in glob(["*_benchmark.cpp"])]

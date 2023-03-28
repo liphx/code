@@ -1,8 +1,41 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
-http_archive(
+git_repository(
     name = "com_google_googletest",
-    urls = ["https://github.com/google/googletest/archive/refs/tags/release-1.10.0.zip"],
-    sha256 = "94c634d499558a76fa649edb13721dce6e98fb1e7018dfaeba3cd7a083945e91",
-    strip_prefix = "googletest-release-1.10.0",
+    remote = "https://github.com/google/googletest.git",
+    tag = "v1.13.0",
+)
+
+git_repository(
+    name = "com_github_gflags_gflags",
+    remote = "https://github.com/gflags/gflags.git",
+    tag = "v2.2.2",
+)
+
+git_repository(
+    name = "com_google_benchmark",
+    remote = "https://github.com/google/benchmark.git",
+    tag = "v1.7.1",
+)
+
+new_git_repository(
+    name = "yhirose_cpp_httplib",
+    remote = "https://github.com/yhirose/cpp-httplib.git",
+    tag = "v0.12.2",
+    build_file = "//bazel/third_party:yhirose_cpp_httplib.BUILD",
+)
+
+git_repository(
+    name = "nlohmann_json",
+    remote = "https://github.com/nlohmann/json.git",
+    branch = "develop",
+)
+
+new_git_repository(
+    name = "gabime_spdlog",
+    remote = "https://github.com/gabime/spdlog.git",
+    tag = "v1.11.0",
+    build_file = "//bazel/third_party:gabime_spdlog.BUILD",
 )

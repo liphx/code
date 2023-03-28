@@ -6,12 +6,11 @@
 namespace liph {
 
 template <class T>
-class singleton {
-public:
+struct singleton {
     template <class... Args>
-    static T *instance(Args&&...args) {
+    static T& instance(Args&&...args) {
         static T obj(std::forward<Args>(args)...);
-        return &obj;
+        return obj;
     }
 };
 

@@ -1,11 +1,11 @@
-#ifndef SORT_H_
-#define SORT_H_
+#ifndef LIPH_SORT_H_
+#define LIPH_SORT_H_
 
 #include <functional>  // less
 #include <iterator>    // iterator_traits
 #include <vector>      // for bucket_sort
 
-namespace ltl {
+namespace liph {
 
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void bubble_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
@@ -55,9 +55,9 @@ RandomIt partition(RandomIt first, RandomIt last, const Compare& comp = Compare(
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void quick_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     if (std::distance(first, last) > 1) {
-        RandomIt it = ltl::partition(first, last, comp);
-        ltl::quick_sort(first, it, comp);
-        ltl::quick_sort(it, last, comp);
+        RandomIt it = liph::partition(first, last, comp);
+        liph::quick_sort(first, it, comp);
+        liph::quick_sort(it, last, comp);
     }
 }
 
@@ -94,9 +94,9 @@ void merge_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     if (n <= 1) return;
 
     RandomIt mid = first + n / 2;
-    ltl::merge_sort(first, mid, comp);
-    ltl::merge_sort(mid, last, comp);
-    ltl::merge(first, mid, last, comp);
+    liph::merge_sort(first, mid, comp);
+    liph::merge_sort(mid, last, comp);
+    liph::merge(first, mid, last, comp);
 }
 
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
@@ -231,7 +231,7 @@ void bucket_sort(int A[], int n, int min, int max, int m) {
 
     int index = 0;
     for (int i = 0; i < m; i++) {
-        ltl::insert_sort(tmp[i].begin(), tmp[i].end());
+        liph::insert_sort(tmp[i].begin(), tmp[i].end());
         for (size_t j = 0; j < tmp[i].size(); j++) {
             A[index++] = tmp[i][j];
         }
@@ -240,6 +240,6 @@ void bucket_sort(int A[], int n, int min, int max, int m) {
     delete[] tmp;
 }
 
-}  // namespace ltl
+}  // namespace liph
 
-#endif  // SORT_H_
+#endif  // LIPH_SORT_H_

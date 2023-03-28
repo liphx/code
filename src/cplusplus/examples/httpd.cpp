@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    singleton<logger>::instance("std.log")->start();
+    singleton<logger>::instance("std.log").start();
     logging("logger started");
 
     /* if (become_daemon(0) == -1) { */
@@ -32,6 +32,6 @@ int main(int argc, char **argv) {
     logging("server started, port:", port);
     svr.start();
 
-    singleton<logger>::instance("std.log")->stop();
+    singleton<logger>::instance("std.log").stop();
     return 0;
 }

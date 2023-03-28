@@ -2,4 +2,19 @@
     name = cc_name.split('.')[0],
     srcs = [cc_name],
     deps = ["//liph"],
-) for cc_name in glob(["*.cpp"])]
+) for cc_name in glob(
+    include = ["*.cpp"],
+    exclude = ["record_server.cpp"],
+)]
+
+cc_binary(
+    name = "record_server",
+    srcs = ["record_server.cpp"],
+    deps = [
+        "//liph",
+        "@com_github_gflags_gflags//:gflags",
+        "@yhirose_cpp_httplib//:httplib",
+        "@nlohmann_json//:json",
+        "@gabime_spdlog//:spdlog",
+    ],
+)

@@ -57,7 +57,7 @@ private:
 #define __FILENAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
 #endif
 
-#define logging(...) singleton<logger>::instance("std.log")->log(__FILENAME__, __LINE__, __VA_ARGS__)
+#define logging(...) singleton<logger>::instance("std.log").log(__FILENAME__, __LINE__, __VA_ARGS__)
 
 }  // namespace liph
 
