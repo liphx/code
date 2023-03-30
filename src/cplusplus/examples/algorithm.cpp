@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <list>
 #include <numeric>
 
@@ -130,6 +131,7 @@ void func4() {
     cout << endl;
     //=>caa aca aac
 
+#if __cplusplus < 201402L
     // 随机排列
     string s3("abcd");
     for (int i = 0; i < 4; i++) {
@@ -138,6 +140,7 @@ void func4() {
     }
     cout << endl;
     //=>adbc adbc bcda bcda
+#endif
 
     // 划分
     vector<int> num{10, 5, 7, 13, 6, 24, 5};

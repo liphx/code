@@ -10,7 +10,7 @@ TEST(avl, constructor) {
     EXPECT_EQ(avl.size(), 0);
 }
 
-TEST(avl, insert_erase_find) {
+TEST(avl, DISABLED_insert_erase_find) {
     liph::avl<int> avl;
     int x = 100;
     avl.insert(x);

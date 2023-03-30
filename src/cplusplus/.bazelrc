@@ -1,5 +1,10 @@
+# https://github.com/bazelbuild/bazel/releases/tag/6.1.1
+
 build --cxxopt=-g
+build --cxxopt=-O3
 build --cxxopt=-std=c++20
+build --cxxopt=-Wall
 build --cxxopt=-fdiagnostics-color
 build --cxxopt=-Wfatal-errors
+
 build --spawn_strategy=standalone

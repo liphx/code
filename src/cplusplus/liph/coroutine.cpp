@@ -1,4 +1,4 @@
-#include "coroutine.h"
+#include "liph/coroutine.h"
 
 #include <cassert>
 
@@ -19,7 +19,7 @@ int processor::add(std::shared_ptr<coroutine> co) {
 }
 
 void processor::run(processor *p) {
-    auto co = p->co_list_[p->running_id_];
+    auto& co = p->co_list_[p->running_id_];
     co->entry_(co->user_data_);
     co = nullptr;
     p->running_id_ = -1;

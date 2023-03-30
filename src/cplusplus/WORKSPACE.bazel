@@ -30,7 +30,8 @@ new_git_repository(
 git_repository(
     name = "nlohmann_json",
     remote = "https://github.com/nlohmann/json.git",
-    branch = "develop",
+    commit = "6af826d0bdb55e4b69e3ad817576745335f243ca",
+    shallow_since = "2023-03-01",
 )
 
 new_git_repository(

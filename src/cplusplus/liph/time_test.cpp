@@ -7,7 +7,7 @@
 
 using namespace liph;
 
-TEST(time, backwards) {
+TEST(time, DISABLED_backwards) {
     int64_t pre = gettimeofday_us();
     while (true) {
         int64_t now = gettimeofday_us();

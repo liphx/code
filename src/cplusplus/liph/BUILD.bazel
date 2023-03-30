@@ -9,9 +9,9 @@ cc_library(
     ),
     hdrs = glob(["*.h"]),
     linkopts = [
-        "-lstdc++fs",
         "-lpthread",
         "-lsqlite3",
+        "-lcryptopp",
     ],
     visibility = ["//visibility:public"],
 )

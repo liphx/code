@@ -10,6 +10,7 @@ using namespace std;
 bool isEven(int x) { return x % 2 == 0; }
 
 int main() {
+#if __cplusplus < 201103L
     vector<int> data{4, 17, 16, 3, 9, 36};
     transform(data.begin(), data.end(), ostream_iterator<int>(cout, " "), bind2nd(plus<int>(), 10));
     //=>14 27 26 13 19 46
@@ -40,5 +41,6 @@ int main() {
     //=>3 3 5
     cout << endl;
 
+#endif
     return 0;
 }
