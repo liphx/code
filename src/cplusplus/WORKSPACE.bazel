@@ -1,6 +1,11 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
+
+http_archive(
+    name = "bazel_skylib",
+    urls = ["https://github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz"],
+    sha256 = "f7be3474d42aae265405a592bb7da8e171919d74c16f082a5457840f06054728",
+)
 
 git_repository(
     name = "com_google_googletest",
@@ -20,7 +25,7 @@ git_repository(
     tag = "v1.7.1",
 )
 
-new_git_repository(
+git_repository(
     name = "yhirose_cpp_httplib",
     remote = "https://github.com/yhirose/cpp-httplib.git",
     tag = "v0.12.2",
@@ -34,9 +39,15 @@ git_repository(
     shallow_since = "2023-03-01",
 )
 
-new_git_repository(
+git_repository(
     name = "gabime_spdlog",
     remote = "https://github.com/gabime/spdlog.git",
     tag = "v1.11.0",
     build_file = "//bazel/third_party:gabime_spdlog.BUILD",
+)
+
+git_repository(
+    name = "abseil-cpp",
+    remote = "https://github.com/abseil/abseil-cpp.git",
+    tag = "20230125.2",
 )

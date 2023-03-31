@@ -2,4 +2,16 @@
     name = cc_name.split('.')[0],
     srcs = [cc_name],
     deps = ["//liph"],
-) for cc_name in glob(["*.cpp"])]
+) for cc_name in glob(
+    include = ["*.cpp"],
+    exclude = ["main.cpp"],
+)]
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [
+        "//liph",
+        "@abseil-cpp//absl/strings",
+    ],
+)
