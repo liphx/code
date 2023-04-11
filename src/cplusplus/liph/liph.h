@@ -3,6 +3,7 @@
 
 #include "liph/avl.h"
 #include "liph/big_integer.h"
+#include "liph/blocking_queue.h"
 #include "liph/casts.h"
 #include "liph/coroutine.h"
 #include "liph/crypto.h"

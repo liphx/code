@@ -1,6 +1,7 @@
 #ifndef LIPH_BLOCKING_QUEUE_H_
 #define LIPH_BLOCKING_QUEUE_H_
 
+#include <mutex>
 #include <queue>
 #include <shared_mutex>
 
