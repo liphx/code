@@ -1,9 +1,12 @@
 #include "absl/strings/string_view.h"
 #include "liph/liph.h"
 
+using namespace liph;
+
 int main() {
-    P(0x1a);
-    P(std::numeric_limits<uint64_t>::max());
+    D(__GNUC__);
+    D(0x1a);
+    D(std::numeric_limits<uint64_t>::max());
     absl::string_view sv("hello");
-	P(sv);
+    D(sv);
 }

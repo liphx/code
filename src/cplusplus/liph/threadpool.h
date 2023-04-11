@@ -5,10 +5,11 @@
 #include <condition_variable>
 #include <functional>
 #include <mutex>
-#include <queue>
 #include <stdexcept>
 #include <thread>
 #include <vector>
+
+#include "liph/blocking_queue.h"
 
 namespace liph {
 
@@ -50,7 +51,6 @@ public:
             throw std::logic_error("Add task after thread pool shutdown");
         }
         auto entry = std::bind(func, std::forward<Args>(args)...);
-        std::lock_guard<std::mutex> lock(task_lock_);
         tasks_.push(entry);
         cv_.notify_one();
     }
@@ -73,12 +73,11 @@ private:
     }
 
     Task Take() {
-        std::lock_guard<std::mutex> lock(task_lock_);
         if (tasks_.empty()) {
             return nullptr;
         }
-        Task ret = tasks_.front();
-        tasks_.pop();
+        Task ret;
+        tasks_.pop(ret);
         return ret;
     }
 
@@ -88,9 +87,7 @@ private:
     std::vector<std::thread> threads_;
     std::mutex lock_;
     std::condition_variable cv_;
-
-    std::queue<Task> tasks_;
-    std::mutex task_lock_;
+    liph::blocking_queue<Task> tasks_;
 };
 
 }  // namespace liph

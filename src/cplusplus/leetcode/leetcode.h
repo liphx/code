@@ -10,6 +10,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <numeric>
 #include <queue>
 #include <set>
 #include <sstream>
@@ -76,8 +77,13 @@ ostream& operator<<(ostream& o, const vector<T>& vc) {
         o << sep << x;
         sep = ", ";
     }
-    o << "]";
-    return o;
+    return o << "]";
+}
+
+template <typename T>
+ostream& operator<<(ostream& o, const deque<T>& deq) {
+    vector<T> vc(deq.begin(), deq.end());
+    return o << vc;
 }
 
 #endif  // LEETCODE_H_

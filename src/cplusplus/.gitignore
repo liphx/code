@@ -2,3 +2,4 @@ bazel-bin
 bazel-cplusplus
 bazel-out
 bazel-testlogs
+*.log

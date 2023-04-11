@@ -4,11 +4,17 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace liph {
 
-std::ostream& operator<<(std::ostream& o, const std::vector<bool>& vb) {
+template <class T1, class T2>
+std::ostream& operator<<(std::ostream& o, const std::pair<T1, T2>& p) {
+    return o << "(" << p.first << ", " << p.second << ")";
+}
+
+inline std::ostream& operator<<(std::ostream& o, const std::vector<bool>& vb) {
     for (size_t i = 0; i < vb.size(); i++) {
         o << vb[i];
     }
@@ -26,7 +32,7 @@ std::ostream& operator<<(std::ostream& o, const std::vector<T>& vc) {
     return o << "]";
 }
 
-void print() { std::cout << std::endl; }
+inline void print() { std::cout << std::endl; }
 
 template <class T>
 void print(T&& t) {

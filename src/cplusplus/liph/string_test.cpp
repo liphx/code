@@ -21,4 +21,5 @@ TEST(string, string) {
 
     D(liph::from_string<int>("123"));
     D(liph::to_string(std::vector<int>{1, 2, 3}));
+    D((std::pair<std::string, int>("hello", 100)));
 }
