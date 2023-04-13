@@ -1,6 +1,7 @@
 #ifndef LIPH_FILE_H_
 #define LIPH_FILE_H_
 
+#include <filesystem>
 #include <string>
 
 namespace liph {

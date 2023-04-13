@@ -55,6 +55,14 @@ std::string to_string(const T& t) {
     return os.str();
 }
 
+static inline std::string base_name(const std::string& path) {
+    auto pos = path.find_last_of('/');
+    if (pos == std::string::npos) {
+        return path;
+    }
+    return path.substr(pos + 1);
+}
+
 }  // namespace liph
 
 #endif  // LIPH_STRING_H_

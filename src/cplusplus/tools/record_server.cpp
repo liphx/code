@@ -19,14 +19,18 @@ DEFINE_string(db_path, "./", "");
 std::vector<liph::Sqlite> db;
 
 void init_db() {
-    db.resize(3);
-    if (!db[0].open(FLAGS_db_path + "/liph.db") || !db[1].open(FLAGS_db_path + "/jasmine.db") ||
-            !db[2].open(FLAGS_db_path + "/library.db")) {
-        exit(1);
+    std::vector<std::string> paths{
+            FLAGS_db_path + "/liph.db", FLAGS_db_path + "/jasmine.db", FLAGS_db_path + "/library.db"};
+    db.resize(paths.size());
+    for (auto i = 0u; i < paths.size(); ++i) {
+        // fail if not found
+        if (!fs::is_regular_file(paths[i]) || !db[i].open(paths[i])) {
+            exit(1);
+        }
     }
 }
 
-void toJson(const std::vector<std::vector<std::string>>& in, json& j) {
+void to_json(const std::vector<std::vector<std::string>>& in, json& j) {
     j = nullptr;
     if (in.empty()) {
         return;
@@ -55,10 +59,10 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
     ret["data"] = nullptr;
     if (user == "liph") {
         result = db[0].query(sql.c_str());
-        toJson(result, ret["data"]);
+        ::to_json(result, ret["data"]);
     } else if (user == "jasmine") {
         result = db[1].query(sql.c_str());
-        toJson(result, ret["data"]);
+        ::to_json(result, ret["data"]);
     }
 
     res.set_content(ret.dump(), "application/json");
@@ -82,10 +86,10 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
     ret["data"] = nullptr;
     if (user == "liph") {
         result = db[0].query(sql.c_str());
-        toJson(result, ret["data"]);
+        ::to_json(result, ret["data"]);
     } else if (user == "jasmine") {
         result = db[1].query(sql.c_str());
-        toJson(result, ret["data"]);
+        ::to_json(result, ret["data"]);
     }
 
     res.set_content(ret.dump(), "application/json");
@@ -99,7 +103,7 @@ void MyLibrary(const httplib::Request&, httplib::Response& res) {
     std::vector<std::vector<std::string>> result;
     ret["data"] = nullptr;
     result = db[2].query(sql.c_str());
-    toJson(result, ret["data"]);
+    ::to_json(result, ret["data"]);
     res.set_content(ret.dump(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }

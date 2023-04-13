@@ -3,7 +3,10 @@
 
 #include <cstring>
 #include <iostream>
+#include <map>
+#include <set>
 #include <string>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -30,6 +33,28 @@ std::ostream& operator<<(std::ostream& o, const std::vector<T>& vc) {
         sep = ", ";
     }
     return o << "]";
+}
+
+template <class K, class V>
+std::ostream& operator<<(std::ostream& o, const std::map<K, V>& map) {
+    o << "{";
+    std::string sep;
+    for (const auto& x : map) {
+        o << sep << x;
+        sep = ", ";
+    }
+    return o << "}";
+}
+
+template <class K, class V>
+std::ostream& operator<<(std::ostream& o, const std::unordered_map<K, V>& map) {
+    o << "{";
+    std::string sep;
+    for (const auto& x : map) {
+        o << sep << x;
+        sep = ", ";
+    }
+    return o << "}";
 }
 
 inline void print() { std::cout << std::endl; }
