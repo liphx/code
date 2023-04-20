@@ -1,0 +1,18 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name server;
+    location / {
+        root /tmp/www;
+        index index.html index.php;
+        charset urf-8;
+    }
+
+    location ~ \.php$ {
+        root /tmp/www;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}

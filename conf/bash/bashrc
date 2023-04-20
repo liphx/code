@@ -1,0 +1,71 @@
+# interactively or not
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+export PATH=$HOME/usr/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/usr/lib:$HOME/usr/lib64:$LD_LIBRARY_PATH
+export EDITOR=vim
+export PS1='\u@\h:\w\$ '
+export LC_ALL=zh_CN.UTF-8
+
+echo "hello $USER"
+echo "now is $(date '+%F %T')"
+
+# history
+HISTCONTROL=ignoreboth      # ignoredups and ignorespace
+HISTSIZE=5000
+HISTFILESIZE=10000
+HISTFILE=~/.bash/history
+HISTTIMEFORMAT="%F %T "
+shopt -s histappend         # append to the history file, don't overwrite it
+
+if [ ! -f "$HISTFILE" ]; then
+    touch "$HISTFILE"
+    chmod 600 "$HISTFILE"
+fi
+
+if [ ! -w "$HISTFILE" ]; then
+    chmod 600 "$HISTFILE"
+fi
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+fi
+
+function test_and_source() {
+    for f in $@; do test -f "$f" && . "$f"; done
+}
+
+function test_command() {
+    if type $1 > /dev/null 2>&1;
+    then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+test_and_source ~/.bash/aliases.sh ~/.bash/scripts.sh ~/.bash/local.sh
+
+test_command pandoc && eval "$(pandoc --bash-completion)"
+
+set -o emacs
+# set -o vi
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export PS1='\w » '
+    alias nvim='echo "No nvim nesting!"'
+fi

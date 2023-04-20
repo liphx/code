@@ -1,0 +1,16 @@
+[user]
+	name = liph
+	email = 3138519115@qq.com
+[core]
+	editor = vim
+	pager = less
+	excludesFile = ~/.config/git/gitignore
+	autocrlf = input
+[help]
+	autocorrect = 1
+[commit]
+	template = ~/.config/git/gitmessage
+[color]
+	ui = auto
+[init]
+	defaultBranch = master

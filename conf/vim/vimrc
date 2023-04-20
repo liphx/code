@@ -1,0 +1,106 @@
+" 这是注释
+" $HOME/.vim/vimrc for UNIX and
+" $HOME/vimfiles/vimrc for Windows
+
+set nocompatible            " 不兼容vi
+
+" 编码相关
+set fileformat=unix
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+
+filetype plugin indent on   " 文件类型检测
+
+set nobackup                " 不创建交换文件
+set wildmenu
+set wildmode=longest:list,full
+                            " 命令模式下，底部操作指令按下 Tab 键自动补全
+
+" 颜色相关
+colorscheme default         " 颜色主题，在$VIMRUNTIME/colors/*.vim文件
+syntax enable               " 语法高亮
+                            " syntax on 同样语法高亮，但会覆盖已定义的颜色规则
+
+" tab和空格相关，进行了上面的设置后一次退格最多可删除4个空格
+set tabstop=4               " 文本中tab以多少空格显示
+set softtabstop=4           " 编辑一个tab时等同的空格数，和tabstop有关
+                            " 例如tabstop=4，softtabstop=4则插入一个tab，为6则插入1个tab2个空格，为8则是两个tab
+set expandtab               " tab替换成相应数量的空格
+set backspace=2             " same as set backspace=indent,eol,start
+
+" 缩进相关
+set autoindent              " 下一行缩进保持和上一行相同
+set smartindent
+set shiftwidth=4            " 缩进空格数
+
+" 界面相关
+set number                  " 设置显示行号
+set showmode                " 在底部显示当前模式
+set showcmd                 " 在右下角显示未完成的命令，例如下移20行 20j
+set cursorline              " 高亮显示当前行
+set laststatus=2            " 是否显示状态栏。0 表示不显示，1 表示只在多窗口时显示，2 表示显示
+set nowrap
+set list                    " 特殊显示字符
+set listchars=tab:→\ ,trail:·
+
+" 搜索相关
+set showmatch               " 高亮显示匹配的括号{[()]}
+set incsearch               " 每输入一个字符都进行搜索
+set hlsearch                " 高亮搜索到的内容
+set ignorecase              " 忽略大小写搜索
+
+" 单词检查
+" set spell spelllang=en_us,cjk
+
+set history=10000
+
+set tags=./tags;,tags       " 在文件的所在目录下查找并递归至父目录,pwd查找
+
+set viminfo+=n~/.vim/viminfo
+
+" map
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader><Tab> gt<CR>
+nnoremap <leader>1 1gt<CR>
+nnoremap <leader>2 2gt<CR>
+nnoremap <leader>3 3gt<CR>
+nnoremap <leader>4 4gt<CR>
+nnoremap <leader>5 5gt<CR>
+nnoremap <leader>6 6gt<CR>
+nnoremap <leader>7 7gt<CR>
+nnoremap <leader>8 8gt<CR>
+nnoremap <leader>9 9gt<CR>
+
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>W :wall!<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qall<CR>
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Right> <C-w>l
+
+" terminal
+nnoremap <F2> :terminal ++rows=10<CR><C-w><C-r>
+
+" paste
+" set paste                 " 影响 softtabstop expandtab 等选项
+set clipboard=unnamed,unnamedplus
+
+" :W sudo save
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+if filereadable(expand("~/.vim/plugin.vim"))
+    source ~/.vim/plugin.vim
+endif
+
+if filereadable("./.workspace.vim")
+    source ./.workspace.vim
+endif

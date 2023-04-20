@@ -1,0 +1,13 @@
+*.a
+*.dSYM/
+*.exe
+*.gz
+*.o
+*.so
+.*.swp
+.DS_Store
+.vscode/
+.workspace.vim
+Untitled*.md
+a.out
+tags

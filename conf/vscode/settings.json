@@ -1,0 +1,19 @@
+{
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.settings.editor": "json",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "files.eol": "\n",
+    "files.encoding": "utf8",
+    "editor.fontFamily": "'Ubuntu Mono', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 20,
+    "editor.accessibilitySupport": "on",
+    "terminal.integrated.fontFamily": "'Courier New'",
+    "terminal.integrated.profiles.windows": {
+        "Git-Bash": {
+            "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Git-Bash",
+    "git.confirmSync": false
+}
