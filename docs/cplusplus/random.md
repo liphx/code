@@ -5,9 +5,9 @@
 ```c
 #include <stdlib.h>
 
-#define RAND_MAX			// implementation defined, >= 32767
-int rand();					// return [0, RAND_MAX]
-void srand(unsigned seed);	// seeds the pseudo-random number generator used by rand()
+#define RAND_MAX            // implementation defined, >= 32767
+int rand();                 // return [0, RAND_MAX]
+void srand(unsigned seed);  // seeds the pseudo-random number generator used by rand()
 ```
 
 在调用任何`srand`前调用`rand`，相当于`srand(1)`。
@@ -20,8 +20,8 @@ C++中的`rand, srand`同C语言，定义在`namespace std`中。
 #define RAND_MAX
 
 namespace std {
-	int rand();
-	void srand(unsigned int seed);
+    int rand();
+    void srand(unsigned int seed);
 }
 ```
 
@@ -94,7 +94,7 @@ std::default_random_engine re(rd());
 std::uniform_int_distribution<int> distrib(0, 9);
 auto rand = std::bind(distrib, re);
 for (int i = 0; i < 10; i++) {
-	std::cout << rand() << " ";
+    std::cout << rand() << " ";
 }
 // Possible output:
 // 0 9 3 8 1 7 8 5 8 4

@@ -17,7 +17,7 @@
  *   uint_fast8_t
  *   uint_fast16_t
  *   uint_fast32_t
- *	 uint_fast64_t
+ *   uint_fast64_t
  * 宽度至少有8, 16, 32, 64位的**最小**的有/无符号整型型
  *   int_least8_t
  *   int_least16_t

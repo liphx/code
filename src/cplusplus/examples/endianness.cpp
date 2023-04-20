@@ -3,8 +3,8 @@
 #include "liph/liph.h"
 
 // 0x00 0x01 0x02 0x03
-// 0 	0 	 0    1 		big endians
-// 1 	0 	 0    0 		little endians
+// 0    0    0    1         big endians
+// 1    0    0    0         little endians
 
 bool little_endians() {
     static union {

@@ -9,7 +9,7 @@ template<class InputIt, class UnaryFunction>
 UnaryFunction for_each(InputIt first, InputIt last, UnaryFunction f);
 
 std::vector<int> data { 1, 2, 3 };
-std::for_each(data.begin(), data.end(), [](const int& x){ std::cout << x << " "; }); //=>1 2 3 
+std::for_each(data.begin(), data.end(), [](const int& x){ std::cout << x << " "; }); //=>1 2 3
 ```
 
 ## `std::all_of, std::any_of, std::none_of`
@@ -90,7 +90,7 @@ data.resize(data.size() + 1);
 copy_backward(data.begin(), data.begin() + 6, data.end());
 data[0] = 1;
 copy(data.begin(), data.end(), ostream_iterator<int>(cout, " "));
-// 1 2 3 4 5 6 7 
+// 1 2 3 4 5 6 7
 ```
 
 ## `std::is_sorted`

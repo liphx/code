@@ -8,12 +8,12 @@
 /* typedef __int128_t dcf_t; */
 
 /* enc_cfg_t _ctx_iface(dcf_t s, enc_cfg2_t i){ */
-/* 	int c = (((s & ((dcf_t)0x1FULL << i * 5)) >> i * 5) + 65); */
-/* 	printf("%c", c);} */
+/*  int c = (((s & ((dcf_t)0x1FULL << i * 5)) >> i * 5) + 65); */
+/*  printf("%c", c);} */
 /*         enc_cfg2_t main() { */
-/* 	for (int i=0; i<10; i++){ */
-/* 		_ctx_iface(0x28EC789572FC8 + ((dcf_t)0x000000 << 64), i); */
-/* 	} */
+/*  for (int i=0; i<10; i++){ */
+/*      _ctx_iface(0x28EC789572FC8 + ((dcf_t)0x000000 << 64), i); */
+/*  } */
 /* } */
 
 #include <stdio.h>
