@@ -4,7 +4,10 @@
     deps = ["//liph"],
 ) for cc_name in glob(
     include = ["*.cpp"],
-    exclude = ["main.cpp"],
+    exclude = [
+        "main.cpp",
+        "glog-vs-spdlog.cpp",
+    ],
 )]
 
 cc_binary(
@@ -13,6 +16,16 @@ cc_binary(
     deps = [
         "//liph",
         "@abseil-cpp//absl/strings",
+        "@com_github_google_glog//:glog",
+        "@gabime_spdlog//:spdlog",
+    ],
+)
+
+cc_binary(
+    name = "glog-vs-spdlog",
+    srcs = ["glog-vs-spdlog.cpp"],
+    deps = [
+        "//liph",
         "@com_github_google_glog//:glog",
         "@gabime_spdlog//:spdlog",
     ],
