@@ -1,9 +1,7 @@
-#include "liph/liph.h"
-using namespace liph;
+#include <iostream>
+#include <vector>
 
-int main() {}
-
-#if 0
+#if 1
 #include "spdlog/sinks/basic_file_sink.h"
 auto logger = spdlog::basic_logger_mt("basic_logger", "std.log");
 int main() {

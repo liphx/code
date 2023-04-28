@@ -8,6 +8,7 @@
 .DS_Store
 .vscode/
 .workspace.vim
+Session.vim
 Untitled*.md
 a.out
 tags

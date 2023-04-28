@@ -20,14 +20,12 @@ nnoremap <C-p> :FZF<CR>
 augroup cpp_filetype
     autocmd!
     autocmd FileType cpp set tags+=~/.vim/tags/stdcpp.tags
-    autocmd FileType cpp command! Run call RunCpp()
-    map <F12> :ClangFormat<CR>
+    autocmd FileType cpp map <F12> :ClangFormat<CR>
 augroup END
 
 augroup c_filetype
     autocmd!
-    autocmd FileType c command! Run call RunC()
-    map <F12> :ClangFormat<CR>
+    autocmd FileType c map <F12> :ClangFormat<CR>
 augroup END
 
 " git clone https://github.com/yianwillis/vimcdoc.git ~/.vim/pack/bundle/start/vimcdoc

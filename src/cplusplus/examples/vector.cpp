@@ -2,7 +2,41 @@
 using namespace std;
 using namespace liph;
 
+struct A {
+    A() { std::cout << "A()" << std::endl; }
+    A(const A&) { std::cout << "A(A&)" << std::endl; }
+};
+
+void f() {
+    std::vector<A> vc;
+    vc.reserve(2);
+    std::cout << "=====" << std::endl;
+
+    A a;
+    vc.push_back(a);
+
+    std::cout << "=====" << std::endl;
+
+    vc.emplace_back();
+}
+
+void f2() {
+    // std::vector<int&> vc;
+    // https://stackoverflow.com/questions/922360/why-cant-i-make-a-vector-of-references
+
+    // std::vector<const int> d{0, 0, 1, 1};
+    // std::cout << d.size() << std::endl;
+    // std::cout << d[0] << std::endl;
+    // d[0] = 1;
+    // d.emplace_back(0);
+    // const int a = 0;
+    // d.emplace_back(a);
+}
+
 int main() {
+    f();
+    f2();
+
     // 创建vector
     vector<int> data1;
     cout << data1.size() << endl;      // 大小 0
