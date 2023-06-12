@@ -24,7 +24,7 @@ syntax enable               " 语法高亮
                             " syntax on 同样语法高亮，但会覆盖已定义的颜色规则
 
 " tab和空格相关，进行了上面的设置后一次退格最多可删除4个空格
-set tabstop=4               " 文本中tab以多少空格显示
+set tabstop=8               " 文本中tab以多少空格显示
 set softtabstop=4           " 编辑一个tab时等同的空格数，和tabstop有关
                             " 例如tabstop=4，softtabstop=4则插入一个tab，为6则插入1个tab2个空格，为8则是两个tab
 set expandtab               " tab替换成相应数量的空格

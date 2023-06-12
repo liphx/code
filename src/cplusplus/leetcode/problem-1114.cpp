@@ -30,6 +30,7 @@ private:
     atomic<int> count{0};
 };
 
+#if 0
 class Foo2 {
 public:
     void first(function<void()> printFirst) {
@@ -52,6 +53,7 @@ private:
     binary_semaphore sem{0};
     binary_semaphore sem2{0};
 };
+#endif
 
 class Foo3 {
 public:

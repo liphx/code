@@ -19,7 +19,7 @@ public:
     void unlock() noexcept { v_.clear(std::memory_order_release); }
 
 private:
-    std::atomic_flag v_ = ATOMIC_FLAG_INIT;
+    std::atomic_flag v_ /* = ATOMIC_FLAG_INIT */;
 
 public:
     class scoped_lock {

@@ -3,12 +3,13 @@
 #include <iostream>
 #include <thread>
 
-#include "liph/tcp.h"
+#include "liph/liph.h"
 using namespace std;
 using namespace liph;
+using namespace liph::net;
 
 void oneloop() {
-    auto sock = std::make_shared<Socket>(Socket::TCP | Socket::IPV4);
+    auto sock = std::make_shared<socket>(socket::TCP | socket::IPV4);
     sock->connect("127.0.0.1", 8000);
     char buf[1024] = "hello, world";
     sock->write(buf, sizeof(buf));

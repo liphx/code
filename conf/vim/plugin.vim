@@ -52,3 +52,6 @@ augroup END
 " let g:ycm_add_preview_to_completeopt = 0
 "
 " git clone https://github.com/vim-scripts/a.vim.git ~/.vim/pack/bundle/start/a.vim
+"
+" Go
+" git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go

@@ -1,13 +1,13 @@
 cc_library(
     name = "liph",
     srcs = glob(
-        include = ["*.cpp",],
+        include = ["**/*.cpp",],
         exclude = [
-            "*_test.cpp",
-            "*_benchmark.cpp",
+            "**/*_test.cpp",
+            "**/*_benchmark.cpp",
         ],
     ),
-    hdrs = glob(["*.h"]),
+    hdrs = glob(["**/*.h"]),
     linkopts = [
         "-lpthread",
         "-lsqlite3",
@@ -23,12 +23,12 @@ cc_library(
         ":liph",
         "@com_google_googletest//:gtest_main",
     ],
-) for test_name in glob(["*_test.cpp"])]
+) for test_name in glob(["**/*_test.cpp"])]
 
 cc_test(
     name = "test",
     srcs = glob(
-        include = ["*_test.cpp"],
+        include = ["**/*_test.cpp"],
     ),
     deps = [
         ":liph",
@@ -43,4 +43,4 @@ cc_test(
         ":liph",
         "@com_google_benchmark//:benchmark_main",
     ],
-) for cc_name in glob(["*_benchmark.cpp"])]
+) for cc_name in glob(["**/*_benchmark.cpp"])]

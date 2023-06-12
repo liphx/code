@@ -38,12 +38,12 @@
 
 ## ASAN
 
-| gcc 选项 | 描述 |
-| -- | -- |
-| `-fsanitize=address` | 开启内存越界检测 |
-| `-fsanitize-recover=address` | 遇到错误不退出 |
+| gcc 选项                      | 描述              |
+| ----------------------------- | ----------------- |
+| `-fsanitize=address`          | 开启内存越界检测  |
+| `-fsanitize-recover=address`  | 遇到错误不退出    |
 
-ASAN_OPTIONS=halt_on_error=0:log_path=asan.log
+`ASAN_OPTIONS=halt_on_error=0:log_path=asan.log`
 
 ## gcc/g++ 版本
 
@@ -70,3 +70,6 @@ gcc 4.9.2 文档
 
 - https://gcc.gnu.org/onlinedocs/gcc-4.9.2/gcc/
 - https://gcc.gnu.org/onlinedocs/gcc-4.9.2/gcc/Debugging-Options.html
+
+[gcc -fomit-frame-pointer](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+

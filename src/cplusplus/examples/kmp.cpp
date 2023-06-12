@@ -53,6 +53,4 @@ int main() {
 
     auto ans = kmp(str, pattern, next);
     copy(ans.begin(), ans.end(), ostream_iterator<int>(cout, " "));
-
-    return 0;
 }

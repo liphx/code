@@ -2,6 +2,7 @@
 #define LEETCODE_H_
 
 #include <algorithm>
+#include <atomic>
 #include <cassert>
 #include <climits>
 #include <cmath>
@@ -14,7 +15,6 @@
 #include <mutex>
 #include <numeric>
 #include <queue>
-#include <semaphore>
 #include <set>
 #include <sstream>
 #include <stack>
@@ -24,6 +24,10 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
+#if 0
+#include <semaphore>
+#endif
 
 using namespace std;
 

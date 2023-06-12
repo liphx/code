@@ -6,6 +6,7 @@
 #include "liph/liph.h"
 using namespace std;
 using namespace liph;
+using namespace liph::net;
 
 int main(int argc, char **argv) {
     int port = 80;

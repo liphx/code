@@ -19,6 +19,7 @@ static void std_sort(benchmark::State& state) {
         // This code gets timed
         std::copy(data.begin(), data.end(), tmp.begin());
         std::sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -27,6 +28,7 @@ static void std_stable_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         std::stable_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -45,6 +47,7 @@ static void std_merge_sort_by_inplace_merge(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         std_merge_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -53,6 +56,7 @@ static void liph_quick_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::quick_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -61,6 +65,7 @@ static void liph_bubble_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::bubble_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -69,6 +74,7 @@ static void liph_selection_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::selection_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -77,6 +83,7 @@ static void liph_merge_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::merge_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -85,6 +92,7 @@ static void liph_insert_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::insert_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -93,6 +101,34 @@ static void liph_shell_sort(benchmark::State& state) {
     for (auto _ : state) {
         std::copy(data.begin(), data.end(), tmp.begin());
         liph::shell_sort(tmp.begin(), tmp.end());
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
+    }
+}
+
+static void liph_counting_sort(benchmark::State& state) {
+    std::vector<int> tmp(data);
+    for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
+        liph::counting_sort(tmp.data(), tmp.size(), 1000);
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
+    }
+}
+
+static void liph_radix_sort(benchmark::State& state) {
+    std::vector<int> tmp(data);
+    for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
+        liph::radix_sort(tmp.data(), tmp.size(), 3);
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
+    }
+}
+
+static void liph_bucket_sort(benchmark::State& state) {
+    std::vector<int> tmp(data);
+    for (auto _ : state) {
+        std::copy(data.begin(), data.end(), tmp.begin());
+        liph::bucket_sort(tmp.data(), tmp.size(), 0, 1000, 16);
+        assert(std::is_sorted(tmp.begin(), tmp.end()));
     }
 }
 
@@ -106,6 +142,9 @@ BENCHMARK(liph_selection_sort);
 BENCHMARK(liph_merge_sort);
 BENCHMARK(liph_insert_sort);
 BENCHMARK(liph_shell_sort);
+BENCHMARK(liph_counting_sort);
+BENCHMARK(liph_radix_sort);
+BENCHMARK(liph_bucket_sort);
 
 // Run the benchmark
 BENCHMARK_MAIN();

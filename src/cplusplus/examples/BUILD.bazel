@@ -3,7 +3,7 @@
     srcs = [cc_name],
     deps = ["//liph"],
 ) for cc_name in glob(
-    include = ["*.cpp"],
+    include = ["**/*.cpp"],
     exclude = [
         "main.cpp",
         "glog-vs-spdlog.cpp",

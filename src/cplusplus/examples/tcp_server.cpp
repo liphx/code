@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "liph/tcp.h"
+#include "liph/liph.h"
 using namespace std;
-using namespace liph;
+using namespace liph::net;
 
 int main() {
     tcp_server server(8000);
