@@ -1,6 +1,7 @@
 #ifndef LIPH_LIPH_H_
 #define LIPH_LIPH_H_
 
+#include "liph/algorithm.h"
 #include "liph/avl.h"
 #include "liph/big_integer.h"
 #include "liph/blocking_queue.h"
