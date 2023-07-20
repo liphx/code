@@ -1,12 +1,12 @@
 #include "liph/liph.h"
 
 struct A {
-    void swap(A&) { P("A::swap"); }
+    void swap(A&) { liph::print("A::swap"); }
 };
 
 template <class T>
 struct B {
-    void swap(B&) { P("B<>::swap"); }
+    void swap(B&) { liph::print("B<>::swap"); }
 };
 
 namespace std {

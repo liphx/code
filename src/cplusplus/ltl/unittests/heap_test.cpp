@@ -1,4 +1,6 @@
+// clang-format off
 #include "algorithm"
+// clang-format on
 
 #include <algorithm>
 #include <vector>

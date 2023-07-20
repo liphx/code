@@ -1,4 +1,6 @@
+// clang-format off
 #include "queue"
+// clang-format on
 
 #include <functional>
 #include <vector>

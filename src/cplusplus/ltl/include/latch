@@ -1,0 +1,6 @@
+#ifndef LTL_LATCH_
+#define LTL_LATCH_
+
+#include "detail/latch.h"
+
+#endif  // LTL_LATCH_

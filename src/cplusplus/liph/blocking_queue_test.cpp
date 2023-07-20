@@ -25,7 +25,7 @@ TEST(blocking_queue, threads) {
             }
             ++loop;
         }
-        P(count, loop);
+        liph::print(count, loop);
     });
 
     t.join();

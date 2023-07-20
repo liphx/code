@@ -2,7 +2,6 @@
 #define LIPH_STRING_H_
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -38,21 +37,6 @@ inline void split(std::vector<std::string>& tokens, const std::string& s, const 
         last_pos = s.find_first_not_of(delimiters, pos);
         pos = s.find_first_of(delimiters, last_pos);
     }
-}
-
-template <class T>
-T from_string(const std::string& s) {
-    std::istringstream is(s);
-    T t;
-    is >> t;
-    return t;
-}
-
-template <class T>
-std::string to_string(const T& t) {
-    std::ostringstream os;
-    os << t;
-    return os.str();
 }
 
 inline std::string base_name(const std::string& path) {

@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 
+#include "liph/print.h"
 #include "liph/string.h"
 
 namespace liph {

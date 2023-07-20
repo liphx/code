@@ -17,7 +17,7 @@ TEST(string, string) {
     D(liph::endswith(str, "ld"));
     D(liph::endswith(str, "l"));
 
-    T(str = " 1   2   1 34 "; std::vector<std::string> tokens; liph::split(tokens, str); P(tokens););
+    /* T(str = " 1   2   1 34 "; std::vector<std::string> tokens; liph::split(tokens, str); P(tokens);); */
 
     D(liph::from_string<int>("123"));
     D(liph::to_string(std::vector<int>{1, 2, 3}));

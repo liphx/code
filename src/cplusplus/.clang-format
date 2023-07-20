@@ -1,4 +1,5 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# clang-format version 16.0.6
 ---
 BasedOnStyle: Google
 ColumnLimit: 120

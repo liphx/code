@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
             vc[j] = std::max(vc[j], len);
         }
     }
-    P(vc);
+    /* P(vc); */
     for (int i = 0; i < ans.size(); ++i) {
         for (int j = 0; j < ans[i].size(); ++j) {
             std::cout << "| " << ans[i][j] << std::string(vc[j] + 1 - utf8_len(ans[i][j]), ' ');

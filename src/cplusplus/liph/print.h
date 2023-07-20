@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <set>
+#include <sstream>
 #include <string>
 #include <unordered_map>
 #include <utility>
@@ -57,6 +58,21 @@ std::ostream& operator<<(std::ostream& o, const std::unordered_map<K, V>& map) {
     return o << "}";
 }
 
+template <class T>
+T from_string(const std::string& s) {
+    std::istringstream is(s);
+    T t;
+    is >> t;
+    return t;
+}
+
+template <class T>
+std::string to_string(const T& t) {
+    std::ostringstream os;
+    os << t;
+    return os.str();
+}
+
 inline void print() { std::cout << std::endl; }
 
 template <class T>
@@ -80,10 +96,10 @@ void Print(const std::string& filename, int line, Args&&...args) {
 #ifndef __FILENAME__
 #define __FILENAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
 #endif
-#define P(...) liph::Print(__FILENAME__, __LINE__, __VA_ARGS__)
-#define D(x)   liph::Print(__FILENAME__, __LINE__, #x, "=", x)
-#define T(x)                                 \
-    liph::Print(__FILENAME__, __LINE__, #x); \
-    x
+/* #define P(...) liph::Print(__FILENAME__, __LINE__, __VA_ARGS__) */
+#define D(x) liph::Print(__FILENAME__, __LINE__, #x, "=", x)
+/* #define T(x)                                 \ */
+/*     liph::Print(__FILENAME__, __LINE__, #x); \ */
+/*     x */
 
 #endif  // LIPH_PRINT_H_

@@ -33,7 +33,10 @@ augroup END
 " git clone https://github.com/tpope/vim-dispatch.git ~/.vim/pack/bundle/start/dispatch
 " git clone https://github.com/vim-airline/vim-airline.git ~/.vim/pack/bundle/start/airline
 " git clone https://github.com/tpope/vim-surround.git ~/.vim/pack/bundle/start/surround
+
+" :Git or :G
 " git clone https://github.com/tpope/vim-fugitive.git ~/.vim/pack/bundle/start/fugitive
+
 " git clone https://github.com/dense-analysis/ale.git ~/.vim/pack/bundle/start/ale
 " git clone https://github.com/mhinz/vim-grepper.git ~/.vim/pack/bundle/start/grepper
 " git clone https://github.com/vim-test/vim-test.git ~/.vim/pack/bundle/start/vim-test

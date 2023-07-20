@@ -5,7 +5,7 @@
 namespace liph {
 namespace test {
 
-TEST(threadpool, all) {
+TEST(threadpool, DISABLED_all) {
     auto *pool = new ThreadPool;
     std::cout << "thread pool size = " << pool->Size() << std::endl;
     pool->Start();

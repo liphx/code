@@ -1,4 +1,6 @@
+// clang-format off
 #include "memory"
+// clang-format on
 
 #include <vector>
 

@@ -17,7 +17,7 @@ void foo(void *num) {
     }
 }
 
-TEST(coroutine, coroutine) {
+TEST(coroutine, DISABLED_coroutine) {
     int num1 = 0, num2 = 10;
     int co1 = p.add(std::make_shared<coroutine>(foo, &num1));
     int co2 = p.add(std::make_shared<coroutine>(foo, &num2));

@@ -209,7 +209,7 @@ int main() {
     D(db.init());
     for (int i = 100; i < 1000; i++) {
         if (!db.put("key_" + std::to_string(i), "value_" + std::to_string(i))) {
-            P("put err");
+            liph::print("put err");
         }
     }
     std::string str;

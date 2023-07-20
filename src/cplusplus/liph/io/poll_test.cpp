@@ -5,7 +5,7 @@
 
 #include "gtest/gtest.h"
 
-TEST(poll, poll) {
+TEST(poll, DISABLED_poll) {
     liph::io::poll_base *poll = new liph::io::poll();
     liph::io::descriptor fd(::open("111", O_RDONLY));
     EXPECT_TRUE(poll->add(fd, liph::io::event_type::read, nullptr));

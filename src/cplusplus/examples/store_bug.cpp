@@ -42,7 +42,7 @@ bool db::init() {
 
     uint32_t current = 0;
     while (end >= current + index_size * index_element_size) {
-        P(current, end, index_size * index_element_size);
+        liph::print(current, end, index_size * index_element_size);
         char buffer[index_size * index_element_size];
         stream.seekg(current);
         stream.read(buffer, sizeof(buffer));
@@ -137,14 +137,14 @@ std::unordered_map<uint64_t, std::string> db::dump() {
 int main() {
     liph::db db("tmp.db");
     D(db.init());
-    P(db.dump());
+    liph::print(db.dump());
     std::vector<std::string> vc{"abc001", "bcd002", "cdef0003"};
     for (int i = 0; i < vc.size(); i++) D(db.put(i, vc[i]));
-    P(db.dump());
+    liph::print(db.dump());
     D(db.put(0, "000"));
-    P(db.dump());
+    liph::print(db.dump());
     D(db.del(0));
-    P(db.dump());
+    liph::print(db.dump());
     D(db.del(0));
     std::filesystem::remove("tmp.db");
 }
