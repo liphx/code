@@ -1,4 +1,4 @@
-#include "liph/blocking_queue.h"
+#include "liph/concurrency/blocking_queue.h"
 
 #include <thread>
 

@@ -12,6 +12,9 @@
  * upper_bound
  * binary_search
  * equal_range
+ * is_permutation
+ * next_permutation
+ * prev_permutation
  */
 
 #include <functional>  // less
@@ -135,6 +138,10 @@ template <class ForwardIt, class T>
 constexpr pair<ForwardIt, ForwardIt> equal_range(ForwardIt first, ForwardIt last, const T& value) {
     return ltl::equal_range(first, last, value, std::less<typename iterator_traits<ForwardIt>::value_type>());
 }
+
+template <class ForwardIt1, class ForwardIt2, class BinaryPredicate>
+constexpr bool is_permutation(
+        ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2, ForwardIt2 last2, BinaryPredicate p);
 
 }  // namespace ltl
 

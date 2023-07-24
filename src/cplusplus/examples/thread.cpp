@@ -38,7 +38,7 @@ void f() {
 
 void g() {
     std::thread t([]() {});
-    liph::thread_guard g(t);
+    liph::thread_guard guard(t);
     throw 0;
 }
 

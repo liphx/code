@@ -1,5 +1,5 @@
-#ifndef LIPH_LOCK_H_
-#define LIPH_LOCK_H_
+#ifndef LIPH_CONCURRENCY_LOCK_H_
+#define LIPH_CONCURRENCY_LOCK_H_
 
 #include <atomic>
 #include <thread>
@@ -38,4 +38,4 @@ public:
 
 }  // namespace liph
 
-#endif  // LIPH_LOCK_H_
+#endif  // LIPH_CONCURRENCY_LOCK_H_

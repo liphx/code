@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 
+int main() {}
+
+#if 0
 bool solve(int n, int *ptr) {
     int count[3]{0};
     for (int i = 0; i < n; i++) {
@@ -27,3 +30,21 @@ int main() {
         std::cout << (solve(n, nums.data()) ? "Yes" : "No") << std::endl;
     }
 }
+#endif
+
+#if 0
+int main() {
+    std::cout << __builtin_clz(1) << std::endl;        // 31
+    std::cout << __builtin_clz(1 << 16) << std::endl;  // 15
+    // 00001000  4
+    // 00001000  1 << (7 - 4)
+    // 00000111
+    char a = 0b00001000;
+    std::cout << __builtin_clz(a) << std::endl;
+    char b = 1 << (31 - __builtin_clz(a));
+    char c = b - 1;
+    std::cout << (int)a << std::endl;
+    std::cout << (int)b << std::endl;
+    std::cout << (int)c << std::endl;
+}
+#endif

@@ -1,5 +1,5 @@
-#ifndef LIPH_BLOCKING_QUEUE_H_
-#define LIPH_BLOCKING_QUEUE_H_
+#ifndef LIPH_CONCURRENCY_BLOCKING_QUEUE_H_
+#define LIPH_CONCURRENCY_BLOCKING_QUEUE_H_
 
 #include <mutex>
 #include <queue>
@@ -53,4 +53,4 @@ private:
 
 }  // namespace liph
 
-#endif  // LIPH_BLOCKING_QUEUE_H_
+#endif  // LIPH_CONCURRENCY_BLOCKING_QUEUE_H_

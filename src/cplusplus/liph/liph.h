@@ -4,8 +4,8 @@
 #include "liph/algorithm.h"
 #include "liph/avl.h"
 #include "liph/big_integer.h"
-#include "liph/blocking_queue.h"
 #include "liph/casts.h"
+#include "liph/concurrency/thread.h"
 #include "liph/coroutine.h"
 #include "liph/crypto.h"
 #include "liph/csv.h"
@@ -26,8 +26,6 @@
 #include "liph/sqlite.h"
 #include "liph/string.h"
 #include "liph/string_view.h"
-#include "liph/thread.h"
-#include "liph/threadpool.h"
 #include "liph/time.h"
 #include "liph/timer.h"
 

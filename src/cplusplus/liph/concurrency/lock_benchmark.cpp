@@ -2,7 +2,7 @@
 #include <thread>
 
 #include "benchmark/benchmark.h"
-#include "liph/lock.h"
+#include "liph/concurrency/lock.h"
 
 constexpr int N = 100000;
 constexpr int M = 8;

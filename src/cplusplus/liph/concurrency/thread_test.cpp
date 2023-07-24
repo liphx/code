@@ -1,4 +1,4 @@
-#include "liph/thread.h"
+#include "liph/concurrency/thread.h"
 
 #include "gtest/gtest.h"
 
@@ -8,9 +8,16 @@ void f() {
     throw 0;
 }
 
+void g() {
+    std::thread t([]() {});
+    throw 0;
+    t.join();
+}
+
 TEST(thread, thread_guard) {
     try {
         f();
+        /* g(); */
     } catch (...) {
     }
 }

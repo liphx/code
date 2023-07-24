@@ -22,8 +22,9 @@ int main(int argc, char **argv) {
     out << "#define " << str << std::endl;
     out << std::endl;
     out << "namespace liph {" << std::endl;
-    out << "} // namespace liph" << std::endl;
     out << std::endl;
-    out << "#endif // " << str << std::endl;
+    out << "}  // namespace liph" << std::endl;
+    out << std::endl;
+    out << "#endif  // " << str << std::endl;
     out.close();
 }

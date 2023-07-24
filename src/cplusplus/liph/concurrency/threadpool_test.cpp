@@ -1,4 +1,4 @@
-#include "liph/threadpool.h"
+#include "liph/concurrency/threadpool.h"
 
 #include "gtest/gtest.h"
 

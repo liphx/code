@@ -12,6 +12,10 @@ static inline void err_exit(const char *str) {
     exit(EXIT_FAILURE);
 }
 
+static inline void exit_if_err(bool error) {
+    if (error) exit(EXIT_FAILURE);
+}
+
 inline void bzero(void *p, size_t n) { memset(p, 0, n); }
 
 /* Bit-mask values for 'flags' argument of become_daemon() */

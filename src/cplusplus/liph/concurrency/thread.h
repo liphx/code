@@ -1,5 +1,5 @@
-#ifndef LIPH_THREAD_H_
-#define LIPH_THREAD_H_
+#ifndef LIPH_CONCURRENCY_THREAD_H_
+#define LIPH_CONCURRENCY_THREAD_H_
 
 #include <thread>
 
@@ -22,4 +22,4 @@ private:
 
 }  // namespace liph
 
-#endif  // LIPH_THREAD_H_
+#endif  // LIPH_CONCURRENCY_THREAD_H_

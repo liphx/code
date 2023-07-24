@@ -1,5 +1,5 @@
-#ifndef LIPH_THREADPOOL_H_
-#define LIPH_THREADPOOL_H_
+#ifndef LIPH_CONCURRENCY_THREADPOOL_H_
+#define LIPH_CONCURRENCY_THREADPOOL_H_
 
 #include <atomic>
 #include <condition_variable>
@@ -9,7 +9,7 @@
 #include <thread>
 #include <vector>
 
-#include "liph/blocking_queue.h"
+#include "liph/concurrency/blocking_queue.h"
 
 namespace liph {
 
@@ -92,4 +92,4 @@ private:
 
 }  // namespace liph
 
-#endif  // LIPH_THREADPOOL_H_
+#endif  // LIPH_CONCURRENCY_THREADPOOL_H_

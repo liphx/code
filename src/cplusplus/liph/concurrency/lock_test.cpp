@@ -1,4 +1,4 @@
-#include "liph/lock.h"
+#include "liph/concurrency/lock.h"
 
 #include <thread>
 
