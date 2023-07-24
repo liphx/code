@@ -1,2 +1,0 @@
-libprofiler.a(stacktrace.o): undefined reference to symbol '_ULx86_64_step'
-/usr/lib64/libunwind.so.8: error adding symbols: DSO missing from command line
