@@ -1,6 +1,7 @@
-// C++ version of https://github.com/cloudwu/coroutine
 #ifndef LIPH_COROUTINE_H_
 #define LIPH_COROUTINE_H_
+
+// C++ version of https://github.com/cloudwu/coroutine
 
 #ifdef __APPLE__
 #define _XOPEN_SOURCE

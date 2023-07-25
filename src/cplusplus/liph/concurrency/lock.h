@@ -4,6 +4,9 @@
 #include <atomic>
 #include <thread>
 
+// spinlock
+// hierarchical_mutex
+
 namespace liph {
 
 class spinlock {
@@ -35,6 +38,45 @@ public:
         ~scoped_lock() { sp_.unlock(); }
     };
 };
+
+class hierarchical_mutex {
+public:
+    explicit hierarchical_mutex(unsigned long value) : hierarchy_value_(value), previous_hierarchy_value_(0) {}
+    void lock() {
+        check_for_hierarchy_violation();
+        mtx_.lock();
+        update_hierarchy_value();
+    }
+    void unlock() {
+        this_thread_hierarchy_value = previous_hierarchy_value_;
+        mtx_.unlock();
+    }
+    bool try_lock() {
+        check_for_hierarchy_violation();
+        if (!mtx_.try_lock()) return false;
+        update_hierarchy_value();
+        return true;
+    }
+
+private:
+    std::mutex mtx_;
+    unsigned long const hierarchy_value_;
+    unsigned long previous_hierarchy_value_;
+    static thread_local unsigned long this_thread_hierarchy_value;
+
+    void check_for_hierarchy_violation() {
+        if (this_thread_hierarchy_value <= hierarchy_value_) {
+            throw std::logic_error("mutex hierarchy violated");
+        }
+    }
+    void update_hierarchy_value() {
+        previous_hierarchy_value_ = this_thread_hierarchy_value;
+        this_thread_hierarchy_value = hierarchy_value_;
+    }
+};
+
+inline thread_local unsigned long hierarchical_mutex::this_thread_hierarchy_value(
+        std::numeric_limits<unsigned long>::max());
 
 }  // namespace liph
 

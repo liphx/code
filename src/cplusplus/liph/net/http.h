@@ -1,5 +1,5 @@
-#ifndef LIPH_HTTP_H_
-#define LIPH_HTTP_H_
+#ifndef LIPH_NET_HTTP_H_
+#define LIPH_NET_HTTP_H_
 
 #include <map>
 #include <string>
@@ -68,6 +68,6 @@ private:
     std::map<std::string, http_handle> url_map_;
 };
 
-}  // namespace liph
+}  // namespace liph::net
 
-#endif  // LIPH_HTTP_H_
+#endif  // LIPH_NET_HTTP_H_

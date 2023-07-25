@@ -19,3 +19,19 @@ TEST(lock, spinlock) {
     t2.join();
     EXPECT_EQ(x, 200000);
 }
+
+TEST(lock, hierarchical_mutex) {
+    liph::hierarchical_mutex m1(42);
+    liph::hierarchical_mutex m2(2000);
+    {
+        std::lock_guard guard2(m2);
+        std::lock_guard guard(m1);
+    }
+
+    // clang-format off
+    EXPECT_THROW({
+        std::lock_guard guard(m1);
+        std::lock_guard guard2(m2);
+    }, std::logic_error);
+    // clang-format on
+}

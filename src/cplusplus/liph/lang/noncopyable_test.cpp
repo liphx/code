@@ -1,4 +1,4 @@
-#include "liph/noncopyable.h"
+#include "liph/lang/noncopyable.h"
 
 #include <iostream>
 

@@ -5,10 +5,12 @@
 #include <queue>
 #include <shared_mutex>
 
+#include "liph/lang/noncopyable.h"
+
 namespace liph {
 
 template <class T>
-class blocking_queue {
+class blocking_queue : noncopyable {
 public:
     blocking_queue() = default;
     ~blocking_queue() = default;
@@ -31,7 +33,7 @@ public:
         queue_.emplace(std::forward<Args>(args)...);
     }
 
-    void pop() {
+    void unsafe_pop() {
         std::unique_lock<std::shared_mutex> wlock(mutex_);
         queue_.pop();
     }

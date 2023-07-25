@@ -1,7 +1,7 @@
-// use std::string_view since c++17
-
 #ifndef LIPH_STRING_VIEW_H_
 #define LIPH_STRING_VIEW_H_
+
+// use std::string_view since c++17
 
 #include <ostream>
 #include <stdexcept>

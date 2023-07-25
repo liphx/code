@@ -43,3 +43,10 @@ int main() {
     liph::print(std::vector<int>{10, 9, 42});
 }
 ```
+
+## tools
+
+```
+Apple clang version 14.0.0 (clang-1400.0.29.202)
+bazel 6.2.1-homebrew
+```

@@ -1,5 +1,6 @@
 #include "liph/file.h"
 
+#include <filesystem>
 #include <fstream>
 
 namespace liph {
@@ -26,6 +27,22 @@ bool write_file(const std::string& pathname, const std::string& str) {
         return out.good();
     }
     return false;
+}
+
+bool path_exists(const std::string& pathname) {
+    std::error_code ec;
+    return std::filesystem::exists(pathname, ec);
+}
+
+std::vector<std::string> list_files(const std::string& pathname) {
+    std::vector<std::string> ret;
+    try {
+        for (auto& p : std::filesystem::recursive_directory_iterator(pathname)) ret.emplace_back(p.path().string());
+    } catch (const std::filesystem::filesystem_error&) {
+        return {};
+    }
+    std::sort(ret.begin(), ret.end());
+    return ret;
 }
 
 }  // namespace liph

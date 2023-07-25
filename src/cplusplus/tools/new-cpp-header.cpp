@@ -2,14 +2,16 @@
 #include <fstream>
 #include <iostream>
 
-#include "liph/file.h"
+#include "liph/liph.h"
 
 int main(int argc, char **argv) {
-    if (argc < 2) return 1;
+    liph::err_exit_if(argc < 2);
+
     std::string str = argv[1];
-    if (liph::path_exists(str)) return 1;
+    liph::err_exit_if(liph::path_exists(str));
+
     std::ofstream out(str);
-    if (!out.is_open()) return 1;
+    liph::err_exit_if(!out.is_open());
 
     std::transform(str.begin(), str.end(), str.begin(), [](char ch) -> char {
         if (ch == '/' || ch == '.') return '_';

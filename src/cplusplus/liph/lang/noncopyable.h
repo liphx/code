@@ -1,8 +1,8 @@
+#ifndef LIPH_LANG_NONCOPYABLE_H_
+#define LIPH_LANG_NONCOPYABLE_H_
+
 // from boost::noncopyable
 // https://www.boost.org/users/license.html
-
-#ifndef LIPH_NONCOPYABLE_H_
-#define LIPH_NONCOPYABLE_H_
 
 namespace liph {
 
@@ -42,4 +42,4 @@ typedef noncopyable_::noncopyable noncopyable;
 
 }  // namespace liph
 
-#endif  // LIPH_NONCOPYABLE_H_
+#endif  // LIPH_LANG_NONCOPYABLE_H_

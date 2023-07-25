@@ -1,7 +1,15 @@
 #include <iostream>
+#include <mutex>
+#include <thread>
 #include <vector>
 
-int main() {}
+int main() {
+    std::thread t;
+    std::cout << t.get_id() << std::endl;  // 0x0
+
+    std::mutex m;
+    std::lock_guard guard(m);  // C++17
+}
 
 #if 0
 bool solve(int n, int *ptr) {

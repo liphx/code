@@ -4,15 +4,18 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <string>
 
 namespace liph {
 
-static inline void err_exit(const char *str) {
-    perror(str);
+static inline void err_exit(const char *str = nullptr) {
+    if (str) perror(str);
     exit(EXIT_FAILURE);
 }
 
-static inline void exit_if_err(bool error) {
+static inline void err_exit(const std::string& str) { err_exit(str.c_str()); }
+
+static inline void err_exit_if(bool error) {
     if (error) exit(EXIT_FAILURE);
 }
 

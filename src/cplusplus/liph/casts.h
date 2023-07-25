@@ -1,3 +1,6 @@
+#ifndef LIPH_CASTS_H_
+#define LIPH_CASTS_H_
+
 // from protocolbuffers/protobuf/src/google/protobuf/stubs/casts.h
 
 // Protocol Buffers - Google's data interchange format
@@ -29,9 +32,6 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-#ifndef LIPH_CASTS_H_
-#define LIPH_CASTS_H_
 
 #include <type_traits>
 
