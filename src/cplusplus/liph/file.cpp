@@ -1,5 +1,6 @@
 #include "liph/file.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 
@@ -13,7 +14,10 @@ bool read_file(const std::string& pathname, std::string& output) {
         is.seekg(0);
         is.read(&str[0], size);
         if (is.good()) {
-            output.append(str);
+            if (output.empty())
+                output = std::move(str);
+            else
+                output.append(str);
             return true;
         }
     }

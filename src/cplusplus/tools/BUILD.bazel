@@ -1,18 +1,22 @@
 [cc_binary(
     name = cc_name.split('.')[0],
     srcs = [cc_name],
-    deps = ["//liph"],
+    deps = [
+        "//liph",
+        "@com_github_gflags_gflags//:gflags",
+        "@nlohmann_json//:json",
+    ],
 ) for cc_name in glob(
     include = ["*.cpp"],
     exclude = [
-        "record_server.cpp",
+        "record-server.cpp",
         "animal-crossing-server.cpp",
     ],
 )]
 
 cc_binary(
-    name = "record_server",
-    srcs = ["record_server.cpp"],
+    name = "record-server",
+    srcs = ["record-server.cpp"],
     deps = [
         "//liph",
         "@com_github_gflags_gflags//:gflags",

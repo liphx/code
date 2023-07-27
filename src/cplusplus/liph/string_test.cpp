@@ -23,3 +23,34 @@ TEST(string, string) {
     D(liph::to_string(std::vector<int>{1, 2, 3}));
     D((std::pair<std::string, int>("hello", 100)));
 }
+
+TEST(string, basename) {
+    EXPECT_EQ(liph::basename(""), "");
+    EXPECT_EQ(liph::basename("abc"), "abc");
+    EXPECT_EQ(liph::basename("/"), "/");
+    EXPECT_EQ(liph::basename("//////"), "/");
+    EXPECT_EQ(liph::basename("/usr/bin/ls"), "ls");
+    EXPECT_EQ(liph::basename("/usr/bin/"), "bin");
+    EXPECT_EQ(liph::basename("/usr/bin///"), "bin");
+    EXPECT_EQ(liph::basename("/usr/////bin/"), "bin");
+    EXPECT_EQ(liph::basename("/tmp/"), "tmp");
+    EXPECT_EQ(liph::basename("tmp/"), "tmp");
+    EXPECT_EQ(liph::basename("tmp/abc///"), "abc");
+    EXPECT_EQ(liph::basename("../.."), "..");
+}
+
+TEST(string, dirname) {
+    EXPECT_EQ(liph::dirname(""), ".");
+    EXPECT_EQ(liph::dirname("abc"), ".");
+    EXPECT_EQ(liph::dirname("/"), "/");
+    EXPECT_EQ(liph::dirname("//////"), "/");
+    EXPECT_EQ(liph::dirname("/usr/bin/ls"), "/usr/bin");
+    EXPECT_EQ(liph::dirname("/usr/bin/"), "/usr");
+    EXPECT_EQ(liph::dirname("/usr/bin///"), "/usr");
+    EXPECT_EQ(liph::dirname("/usr/////bin/"), "/usr");
+    EXPECT_EQ(liph::dirname("/tmp/"), "/");
+    EXPECT_EQ(liph::dirname("tmp/"), ".");
+    EXPECT_EQ(liph::dirname("tmp/abc///"), "tmp");
+    EXPECT_EQ(liph::dirname("/tmp////abc/a"), "/tmp////abc");
+    EXPECT_EQ(liph::dirname("../.."), "..");
+}

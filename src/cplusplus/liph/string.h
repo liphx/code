@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace liph {
@@ -39,12 +40,35 @@ inline void split(std::vector<std::string>& tokens, const std::string& s, const 
     }
 }
 
-inline std::string base_name(const std::string& path) {
-    auto pos = path.find_last_of('/');
-    if (pos == std::string::npos) {
-        return path;
+inline std::string basename(std::string_view path) {
+    std::string ret;
+    bool start = true;
+    for (char ch : path) {
+        if (ch != '/' && start) {
+            ret += ch;
+        } else if (ch == '/') {
+            start = false;
+        } else if (ch != '/' && !start) {
+            ret.clear();
+            ret += ch;
+            start = true;
+        }
     }
-    return path.substr(pos + 1);
+    if (!path.empty() && path.back() == '/' && ret.empty()) return "/";
+    return ret;
+}
+
+inline std::string dirname(std::string_view path) {
+    auto pos = path.find_last_not_of('/');
+    if (pos == std::string_view::npos) return path.empty() ? "." : "/";  // empty or only contain '/'
+    path = path.substr(0, pos + 1);                                      // remove the trailing '/'
+    pos = path.find_last_of('/');
+    if (pos == std::string_view::npos) return ".";  // not contain '/'
+    path = path.substr(0, pos);                     // remove the trailing "/xxxx"
+    if (path.empty()) return "/";                   // '/' or "////" before substr
+    pos = path.find_last_not_of('/');
+    if (pos != std::string_view::npos) path = path.substr(0, pos + 1);  // remove trailing duplicate '/'
+    return std::string(path);
 }
 
 }  // namespace liph

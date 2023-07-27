@@ -16,7 +16,8 @@ public:
     Sqlite(const char *filename) : db_(nullptr) {
         int ret = sqlite3_open(filename, &db_);
         if (ret != SQLITE_OK) {
-            throw std::runtime_error(sqlite3_errmsg(db_));
+            std::string msg = sqlite3_errmsg(db_);
+            throw std::runtime_error(msg + ": " + filename);
         }
     }
 
@@ -37,6 +38,9 @@ public:
     }
 
     int execute(const char *sql) { return sqlite3_exec(db_, sql, nullptr, nullptr, nullptr); }
+    int execute(const std::string& sql) { return execute(sql.c_str()); }
+
+    std::vector<std::vector<std::string>> query(const std::string& sql) { return query(sql.c_str()); }
 
     // the first column returns the field name if the result is not empty
     std::vector<std::vector<std::string>> query(const char *sql) {

@@ -20,3 +20,8 @@ TEST(time, DISABLED_backwards) {
         pre = now;
     }
 }
+
+TEST(time, time_format) {
+    /* std::cout << "now: " << time_format() << std::endl; */
+    EXPECT_EQ(time_format(0), "1970-01-01 08:00:00");
+}

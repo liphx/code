@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <string>
 
 namespace liph {
 
@@ -19,6 +20,16 @@ inline int64_t gettimeofday_us() {
 inline int64_t gettimeofday_ms() { return gettimeofday_us() / 1000L; }
 
 inline int64_t gettimeofday_s() { return gettimeofday_us() / 1000000L; }
+
+inline std::string time_format(time_t t = time(nullptr)) {
+    struct tm tm;
+    localtime_r(&t, &tm);
+    char str[32];
+    if (strftime(str, sizeof(str), "%Y-%m-%d %H:%M:%S", &tm) == 0) {
+        return "";
+    }
+    return str;
+}
 
 };  // namespace liph
 

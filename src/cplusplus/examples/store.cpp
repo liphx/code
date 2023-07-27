@@ -126,7 +126,7 @@ public:
     bool init() {
         for (auto& p : std::filesystem::directory_iterator(store_path_)) {
             auto path = p.path().string();
-            auto name = base_name(path);
+            auto name = basename(path);
             if (startswith(name, "segment_")) {
                 std::string id_str = name.substr(std::string("segment_").size());
                 int id = -1;

@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "liph/singleton.h"
+#include "liph/time.h"
 
 namespace liph {
 
@@ -24,14 +25,7 @@ public:
     void log(const std::string& filename, int line, const Args&...args) {
         std::stringstream ss;
         ss << std::boolalpha;
-
-        std::time_t t = std::time(nullptr);
-        struct tm p;
-        localtime_r(&t, &p);
-        char time_format[32];
-        strftime(time_format, sizeof(time_format), "%Y-%m-%d %H:%M:%S", &p);
-        ss << "[" << time_format << " " << filename << ":" << line << "] ";
-
+        ss << "[" << time_format() << " " << filename << ":" << line << "] ";
         (void)std::initializer_list<int>{([&ss](auto i) { ss << i << ' '; }(args), 0)...};
         ss << std::endl;
         std::lock_guard<std::mutex> lock(lock_);
