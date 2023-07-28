@@ -24,6 +24,7 @@
 #include "liph/net/http.h"
 #include "liph/net/socket.h"
 #include "liph/net/tcp.h"
+#include "liph/prime_sieve.h"
 #include "liph/print.h"
 #include "liph/process.h"
 #include "liph/singleton.h"
