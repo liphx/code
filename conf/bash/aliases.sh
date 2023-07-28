@@ -34,12 +34,13 @@ alias gb='git branch'
 alias gs='git status -s'
 alias gr='git remote -v'
 alias gc='git commit -m'
-alias gl='git log --oneline -n5'
+alias gl='git log --oneline -n6'
 alias glast='git log -n1'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gdh='git diff HEAD~1'
 alias gk='git checkout'
+alias gmv='git mv'
 
 # vim
 alias vi=vim
