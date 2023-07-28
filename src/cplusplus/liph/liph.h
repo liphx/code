@@ -30,7 +30,6 @@
 #include "liph/sort.h"
 #include "liph/sqlite.h"
 #include "liph/string.h"
-#include "liph/string_view.h"
 #include "liph/time.h"
 #include "liph/timer.h"
 

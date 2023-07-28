@@ -26,7 +26,7 @@
 /* DEFINE_bool(test, false, "for test"); */
 
 /* auto Logger = spdlog::basic_logger_mt("basic_logger", "std.log"); */
-/* liph::Sqlite db(FLAGS_db_path); */
+/* liph::sqlite db(FLAGS_db_path); */
 /* string test_session_id = "123456"; */
 
 /* enum { GET_MESSAGE_ALL = 0, GET_MESSAGE_NEW }; */

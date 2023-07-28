@@ -40,6 +40,12 @@ inline void split(std::vector<std::string>& tokens, const std::string& s, const 
     }
 }
 
+inline std::vector<std::string> split(const std::string& s, const std::string& delimiters = " ") {
+    std::vector<std::string> tokens;
+    split(tokens, s, delimiters);
+    return tokens;
+}
+
 inline std::string basename(std::string_view path) {
     std::string ret;
     bool start = true;

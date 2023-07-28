@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
         std::cerr << "Usage: " << argv[0] << " db sql" << std::endl;
         return 1;
     }
-    liph::Sqlite db(argv[1]);
+    liph::sqlite db(argv[1]);
     auto ans = db.query(argv[2]);
     std::vector<int> vc(ans[0].size());
     for (int i = 0; i < ans.size(); ++i) {

@@ -10,7 +10,7 @@ using namespace liph;
 
 TEST(sqlite, db) {
     const char *db_path = "./.test.db";
-    Sqlite db(db_path);
+    sqlite db(db_path);
     int ret = SQLITE_OK;
     ret |= db.execute("create table IF NOT EXISTS t(aaa string, bbb int, ccc string)");
     ret |= db.execute("insert into t values('kkk', 123, 'hello')");

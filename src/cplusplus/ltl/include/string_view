@@ -1,0 +1,6 @@
+#ifndef LTL_STRING_VIEW_
+#define LTL_STRING_VIEW_
+
+#include "detail/string_view.h"
+
+#endif  // LTL_STRING_VIEW_

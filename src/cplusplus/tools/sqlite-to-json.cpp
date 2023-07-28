@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     if (sql.empty()) {
         sql = "select * from " + FLAGS_table;
     }
-    liph::Sqlite db(FLAGS_db);
+    liph::sqlite db(FLAGS_db);
     auto ans = db.query(sql);
     if (ans.empty()) {
         liph::err_exit();

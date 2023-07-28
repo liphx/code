@@ -1,13 +1,11 @@
 #ifndef LIPH_STRING_VIEW_H_
 #define LIPH_STRING_VIEW_H_
 
-// use std::string_view since c++17
-
 #include <ostream>
 #include <stdexcept>
 #include <string>
 
-namespace liph {
+namespace ltl {
 
 class string_view {
 public:
@@ -46,6 +44,6 @@ std::ostream& operator<<(std::ostream& os, string_view sv) {
     return os;
 }
 
-}  // namespace liph
+}  // namespace ltl
 
 #endif  // LIPH_STRING_VIEW_H_

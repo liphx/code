@@ -9,11 +9,11 @@
 
 namespace liph {
 
-class Sqlite {
+class sqlite {
 public:
-    Sqlite() {}
+    sqlite() {}
 
-    Sqlite(const char *filename) : db_(nullptr) {
+    sqlite(const char *filename) : db_(nullptr) {
         int ret = sqlite3_open(filename, &db_);
         if (ret != SQLITE_OK) {
             std::string msg = sqlite3_errmsg(db_);
@@ -21,7 +21,7 @@ public:
         }
     }
 
-    Sqlite(const std::string& filename) : Sqlite(filename.c_str()) {}
+    sqlite(const std::string& filename) : sqlite(filename.c_str()) {}
 
     bool open(const char *filename) {
         if (db_) return false;
@@ -30,9 +30,7 @@ public:
 
     bool open(const std::string& filename) { return open(filename.c_str()); }
 
-    /* Sqlite(const Sqlite&) = delete; */
-
-    ~Sqlite() {
+    ~sqlite() {
         sqlite3_close(db_);
         db_ = nullptr;
     }
@@ -87,7 +85,7 @@ private:
 
 class PreparedStatement {
 public:
-    PreparedStatement(Sqlite& db, const char *sql) : st(nullptr) {
+    PreparedStatement(sqlite& db, const char *sql) : st(nullptr) {
         int ret = sqlite3_prepare_v2(db.db(), sql, -1, &st, nullptr);
         if (ret != SQLITE_OK) {
             throw std::runtime_error(sqlite3_errmsg(db.db()));

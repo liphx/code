@@ -16,7 +16,7 @@ DEFINE_string(host, "0.0.0.0", "default host");
 DEFINE_int32(port, 8000, "default port");
 DEFINE_string(db_path, "./", "");
 
-std::vector<liph::Sqlite> db;
+std::vector<liph::sqlite> db;
 
 void init_db() {
     std::vector<std::string> paths{
