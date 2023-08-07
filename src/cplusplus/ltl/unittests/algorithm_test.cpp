@@ -55,3 +55,16 @@ TEST(algorithm, binary_search) {
         EXPECT_EQ(*iter, 15);
     }
 }
+
+TEST(algorithm, transform) {
+    const std::vector<int> in{1, 2, 3, 4};
+    std::vector<int> out(in.size());
+    ltl::transform(in.begin(), in.end(), out.begin(), [](int x) { return x * x; });
+    for (auto i = 0U; i < in.size(); i++) {
+        EXPECT_EQ(in[i] * in[i], out[i]);
+    }
+    ltl::transform(in.begin(), in.end(), in.begin(), out.begin(), [](int x, int y) { return x * y; });
+    for (auto i = 0U; i < in.size(); i++) {
+        EXPECT_EQ(in[i] * in[i], out[i]);
+    }
+}

@@ -1,7 +1,11 @@
+// clang-format off
+#include "memory"
+// clang-format on
+
 #include <iostream>
+#include <utility>
 
 #include "gtest/gtest.h"
-#include "memory"
 
 namespace unique_ptr_test {
 
@@ -35,7 +39,7 @@ TEST(unique_ptr, common) {
 
         A *p;
         {
-            ltl::unique_ptr<A> pa3 = move(pa);  // 现在 A(3) 所有权在 pa3
+            ltl::unique_ptr<A> pa3 = std::move(pa);  // 现在 A(3) 所有权在 pa3
             p = pa3.release();  // 释放被管理对象的所有权，返回指向被管理对象的指针
             EXPECT_EQ(count, 4);
             EXPECT_EQ(pa3.get(), nullptr);  // pa3.get() 现在是 nullptr

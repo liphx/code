@@ -15,6 +15,7 @@
  * is_permutation
  * next_permutation
  * prev_permutation
+ * transform
  */
 
 #include <functional>  // less
@@ -142,6 +143,23 @@ constexpr pair<ForwardIt, ForwardIt> equal_range(ForwardIt first, ForwardIt last
 template <class ForwardIt1, class ForwardIt2, class BinaryPredicate>
 constexpr bool is_permutation(
         ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2, ForwardIt2 last2, BinaryPredicate p);
+
+template <class InputIt, class OutputIt, class UnaryOperation>
+constexpr OutputIt transform(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op) {
+    for (; first1 != last1; ++first1, ++d_first) {
+        *d_first = unary_op(*first1);
+    }
+    return d_first;
+}
+
+template <class InputIt1, class InputIt2, class OutputIt, class BinaryOperation>
+constexpr OutputIt transform(
+        InputIt1 first1, InputIt1 last1, InputIt2 first2, OutputIt d_first, BinaryOperation binary_op) {
+    for (; first1 != last1; ++first1, ++first2, ++d_first) {
+        *d_first = binary_op(*first1, *first2);
+    }
+    return d_first;
+}
 
 }  // namespace ltl
 

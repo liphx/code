@@ -47,6 +47,6 @@ int main() {
 ## tools
 
 ```
-Apple clang version 14.0.0 (clang-1400.0.29.202)
+Apple clang version 14.0.3 (clang-1403.0.22.14.1)
 bazel 6.2.1-homebrew
 ```

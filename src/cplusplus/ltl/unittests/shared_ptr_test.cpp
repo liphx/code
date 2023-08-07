@@ -47,4 +47,55 @@ TEST(shared_ptr, shared_ptr) {
     EXPECT_EQ(X, 3);
 }
 
+class B {
+public:
+    B(int *count) : count_(count) {}
+    ~B() { ++*count_; }
+    void add_to_list(std::vector<ltl::shared_ptr<B>>& list) { list.emplace_back(this); }
+    void operator delete(void *) {}  // do not free
+
+private:
+    int *count_;
+};
+
+class C : ltl::enable_shared_from_this<C> {
+public:
+    C(int *count) : count_(count) {}
+    ~C() { ++*count_; }
+    void add_to_list(std::vector<ltl::shared_ptr<C>>& list) { list.emplace_back(shared_from_this()); }
+
+private:
+    int *count_;
+};
+
+#if 0
+TEST(shared_ptr, enable_shared_from_this) {
+    int count;
+
+    count = 0;
+    {
+        std::vector<ltl::shared_ptr<B>> list;
+        B b(&count);
+        b.add_to_list(list);
+    }
+    EXPECT_EQ(count, 2);
+
+    count = 0;
+    {
+        std::vector<ltl::shared_ptr<B>> list;
+        auto b = ltl::make_shared<B>(&count);
+        b->add_to_list(list);
+    }
+    EXPECT_EQ(count, 2);
+
+    count = 0;
+    {
+        std::vector<ltl::shared_ptr<C>> list;
+        auto c = ltl::make_shared<C>(&count);
+        c->add_to_list(list);
+    }
+    EXPECT_EQ(count, 1);
+}
+#endif
+
 }  // namespace shared_ptr_test
