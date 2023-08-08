@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 using namespace liph;
 
@@ -19,15 +20,19 @@ TEST(sqlite, db) {
     EXPECT_EQ(ret, SQLITE_OK);
     auto result = db.query("select * from t");
     for (auto x : result) {
-        for (auto y : x) std::cout << y << "\t";
-        std::cout << std::endl;
+        std::string str;
+        for (auto y : x) {
+            str = str + y + "\t";
+        }
+        LOG << str;
     }
 
-    std::cout << "PreparedStatement" << std::endl;
+    LOG << "PreparedStatement";
     PreparedStatement st(db, "select * from t");
-    std::cout << "aaa\tbbb\n===\t===" << std::endl;
+    LOG << "aaa\tbbb";
+    LOG << "===\t===";
     while (st.step() == SQLITE_ROW) {
-        std::cout << st.column_text(0) << "\t" << st.column_int(1) << std::endl;
+        LOG << st.column_text(0) << "\t" << st.column_int(1);
     }
 
     std::filesystem::remove(db_path);

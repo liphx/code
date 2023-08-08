@@ -22,17 +22,13 @@ int main(int argc, char **argv) {
         }
     }
 
-    singleton<logger>::instance("std.log").start();
-    logging("logger started");
-
     /* if (become_daemon(0) == -1) { */
     /*     err_exit("become daemon fail"); */
     /* } */
 
     http_server svr(port);
-    logging("server started, port:", port);
+    LOG << "server started, port: " << port;
     svr.start();
 
-    singleton<logger>::instance("std.log").stop();
     return 0;
 }

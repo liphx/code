@@ -22,7 +22,6 @@ cc_binary(
         "@com_github_gflags_gflags//:gflags",
         "@yhirose_cpp_httplib//:httplib",
         "@nlohmann_json//:json",
-        "@gabime_spdlog//:spdlog",
     ],
 )
 

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 class A : liph::noncopyable {};
 
@@ -11,7 +12,7 @@ class B : liph::noncopyable {
 };
 
 TEST(noncopyable, sizeof) {
-    std::cout << sizeof(liph::noncopyable) << std::endl;
-    std::cout << sizeof(A) << std::endl;
-    std::cout << sizeof(B) << std::endl;
+    LOG << sizeof(liph::noncopyable);
+    LOG << sizeof(A);
+    LOG << sizeof(B);
 }

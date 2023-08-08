@@ -1,15 +1,10 @@
 #include "liph/format.h"
 
 #include "gtest/gtest.h"
-
-namespace liph {
-namespace test {
+#include "liph/logging.h"
 
 TEST(format, format) {
-    std::cout << format("The answer is {}.", 42) << std::endl;
+    LOG << liph::format("The answer is {}.", 42);
     // 忽略多余参数
-    std::cout << format("{} {}", 1, 2, 3) << std::endl;
+    LOG << liph::format("{} {}", 1, 2, 3);
 }
-
-}  // namespace test
-}  // namespace liph

@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 TEST(poll, DISABLED_poll) {
     liph::io::poll_base *poll = new liph::io::poll();
@@ -18,10 +19,10 @@ TEST(poll, DISABLED_poll) {
             EXPECT_EQ(event.type, liph::io::event_type::read);
             liph::io::descriptor fd(event.fd);
             auto size = fd.read(buffer, sizeof(buffer));
-            std::cout << size << ": " << buffer;
+            LOG << size << ": " << buffer;
         }
     } else {
-        std::cout << "r=" << r << ",errno=" << errno << std::endl;
+        LOG << "r=" << r << ",errno=" << errno;
     }
     delete poll;
 }

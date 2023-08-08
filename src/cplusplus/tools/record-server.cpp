@@ -4,13 +4,11 @@
 
 #include "gflags/gflags.h"
 #include "httplib.h"
-#include "liph/sqlite.h"
+#include "liph/liph.h"
 #include "nlohmann/json.hpp"
-#include "spdlog/sinks/basic_file_sink.h"
 
 using json = nlohmann::json;
 namespace fs = std::filesystem;
-auto logger = spdlog::basic_logger_mt("basic_logger", "std.log");
 
 DEFINE_string(host, "0.0.0.0", "default host");
 DEFINE_int32(port, 8000, "default port");
@@ -49,7 +47,7 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
         body = json::parse(req.body);
         user = body.at("user").get<std::string>();
     } catch (...) {
-        logger->error("json::parse error");
+        LOG << "json::parse error";
         return;
     }
 
@@ -76,7 +74,7 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
         body = json::parse(req.body);
         user = body.at("user").get<std::string>();
     } catch (...) {
-        logger->error("json::parse error");
+        LOG << "json::parse error";
         return;
     }
 
@@ -120,7 +118,7 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
         imdb = body.at("imdb").get<std::string>();
         user = body.at("user").get<std::string>();
     } catch (...) {
-        logger->error("json::parse error");
+        LOG << "json::parse error";
         return;
     }
 
@@ -136,7 +134,7 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
     } else if (user == "jasmine") {
         db_ret = db[1].execute(ss.str().c_str());
     }
-    logger->info(ss.str());
+    LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.dump(), "application/json");
@@ -144,18 +142,17 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
 }
 
 void AddBook(const httplib::Request& req, httplib::Response& res) {
-    logger->info("AddBook");
     json body, ret;
     std::string title, rating, isbn, user;
     try {
-        logger->info(req.body);
+        LOG << req.body;
         body = json::parse(req.body);
         title = body.at("title").get<std::string>();
         rating = body.at("rating").get<std::string>();
         isbn = body.at("isbn").get<std::string>();
         user = body.at("user").get<std::string>();
     } catch (...) {
-        logger->error("json::parse error");
+        LOG << "json::parse error";
         return;
     }
 
@@ -169,7 +166,7 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
     } else if (user == "jasmine") {
         db_ret = db[1].execute(ss.str().c_str());
     }
-    logger->info(ss.str());
+    LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.dump(), "application/json");
@@ -177,12 +174,11 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
 }
 
 void AddLibrary(const httplib::Request& req, httplib::Response& res) {
-    logger->info("AddLibrary");
     json body, ret;
     std::string title, origin_title, author, publisher, translator, isbn, douban, tag;
     int publish_year;
     try {
-        logger->info(req.body);
+        LOG << req.body;
         body = json::parse(req.body);
         title = body.at("title").get<std::string>();
         origin_title = body.at("origin_title").get<std::string>();
@@ -194,7 +190,7 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
         douban = body.at("douban").get<std::string>();
         tag = body.at("tag").get<std::string>();
     } catch (...) {
-        logger->error("json::parse error");
+        LOG << "json::parse error";
         return;
     }
 
@@ -205,7 +201,7 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
        << publish_year << ", '" << translator << "', '" << isbn << "', '" << douban << "', '" << tag << "');";
 
     int db_ret = db[2].execute(ss.str().c_str());
-    logger->info(ss.str());
+    LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.dump(), "application/json");
@@ -215,9 +211,6 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
 int main(int argc, char *argv[]) {
     google::ParseCommandLineFlags(&argc, &argv, true);
     init_db();
-
-    logger->set_level(spdlog::level::info);
-    logger->flush_on(spdlog::level::info);
 
     httplib::Server svr;
 

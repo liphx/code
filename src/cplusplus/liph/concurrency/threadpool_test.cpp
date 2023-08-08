@@ -1,13 +1,14 @@
 #include "liph/concurrency/threadpool.h"
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 namespace liph {
 namespace test {
 
 TEST(threadpool, DISABLED_all) {
     auto *pool = new ThreadPool;
-    std::cout << "thread pool size = " << pool->Size() << std::endl;
+    LOG << "thread pool size = " << pool->Size();
     pool->Start();
     int i = 0;
     auto entry = [](int *n) { *n = 100; };

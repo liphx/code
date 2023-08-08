@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 namespace liph {
 namespace test {
@@ -18,8 +19,7 @@ TEST(double_buffer, DoubleBuffer) {
         int loop = kLOOP;
         while (loop-- > 0) {
             const auto& vc = data.Get();
-            std::cout << vc.size() << ", ";
-            std::cout << std::accumulate(vc.begin(), vc.end(), 0) << std::endl;
+            LOG << vc.size() << ", " << std::accumulate(vc.begin(), vc.end(), 0);
         }
     });
 
@@ -35,8 +35,7 @@ TEST(double_buffer, DoubleBuffer) {
     t1.join();
     t2.join();
     const auto& vc = data.Get();
-    std::cout << vc.size() << ", ";
-    std::cout << std::accumulate(vc.begin(), vc.end(), 0) << std::endl;
+    LOG << vc.size() << ", " << std::accumulate(vc.begin(), vc.end(), 0);
 }
 
 TEST(double_buffer, DoubleBufferWithSharedPtr) {
@@ -45,8 +44,7 @@ TEST(double_buffer, DoubleBufferWithSharedPtr) {
         while (loop-- > 0) {
             auto vc = data2.Get();
             if (vc == nullptr) continue;
-            std::cout << vc->size() << ", ";
-            std::cout << std::accumulate(vc->begin(), vc->end(), 0) << std::endl;
+            LOG << vc->size() << ", " << std::accumulate(vc->begin(), vc->end(), 0);
         }
     });
 
@@ -62,8 +60,7 @@ TEST(double_buffer, DoubleBufferWithSharedPtr) {
     t1.join();
     t2.join();
     auto vc = data2.Get();
-    std::cout << vc->size() << ", ";
-    std::cout << std::accumulate(vc->begin(), vc->end(), 0) << std::endl;
+    LOG << vc->size() << ", " << std::accumulate(vc->begin(), vc->end(), 0);
 }
 
 }  // namespace test
