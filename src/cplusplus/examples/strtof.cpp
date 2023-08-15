@@ -18,13 +18,13 @@
  *
  */
 
-//#include "tcl.h"
-//#ifdef NO_STDLIB_H
-//#   include "../compat/stdlib.h"
-//#else
-//#   include <stdlib.h>
-//#endif
-//#include <ctype.h>
+// #include "tcl.h"
+// #ifdef NO_STDLIB_H
+// #   include "../compat/stdlib.h"
+// #else
+// #   include <stdlib.h>
+// #endif
+// #include <ctype.h>
 //
 
 namespace {

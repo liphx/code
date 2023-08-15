@@ -18,22 +18,23 @@
 namespace liph {
 
 class logger : noncopyable {
+private:
+    static constexpr char logfilename[] = "std.log";
+
 public:
     logger() {
         producer_ = &buffer_[0];
         consumer_ = &buffer_[1];
-        write_file_.open("std.log", std::ios_base::out | std::ios_base::app);
-        if (!write_file_.is_open()) {
-            std::cerr << "open log file fail, use stderr\n";
-        }
+        write_file_.open(logfilename, std::ios_base::out | std::ios_base::app);
+        if (!write_file_.is_open()) std::cerr << "open log file fail, use stderr\n";
         started_ = true;
         tid_ = std::thread(&logger::run, this);
     }
 
     ~logger() {
         started_ = false;
-        tid_.join();
-        write_file_.close();
+        if (tid_.joinable()) tid_.join();
+        if (write_file_.is_open()) write_file_.close();
     }
 
     void log(std::ostringstream& ss) {

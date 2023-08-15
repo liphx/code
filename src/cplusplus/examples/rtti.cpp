@@ -17,7 +17,7 @@ public:
 int main() {
     A *a = new A;
     A *b = new B;
-    //多态
+    // 多态
     a->f();
     b->f();
     B *c = dynamic_cast<B *>(b);

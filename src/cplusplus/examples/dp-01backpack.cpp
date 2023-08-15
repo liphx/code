@@ -9,7 +9,7 @@ int n, W;
 int w[MAX_N], v[MAX_N];
 int dp[MAX_N + 1][MAX_W + 1];
 
-//对于背包中的每样物品都尝试选或不选 O(2^n)
+// 对于背包中的每样物品都尝试选或不选 O(2^n)
 int rec(int i, int j) {
     int res;
     if (i == n)
@@ -21,7 +21,7 @@ int rec(int i, int j) {
     return res;
 }
 
-//利用记忆化数组 O(n*W)
+// 利用记忆化数组 O(n*W)
 int rec2(int i, int j) {
     if (dp[i][j] >= 0) return dp[i][j];
     int res;
@@ -34,7 +34,7 @@ int rec2(int i, int j) {
     return dp[i][j] = res;
 }
 
-//通过递推式直接将dp数组计算出来
+// 通过递推式直接将dp数组计算出来
 void rec3() {
     for (int i = n - 1; i >= 0; i--)
         for (int j = 0; j <= W; j++)
@@ -53,7 +53,7 @@ int main() {
     memset(dp, -1, sizeof(dp));
     cout << "max is " << rec2(0, W) << endl;
 
-    memset(dp, 0, sizeof(dp));  //如果改变了全局变量dp的值，则需要重新设置
+    memset(dp, 0, sizeof(dp));  // 如果改变了全局变量dp的值，则需要重新设置
     rec3();
     cout << "max is " << dp[0][W] << endl;
 

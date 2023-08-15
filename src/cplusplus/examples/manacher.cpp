@@ -23,7 +23,7 @@ string manacher(const string& s) {
     int m = -1, mi = 0;  // 记录最长子串的长度和位置
     for (int i = 1; i < n; ++i) {
         if (MaxRight > i)
-            p[i] = min(p[2 * pos - i], MaxRight - i + 1);  //核心算法
+            p[i] = min(p[2 * pos - i], MaxRight - i + 1);  // 核心算法
         else
             p[i] = 1;
         while (str[i + p[i]] == str[i - p[i]]) p[i]++;  // 开头加了'$'字符，不用考虑边界

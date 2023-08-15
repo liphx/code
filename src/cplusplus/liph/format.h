@@ -6,6 +6,12 @@
 #include "liph/print.h"
 #include "liph/string.h"
 
+#if __has_cpp_attribute(__cpp_lib_format)
+#include <format>
+namespace liph {
+using std::format;
+}
+#else
 namespace liph {
 
 template <class... Args>
@@ -51,5 +57,7 @@ std::string format(std::string fmt, const Args&...args) {
 }
 
 }  // namespace liph
+
+#endif  // __cpp_lib_format
 
 #endif  // LIPH_FORMAT_H_
