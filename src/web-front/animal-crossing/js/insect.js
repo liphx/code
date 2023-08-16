@@ -11,7 +11,7 @@
     }
 
     function insect_detail(id) {
-        $.post("http://192.168.1.3:8001/api/insect_detail", JSON.stringify({ 'id': id }), function (data, status) {
+        $.post("http://127.0.0.1:8001/api/insect_detail", JSON.stringify({ 'id': id }), function (data, status) {
             console.log(data);
             let message = data.name;
             message += "\n活跃时间: " + data.active_time + "月";
@@ -22,7 +22,7 @@
     let all_insect;
     let inputs = [];
 
-    $.get("http://192.168.1.3:8001/api/all_insect", { 'user': user }, function (data, status) {
+    $.get("http://127.0.0.1:8001/api/all_insect", { 'user': user }, function (data, status) {
         let h1 = $("<h1>动森北半球虫类图鉴</h1>");
         $("#insect").append(h1);
 
@@ -100,7 +100,7 @@
             if (change_add == false && change_del == false) {
                 return;
             }
-            $.post("http://192.168.1.3:8001/api/my_insect", JSON.stringify({ "user": user, "data": JSON.stringify(all_insect) }),
+            $.post("http://127.0.0.1:8001/api/my_insect", JSON.stringify({ "user": user, "data": JSON.stringify(all_insect) }),
                 function (data, status) {
                     console.log(status);
                 }

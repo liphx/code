@@ -65,7 +65,7 @@
                     alert('empty');
                     return;
                 }
-                $.post("http://192.168.1.3:8000/api/add_movie",
+                $.post("http://127.0.0.1:8000/api/add_movie",
                     JSON.stringify({
                         "title": title,
                         "year": year,
@@ -98,7 +98,7 @@
         <script>
             function get_all_movie() {
                 $("#tab").empty();
-                $.post("http://192.168.1.3:8000/api/my_movie",
+                $.post("http://127.0.0.1:8000/api/my_movie",
                 JSON.stringify({
                         "user": $("#user").val()
                     }),

@@ -12,8 +12,6 @@
 
 namespace liph {
 
-const BigInteger BigInteger::Zero = BigInteger();
-
 namespace {
 
 template <class T>
@@ -234,7 +232,7 @@ std::string str_divide_(const std::string& str1, const std::string& str2) {
 
 ////////////////////////////
 
-BigInteger::BigInteger(long long n) {
+big_integer::big_integer(long long n) {
     if (n == 0) {
         sign_ = 0;
         return;
@@ -272,11 +270,11 @@ static bool check_str_is_number(const std::string& str, int *sign) {
     return true;
 }
 
-BigInteger::BigInteger(const std::string& str) {
+big_integer::big_integer(const std::string& str) {
     int sign;
     if (!check_str_is_number(str, &sign)) throw std::invalid_argument("invalid_argument");
     if (sign == 0) {
-        *this = BigInteger();
+        *this = big_integer();
         return;
     }
 
@@ -299,7 +297,7 @@ BigInteger::BigInteger(const std::string& str) {
     }
 }
 
-std::string BigInteger::toString() const {
+std::string big_integer::to_string() const {
     if (sign_ == 0) return "0";
     std::string str = "0";
     std::string factor = "1";
@@ -311,12 +309,12 @@ std::string BigInteger::toString() const {
     return (sign_ < 0) ? "-" + str : str;
 }
 
-bool BigInteger::operator==(const BigInteger& other) const {
+bool big_integer::operator==(const big_integer& other) const {
     if (sign_ != other.sign_) return false;
     return data_ == other.data_;
 }
 
-bool BigInteger::operator<(const BigInteger& other) const {
+bool big_integer::operator<(const big_integer& other) const {
     if (sign_ != other.sign_) return sign_ < other.sign_;
 
     if (sign_ == 0) return false;
@@ -327,11 +325,11 @@ bool BigInteger::operator<(const BigInteger& other) const {
     return (sign_ == 1 && ret) || (sign_ == -1 && !ret);
 }
 
-BigInteger BigInteger::operator+(const BigInteger& other) const {
-    if (other.isZero()) return BigInteger(*this);
-    if (isZero()) return BigInteger(other);
+big_integer big_integer::operator+(const big_integer& other) const {
+    if (other.is_zero()) return big_integer(*this);
+    if (is_zero()) return big_integer(other);
 
-    BigInteger bi;
+    big_integer bi;
     if (sign_ == other.sign_) {
         bi.sign_ = sign_;
         bi.data_ = vector_add_(data_, other.data_);
@@ -343,11 +341,11 @@ BigInteger BigInteger::operator+(const BigInteger& other) const {
     return bi;
 }
 
-BigInteger BigInteger::operator-(const BigInteger& other) const {
+big_integer big_integer::operator-(const big_integer& other) const {
     if (sign_ == 0) return -other;
-    if (other.sign_ == 0) return BigInteger(*this);
+    if (other.sign_ == 0) return big_integer(*this);
 
-    BigInteger bi;
+    big_integer bi;
     if (sign_ != other.sign_) {
         bi.sign_ = sign_;
         bi.data_ = vector_add_(data_, other.data_);
@@ -360,40 +358,40 @@ BigInteger BigInteger::operator-(const BigInteger& other) const {
     return bi;
 }
 
-BigInteger BigInteger::operator-() const {
-    BigInteger bi(*this);
+big_integer big_integer::operator-() const {
+    big_integer bi(*this);
     bi.sign_ = -bi.sign_;
     return bi;
 }
 
-BigInteger BigInteger::operator*(const BigInteger& other) const {
-    if (isZero() || other.isZero()) return BigInteger();
+big_integer big_integer::operator*(const big_integer& other) const {
+    if (is_zero() || other.is_zero()) return big_integer();
 
-    BigInteger bi;
+    big_integer bi;
     bi.sign_ = (sign_ == other.sign_) ? 1 : -1;
     bi.data_ = vector_multiply_(data_, other.data_);
     return bi;
 }
 
-BigInteger BigInteger::operator/(const BigInteger& other) const {
-    if (other.isZero()) throw std::invalid_argument("divide by zero");
+big_integer big_integer::operator/(const big_integer& other) const {
+    if (other.is_zero()) throw std::invalid_argument("divide by zero");
 
-    if (isZero()) return BigInteger();
+    if (is_zero()) return big_integer();
 
     bool equal;
     bool less = cmp_vector_(data_, other.data_, &equal);
-    if (less) return BigInteger();
-    if (equal) return BigInteger(1);
+    if (less) return big_integer();
+    if (equal) return big_integer(1);
 
-    BigInteger bi;
-    BigInteger r(*this);
+    big_integer bi;
+    big_integer r(*this);
     while (!(r < other)) {
-        BigInteger tmp(other);
-        BigInteger q(1);
-        BigInteger q2;
+        big_integer tmp(other);
+        big_integer q(1);
+        big_integer q2;
         while (tmp < r || tmp == r) {
             q2 = q;
-            q = q * BigInteger(2);
+            q = q * big_integer(2);
             tmp = other * q;
         }
         bi = bi + q2;

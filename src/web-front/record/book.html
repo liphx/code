@@ -50,7 +50,7 @@
                     alert('empty');
                     return;
                 }
-                $.post("http://192.168.1.3:8000/api/add_book",
+                $.post("http://127.0.0.1:8000/api/add_book",
                     JSON.stringify({
                         "title": title,
                         "rating": rating,
@@ -79,7 +79,7 @@
         <script>
             function get_all_book() {
                 $("#tab").empty();
-                $.post("http://192.168.1.3:8000/api/my_book",
+                $.post("http://127.0.0.1:8000/api/my_book",
                 JSON.stringify({
                         "user": $("#user").val()
                     }),

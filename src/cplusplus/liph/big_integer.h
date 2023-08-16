@@ -7,35 +7,42 @@
 
 namespace liph {
 
-class BigInteger {
+class big_integer {
 public:
-    static const BigInteger Zero;
+    big_integer(long long n = 0);
 
-public:
-    BigInteger() {}
-    explicit BigInteger(long long n);
-    explicit BigInteger(const std::string& str);
-    BigInteger(const BigInteger& other) : sign_(other.sign_), data_(other.data_) {}
+    explicit big_integer(const std::string& str);
 
-    BigInteger& operator=(const BigInteger& other) {
+    big_integer(const big_integer& other) : sign_(other.sign_), data_(other.data_) {}
+
+    big_integer& operator=(const big_integer& other) {
         sign_ = other.sign_;
         data_ = other.data_;
         return *this;
     }
 
-    bool operator==(const BigInteger& other) const;
-    bool operator<(const BigInteger& other) const;
+    big_integer(big_integer&& other) : sign_(other.sign_), data_(std::move(other.data_)) { other.sign_ = 0; }
 
-    bool isZero() const { return sign_ == 0; }
+    big_integer& operator=(big_integer&& other) {
+        sign_ = other.sign_;
+        data_ = std::move(other.data_);
+        other.sign_ = 0;
+        return *this;
+    }
+
+    bool operator==(const big_integer& other) const;
+    bool operator<(const big_integer& other) const;
+
+    bool is_zero() const { return sign() == 0; }
     int sign() const { return sign_; }
 
-    std::string toString() const;
+    std::string to_string() const;
 
-    BigInteger operator+(const BigInteger& other) const;
-    BigInteger operator-(const BigInteger& other) const;
-    BigInteger operator*(const BigInteger& other) const;
-    BigInteger operator/(const BigInteger& other) const;
-    BigInteger operator-() const;
+    big_integer operator+(const big_integer& other) const;
+    big_integer operator-(const big_integer& other) const;
+    big_integer operator*(const big_integer& other) const;
+    big_integer operator/(const big_integer& other) const;
+    big_integer operator-() const;
 
 private:
     int sign_{0};

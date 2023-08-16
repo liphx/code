@@ -21,6 +21,7 @@
 #include "liph/json.h"
 #include "liph/lang/noncopyable.h"
 #include "liph/logging.h"
+#include "liph/macros.h"
 #include "liph/net/http.h"
 #include "liph/net/requests.h"
 #include "liph/net/socket.h"

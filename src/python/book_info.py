@@ -60,17 +60,18 @@ def getInfo(isbn):
         return
 
     item = transform(ret['data'])
+    # print(isbn, item['douban_id'])
+    id = item['douban_id']
+    print(f'update book set douban_item = "{id}" where isbn = "{isbn}";')
     output.append(item)
     stored.add(isbn)
     time.sleep(1)
 
 
-readInfo()
+# readInfo()
 
-isbn_set = {'9787550283183', '9787532762804', '9787210092865', '9787530221099', '9787513331418', '9787559416551',
-            '9787519821968', '9787532761753', '9787534187049', '9787532761838', '9787530216699', '9787301254745',
-            '9787544785891', '9787532763634'}
+isbn_set = { '9787201097275', '9787532757138', '9787532757107', '9787544281331', '9787532751495', '9787020008742' }
 for isbn in isbn_set:
     getInfo(isbn)
 
-writeInfo()
+# writeInfo()
