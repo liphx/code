@@ -3,12 +3,15 @@
 #include <thread>
 #include <vector>
 
-int main() {
-    std::thread t;
-    std::cout << t.get_id() << std::endl;  // 0x0
-
-    std::mutex m;
-    std::lock_guard guard(m);  // C++17
+#include "liph/liph.h"
+using namespace liph;
+int main(int argc, char **argv) {
+    std::string str;
+    read_file(argv[1], str);
+    for (auto ch : str) {
+        std::cout << (unsigned int)((unsigned char)ch) << "-";
+    }
+    std::cout << std::endl;
 }
 
 #if 0

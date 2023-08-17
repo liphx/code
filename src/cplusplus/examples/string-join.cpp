@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 #include <sstream>
 #include <vector>
 
@@ -36,6 +37,14 @@ std::string join3(const Container& data, const std::string& sep = " ") {
     return os.str();
 }
 
+template <class Container>
+std::string join4(const Container& data, const std::string& sep = " ") {
+    return std::accumulate(data.begin(), data.end(), std::string{},
+            [&sep](const std::string& str, const typename Container::value_type& x) {
+                return str.empty() ? std::to_string(x) : str + sep + std::to_string(x);
+            });
+}
+
 void print(const int *arr, int n) {
     for (int i = 0; i < n; i++) std::cout << arr[i] << ",\n"[i == n - 1];
 }
@@ -45,5 +54,6 @@ int main() {
     std::cout << join(data, ",") << std::endl;
     std::cout << join2(data, ",") << std::endl;
     std::cout << join3(data, ",") << std::endl;
+    std::cout << join4(data, ",") << std::endl;
     print(data.data(), data.size());
 }

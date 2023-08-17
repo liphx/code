@@ -23,6 +23,7 @@ void init_db() {
     for (auto i = 0u; i < paths.size(); ++i) {
         // fail if not found
         if (!fs::is_regular_file(paths[i]) || !db[i].open(paths[i])) {
+            std::cerr << "db not found, path = " << FLAGS_db_path << std::endl;
             exit(1);
         }
     }
@@ -126,7 +127,7 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
     ss << "INSERT INTO movie(title, year, rating, douban_item, imdb_item, "
           "record_date) ";
     ss << "values(\"" << title << "\", " << year << ", " << rating << ", \"" << douban << "\", \"" << imdb
-       << "\", datetime('now','localtime'));";
+       << "\", date('now','localtime'));";
 
     int db_ret = SQLITE_OK;
     if (user == "liph") {
@@ -158,7 +159,8 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
 
     std::stringstream ss;
     ss << "INSERT INTO book(title, rating, isbn, record_date) ";
-    ss << "values('" << title << "', " << rating << ", '" << isbn << "', datetime('now','localtime'));";
+    /* ss << "values('" << title << "', " << rating << ", '" << isbn << "', datetime('now','localtime'));"; */
+    ss << "values('" << title << "', " << rating << ", '" << isbn << "', date('now','localtime'));";
 
     int db_ret = SQLITE_OK;
     if (user == "liph") {
