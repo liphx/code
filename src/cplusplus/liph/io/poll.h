@@ -3,6 +3,7 @@
 
 #include <poll.h>
 
+#include <cstdint>
 #include <map>
 #include <vector>
 

@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <ctime>
 #include <string>
 
 namespace liph {

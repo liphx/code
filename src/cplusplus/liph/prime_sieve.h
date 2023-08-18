@@ -1,6 +1,7 @@
 #ifndef LIPH_PRIME_SIEVE_H_
 #define LIPH_PRIME_SIEVE_H_
 
+#include <cassert>
 #include <cstring>
 #include <string>
 

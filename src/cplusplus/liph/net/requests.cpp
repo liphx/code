@@ -1,5 +1,8 @@
 #include "liph/net/requests.h"
 
+#include <algorithm>
+#include <stdexcept>
+
 namespace liph {
 namespace requests {
 
@@ -15,6 +18,8 @@ response get(const std::string& url) {
     std::string str = "GET " + url + " HTTP/1.1";
     return {};
 }
+
+response post(const std::string& url) { return {}; }
 
 }  // namespace requests
 }  // namespace liph

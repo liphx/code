@@ -2,6 +2,7 @@
 #define LIPH_CONTAINER_SKIP_LIST_H_
 
 #include <functional>
+#include <limits>
 #include <list>
 
 #include "liph/lang/noncopyable.h"

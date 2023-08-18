@@ -1,7 +1,16 @@
 [cc_binary(
     name = cc_name.split('.')[0],
     srcs = [cc_name],
-    linkopts = ["-lboost_fiber-mt"],
+    linkopts = select({
+        "@bazel_tools//tools/osx:darwin": [
+            "-lboost_fiber-mt",
+            "-lboost_context-mt",
+        ],
+        "//conditions:default": [
+            "-lboost_fiber",
+            "-lboost_context",
+        ],
+    }),
 ) for cc_name in glob(
     include = ["**/*.cpp"],
 )]

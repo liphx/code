@@ -2,6 +2,7 @@
 #define LIPH_LOGGING_H_
 
 #include <atomic>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <memory>
