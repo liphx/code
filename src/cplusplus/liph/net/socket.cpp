@@ -48,6 +48,7 @@ socket::~socket() {
         if (ret == -1 && errno != EINTR) {
             perror("close socket fd fail");
         }
+        fd_ = -1;
     }
 }
 

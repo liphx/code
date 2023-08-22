@@ -2,14 +2,13 @@
 
 #include "gtest/gtest.h"
 
-namespace liph {
-namespace test {
+using liph::big_integer;
 
 TEST(big_integer, constructor_long_long) {
     std::vector<long long> nums{0, 1, -1, 255, -255, 256, -256, 257, -257, std::numeric_limits<long long int>::max(),
             std::numeric_limits<long long int>::max() - 1, std::numeric_limits<long long int>::min(),
             std::numeric_limits<long long int>::min() + 1};
-    for (long long num : nums) EXPECT_EQ(big_integer(num).to_string(), std::to_string(num));
+    for (long long num : nums) EXPECT_EQ(big_integer(num).string(), std::to_string(num));
 }
 
 TEST(big_integer, constructor_str) {
@@ -17,13 +16,13 @@ TEST(big_integer, constructor_str) {
             "99999999999999999999", "-100000000000000000000", "-1231764716617112974197417",
             "123456789012345678901234567890", "-123456789012345678901234567890",
             "237147184653621751983148175877127471478932233900712641598172478148"};
-    for (const std::string& str : strs) EXPECT_EQ(big_integer(str).to_string(), str);
+    for (const std::string& str : strs) EXPECT_EQ(big_integer(str).string(), str);
 }
 
 TEST(big_integer, move_constructor) {
     big_integer m(1024);
     big_integer n(std::move(m));
-    EXPECT_TRUE(m.is_zero());
+    EXPECT_TRUE(m.zero());
     EXPECT_EQ(n, big_integer(1024));
 }
 
@@ -81,12 +80,9 @@ TEST(big_integer, extra) {
     big_integer i2 = i * big_integer(313) + big_integer(1);
     big_integer i3 = i * big_integer(353) + big_integer(1);
     big_integer n = i1 * i2 * i3;
-    EXPECT_EQ(n.to_string(),
+    EXPECT_EQ(n.string(),
             "28871482380507712126714295971303939919776094592797227009265160241974323037991527331163289831446392259419"
             "77803110929349655578418949441740933805615113979999421542416933972905423711002751042080134966731755152859"
             "22696291677532547504444585610194940420003990443211677661994962953925045269871932907037356403227370127845"
             "3899126120309244841494728976885406024976768122077071687938121709811322297802059565867");
 }
-
-}  // namespace test
-}  // namespace liph

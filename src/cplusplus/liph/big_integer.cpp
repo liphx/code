@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -10,9 +11,37 @@
 #include <type_traits>
 #include <vector>
 
+#define BYTEMAX std::numeric_limits<byte>::max()
+
 namespace liph {
 
 namespace {
+
+using byte = big_integer::byte;
+
+// 0|[-][1-9][0-9]*
+bool check_str_is_number(const std::string& str, int *sign) {
+    if (str.empty()) return false;
+    if (str == "0") {
+        *sign = 0;
+        return true;
+    }
+
+    size_t i = 0;
+    if (str[i] == '-') {
+        *sign = -1;
+        i++;
+    } else {
+        *sign = 1;
+    }
+
+    if (i >= str.length() || str[i] < '1' || str[i] > '9') return false;
+
+    for (; i < str.length(); i++)
+        if (str[i] < '0' || str[i] > '9') return false;
+
+    return true;
+}
 
 template <class T>
 bool cmp_vector_(const std::vector<T>& vc1, const std::vector<T>& vc2, bool *equal) {
@@ -63,29 +92,29 @@ std::string str_add_(const std::string& str1, const std::string& str2) {
     return ret;
 }
 
-std::vector<uint8_t> vector_add_(const std::vector<uint8_t>& vc1, const std::vector<uint8_t>& vc2) {
-    std::vector<uint8_t> ret;
+std::vector<byte> vector_add_(const std::vector<byte>& vc1, const std::vector<byte>& vc2) {
+    std::vector<byte> ret;
     ret.reserve(std::max(vc1.size(), vc2.size()) + 1);
     auto it1 = vc1.cbegin(), it2 = vc2.cbegin();
     int32_t current = 0;
     while (it1 != vc1.cend() || it2 != vc2.cend()) {
         if (it1 != vc1.cend()) current += *it1++;
         if (it2 != vc2.cend()) current += *it2++;
-        ret.emplace_back(current % (UINT8_MAX + 1));
-        current /= (UINT8_MAX + 1);
+        ret.emplace_back(current % (BYTEMAX + 1));
+        current /= (BYTEMAX + 1);
     }
     if (current > 0) ret.emplace_back(current);
     return ret;
 }
 
-std::vector<uint8_t> vector_subtract_(const std::vector<uint8_t>& vc1, const std::vector<uint8_t>& vc2, int *sign) {
+std::vector<byte> vector_subtract_(const std::vector<byte>& vc1, const std::vector<byte>& vc2, int *sign) {
     bool equal;
     bool less = cmp_vector_(vc1, vc2, &equal);
     if (equal) {
         *sign = 0;
-        return std::vector<uint8_t>();
+        return std::vector<byte>();
     }
-    const std::vector<uint8_t> *bigger, *smaller;
+    const std::vector<byte> *bigger, *smaller;
     if (less) {
         *sign = -1;
         bigger = &vc2;
@@ -96,17 +125,17 @@ std::vector<uint8_t> vector_subtract_(const std::vector<uint8_t>& vc1, const std
         smaller = &vc2;
     }
 
-    std::vector<uint8_t> ret;
+    std::vector<byte> ret;
     auto it1 = bigger->cbegin(), it2 = smaller->cbegin();
     int32_t current = 0;
     while (it1 != bigger->cend()) {
         current += *it1++;
         if (it2 != smaller->cend()) current -= *it2++;
         if (current < 0) {
-            ret.emplace_back(static_cast<uint8_t>(current + UINT8_MAX + 1));
+            ret.emplace_back(static_cast<byte>(current + BYTEMAX + 1));
             current = -1;
         } else {
-            ret.emplace_back(static_cast<uint8_t>(current));
+            ret.emplace_back(static_cast<byte>(current));
             current = 0;
         }
     }
@@ -177,9 +206,9 @@ std::string str_multiply_(const std::string& str1, const std::string& str2) {
     return ret;
 }
 
-std::vector<uint8_t> vector_multiply_(const std::vector<uint8_t>& vc1, const std::vector<uint8_t>& vc2) {
+std::vector<byte> vector_multiply_(const std::vector<byte>& vc1, const std::vector<byte>& vc2) {
     assert(!vc1.empty() && !vc2.empty());
-    std::vector<uint8_t> ret;
+    std::vector<byte> ret;
     ret.reserve(vc1.size() + vc2.size());
 
     int32_t current = 0, idx = 0;
@@ -188,8 +217,8 @@ std::vector<uint8_t> vector_multiply_(const std::vector<uint8_t>& vc1, const std
             idx = i + j;
             if (static_cast<int32_t>(ret.size()) < idx + 1) ret.resize(idx + 1);
             current += ret[i + j] + static_cast<int32_t>(vc1[i]) * static_cast<int32_t>(vc2[j]);
-            ret[idx] = current % (UINT8_MAX + 1);
-            current /= (UINT8_MAX + 1);
+            ret[idx] = current % (BYTEMAX + 1);
+            current /= (BYTEMAX + 1);
         }
         if (current > 0) {
             idx++;
@@ -233,41 +262,33 @@ std::string str_divide_(const std::string& str1, const std::string& str2) {
 ////////////////////////////
 
 big_integer::big_integer(long long n) {
-    if (n == 0) {
-        sign_ = 0;
-        return;
-    }
-
-    sign_ = (n > 0) ? 1 : -1;
+    sign_ = n > 0 ? 1 : (n < 0 ? -1 : 0);
     unsigned long long num = (n < 0) ? static_cast<unsigned long long>(-n) : n;
     while (num != 0) {
-        data_.emplace_back(num % (UINT8_MAX + 1));
-        num /= (UINT8_MAX + 1);
+        data_.emplace_back(num % (BYTEMAX + 1));
+        num /= (BYTEMAX + 1);
     }
 }
 
-// 0|[-][1-9][0-9]*
-static bool check_str_is_number(const std::string& str, int *sign) {
-    if (str.empty()) return false;
-    if (str == "0") {
-        *sign = 0;
-        return true;
+big_integer::big_integer(const big_integer& other) : sign_(other.sign_), data_(other.data_) {}
+
+big_integer& big_integer::operator=(const big_integer& other) {
+    if (this != &other) {
+        sign_ = other.sign_;
+        data_ = other.data_;
     }
+    return *this;
+}
 
-    size_t i = 0;
-    if (str[i] == '-') {
-        *sign = -1;
-        i++;
-    } else {
-        *sign = 1;
+big_integer::big_integer(big_integer&& other) : sign_(other.sign_), data_(std::move(other.data_)) { other.sign_ = 0; }
+
+big_integer& big_integer::operator=(big_integer&& other) {
+    if (this != &other) {
+        sign_ = other.sign_;
+        data_ = std::move(other.data_);
+        other.sign_ = 0;
     }
-
-    if (i >= str.length() || str[i] < '1' || str[i] > '9') return false;
-
-    for (; i < str.length(); i++)
-        if (str[i] < '0' || str[i] > '9') return false;
-
-    return true;
+    return *this;
 }
 
 big_integer::big_integer(const std::string& str) {
@@ -297,11 +318,11 @@ big_integer::big_integer(const std::string& str) {
     }
 }
 
-std::string big_integer::to_string() const {
+std::string big_integer::string() const {
     if (sign_ == 0) return "0";
     std::string str = "0";
     std::string factor = "1";
-    std::string base = "256";  // UINT8_MAX
+    std::string base = "256";  // BYTEMAX
     for (size_t i = 0; i < data_.size(); i++) {
         str = str_add_(str, str_multiply_(std::to_string(data_[i]), factor));
         factor = str_multiply_(factor, base);
@@ -314,6 +335,8 @@ bool big_integer::operator==(const big_integer& other) const {
     return data_ == other.data_;
 }
 
+bool big_integer::operator!=(const big_integer& other) const { return !(*this == other); }
+
 bool big_integer::operator<(const big_integer& other) const {
     if (sign_ != other.sign_) return sign_ < other.sign_;
 
@@ -325,9 +348,15 @@ bool big_integer::operator<(const big_integer& other) const {
     return (sign_ == 1 && ret) || (sign_ == -1 && !ret);
 }
 
+bool big_integer::operator<=(const big_integer& other) const { return *this == other || *this < other; }
+
+bool big_integer::operator>(const big_integer& other) const { return !(*this <= other); }
+
+bool big_integer::operator>=(const big_integer& other) const { return !(*this < other); }
+
 big_integer big_integer::operator+(const big_integer& other) const {
-    if (other.is_zero()) return big_integer(*this);
-    if (is_zero()) return big_integer(other);
+    if (other.zero()) return big_integer(*this);
+    if (zero()) return big_integer(other);
 
     big_integer bi;
     if (sign_ == other.sign_) {
@@ -365,7 +394,7 @@ big_integer big_integer::operator-() const {
 }
 
 big_integer big_integer::operator*(const big_integer& other) const {
-    if (is_zero() || other.is_zero()) return big_integer();
+    if (zero() || other.zero()) return big_integer();
 
     big_integer bi;
     bi.sign_ = (sign_ == other.sign_) ? 1 : -1;
@@ -374,9 +403,9 @@ big_integer big_integer::operator*(const big_integer& other) const {
 }
 
 big_integer big_integer::operator/(const big_integer& other) const {
-    if (other.is_zero()) throw std::invalid_argument("divide by zero");
+    if (other.zero()) throw std::invalid_argument("divide by zero");
 
-    if (is_zero()) return big_integer();
+    if (zero()) return big_integer();
 
     bool equal;
     bool less = cmp_vector_(data_, other.data_, &equal);
@@ -401,4 +430,18 @@ big_integer big_integer::operator/(const big_integer& other) const {
     return bi;
 }
 
+big_integer big_integer::abs() const {
+    big_integer bi(*this);
+    if (bi.sign() < 0) {
+        bi.sign_ = 1;
+    }
+    return bi;
+}
+
+bool big_integer::zero() const { return sign() == 0; }
+
+int big_integer::sign() const { return sign_; }
+
 }  // namespace liph
+
+#undef BYTEMAX

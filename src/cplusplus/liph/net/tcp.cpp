@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <string>
 
+#include "liph/logging.h"
+
 namespace liph::net {
 
 bool tcp_server::start_server() {
@@ -73,6 +75,7 @@ void tcp_server::run(std::function<void(tcp_connect&)> handle) {
                     conn->read_buf_.insert(conn->read_buf_.end(), buf, buf + size);
                 }
                 if (handle) {
+                    LOG << "handle conn";
                     handle(*conn);
                     if (!conn->write_buf_.empty())
                         conn->socket_->write(conn->write_buf_.data(), conn->write_buf_.size());

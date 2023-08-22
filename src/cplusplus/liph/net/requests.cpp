@@ -14,7 +14,12 @@ response request(const std::string& method, const std::string& url) {
     throw std::invalid_argument("Unknown method");
 }
 
+// ip[:port][/url]
 response get(const std::string& url) {
+    // GET / HTTP/1.1
+    // Host: localhost:8000
+    // User-Agent: liph::requests
+    // Accept: */*
     std::string str = "GET " + url + " HTTP/1.1";
     return {};
 }
