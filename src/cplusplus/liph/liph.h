@@ -3,7 +3,6 @@
 
 #include "liph/algorithm.h"
 #include "liph/avl.h"
-#include "liph/big_integer.h"
 #include "liph/casts.h"
 #include "liph/concurrency/blocking_queue.h"
 #include "liph/concurrency/lock.h"
@@ -26,6 +25,8 @@
 #include "liph/net/requests.h"
 #include "liph/net/socket.h"
 #include "liph/net/tcp.h"
+#include "liph/numeric/big_integer.h"
+#include "liph/numeric/random.h"
 #include "liph/prime_sieve.h"
 #include "liph/print.h"
 #include "liph/process.h"

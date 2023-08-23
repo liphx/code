@@ -13,18 +13,27 @@ function format-unix() {
     done
 }
 
+function find_command() {
+    if command -v $1 > /dev/null 2>&1; then
+        return 0
+    fi
+    return 1
+}
+
 function install() {
-    if command -v apt; then
+    if find_command brew; then
+        brew install "$@"
+    elif find_command apt; then
         sudo apt install -y "$@"
-    elif command -v zypper; then
+    elif find_command zypper; then
         sudo zypper install -y "$@"
-    elif command -v yum; then
+    elif find_command yum; then
         sudo yum install -y "$@"
     fi
 }
 
 function update() {
-    if command -v apt; then
+    if find_command apt; then
         sudo apt update && sudo apt upgrade -y
     fi
 }

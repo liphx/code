@@ -1,31 +1,11 @@
-#include <iostream>
-#include <random>
-#include <string>
-#include <vector>
+#include "liph/liph.h"
 using namespace std;
-
-class Randomizer {
-public:
-    Randomizer(unsigned n) : n_(n), d_(0, n_) {}
-
-    unsigned operator()() { return d_(e); }
-
-private:
-    int n_;
-    uniform_int_distribution<unsigned> d_;
-
-    static random_device r;
-    static default_random_engine e;
-};
-
-random_device Randomizer::r;
-default_random_engine Randomizer::e(Randomizer::r());
 
 class Passwd {
 public:
     static string Gen(const string& str, int len) {
         if (str.empty() || len <= 0) return "";
-        Randomizer r(str.length() - 1);
+        liph::randomizer r(str.length() - 1);
         string ret;
         for (int i = 0; i < len; i++) {
             ret += str[r()];

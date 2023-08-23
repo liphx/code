@@ -1,4 +1,4 @@
-#include "liph/big_integer.h"
+#include "liph/numeric/big_integer.h"
 
 #include "gtest/gtest.h"
 
@@ -24,6 +24,18 @@ TEST(big_integer, move_constructor) {
     big_integer n(std::move(m));
     EXPECT_TRUE(m.zero());
     EXPECT_EQ(n, big_integer(1024));
+}
+
+TEST(big_integer, compare) {
+    EXPECT_TRUE(big_integer(9999) < big_integer(10000));
+    EXPECT_TRUE(big_integer(9999) <= big_integer(10000));
+    EXPECT_TRUE(big_integer(9999) != big_integer(10000));
+    EXPECT_TRUE(big_integer(-9999) > big_integer(-10000));
+    EXPECT_TRUE(big_integer(-9999) >= big_integer(-10000));
+    EXPECT_TRUE(big_integer(-9999) != big_integer(-10000));
+    EXPECT_TRUE(big_integer(9999) != big_integer(-10000));
+    EXPECT_TRUE(big_integer(9999) == big_integer(9999));
+    EXPECT_TRUE(big_integer(-10000) == big_integer(-10000));
 }
 
 TEST(big_integer, add) {

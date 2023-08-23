@@ -2,6 +2,7 @@
 *.dSYM/
 *.exe
 *.gz
+*.log
 *.o
 *.so
 .*.swp
@@ -11,4 +12,8 @@
 Session.vim
 Untitled*.md
 a.out
+bazel-bin
+bazel-cplusplus
+bazel-out
+bazel-testlogs
 tags

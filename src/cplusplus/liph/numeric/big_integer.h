@@ -1,5 +1,5 @@
-#ifndef LIPH_BIG_INTEGER_H_
-#define LIPH_BIG_INTEGER_H_
+#ifndef LIPH_NUMERIC_BIG_INTEGER_H_
+#define LIPH_NUMERIC_BIG_INTEGER_H_
 
 #include <string>
 #include <vector>
@@ -36,6 +36,8 @@ public:
     big_integer operator-() const;
     big_integer abs() const;
 
+    static big_integer rand();
+
 private:
     int sign_{0};
     std::vector<byte> data_;
@@ -43,4 +45,4 @@ private:
 
 }  // namespace liph
 
-#endif  // LIPH_BIG_INTEGER_H_
+#endif  // LIPH_NUMERIC_BIG_INTEGER_H_
