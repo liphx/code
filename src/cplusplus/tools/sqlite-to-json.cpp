@@ -1,25 +1,30 @@
 #include <cstdlib>
 
-#include "gflags/gflags.h"
 #include "liph/liph.h"
 #include "nlohmann/json.hpp"
 
-DEFINE_string(db, std::string(getenv("HOME")) + "/github/liphx/note/record/liph.db", "");
-DEFINE_string(table, "book", "");
-DEFINE_string(sql, "", "");
-DEFINE_string(out, std::string(getenv("HOME")) + "/github/liphx/note/json/liph-book-sqlite-record.json", "");
-
 int main(int argc, char **argv) {
-    google::ParseCommandLineFlags(&argc, &argv, true);
-    if (FLAGS_db.empty() || (FLAGS_table.empty() && FLAGS_sql.empty())) {
+    liph::flags flags;
+    flags.register_string_flag("db", std::string(getenv("HOME")) + "/github/liphx/note/record/liph.db");
+    flags.register_string_flag("table", "book");
+    flags.register_string_flag("sql");
+    flags.register_string_flag(
+            "out", std::string(getenv("HOME")) + "/github/liphx/note/json/liph-book-sqlite-record.json");
+    assert(flags.parse_flags(argc, &argv));
+    std::string& flag_db = flags.string_ref("db");
+    std::string& flag_table = flags.string_ref("table");
+    std::string& flag_sql = flags.string_ref("sql");
+    std::string& flag_out = flags.string_ref("out");
+
+    if (flag_db.empty() || (flag_table.empty() && flag_sql.empty())) {
         std::cerr << "Usage: " << argv[0] << " -help" << std::endl;
         liph::err_exit();
     }
-    std::string sql = FLAGS_sql;
+    std::string sql = flag_sql;
     if (sql.empty()) {
-        sql = "select * from " + FLAGS_table;
+        sql = "select * from " + flag_table;
     }
-    liph::sqlite db(FLAGS_db);
+    liph::sqlite db(flag_db);
     auto ans = db.query(sql);
     if (ans.empty()) {
         liph::err_exit();
@@ -33,9 +38,9 @@ int main(int argc, char **argv) {
         }
         res.push_back(item);
     }
-    if (FLAGS_out.empty()) {
+    if (flag_out.empty()) {
         liph::print(res.dump(4));  // pass in the amount of spaces to indent
     } else {
-        liph::write_file(FLAGS_out, res.dump(4));
+        liph::write_file(flag_out, res.dump(4));
     }
 }

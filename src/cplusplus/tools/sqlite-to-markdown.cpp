@@ -98,22 +98,26 @@ int utf8_len(const std::string& str) {
 }
 
 int main(int argc, char **argv) {
-    /* print(); */
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " db sql" << std::endl;
+    liph::flags flags;
+    flags.register_string_flag("db");
+    flags.register_string_flag("sql");
+    if (!flags.parse_flags(argc, &argv) || flags.string_ref("db").empty() || flags.string_ref("sql").empty()) {
+        std::cerr << flags.help();
         return 1;
     }
-    liph::sqlite db(argv[1]);
-    auto ans = db.query(argv[2]);
+    liph::sqlite db(flags.string_ref("db"));
+    auto ans = db.query(flags.string_ref("sql"));
+    if (ans.empty()) {
+        std::cerr << "Result is empty" << std::endl;
+        return 1;
+    }
     std::vector<int> vc(ans[0].size());
     for (int i = 0; i < ans.size(); ++i) {
         for (int j = 0; j < ans[i].size(); ++j) {
             int len = utf8_len(ans[i][j]);
-            /* vc[j] = std::max(vc[j], len); */
             vc[j] = std::max({vc[j], len, 3});
         }
     }
-    /* liph::print(vc); */
     // header
     for (int j = 0; j < ans[0].size(); ++j) {
         std::cout << "| " << ans[0][j] << std::string(vc[j] + 1 - utf8_len(ans[0][j]), ' ');

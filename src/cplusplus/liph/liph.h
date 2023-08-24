@@ -14,6 +14,7 @@
 #include "liph/csv.h"
 #include "liph/double_buffer.h"
 #include "liph/file.h"
+#include "liph/flags.h"
 #include "liph/format.h"
 #include "liph/io/descriptor.h"
 #include "liph/io/poll.h"
