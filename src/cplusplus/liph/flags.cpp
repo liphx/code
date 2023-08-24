@@ -1,5 +1,9 @@
 #include "liph/flags.h"
 
+#include <algorithm>
+#include <cassert>
+#include <stdexcept>
+
 namespace liph {
 
 namespace {
@@ -17,10 +21,17 @@ bool flags::register_bool_flag(const std::string& name, bool default_value) {
     return true;
 }
 
-bool flags::register_int32_flag(const std::string& name, int default_value) {
+bool flags::register_int32_flag(const std::string& name, int32_t default_value) {
     if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
     registered_flags_[name] = {flag_int32, values_int32_.size()};
     values_int32_.emplace_back(default_value);
+    return true;
+}
+
+bool flags::register_double_flag(const std::string& name, double default_value) {
+    if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
+    registered_flags_[name] = {flag_double, values_double_.size()};
+    values_double_.emplace_back(default_value);
     return true;
 }
 
@@ -74,7 +85,18 @@ bool flags::parse_flags(int argc, char ***argv) {
             }
             break;
         case flag_int32:
-            values_int32_[idx] = std::stoi(value);
+            try {
+                values_int32_[idx] = std::stoi(value);
+            } catch (...) {
+                return false;
+            }
+            break;
+        case flag_double:
+            try {
+                values_double_[idx] = std::stod(value);
+            } catch (...) {
+                return false;
+            }
             break;
         case flag_string:
             values_string_[idx] = value;
@@ -91,19 +113,25 @@ bool flags::has_flag(const std::string& name) const { return registered_flags_.c
 
 bool flags::bool_ref(const std::string& name) {
     const auto& info = registered_flags_.at(name);
-    if (info.type != flag_bool) throw 0;
+    if (info.type != flag_bool) throw std::logic_error("type is not bool");
     return values_bool_[info.idx];
 }
 
 int32_t& flags::int32_ref(const std::string& name) {
     const auto& info = registered_flags_.at(name);
-    if (info.type != flag_int32) throw 0;
+    if (info.type != flag_int32) throw std::logic_error("type is not int32");
     return values_int32_[info.idx];
+}
+
+double& flags::double_ref(const std::string& name) {
+    const auto& info = registered_flags_.at(name);
+    if (info.type != flag_double) throw std::logic_error("type is not double");
+    return values_double_[info.idx];
 }
 
 std::string& flags::string_ref(const std::string& name) {
     const auto& info = registered_flags_.at(name);
-    if (info.type != flag_string) throw 0;
+    if (info.type != flag_string) throw std::logic_error("type is not string");
     return values_string_[info.idx];
 }
 
@@ -117,6 +145,9 @@ std::string flags::help() const {
             break;
         case flag_int32:
             msg += std::to_string(values_int32_[info.idx]);
+            break;
+        case flag_double:
+            msg += std::to_string(values_double_[info.idx]);
             break;
         case flag_string:
             msg += values_string_[info.idx];
