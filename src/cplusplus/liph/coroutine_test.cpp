@@ -5,6 +5,8 @@
 
 #include "gtest/gtest.h"
 
+#ifndef __APPLE__
+
 namespace liph {
 namespace test {
 
@@ -31,3 +33,5 @@ TEST(coroutine, DISABLED_coroutine) {
 
 }  // namespace test
 }  // namespace liph
+
+#endif

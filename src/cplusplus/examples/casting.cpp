@@ -3,11 +3,11 @@ using namespace std;
 
 namespace tmp {
 
-class A {
+struct A {
     int a;
 };
 
-class B : public A {
+struct B : public A {
     virtual void f() {}
 };
 
@@ -32,15 +32,14 @@ void f() {
 
 }  // namespace tmp
 
-class A {
-public:
+struct A {
     A() : a(0) {}
     /* A(const A& a) = delete; */
     int a;
     virtual void f() { a = 1; }
 };
 
-class B : public A {
+struct B : public A {
 public:
     virtual void f() {
         // call A(const A&)
@@ -48,7 +47,7 @@ public:
     }
 };
 
-class C : public A {
+struct C : public A {
 public:
     virtual void f() { A::f(); }
 };

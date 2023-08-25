@@ -7,21 +7,21 @@ public:
     int getNumberOfBacklogOrders(vector<vector<int>>& orders) {
         multimap<int, int, greater<int>> buy;
         multimap<int, int, less<int>> sell;
-        for (int i = 0; i < orders.size(); i++) {
+        for (size_t i = 0; i < orders.size(); i++) {
             if (orders[i][2] == 0)
                 f(orders, i, sell, buy);
             else
                 f(orders, i, buy, sell);
         }
         long long ret = 0;
-        for (int i = 0; i < orders.size(); i++) {
+        for (size_t i = 0; i < orders.size(); i++) {
             ret += orders[i][1];
         }
         return ret % 1000000007;
     }
 
     template <class T1, class T2>
-    void f(vector<vector<int>>& orders, int i, T1& sell, T2& buy) {
+    void f(vector<vector<int>>& orders, size_t i, T1& sell, T2& buy) {
         int& price = orders[i][0];
         int& amount = orders[i][1];
         for (auto it = sell.begin(); it != sell.upper_bound(price);) {

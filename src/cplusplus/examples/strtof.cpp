@@ -256,11 +256,16 @@ done:
 #include <iostream>
 #include <string>
 
+// #define cast_f(f) *reinterpret_cast<int *>(reinterpret_cast<void *>(&f))
+// strict-aliasing
+
 int main() {
     std::string s = "108.90361404594599";
     float f = strtof_(s.data(), nullptr);
-    std::cout << *reinterpret_cast<int *>(&f) << std::endl;
+    // std::cout << cast_f(f) << std::endl;
+    std::cout << f << std::endl;
 
     float f2 = std::strtof(s.data(), nullptr);
-    std::cout << *reinterpret_cast<int *>(&f2) << std::endl;
+    // std::cout << cast_f(f2) << std::endl;
+    std::cout << f2 << std::endl;
 }

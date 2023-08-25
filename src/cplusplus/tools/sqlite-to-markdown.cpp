@@ -45,7 +45,7 @@ void print() {
 
 int utf8_len(const std::string& str) {
     int ret = 0;
-    int i = 0;
+    size_t i = 0;
     const u8 *begin = (const u8 *)str.data();
     while (i < str.size()) {
         try {
@@ -112,25 +112,25 @@ int main(int argc, char **argv) {
         return 1;
     }
     std::vector<int> vc(ans[0].size());
-    for (int i = 0; i < ans.size(); ++i) {
-        for (int j = 0; j < ans[i].size(); ++j) {
+    for (size_t i = 0; i < ans.size(); ++i) {
+        for (size_t j = 0; j < ans[i].size(); ++j) {
             int len = utf8_len(ans[i][j]);
             vc[j] = std::max({vc[j], len, 3});
         }
     }
     // header
-    for (int j = 0; j < ans[0].size(); ++j) {
+    for (size_t j = 0; j < ans[0].size(); ++j) {
         std::cout << "| " << ans[0][j] << std::string(vc[j] + 1 - utf8_len(ans[0][j]), ' ');
     }
     std::cout << "|" << std::endl;
     // --
-    for (int j = 0; j < ans[0].size(); ++j) {
+    for (size_t j = 0; j < ans[0].size(); ++j) {
         std::cout << "| " << std::string(vc[j], '-') << " ";
     }
     std::cout << "|" << std::endl;
     // body
-    for (int i = 1; i < ans.size(); ++i) {
-        for (int j = 0; j < ans[i].size(); ++j) {
+    for (size_t i = 1; i < ans.size(); ++i) {
+        for (size_t j = 0; j < ans[i].size(); ++j) {
             std::cout << "| " << ans[i][j] << std::string(vc[j] + 1 - utf8_len(ans[i][j]), ' ');
         }
         std::cout << "|" << std::endl;

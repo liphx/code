@@ -5,9 +5,9 @@
 #include "gtest/gtest.h"
 #include "liph/logging.h"
 
-class A : liph::noncopyable {};
+struct A : liph::noncopyable {};
 
-class B : liph::noncopyable {
+struct B : liph::noncopyable {
     int64_t data_;
 };
 

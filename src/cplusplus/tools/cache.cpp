@@ -67,7 +67,7 @@ int main(int argc, char **argv) {
             cout << i++ << " " << s << "\n";
         }
         cout << "\n\n\ninput: ";
-        int n = 0;
+        size_t n = 0;
         cin >> n;
         if (n > 0 && n <= conf.size()) {
             auto it = conf.begin();

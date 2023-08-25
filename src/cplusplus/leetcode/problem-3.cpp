@@ -9,11 +9,11 @@ public:
         int i = 0, j = 0, ret = 0, n = s.size();
         int arr[256] = {0};
         while (i < n) {
-            if (j < n && arr[s[j]] == 0) {
-                arr[s[j++]] = 1;
+            if (j < n && arr[(unsigned char)s[j]] == 0) {
+                arr[(unsigned char)s[j++]] = 1;
             } else {
                 while (s[i] != s[j]) {
-                    arr[s[i++]] = 0;
+                    arr[(unsigned char)s[i++]] = 0;
                 }
                 j++;
                 i++;

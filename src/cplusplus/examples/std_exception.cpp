@@ -27,6 +27,7 @@ void f(int n) try {
 }
 
 int main() {
+#if 0
     try {
         throw B();
     } catch (E&) {
@@ -57,4 +58,5 @@ int main() {
 
     f(0);
     f(-1);
+#endif
 }

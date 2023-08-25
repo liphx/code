@@ -12,7 +12,7 @@ public:
     void init(const std::string& pathname) {
         file_.open(pathname, std::ios_base::binary | std::ios_base::in);
         std::string key;
-        uint32_t value_offset;
+        uint32_t value_offset = 0;
         int i = 0;
         for (; read_one(key, value_offset); i++) {
             if (i % sparse_count == 0) {
@@ -50,7 +50,7 @@ public:
             }
             length = del.contains(x.first) ? -1 : x.second.size();
             out.write(reinterpret_cast<char *>(&length), sizeof(length));
-            if (length != 0 && length != -1) {
+            if (length != 0 && length != -1U) {
                 out.write(x.second.data(), length);
             }
         }
@@ -63,7 +63,7 @@ public:
         if (!file_.good()) {
             return false;
         }
-        if (length == -1) {  // deleted
+        if (length == -1U) {  // deleted
             return false;
         }
         value.resize(length);

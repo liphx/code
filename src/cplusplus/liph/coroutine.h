@@ -3,9 +3,8 @@
 
 // C++ version of https://github.com/cloudwu/coroutine
 
-#ifdef __APPLE__
-#define _XOPEN_SOURCE
-#endif
+#ifndef __APPLE__
+
 #include <ucontext.h>
 
 #include <cstddef>
@@ -35,7 +34,7 @@ private:
     char stack_[STACKSIZE];
     ucontext_t main_;
     int running_id_{-1};
-    std::vector<std::shared_ptr<coroutine>> co_list_;
+    std::vector<std::shared_ptr<coroutine> > co_list_;
 };
 
 class coroutine {
@@ -63,5 +62,7 @@ private:
 };
 
 }  // namespace liph
+
+#endif
 
 #endif  // LIPH_COROUTINE_H_

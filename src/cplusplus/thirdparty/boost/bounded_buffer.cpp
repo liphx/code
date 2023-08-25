@@ -64,7 +64,7 @@ public:
 
     void operator()() {
         for (unsigned long i = 0L; i < total_elements; ++i) {
-            printf("Producer %d\n", i);
+            printf("Producer %lu\n", i);
             container_->push_front(value_type());
         }
     }
@@ -81,7 +81,7 @@ public:
 
     void operator()() {
         for (unsigned long i = 0L; i < total_elements; ++i) {
-            printf("Consumer %d\n", i);
+            printf("Consumer %lu\n", i);
             container_->pop_back(&item_);
         }
     }

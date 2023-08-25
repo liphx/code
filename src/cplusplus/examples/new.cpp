@@ -6,7 +6,7 @@ void *operator new(size_t sz) {
     return malloc(sz);
 }
 
-void operator delete(void *m) {
+void operator delete(void *m) noexcept {
     puts("::operator delete");
     free(m);
 }
@@ -79,7 +79,7 @@ int main() {
 
     D d1(1);
     D *pd1 = &d1;
-    D *pd = new (pd1) D(2);
+    (void)new (pd1) D(2);
     printf("i = %d\n", d1.i);
     // 只析构了一次
 }

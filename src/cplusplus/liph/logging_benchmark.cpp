@@ -70,8 +70,8 @@ static void logging_mt(benchmark::State& state) {
     }
 }
 
-/* BENCHMARK(fstream); */
-/* BENCHMARK(logging); */
+BENCHMARK(fstream);
+BENCHMARK(logging);
 BENCHMARK(fstream_mt);
 BENCHMARK(logging_mt);
 

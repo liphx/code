@@ -304,7 +304,7 @@ void FishDetail(const httplib::Request& req, httplib::Response& res) {
     }
 
     int idx = id - 1;
-    if (idx < 0 || idx >= all_fish.size()) {
+    if (idx < 0 || (size_t)idx >= all_fish.size()) {
         return;
     }
 
@@ -328,7 +328,7 @@ void InsectDetail(const httplib::Request& req, httplib::Response& res) {
     }
 
     int idx = id - 1;
-    if (idx < 0 || idx >= all_insect.size()) {
+    if (idx < 0 || (size_t)idx >= all_insect.size()) {
         return;
     }
 
@@ -351,7 +351,7 @@ void HalobiosDetail(const httplib::Request& req, httplib::Response& res) {
     }
 
     int idx = id - 1;
-    if (idx < 0 || idx >= all_halobios.size()) {
+    if (idx < 0 || (size_t)idx >= all_halobios.size()) {
         return;
     }
 

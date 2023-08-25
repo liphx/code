@@ -16,7 +16,7 @@ public:
 
         auto ans = generateParenthesis(n - 1);
         for (const string& s : ans) {
-            for (int i = 0; i < s.length(); i++) {
+            for (size_t i = 0; i < s.length(); i++) {
                 if (s[i] == '(') {
                     ret.insert(string(s, 0, i + 1) + "()" + string(s, i + 1));
                 }

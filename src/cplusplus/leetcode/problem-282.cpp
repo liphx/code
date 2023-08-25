@@ -52,7 +52,7 @@ private:
                 b = c;
                 op1 = op2;
             }
-            if (i == nums.size()) {
+            if ((size_t)i == nums.size()) {
                 if (op1 == '+') return a + b == target;
                 if (op1 == '-') return a - b == target;
                 return a * b == target;

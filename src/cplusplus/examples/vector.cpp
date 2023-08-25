@@ -82,7 +82,7 @@ int main() {
     cout << *(data5.end() - 1) << endl;  // -2
 
     // data()返回指向数组的指针
-    auto p = data5.data();
+    (void)data5.data();
 
     // 在末尾增加元素
     data5.push_back(100);

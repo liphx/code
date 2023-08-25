@@ -45,7 +45,7 @@ public:
         assert(s.find('#') == string::npos);
         assert(s.find('$') == string::npos);
         string str = "$#";  // 优化
-        for (int i = 0; i < s.length(); ++i) str = str + s[i] + '#';
+        for (size_t i = 0; i < s.length(); ++i) str = str + s[i] + '#';
         // babad => $#b#a#b#a#d#
 
         // 计算回文半径数组p

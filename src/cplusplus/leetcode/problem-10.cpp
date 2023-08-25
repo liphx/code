@@ -27,11 +27,11 @@ public:
     bool isMatch(string s, string p) { return isMatch(s, 0, p, 0); }
 
 private:
-    bool isMatch(const string& s, int i, const string& p, int j) {
+    bool isMatch(const string& s, size_t i, const string& p, size_t j) {
         if (j == p.length()) return i == s.length();
         if (j + 1 < p.length() && p[j + 1] == '*' && isMatch(s, i, p, j + 2)) return true;
         if (j + 1 < p.length() && p[j + 1] == '*') {
-            for (int idx = i; idx < s.length() && (p[j] == '.' || p[j] == s[idx]); idx++) {
+            for (size_t idx = i; idx < s.length() && (p[j] == '.' || p[j] == s[idx]); idx++) {
                 if (isMatch(s, idx + 1, p, j + 2)) return true;
             }
             return false;

@@ -46,7 +46,7 @@ int main() {
             mask1 |= (unsigned long long)(((input[i] - 'A') & 0xF)) << i * 5;
             mask2 |= ((input[i] - 'A') & 0x10) >> 4;
         } else {
-            mask2 |= (unsigned long long)(((input[i] - 'A') & 0x1F)) << (i - 13) * 5 + 1;
+            mask2 |= (unsigned long long)(((input[i] - 'A') & 0x1F)) << ((i - 13) * 5 + 1);
         }
     }
     printf(text, i, mask1, mask2);

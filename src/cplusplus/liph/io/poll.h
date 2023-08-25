@@ -123,7 +123,7 @@ public:
 
     static const int maxevents;
 
-private:
+    // private:
     int epfd_;
     struct epoll_event *evlist_;
 };

@@ -10,7 +10,7 @@ string manacher(const string& s) {
     assert(s.find('#') == string::npos);
     assert(s.find('$') == string::npos);
     string str = "$#";  // 优化
-    for (int i = 0; i < s.length(); ++i) str = str + s[i] + '#';
+    for (auto i = 0U; i < s.length(); ++i) str = str + s[i] + '#';
 
     // 计算回文半径数组p
     // 以s[i]为中心（无论奇偶）的回文子串在原串中的长度为p[i] - 1

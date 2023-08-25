@@ -1,11 +1,7 @@
-#include <algorithm>
-#include <array>
-#include <iostream>
 #include <stack>
-#include <vector>
-using namespace std;
 
 #include "liph/liph.h"
+using namespace std;
 
 namespace liph {
 

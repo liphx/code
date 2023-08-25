@@ -1,5 +1,7 @@
 #include "liph/coroutine.h"
 
+#ifndef __APPLE__
+
 #include <cassert>
 
 namespace liph {
@@ -26,7 +28,7 @@ void processor::run(processor *p) {
 }
 
 void processor::resume(int id) {
-    if (id < 0 || id >= co_list_.size()) return;
+    if (id < 0 || (size_t)id >= co_list_.size()) return;
 
     auto co = co_list_[id].get();
     if (co == nullptr) return;
@@ -55,7 +57,7 @@ void processor::resume(int id) {
 
 void coroutine::save_stack(char *top) {
     char dummy = 0;
-    assert(top - &dummy <= processor::STACKSIZE);
+    assert((size_t)(top - &dummy) <= processor::STACKSIZE);
     if (cap_ < top - &dummy) {
         free(stack_);
         cap_ = top - &dummy;
@@ -78,7 +80,7 @@ void processor::yield() {
 }
 
 int processor::status(int id) const {
-    assert(id >= 0 && id < co_list_.size());
+    assert(id >= 0 && (size_t)id < co_list_.size());
 
     if (co_list_[id] == nullptr) return coroutine::DEAD;
 
@@ -86,3 +88,5 @@ int processor::status(int id) const {
 }
 
 }  // namespace liph
+
+#endif

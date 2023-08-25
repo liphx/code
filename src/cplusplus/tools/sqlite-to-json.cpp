@@ -31,9 +31,9 @@ int main(int argc, char **argv) {
     }
     using json = nlohmann::json;
     auto res = json::array();
-    for (int i = 1; i < ans.size(); i++) {
+    for (size_t i = 1; i < ans.size(); i++) {
         json item;
-        for (int j = 0; j < ans[0].size(); j++) {
+        for (size_t j = 0; j < ans[0].size(); j++) {
             item[ans[0][j]] = ans[i][j];
         }
         res.push_back(item);

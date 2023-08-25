@@ -107,14 +107,14 @@ vector<int> FindNumbersWithSum(vector<int>& nums, int sum) {
  * 5. 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值
  */
 vector<int> maxSlidingWindow(const vector<int>& nums, int size) {
-    if (size == 0 || size > nums.size()) return vector<int>();
+    if (size == 0 || (size_t)size > nums.size()) return vector<int>();
     vector<int> ans;
 
     multiset<int> ms;
     for (int i = 0; i < size; i++) ms.insert(nums[i]);
     ans.emplace_back(*ms.rbegin());
     int i = 0, j = size;
-    while (j < nums.size()) {
+    while ((size_t)j < nums.size()) {
         ms.erase(ms.find(nums[i++]));
         ms.insert(nums[j++]);
         ans.emplace_back(*ms.rbegin());
@@ -127,10 +127,10 @@ vector<int> maxSlidingWindow(const vector<int>& nums, int size) {
  * 5. 同上，方法二：单调递减队列
  */
 vector<int> maxSlidingWindow2(const vector<int>& nums, int size) {
-    if (size == 0 || size > nums.size()) return vector<int>();
+    if (size == 0 || (size_t)size > nums.size()) return vector<int>();
     vector<int> ans;
     deque<int> q;
-    for (int i = 0; i < nums.size(); i++) {
+    for (int i = 0; (size_t)i < nums.size(); i++) {
         if (i >= size && q.front() == nums[i - size]) q.pop_front();
         while (!q.empty() && nums[i] > q.back()) q.pop_back();
         q.push_back(nums[i]);
@@ -165,7 +165,7 @@ struct counter {
         }
     }
 
-    bool operator==(const counter& other) { return data == other.data; }
+    bool operator==(const counter& other) const { return data == other.data; }
 };
 
 vector<int> findSubstring(string s, vector<string>& words) {
@@ -197,9 +197,9 @@ int lengthOfLongestSubstring(string s) {
     int chars[256] = {};
     int ans = 0, i = 0, j = 0, len = s.length();
     while (j < len) {
-        while (j < len && chars[s[j]] == 0) chars[s[j++]] = 1;
+        while (j < len && chars[(unsigned char)s[j]] == 0) chars[(unsigned char)s[j++]] = 1;
         ans = max(ans, j - i);
-        while (chars[s[j]] == 1 && i < j) chars[s[i++]] = 0;
+        while (chars[(unsigned char)s[j]] == 1 && i < j) chars[(unsigned char)s[i++]] = 0;
     }
     return ans;
 }
@@ -223,7 +223,7 @@ int characterReplacement(string s, int k) {
 /*
  * 9. 给定一个正整数数组 A，求 A 的子数组中满足不同整数的个数恰好为 K 的数目
  */
-int subarraysWithKDistinct(vector<int>& A, int K) {
+int subarraysWithKDistinct(vector<int>& A, size_t K) {
     int ans = 0, i = 0, j = 0, len = A.size();
     counter<int> count;
     while (j < len) {

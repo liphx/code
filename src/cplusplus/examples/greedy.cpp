@@ -6,7 +6,7 @@
  */
 int minOperations(std::vector<int>& nums) {
     int ans = 0, prev = nums[0];
-    for (int i = 1; i < nums.size(); i++) {
+    for (auto i = 1U; i < nums.size(); i++) {
         if (nums[i] > prev)
             prev = nums[i];
         else {

@@ -2,4 +2,4 @@
 
 #include "gtest/gtest.h"
 
-TEST(requests, requests) { auto res = liph::requests::get("https://liph.ink"); }
+TEST(requests, requests) { liph::requests::get("https://liph.ink"); }

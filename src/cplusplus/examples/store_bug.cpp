@@ -141,7 +141,7 @@ int main() {
     D(db.init());
     liph::print(db.dump());
     std::vector<std::string> vc{"abc001", "bcd002", "cdef0003"};
-    for (int i = 0; i < vc.size(); i++) D(db.put(i, vc[i]));
+    for (auto i = 0U; i < vc.size(); i++) D(db.put(i, vc[i]));
     liph::print(db.dump());
     D(db.put(0, "000"));
     liph::print(db.dump());

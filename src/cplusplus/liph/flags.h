@@ -24,7 +24,7 @@ public:
 
     bool has_flag(const std::string& name) const;
 
-    bool bool_ref(const std::string& name);
+    bool bool_ref(const std::string& name);  // todo: return bool&
     int32_t& int32_ref(const std::string& name);
     double& double_ref(const std::string& name);
     std::string& string_ref(const std::string& name);

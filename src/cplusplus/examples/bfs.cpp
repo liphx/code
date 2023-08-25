@@ -127,7 +127,7 @@ int minJump(vector<int>& jump) {
         for (int j = 0; j < size; j++) {
             int cur = q.front();
             q.pop();
-            if (cur + jump[cur] >= jump.size()) return ans + 1;
+            if ((size_t)(cur + jump[cur]) >= jump.size()) return ans + 1;
             visit(visited, q, cur + jump[cur]);
             for (int i = cur - 1; i > prev; i--) visit(visited, q, i);
             prev = max(prev, cur);

@@ -19,7 +19,7 @@ public:
         string tmp;
         for (const string& str : list) {
             size_t pos = find(sv, str);
-            if (pos == -1) return false;
+            if (pos == -1U) return false;
             tmp = string(sv.substr(pos, str.length()));
             sv = sv.substr(pos + str.length());
         }
@@ -44,9 +44,9 @@ private:
         if (none_of(p.begin(), p.end(), [](char c) { return c == '?'; })) {
             return s.find(p);
         }
-        for (int i = 0; i < s.length(); i++) {
+        for (size_t i = 0; i < s.length(); i++) {
             bool found = true;
-            for (int j = 0; j < p.length(); j++) {
+            for (size_t j = 0; j < p.length(); j++) {
                 if (i + j >= s.length() || (p[j] != '?' && p[j] != s[i + j])) {
                     found = false;
                     break;

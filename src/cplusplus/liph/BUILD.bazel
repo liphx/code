@@ -9,7 +9,6 @@ cc_library(
     ),
     hdrs = glob(["**/*.h"]),
     linkopts = [
-        "-lpthread",
         "-lsqlite3",
         "-lcryptopp",
     ],

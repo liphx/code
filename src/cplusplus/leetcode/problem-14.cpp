@@ -7,10 +7,10 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
         string ret;
-        int i = 0;
-        char c;
+        size_t i = 0;
+        char c = 0;
         while (true) {
-            for (int j = 0; j < strs.size(); j++) {
+            for (size_t j = 0; j < strs.size(); j++) {
                 if (i >= strs[j].size()) {
                     return ret;
                 }

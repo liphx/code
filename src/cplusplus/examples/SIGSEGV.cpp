@@ -42,14 +42,16 @@ int main() {
     /*     std::cout << "Catch something." << std::endl; */
     /* } */
 
+#if 0
     std::signal(SIGSEGV, signal_handler3);
     if (setjmp(jump_buffer) == 0) {
-        *(int *)0 = 0;
+        *(int *)0x01 = 0;
     } else {
         std::cout << "return by longjmp" << std::endl;
     }
 
     std::signal(SIGSEGV, signal_handler4);
     // no loop
-    *(int *)0 = 0;
+    *(int *)0x01 = 0;
+#endif
 }
