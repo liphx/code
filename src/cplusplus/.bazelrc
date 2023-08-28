@@ -17,4 +17,6 @@ build --cxxopt=-Wfatal-errors
 # build --cxxopt=-Wno-error=non-template-friend
 # build --cxxopt=-Wno-error=sign-compare
 
+# build --cxxopt=-fsanitize=address
+
 build --spawn_strategy=standalone

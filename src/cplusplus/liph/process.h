@@ -8,14 +8,14 @@
 
 namespace liph {
 
-static inline void err_exit(const char *str = nullptr) {
+inline void err_exit(const char *str = nullptr) {
     if (str) perror(str);
     exit(EXIT_FAILURE);
 }
 
-static inline void err_exit(const std::string& str) { err_exit(str.c_str()); }
+inline void err_exit(const std::string& str) { err_exit(str.c_str()); }
 
-static inline void err_exit_if(bool error) {
+inline void err_exit_if(bool error) {
     if (error) exit(EXIT_FAILURE);
 }
 

@@ -33,9 +33,9 @@ public:
         queue_.emplace(std::forward<Args>(args)...);
     }
 
-    void unsafe_pop() {
+    void pop() {
         std::unique_lock<std::shared_mutex> wlock(mutex_);
-        queue_.pop();
+        if (!queue_.empty()) queue_.pop();
     }
 
     bool pop(T& v) {

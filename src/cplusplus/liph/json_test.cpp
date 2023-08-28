@@ -11,7 +11,7 @@ TEST(json, constructor) {
     EXPECT_EQ(json().to_string(), "null");
     EXPECT_EQ(json(true).to_string(), "true");
     EXPECT_EQ(json(false).to_string(), "false");
-    EXPECT_EQ(json((double)42).to_string(), "42");
+    EXPECT_EQ(json(42).to_string(), "42");
     EXPECT_EQ(json(3.14).to_string(), "3.14");
     EXPECT_EQ(json("hello, world").to_string(), "\"hello, world\"");
 }
@@ -20,14 +20,14 @@ TEST(json, parse) {
     EXPECT_EQ(json::parse("null"), json());
     EXPECT_EQ(json::parse("  true  "), json(true));
     EXPECT_EQ(json::parse("\"hello\""), json("hello"));
-    EXPECT_EQ(json::parse("42"), json((double)42));
+    EXPECT_EQ(json::parse("42"), json(42));
 
     std::string str =
             R"({"encoding": "UTF-8", "plug-ins": ["python", "c++", "ruby"], "indent": {"length": 3, "use_space": true}})";
     json j1 = json::parse(str);
 
     std::vector<json> arr = {json("python"), json("c++"), json("ruby")};
-    std::unordered_map<std::string, json> sub = {{"length", json((double)3)}, {"use_space", json(true)}};
+    std::unordered_map<std::string, json> sub = {{"length", json(3)}, {"use_space", json(true)}};
 
     std::unordered_map<std::string, json> obj = {
             {"encoding", json("UTF-8")}, {"plug-ins", json(arr)}, {"indent", json(sub)}};

@@ -417,9 +417,9 @@ bool big_integer::zero() const { return sign() == 0; }
 
 int big_integer::sign() const { return sign_; }
 
-big_integer big_integer::rand() {
+big_integer big_integer::rand(uint64_t max_size) {
     big_integer bi;
-    randomizer r(128);
+    randomizer r(max_size);
     bi.sign_ = r() % 2 == 0 ? 1 : -1;
     bi.data_.resize(r() + 1);
     std::generate(bi.data_.begin(), bi.data_.end(), [&]() { return r(); });
