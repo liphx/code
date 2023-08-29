@@ -13,6 +13,7 @@
 - logging
 - string
 - file
+- json
 
 ## quick start with bazel
 

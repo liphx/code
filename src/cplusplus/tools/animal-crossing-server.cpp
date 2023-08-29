@@ -3,10 +3,16 @@
 #include <string>
 #include <vector>
 
-#include "gflags/gflags.h"
 #include "httplib.h"
-#include "nlohmann/json.hpp"
-#include "spdlog/sinks/basic_file_sink.h"
+#include "liph/liph.h"
+
+using json = liph::json;
+
+json array_to_json(const std::vector<int>& active_time) {
+    json ret = json::array;
+    for (int i : active_time) ret.array_ref().emplace_back(i);
+    return ret;
+}
 
 struct Fish {
     Fish(int id, const std::string& name, const std::vector<int>& active_time, const std::string& location)
@@ -136,18 +142,16 @@ static const std::vector<Halobios> all_halobios = {{1, "裙带菜", {1, 2, 3, 4,
         {36, "鲎", {7, 8, 9}}, {37, "海蛸", {4, 5, 6, 7, 8}}, {38, "花园鳗", {5, 6, 7, 8, 9, 10}},
         {39, "海扁虫", {8, 9}}, {40, "偕老同穴", {1, 2, 10, 11, 12}}};
 
-using json = nlohmann::json;
 namespace fs = std::filesystem;
-auto logger = spdlog::basic_logger_mt("basic_logger", "std.log");
 
-DEFINE_string(host, "0.0.0.0", "default host");
-DEFINE_int32(port, 8000, "default port");
-DEFINE_string(data_path, "./", "");
+std::string FLAGS_data_path;
+int32_t FLAGS_port;
+std::string FLAGS_host;
 
 bool checkUserName(const std::string& user) {
     if (user.empty()) return false;
     if (std::all_of(user.begin(), user.end(), [](char ch) { return isalnum(ch); })) return true;
-    logger->info("not valid name:" + user);
+    LOG << "not valid name: " << user;
     return false;
 }
 
@@ -156,10 +160,10 @@ void MyFish(const httplib::Request& req, httplib::Response& res) {
     std::string user, data;
     try {
         body = json::parse(req.body);
-        user = body.at("user").get<std::string>();
-        data = body.at("data").get<std::string>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        user = body.at("user").string_ref();
+        data = body.at("data").string_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -167,7 +171,7 @@ void MyFish(const httplib::Request& req, httplib::Response& res) {
         return;
     }
 
-    std::ofstream os(FLAGS_data_path + "/fish/" + user + ".json");
+    std::ofstream os(FLAGS_data_path + "/fish-" + user + ".json");
     os << data;
 }
 
@@ -176,10 +180,10 @@ void MyInsect(const httplib::Request& req, httplib::Response& res) {
     std::string user, data;
     try {
         body = json::parse(req.body);
-        user = body.at("user").get<std::string>();
-        data = body.at("data").get<std::string>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        user = body.at("user").string_ref();
+        data = body.at("data").string_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -187,7 +191,7 @@ void MyInsect(const httplib::Request& req, httplib::Response& res) {
         return;
     }
 
-    std::ofstream os(FLAGS_data_path + "/insect/" + user + ".json");
+    std::ofstream os(FLAGS_data_path + "/insect-" + user + ".json");
     os << data;
 }
 
@@ -196,10 +200,10 @@ void MyHalobios(const httplib::Request& req, httplib::Response& res) {
     std::string user, data;
     try {
         body = json::parse(req.body);
-        user = body.at("user").get<std::string>();
-        data = body.at("data").get<std::string>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        user = body.at("user").string_ref();
+        data = body.at("data").string_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -207,9 +211,21 @@ void MyHalobios(const httplib::Request& req, httplib::Response& res) {
         return;
     }
 
-    std::ofstream os(FLAGS_data_path + "/halobios/" + user + ".json");
+    std::ofstream os(FLAGS_data_path + "/halobios-" + user + ".json");
     os << data;
 }
+
+#define READ_JSON(file)                                                            \
+    do {                                                                           \
+        std::string str;                                                           \
+        if (liph::read_file(file, str)) {                                          \
+            try {                                                                  \
+                res.set_content(json::parse(str).to_string(), "application/json"); \
+                return;                                                            \
+            } catch (...) {                                                        \
+            }                                                                      \
+        }                                                                          \
+    } while (0)
 
 void AllFish(const httplib::Request& req, httplib::Response& res) {
     std::string user;
@@ -218,24 +234,18 @@ void AllFish(const httplib::Request& req, httplib::Response& res) {
     }
 
     if (checkUserName(user)) {
-        std::ifstream is(FLAGS_data_path + "/fish/" + user + ".json");
-        if (is.is_open()) {
-            json j;
-            is >> j;
-            res.set_content(j.dump(), "application/json");
-            return;
-        }
+        READ_JSON(FLAGS_data_path + "/fish-" + user + ".json");
     }
 
-    json ret = json::array();
+    json ret = json::array;
     for (auto it = all_fish.begin(); it != all_fish.end(); ++it) {
-        json item;
-        item.push_back(it->id);
-        item.push_back(it->name);
-        item.push_back(false);
-        ret.push_back(item);
+        json item = json::array;
+        item.array_ref().emplace_back(it->id);
+        item.array_ref().emplace_back(it->name);
+        item.array_ref().emplace_back(false);
+        ret.array_ref().emplace_back(item);
     }
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void AllInsect(const httplib::Request& req, httplib::Response& res) {
@@ -245,24 +255,18 @@ void AllInsect(const httplib::Request& req, httplib::Response& res) {
     }
 
     if (checkUserName(user)) {
-        std::ifstream is(FLAGS_data_path + "/insect/" + user + ".json");
-        if (is.is_open()) {
-            json j;
-            is >> j;
-            res.set_content(j.dump(), "application/json");
-            return;
-        }
+        READ_JSON(FLAGS_data_path + "/insect-" + user + ".json");
     }
 
-    json ret = json::array();
+    json ret = json::array;
     for (auto it = all_insect.begin(); it != all_insect.end(); ++it) {
-        json item;
-        item.push_back(it->id);
-        item.push_back(it->name);
-        item.push_back(false);
-        ret.push_back(item);
+        json item = json::array;
+        item.array_ref().emplace_back(it->id);
+        item.array_ref().emplace_back(it->name);
+        item.array_ref().emplace_back(false);
+        ret.array_ref().emplace_back(item);
     }
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void AllHalobios(const httplib::Request& req, httplib::Response& res) {
@@ -272,24 +276,18 @@ void AllHalobios(const httplib::Request& req, httplib::Response& res) {
     }
 
     if (checkUserName(user)) {
-        std::ifstream is(FLAGS_data_path + "/halobios/" + user + ".json");
-        if (is.is_open()) {
-            json j;
-            is >> j;
-            res.set_content(j.dump(), "application/json");
-            return;
-        }
+        READ_JSON(FLAGS_data_path + "/halobios-" + user + ".json");
     }
 
-    json ret = json::array();
+    json ret = json::array;
     for (auto it = all_halobios.begin(); it != all_halobios.end(); ++it) {
-        json item;
-        item.push_back(it->id);
-        item.push_back(it->name);
-        item.push_back(false);
-        ret.push_back(item);
+        json item = json::array;
+        item.array_ref().emplace_back(it->id);
+        item.array_ref().emplace_back(it->name);
+        item.array_ref().emplace_back(false);
+        ret.array_ref().emplace_back(item);
     }
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void FishDetail(const httplib::Request& req, httplib::Response& res) {
@@ -297,9 +295,9 @@ void FishDetail(const httplib::Request& req, httplib::Response& res) {
     int id;
     try {
         body = json::parse(req.body);
-        id = body.at("id").get<int>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        id = body.at("id").i64_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -311,9 +309,9 @@ void FishDetail(const httplib::Request& req, httplib::Response& res) {
     const auto& fish = all_fish[idx];
     ret["id"] = fish.id;
     ret["name"] = fish.name;
-    ret["active_time"] = fish.active_time;
+    ret["active_time"] = array_to_json(fish.active_time);
     ret["location"] = fish.location;
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void InsectDetail(const httplib::Request& req, httplib::Response& res) {
@@ -321,9 +319,9 @@ void InsectDetail(const httplib::Request& req, httplib::Response& res) {
     int id;
     try {
         body = json::parse(req.body);
-        id = body.at("id").get<int>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        id = body.at("id").i64_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -335,8 +333,8 @@ void InsectDetail(const httplib::Request& req, httplib::Response& res) {
     const auto& insect = all_insect[idx];
     ret["id"] = insect.id;
     ret["name"] = insect.name;
-    ret["active_time"] = insect.active_time;
-    res.set_content(ret.dump(), "application/json");
+    ret["active_time"] = array_to_json(insect.active_time);
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void HalobiosDetail(const httplib::Request& req, httplib::Response& res) {
@@ -344,9 +342,9 @@ void HalobiosDetail(const httplib::Request& req, httplib::Response& res) {
     int id;
     try {
         body = json::parse(req.body);
-        id = body.at("id").get<int>();
-    } catch (std::exception&) {
-        logger->error("json::parse error");
+        id = body.at("id").i64_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -358,8 +356,8 @@ void HalobiosDetail(const httplib::Request& req, httplib::Response& res) {
     const auto& halobios = all_halobios[idx];
     ret["id"] = halobios.id;
     ret["name"] = halobios.name;
-    ret["active_time"] = halobios.active_time;
-    res.set_content(ret.dump(), "application/json");
+    ret["active_time"] = array_to_json(halobios.active_time);
+    res.set_content(ret.to_string(), "application/json");
 }
 
 void PrepareData() {
@@ -369,10 +367,22 @@ void PrepareData() {
 }
 
 int main(int argc, char *argv[]) {
-    google::ParseCommandLineFlags(&argc, &argv, true);
-
-    logger->set_level(spdlog::level::info);
-    logger->flush_on(spdlog::level::info);
+    liph::flags flags;
+    flags.register_string_flag("host", "0.0.0.0");
+    flags.register_int32_flag("port", 8000);
+    flags.register_string_flag("data_path", "");
+    if (!flags.parse_flags(argc, &argv)) {
+        std::cerr << flags.help() << std::endl;
+        return 1;
+    }
+    FLAGS_host = flags.string_ref("host");
+    FLAGS_port = flags.int32_ref("port");
+    FLAGS_data_path = flags.string_ref("data_path");
+    if (FLAGS_data_path.empty()) {
+        std::cerr << "data_path empty" << std::endl;
+        std::cerr << flags.help() << std::endl;
+        return 1;
+    }
 
     PrepareData();
 

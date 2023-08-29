@@ -9,7 +9,7 @@ namespace liph {
 namespace {
 
 bool check_flag_name(const std::string& name) {
-    return !name.empty() && std::all_of(name.begin(), name.end(), [](char ch) { return isalnum(ch); });
+    return !name.empty() && std::all_of(name.begin(), name.end(), [](char ch) { return ch == '_' || isalnum(ch); });
 }
 
 }  // namespace

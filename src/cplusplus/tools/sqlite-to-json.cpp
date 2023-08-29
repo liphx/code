@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
         res.array_ref().emplace_back(item);
     }
     if (flag_out.empty()) {
-        liph::print(res.to_string());  // pass in the amount of spaces to indent
+        liph::print(res.to_string(4, true));
     } else {
-        liph::write_file(flag_out, res.to_string());
+        liph::write_file(flag_out, res.to_string(4, true));
     }
 }

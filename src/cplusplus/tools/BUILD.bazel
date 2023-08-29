@@ -4,7 +4,6 @@
     deps = [
         "//liph",
         "@com_github_gflags_gflags//:gflags",
-        "@nlohmann_json//:json",
     ],
 ) for cc_name in glob(
     include = ["*.cpp"],
@@ -19,9 +18,7 @@ cc_binary(
     srcs = ["record-server.cpp"],
     deps = [
         "//liph",
-        "@com_github_gflags_gflags//:gflags",
         "@yhirose_cpp_httplib//:httplib",
-        "@nlohmann_json//:json",
     ],
 )
 
@@ -30,9 +27,6 @@ cc_binary(
     srcs = ["animal-crossing-server.cpp"],
     deps = [
         "//liph",
-        "@com_github_gflags_gflags//:gflags",
         "@yhirose_cpp_httplib//:httplib",
-        "@nlohmann_json//:json",
-        "@gabime_spdlog//:spdlog",
     ],
 )

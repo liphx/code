@@ -2,17 +2,15 @@
 #include <filesystem>
 #include <sstream>
 
-#include "gflags/gflags.h"
 #include "httplib.h"
 #include "liph/liph.h"
-#include "nlohmann/json.hpp"
 
-using json = nlohmann::json;
+using json = liph::json;
 namespace fs = std::filesystem;
 
-DEFINE_string(host, "0.0.0.0", "default host");
-DEFINE_int32(port, 8000, "default port");
-DEFINE_string(db_path, "./", "");
+std::string FLAGS_db_path;
+int32_t FLAGS_port;
+std::string FLAGS_host;
 
 std::vector<liph::sqlite> db;
 
@@ -29,8 +27,8 @@ void init_db() {
     }
 }
 
-void to_json(const std::vector<std::vector<std::string>>& in, json& j) {
-    j = nullptr;
+void to_json(const std::vector<std::vector<std::string>>& in, liph::json& j) {
+    j.reset();
     if (in.empty()) {
         return;
     }
@@ -46,9 +44,9 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
     std::string user;
     try {
         body = json::parse(req.body);
-        user = body.at("user").get<std::string>();
-    } catch (...) {
-        LOG << "json::parse error";
+        user = body.at("user").string_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -64,7 +62,7 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
         ::to_json(result, ret["data"]);
     }
 
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
@@ -73,9 +71,9 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
     std::string user;
     try {
         body = json::parse(req.body);
-        user = body.at("user").get<std::string>();
-    } catch (...) {
-        LOG << "json::parse error";
+        user = body.at("user").string_ref();
+    } catch (std::exception& e) {
+        LOG << e.what();
         return;
     }
 
@@ -91,7 +89,7 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
         ::to_json(result, ret["data"]);
     }
 
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
@@ -103,7 +101,7 @@ void MyLibrary(const httplib::Request&, httplib::Response& res) {
     ret["data"] = nullptr;
     result = db[2].query(sql.c_str());
     ::to_json(result, ret["data"]);
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
@@ -112,12 +110,12 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
     std::string title, year, rating, douban, imdb, user;
     try {
         body = json::parse(req.body);
-        title = body.at("title").get<std::string>();
-        year = body.at("year").get<std::string>();
-        rating = body.at("rating").get<std::string>();
-        douban = body.at("douban").get<std::string>();
-        imdb = body.at("imdb").get<std::string>();
-        user = body.at("user").get<std::string>();
+        title = body.at("title").string_ref();
+        year = body.at("year").string_ref();
+        rating = body.at("rating").string_ref();
+        douban = body.at("douban").string_ref();
+        imdb = body.at("imdb").string_ref();
+        user = body.at("user").string_ref();
     } catch (...) {
         LOG << "json::parse error";
         return;
@@ -138,7 +136,7 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
     LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
@@ -148,10 +146,10 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
     try {
         LOG << req.body;
         body = json::parse(req.body);
-        title = body.at("title").get<std::string>();
-        rating = body.at("rating").get<std::string>();
-        isbn = body.at("isbn").get<std::string>();
-        user = body.at("user").get<std::string>();
+        title = body.at("title").string_ref();
+        rating = body.at("rating").string_ref();
+        isbn = body.at("isbn").string_ref();
+        user = body.at("user").string_ref();
     } catch (...) {
         LOG << "json::parse error";
         return;
@@ -171,7 +169,7 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
     LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
@@ -182,15 +180,15 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
     try {
         LOG << req.body;
         body = json::parse(req.body);
-        title = body.at("title").get<std::string>();
-        origin_title = body.at("origin_title").get<std::string>();
-        author = body.at("author").get<std::string>();
-        publisher = body.at("publisher").get<std::string>();
-        publish_year = body.at("publish_year").get<int>();
-        translator = body.at("translator").get<std::string>();
-        isbn = body.at("isbn").get<std::string>();
-        douban = body.at("douban").get<std::string>();
-        tag = body.at("tag").get<std::string>();
+        title = body.at("title").string_ref();
+        origin_title = body.at("origin_title").string_ref();
+        author = body.at("author").string_ref();
+        publisher = body.at("publisher").string_ref();
+        publish_year = body.at("publish_year").i64_ref();
+        translator = body.at("translator").string_ref();
+        isbn = body.at("isbn").string_ref();
+        douban = body.at("douban").string_ref();
+        tag = body.at("tag").string_ref();
     } catch (...) {
         LOG << "json::parse error";
         return;
@@ -206,12 +204,28 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
     LOG << ss.str();
 
     ret["status"] = db_ret == SQLITE_OK;
-    res.set_content(ret.dump(), "application/json");
+    res.set_content(ret.to_string(), "application/json");
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 int main(int argc, char *argv[]) {
-    google::ParseCommandLineFlags(&argc, &argv, true);
+    liph::flags flags;
+    flags.register_string_flag("host", "0.0.0.0");
+    flags.register_int32_flag("port", 8000);
+    flags.register_string_flag("db_path", "");
+    if (!flags.parse_flags(argc, &argv)) {
+        std::cerr << flags.help() << std::endl;
+        return 1;
+    }
+    FLAGS_host = flags.string_ref("host");
+    FLAGS_port = flags.int32_ref("port");
+    FLAGS_db_path = flags.string_ref("db_path");
+    if (FLAGS_db_path.empty()) {
+        std::cerr << "db_path empty" << std::endl;
+        std::cerr << flags.help() << std::endl;
+        return 1;
+    }
+
     init_db();
 
     httplib::Server svr;

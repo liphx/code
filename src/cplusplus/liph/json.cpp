@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <exception>
+#include <map>
 #include <sstream>
 #include <string_view>
 
@@ -434,9 +435,8 @@ const json& json::at(const std::string& key) const {
 json& json::at(const std::string& key) { return const_cast<json&>(static_cast<const json&>(*this).at(key)); }
 
 json& json::operator[](const std::string& key) {
-    if (type_ != object) {
-        throw std::logic_error("type error");
-    }
+    if (type_ == null) *this = object;
+    if (type_ != object) throw std::logic_error("type error");
     return (*object_)[key];
 }
 
@@ -450,9 +450,8 @@ const json& json::at(std::size_t pos) const {
 json& json::at(std::size_t pos) { return const_cast<json&>(static_cast<const json&>(*this).at(pos)); }
 
 json& json::operator[](std::size_t pos) {
-    if (type_ != array) {
-        throw std::logic_error("type error");
-    }
+    if (type_ == null) *this = array;
+    if (type_ != array) throw std::logic_error("type error");
     array_->resize(std::max(pos + 1, array_->size()));
     return (*array_)[pos];
 }
@@ -474,49 +473,81 @@ bool json::operator==(const json& other) const {
 
 bool json::operator!=(const json& other) const { return !(*this == other); }
 
-std::string json::to_string() const {
-    std::ostringstream ss;
+namespace {
+
+void json_to_string(const json& json, int indent, bool sort_keys, int current_indent, std::ostringstream& ss);
+
+template <class Map>
+void object_to_string(const Map& object, int indent, bool sort_keys, int current_indent, std::ostringstream& ss) {
+    if (object.empty()) {
+        ss << "{}";
+        return;
+    }
+
+    ss << (indent > 0 ? "{\n" : "{");
+    std::string sep = std::string(current_indent, ' ');
+    for (const auto& [k, v] : object) {
+        ss << sep << '"' << k << "\":" << (indent > 0 ? " " : "");
+        sep = indent > 0 ? ",\n" + std::string(current_indent, ' ') : ",";
+        json_to_string(v, indent, sort_keys, current_indent, ss);
+    }
+    ss << (indent > 0 ? "\n" : "") << std::string(current_indent - indent, ' ') << '}';
+}
+
+void array_to_string(
+        const std::vector<json>& array, int indent, bool sort_keys, int current_indent, std::ostringstream& ss) {
+    if (array.empty()) {
+        ss << "[]";
+        return;
+    }
+
+    ss << (indent > 0 ? "[\n" : "[");
+    std::string sep = std::string(current_indent, ' ');
+    for (const auto& json : array) {
+        ss << sep;
+        json_to_string(json, indent, sort_keys, current_indent, ss);
+        sep = indent > 0 ? ",\n" + std::string(current_indent, ' ') : ",";
+    }
+    ss << (indent > 0 ? "\n" : "") << std::string(current_indent - indent, ' ') << ']';
+}
+
+void json_to_string(const json& json, int indent, bool sort_keys, int current_indent, std::ostringstream& ss) {
+    switch (json.type()) {
+    case json::object: {
+        if (sort_keys) {
+            std::map<std::string, liph::json> sorted(json.object_ref().begin(), json.object_ref().end());
+            object_to_string(sorted, indent, sort_keys, current_indent + indent, ss);
+        } else {
+            object_to_string(json.object_ref(), indent, sort_keys, current_indent + indent, ss);
+        }
+        break;
+    }
+    case json::array: {
+        array_to_string(json.array_ref(), indent, sort_keys, current_indent + indent, ss);
+        break;
+    }
+    default:
+        ss << json.to_string();
+    }
+}
+
+}  // namespace
+
+std::string json::to_string(int indent, bool sort_keys) const {
     switch (type_) {
-    case object: {
-        ss << '{';
-        std::string sep;
-        for (const auto& i : *object_) {
-            ss << sep;
-            ss << '"' << i.first << "\": " << i.second.to_string();
-            sep = ", ";
-        }
-        ss << '}';
-        break;
-    }
-    case array: {
-        ss << '[';
-        std::string sep;
-        for (const auto& i : *array_) {
-            ss << sep << i.to_string();
-            sep = ", ";
-        }
-        ss << ']';
-        break;
-    }
-    case string:
-        ss << '"' << *string_ << '"';
-        break;
-    case number:
-        if (is_double_)
-            ss << double_;
-        else
-            ss << i64_;
-        break;
-    case boolean:
-        ss << std::boolalpha << bool_;
-        break;
     case null:
-        ss << "null";
-        break;
+        return "null";
+    case boolean:
+        return bool_ ? "true" : "false";
+    case number:
+        return is_double_ ? std::to_string(double_) : std::to_string(i64_);
+    case string:
+        return '"' + *string_ + '"';
     default:
         break;
     }
-
+    std::ostringstream ss;
+    json_to_string(*this, indent, sort_keys, 0, ss);
     return ss.str();
 }
 
@@ -525,29 +556,41 @@ bool& json::bool_ref() {
     return bool_;
 }
 
+bool json::bool_ref() const { return const_cast<json&>(*this).bool_ref(); }
+
 double& json::double_ref() {
     if (type_ != number) throw std::logic_error("type error");
     return double_;
 }
+
+double json::double_ref() const { return const_cast<json&>(*this).double_ref(); }
 
 int64_t& json::i64_ref() {
     if (type_ != number) throw std::logic_error("type error");
     return i64_;
 }
 
+int64_t json::i64_ref() const { return const_cast<json&>(*this).i64_ref(); }
+
 std::string& json::string_ref() {
     if (type_ != string) throw std::logic_error("type error");
     return *string_;
 }
+
+const std::string& json::string_ref() const { return const_cast<json&>(*this).string_ref(); }
 
 std::vector<json>& json::array_ref() {
     if (type_ != array) throw std::logic_error("type error");
     return *array_;
 }
 
+const std::vector<json>& json::array_ref() const { return const_cast<json&>(*this).array_ref(); }
+
 std::unordered_map<std::string, json>& json::object_ref() {
     if (type_ != object) throw std::logic_error("type error");
     return *object_;
 }
+
+const std::unordered_map<std::string, json>& json::object_ref() const { return const_cast<json&>(*this).object_ref(); }
 
 }  // namespace liph

@@ -14,15 +14,16 @@ public:
     // null literal: "null"
     enum value_type { object, array, string, number, boolean, null };
 
+    // no explicit
     json(value_type type = null);
-    explicit json(bool b);
-    explicit json(double d);
-    explicit json(int32_t n);
-    explicit json(int64_t n);
-    explicit json(std::string str);
-    explicit json(const char *str);  // null type if str is nullptr
-    explicit json(const std::vector<json>& arr);
-    explicit json(const std::unordered_map<std::string, json>& obj);
+    json(bool b);
+    json(double d);
+    json(int32_t n);
+    json(int64_t n);
+    json(std::string str);
+    json(const char *str);  // null type if str is nullptr
+    json(const std::vector<json>& arr);
+    json(const std::unordered_map<std::string, json>& obj);
 
     json(const json& other);
     json(json&& other);
@@ -39,7 +40,7 @@ public:
     void reset();
 
     static json parse(const std::string& str);
-    std::string to_string() const;
+    std::string to_string(int indent = 0, bool sort_keys = false) const;
 
     bool operator==(const json& other) const;
     bool operator!=(const json& other) const;
@@ -47,19 +48,25 @@ public:
     // for object
     json& at(const std::string& key);
     const json& at(const std::string& key) const;
-    json& operator[](const std::string& key);
+    json& operator[](const std::string& key);  // if null, become object
 
     // for array
     json& at(std::size_t pos);
     const json& at(std::size_t pos) const;
-    json& operator[](std::size_t pos);
+    json& operator[](std::size_t pos);  // if null, become array
 
     bool& bool_ref();
+    bool bool_ref() const;
     double& double_ref();
+    double double_ref() const;
     int64_t& i64_ref();
+    int64_t i64_ref() const;
     std::string& string_ref();
+    const std::string& string_ref() const;
     std::vector<json>& array_ref();
+    const std::vector<json>& array_ref() const;
     std::unordered_map<std::string, json>& object_ref();
+    const std::unordered_map<std::string, json>& object_ref() const;
 
 private:
     value_type type_{null};
@@ -76,6 +83,7 @@ private:
 
 }  // namespace liph
 
+static_assert(sizeof(int64_t) == sizeof(double));
 static_assert(sizeof(liph::json) == 16);  // alignment
 
 #endif  // LIPH_JSON_H_
