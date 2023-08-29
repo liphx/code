@@ -1,7 +1,4 @@
-#include <cstdlib>
-
 #include "liph/liph.h"
-#include "nlohmann/json.hpp"
 
 int main(int argc, char **argv) {
     liph::flags flags;
@@ -29,18 +26,17 @@ int main(int argc, char **argv) {
     if (ans.empty()) {
         liph::err_exit();
     }
-    using json = nlohmann::json;
-    auto res = json::array();
+    liph::json res(liph::json::array);
     for (size_t i = 1; i < ans.size(); i++) {
-        json item;
+        liph::json item(liph::json::object);
         for (size_t j = 0; j < ans[0].size(); j++) {
-            item[ans[0][j]] = ans[i][j];
+            item[ans[0][j]] = liph::json(ans[i][j]);
         }
-        res.push_back(item);
+        res.array_ref().emplace_back(item);
     }
     if (flag_out.empty()) {
-        liph::print(res.dump(4));  // pass in the amount of spaces to indent
+        liph::print(res.to_string());  // pass in the amount of spaces to indent
     } else {
-        liph::write_file(flag_out, res.dump(4));
+        liph::write_file(flag_out, res.to_string());
     }
 }

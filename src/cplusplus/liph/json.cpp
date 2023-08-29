@@ -29,6 +29,16 @@ bool eat_symbol(std::string_view& sv, std::string_view symbol) {
     return true;
 }
 
+size_t eat_digits(std::string_view& sv, std::string& str) {
+    size_t i = 0;
+    while (i < sv.size() && isdigit(sv[i])) {
+        str += sv[i];
+        ++i;
+    }
+    sv = sv.substr(i);
+    return i;
+}
+
 json parse_value(std::string_view& sv) {
     skip_whitespace(sv);
 
@@ -48,27 +58,37 @@ json parse_value(std::string_view& sv) {
 
 json parse_number(std::string_view& sv) {
     skip_whitespace(sv);
+    std::string str;
     size_t i = 0;
+    if (eat_symbol(sv, "-")) {
+        str += '-';
+        i = 1;
+    }
+    auto n = eat_digits(sv, str);
+    if (n == 0 || (n > 1 && str[i] == '0')) throw std::runtime_error("parse number error");
     bool use_double = false;
-    while (i < sv.size()) {
-        if (sv[i] == '.' || sv[i] == 'e' || sv[i] == 'E') {
-            use_double = true;
-            ++i;
-        } else if (isdigit(sv[i]) || sv[i] == '-') {
-            ++i;
-        } else {
-            break;
+    if (eat_symbol(sv, ".")) {  // fraction
+        use_double = true;
+        str += '.';
+        if (eat_digits(sv, str) == 0) throw std::runtime_error("parse number error");
+    }
+    if (eat_symbol(sv, "e") || eat_symbol(sv, "E")) {  // exponent
+        use_double = true;
+        str += 'e';
+        if (eat_symbol(sv, "+"))
+            str += '+';
+        else if (eat_symbol(sv, "-"))
+            str += '-';
+        if (eat_digits(sv, str) == 0) throw std::runtime_error("parse number error");
+    }
+
+    if (!use_double) {
+        try {
+            return json(static_cast<int64_t>(std::stoll(str)));
+        } catch (std::out_of_range&) {  // not catch std::invalid_argument if no conversion
         }
     }
-    std::string str(sv.substr(0, i));
-    json ret;
-    if (use_double) {
-        ret = json(std::stod(str));
-    } else {
-        ret = json(static_cast<int64_t>(std::stoll(str)));
-    }
-    sv = sv.substr(i);
-    return ret;
+    return json(std::stod(str));
 }
 
 json parse_string(std::string_view& sv) {
@@ -83,13 +103,13 @@ json parse_string(std::string_view& sv) {
     std::string& str = j.string_ref();
 
     while (pos < sv.size()) {
-        if (state == 0 && sv[pos] == '"') {  // 终止
+        if (state == 0 && sv[pos] == '"') {  // end
             sv = sv.substr(pos + 1);
             return j;
-        } else if (state == 0 && sv[pos] != '\\') {  // 未转义
+        } else if (state == 0 && sv[pos] != '\\') {  //  not escape
             str += sv[pos];
             pos++;
-        } else if (state == 0 && sv[pos] == '\\') {  // 进入转义
+        } else if (state == 0 && sv[pos] == '\\') {  // escape
             state = 1;
             pos++;
         } else if (state == 1) {
@@ -119,6 +139,7 @@ json parse_string(std::string_view& sv) {
                 str += '\t';
                 break;
             case 'u':
+                str += "\\u";
                 state = 2;  // unicode
                 break;
             default:
@@ -127,8 +148,17 @@ json parse_string(std::string_view& sv) {
             pos++;
             if (state != 2) state = 0;  // back to normal
         } else if (state == 2) {        // 4 hex digits
-            // todo
-            goto ERROR;
+            for (size_t i = 0; i < 4; ++i) {
+                static auto is_hex = [](char ch) {
+                    return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
+                };
+                if (pos + i >= sv.size() || !is_hex(sv[pos + i])) {
+                    goto ERROR;
+                }
+                str += sv[pos + i];
+            }
+            pos += 4;
+            state = 0;
         }
     }
 
@@ -198,7 +228,21 @@ json parse_array(std::string_view& sv) {
 
 }  // namespace
 
-json::json() : type_(null) {}
+json::json(value_type type) : type_(type) {
+    switch (type_) {
+    case string:
+        string_ = new std::string;
+        break;
+    case array:
+        array_ = new std::vector<json>;
+        break;
+    case object:
+        object_ = new std::unordered_map<std::string, json>;
+        break;
+    default:
+        break;
+    }
+}
 
 json::json(bool b) : type_(boolean), bool_(b) {}
 
@@ -334,6 +378,8 @@ json& json::operator=(json&& other) {
 
 json::~json() { reset(); }
 
+json::value_type json::type() const { return type_; }
+
 void json::clear() {
     switch (type_) {
     case string:
@@ -387,14 +433,29 @@ const json& json::at(const std::string& key) const {
 
 json& json::at(const std::string& key) { return const_cast<json&>(static_cast<const json&>(*this).at(key)); }
 
-const json& json::at(const std::size_t& pos) const {
+json& json::operator[](const std::string& key) {
+    if (type_ != object) {
+        throw std::logic_error("type error");
+    }
+    return (*object_)[key];
+}
+
+const json& json::at(std::size_t pos) const {
     if (type_ != array) {
         throw std::logic_error("type error");
     }
     return array_->at(pos);
 }
 
-json& json::at(const std::size_t& pos) { return const_cast<json&>(static_cast<const json&>(*this).at(pos)); }
+json& json::at(std::size_t pos) { return const_cast<json&>(static_cast<const json&>(*this).at(pos)); }
+
+json& json::operator[](std::size_t pos) {
+    if (type_ != array) {
+        throw std::logic_error("type error");
+    }
+    array_->resize(std::max(pos + 1, array_->size()));
+    return (*array_)[pos];
+}
 
 bool json::operator==(const json& other) const {
     if (type_ != other.type_) return false;
@@ -467,6 +528,11 @@ bool& json::bool_ref() {
 double& json::double_ref() {
     if (type_ != number) throw std::logic_error("type error");
     return double_;
+}
+
+int64_t& json::i64_ref() {
+    if (type_ != number) throw std::logic_error("type error");
+    return i64_;
 }
 
 std::string& json::string_ref() {

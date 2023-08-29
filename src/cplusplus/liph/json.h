@@ -14,7 +14,7 @@ public:
     // null literal: "null"
     enum value_type { object, array, string, number, boolean, null };
 
-    json();  // null
+    json(value_type type = null);
     explicit json(bool b);
     explicit json(double d);
     explicit json(int32_t n);
@@ -29,6 +29,8 @@ public:
     json& operator=(const json& other);
     json& operator=(json&& other);
     ~json();
+
+    value_type type() const;
 
     // for object, array and string, become empty
     void clear();
@@ -45,10 +47,12 @@ public:
     // for object
     json& at(const std::string& key);
     const json& at(const std::string& key) const;
+    json& operator[](const std::string& key);
 
     // for array
-    json& at(const std::size_t& pos);
-    const json& at(const std::size_t& pos) const;
+    json& at(std::size_t pos);
+    const json& at(std::size_t pos) const;
+    json& operator[](std::size_t pos);
 
     bool& bool_ref();
     double& double_ref();
