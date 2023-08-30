@@ -26,3 +26,13 @@ TEST(time, time_format) {
     LOG << "now: " << time_format();
     // EXPECT_EQ(time_format(0), "1970-01-01 08:00:00");
 }
+
+TEST(time, julianday) { EXPECT_EQ(julianday(2018, 3, 27) - julianday(2000, 1, 1), 6660); }
+
+TEST(time, day_of_the_week) {
+    EXPECT_EQ(day_of_the_week(2023, 4, 18), 2);
+    EXPECT_EQ(day_of_the_week(2023, 4, 18), 2);
+    EXPECT_EQ(day_of_the_week(1998, 1, 1), 4);
+    EXPECT_EQ(day_of_the_week(2004, 2, 29), 0);
+    EXPECT_EQ(day_of_the_week(2023, 4, 2), 0);
+}

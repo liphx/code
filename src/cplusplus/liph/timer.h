@@ -1,75 +1,74 @@
 #ifndef LIPH_TIMER_H_
 #define LIPH_TIMER_H_
 
-#include <pthread.h>
-#include <unistd.h>
-
-#include <algorithm>
-#include <tuple>
-#include <vector>
+#include <queue>
+#include <thread>
 
 namespace liph {
 
-class Timer {
+class timer {
 public:
-    static const int interval_without_jobs = 1;
-    typedef void (*timer_func)(void *);
-    Timer();
-    ~Timer();
-    pthread_t start();
-    void AddJob(timer_func func, int interval, void *args);
+    timer() {}
+    ~timer() { stop(); }
 
-private:
-    std::vector<std::tuple<int, int, timer_func, void *>> jobs;
-};
-
-void Timer::AddJob(timer_func func, int interval, void *args) {
-    jobs.emplace_back(std::make_tuple(0, interval, func, args));
-    push_heap(jobs.begin(), jobs.end(), std::greater<>());
-}
-
-pthread_t Timer::start() {
-    pthread_t th;
-    pthread_create(
-            &th, NULL,
-            [](void *t) {
-                Timer *timer = (Timer *)t;
-                int current_time = 0;
-                for (;;) {
-                    if (timer->jobs.empty()) {
-                        sleep(Timer::interval_without_jobs);
-                        continue;
-                    }
-
-                    int next_time = std::get<0>(timer->jobs.front());
-                    int sleep_time = next_time - current_time;
-                    if (sleep_time > 0)  // 为0时不调用sleep
-                        sleep(sleep_time);
-                    current_time = next_time;
-
-                    auto current_job = timer->jobs.front();
-                    timer_func func = std::get<2>(current_job);
-                    void *args = std::get<3>(current_job);
-                    func(args);
-
-                    pop_heap(timer->jobs.begin(), timer->jobs.end(), std::greater<>());
-                    timer->jobs.pop_back();
-
-                    std::get<0>(current_job) += std::get<1>(current_job);
-                    timer->jobs.emplace_back(current_job);
-                    push_heap(timer->jobs.begin(), timer->jobs.end(), std::greater<>());
+    void start() {
+        running_ = true;
+        thread_ = std::thread([&]() {
+            int current_time = 0;
+            while (running_) {
+                lock_.lock();
+                if (queue_.empty()) {
+                    lock_.unlock();
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    continue;
                 }
 
-                return (void *)nullptr;
-            },
-            this);
+                job j = std::move(queue_.top());
+                queue_.pop();
+                lock_.unlock();
 
-    return th;
-}
+                int sleep_time = j.next_time - current_time;
+                if (sleep_time > 0) std::this_thread::sleep_for(std::chrono::seconds(sleep_time));
+                current_time = j.next_time;
 
-Timer::Timer() {}
+                if (j.task) {
+                    j.task();
+                    j.next_time += j.interval_time;
+                    add(std::move(j));
+                }
+            }
+        });
+    }
 
-Timer::~Timer() { pthread_exit(NULL); }
+    void stop() {
+        running_ = false;
+        if (thread_.joinable()) thread_.join();
+    }
+
+    template <class Function, class... Args>
+    void add(int interval, Function&& func, Args&&...args) {
+        add(job{0, interval, std::bind(func, std::forward<Args>(args)...)});
+    }
+
+private:
+    struct job {
+        int next_time;
+        int interval_time;
+        std::function<void()> task;
+
+        bool operator<(const job& other) const { return next_time > other.next_time; }
+    };
+
+    void add(job j) {
+        std::lock_guard guard(lock_);
+        queue_.push(std::move(j));
+    }
+
+    std::priority_queue<job> queue_;
+    std::thread thread_;
+    std::mutex lock_;
+    std::atomic<bool> running_;
+};
 
 }  // namespace liph
 

@@ -278,6 +278,7 @@ json::json(const json& other) : type_(other.type_) {
         bool_ = other.bool_;
         break;
     case number:
+        is_double_ = other.is_double_;
         i64_ = other.i64_;
         break;
     case string:
@@ -302,6 +303,7 @@ json::json(json&& other) : type_(other.type_) {
         bool_ = other.bool_;
         break;
     case number:
+        is_double_ = other.is_double_;
         i64_ = other.i64_;
         break;
     case string:
@@ -330,6 +332,7 @@ json& json::operator=(const json& other) {
         bool_ = other.bool_;
         break;
     case number:
+        is_double_ = other.is_double_;
         i64_ = other.i64_;
         break;
     case string:
@@ -359,6 +362,7 @@ json& json::operator=(json&& other) {
         bool_ = other.bool_;
         break;
     case number:
+        is_double_ = other.is_double_;
         i64_ = other.i64_;
         break;
     case string:
@@ -460,7 +464,7 @@ bool json::operator==(const json& other) const {
     if (type_ != other.type_) return false;
     if (type_ == null) return true;
     if (type_ == boolean) return bool_ == other.bool_;
-    if (type_ == number) return i64_ == other.i64_;
+    if (type_ == number) return double_ == other.double_;
     if (type_ == string) return *string_ == *other.string_;
     if (type_ == array) return *array_ == *other.array_;
     for (const auto& x : *object_) {

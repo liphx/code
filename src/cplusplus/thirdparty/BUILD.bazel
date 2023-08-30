@@ -1,0 +1,10 @@
+cc_binary(
+    name = "glog-vs-spdlog",
+    srcs = ["glog-vs-spdlog.cpp"],
+    deps = [
+        "//liph",
+        "@com_github_google_glog//:glog",
+        "@gabime_spdlog//:spdlog",
+    ],
+)
+

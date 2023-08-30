@@ -1,5 +1,5 @@
-# https://github.com/bazelbuild/bazel/releases/tag/6.1.1
-# bazel 6.2.1-homebrew
+# bazel 6.3.1-homebrew
+# Apple clang version 14.0.3 (clang-1403.0.22.14.1)
 
 build --cxxopt=-g
 build --cxxopt=-O3
@@ -9,14 +9,7 @@ build --cxxopt=-Werror
 build --cxxopt=-fdiagnostics-color
 build --cxxopt=-Wfatal-errors
 
-# build --cxxopt=-Wno-restrict
-# build --cxxopt=-Wno-non-template-friend
-# build --cxxopt=-Wno-sign-compare
-
-# build --cxxopt=-Wno-error=restrict
-# build --cxxopt=-Wno-error=non-template-friend
-# build --cxxopt=-Wno-error=sign-compare
-
-# build --cxxopt=-fsanitize=address
+build --cxxopt=-fsanitize=address
+build --linkopt=-fsanitize=address
 
 build --spawn_strategy=standalone
