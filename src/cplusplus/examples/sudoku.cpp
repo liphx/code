@@ -178,7 +178,7 @@ private:
 
 int main() {
     std::string str;
-    liph::read_file("/tmp/sudoku.txt", str);
+    (void)liph::read_file("/tmp/sudoku.txt", str);
     liph::sudoku sudoku;
     if (!sudoku.input(str)) {
         std::cerr << "Invalid input: " << str << std::endl;

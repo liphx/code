@@ -9,7 +9,7 @@ string conf_file;
 
 void get_conf() {
     string str;
-    read_file(conf_file, str);
+    if (!read_file(conf_file, str)) return;
     auto lines = split(str, "\n");
     for (auto& line : lines) {
         auto s = trim(line);
@@ -31,7 +31,7 @@ void save_conf() {
         i++;
         if (i == max_size) break;
     }
-    write_file(conf_file, ss.str());
+    (void)write_file(conf_file, ss.str());
 }
 
 void open(const string& args) {

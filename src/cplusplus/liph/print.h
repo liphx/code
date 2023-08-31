@@ -11,6 +11,8 @@
 #include <utility>
 #include <vector>
 
+#include "liph/format.h"
+
 namespace liph {
 
 template <class T1, class T2>
@@ -19,9 +21,7 @@ std::ostream& operator<<(std::ostream& o, const std::pair<T1, T2>& p) {
 }
 
 inline std::ostream& operator<<(std::ostream& o, const std::vector<bool>& vb) {
-    for (size_t i = 0; i < vb.size(); i++) {
-        o << vb[i];
-    }
+    for (size_t i = 0; i < vb.size(); i++) o << vb[i];
     return o;
 }
 
@@ -58,21 +58,6 @@ std::ostream& operator<<(std::ostream& o, const std::unordered_map<K, V>& map) {
     return o << "}";
 }
 
-template <class T>
-T from_string(const std::string& s) {
-    std::istringstream is(s);
-    T t;
-    is >> t;
-    return t;
-}
-
-template <class T>
-std::string to_string(const T& t) {
-    std::ostringstream os;
-    os << t;
-    return os.str();
-}
-
 inline void print() { std::cout << std::endl; }
 
 template <class T>
@@ -82,13 +67,8 @@ void print(T&& t) {
 
 template <class T, class... Args>
 void print(T&& head, Args&&...args) {
-    std::cout << head << " ";
+    std::cout << head << ' ';
     print(args...);
-}
-
-template <class... Args>
-void Print(const std::string& filename, int line, Args&&...args) {
-    print("[" + filename + ":" + std::to_string(line) + "]", args...);
 }
 
 }  // namespace liph
@@ -96,10 +76,12 @@ void Print(const std::string& filename, int line, Args&&...args) {
 #ifndef __FILENAME__
 #define __FILENAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
 #endif
-/* #define P(...) liph::Print(__FILENAME__, __LINE__, __VA_ARGS__) */
-#define D(x) liph::Print(__FILENAME__, __LINE__, #x, "=", x)
-/* #define T(x)                                 \ */
-/*     liph::Print(__FILENAME__, __LINE__, #x); \ */
-/*     x */
+
+#define SOURCE_LOCATION_FORMAT liph::format("[{}:{}]", __FILENAME__, __LINE__)
+#define PRINT(...) liph::print(SOURCE_LOCATION_FORMAT, __VA_ARGS__)
+#define DEBUG(x) liph::print(SOURCE_LOCATION_FORMAT, #x, "=", x)
+#define TRACE(x)                             \
+    liph::print(SOURCE_LOCATION_FORMAT, #x); \
+    x
 
 #endif  // LIPH_PRINT_H_

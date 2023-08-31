@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <list>
-#include <numeric>
-
 #include "liph/liph.h"
 using namespace std;
 
@@ -131,16 +127,14 @@ void func4() {
     cout << endl;
     //=>caa aca aac
 
-#if __cplusplus < 201402L
     // 随机排列
     string s3("abcd");
     for (int i = 0; i < 4; i++) {
-        random_shuffle(s3.begin(), s3.end());
+        shuffle(s3.begin(), s3.end(), std::mt19937{std::random_device{}()});
         cout << s3 << " ";
     }
     cout << endl;
     //=>adbc adbc bcda bcda
-#endif
 
     // 划分
     vector<int> num{10, 5, 7, 13, 6, 24, 5};

@@ -1,6 +1,7 @@
 #ifndef LIPH_STRING_H_
 #define LIPH_STRING_H_
 
+#include <sstream>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -20,6 +21,21 @@ std::vector<std::string> split(const std::string& s, const std::string& delimite
 
 std::string basename(std::string_view path);
 std::string dirname(std::string_view path);
+
+template <class T>
+T from_string(const std::string& s) {
+    std::istringstream is(s);
+    T t;
+    is >> t;
+    return t;
+}
+
+template <class T>
+std::string to_string(const T& t) {
+    std::ostringstream os;
+    os << t;
+    return os.str();
+}
 
 }  // namespace liph
 

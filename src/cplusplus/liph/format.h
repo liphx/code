@@ -3,7 +3,6 @@
 
 #include <stdexcept>
 
-#include "liph/print.h"
 #include "liph/string.h"
 
 #if __has_cpp_attribute(__cpp_lib_format)

@@ -78,6 +78,21 @@ private:
 inline thread_local unsigned long hierarchical_mutex::this_thread_hierarchy_value(
         std::numeric_limits<unsigned long>::max());
 
+template <class Mutex>
+class unique_unlock {
+public:
+    explicit unique_unlock(std::unique_lock<Mutex>& lock) : lock_(lock) { lock_.unlock(); }
+    ~unique_unlock() { lock_.lock(); }
+
+    unique_unlock(const unique_unlock&) = delete;
+    unique_unlock(unique_unlock&&) = delete;
+    unique_unlock& operator=(const unique_unlock&) = delete;
+    unique_unlock& operator=(unique_unlock&&) = delete;
+
+private:
+    std::unique_lock<Mutex>& lock_;
+};
+
 }  // namespace liph
 
 #endif  // LIPH_CONCURRENCY_LOCK_H_

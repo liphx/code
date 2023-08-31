@@ -138,15 +138,15 @@ std::unordered_map<uint64_t, std::string> db::dump() {
 
 int main() {
     liph::db db("tmp.db");
-    D(db.init());
+    DEBUG(db.init());
     liph::print(db.dump());
     std::vector<std::string> vc{"abc001", "bcd002", "cdef0003"};
-    for (auto i = 0U; i < vc.size(); i++) D(db.put(i, vc[i]));
+    for (auto i = 0U; i < vc.size(); i++) DEBUG(db.put(i, vc[i]));
     liph::print(db.dump());
-    D(db.put(0, "000"));
+    DEBUG(db.put(0, "000"));
     liph::print(db.dump());
-    D(db.del(0));
+    DEBUG(db.del(0));
     liph::print(db.dump());
-    D(db.del(0));
+    DEBUG(db.del(0));
     std::filesystem::remove("tmp.db");
 }

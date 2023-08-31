@@ -208,16 +208,16 @@ private:
 
 int main() {
     liph::store::db db("/tmp/store");
-    D(db.init());
+    DEBUG(db.init());
     for (int i = 100; i < 1000; i++) {
         if (!db.put("key_" + std::to_string(i), "value_" + std::to_string(i))) {
             liph::print("put err");
         }
     }
     std::string str;
-    D(db.get("key_666", str));
-    D(str);
+    DEBUG(db.get("key_666", str));
+    DEBUG(str);
 
     db.del("key_555");
-    D(db.get("key_555", str));
+    DEBUG(db.get("key_555", str));
 }

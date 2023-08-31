@@ -4,6 +4,8 @@
 #include <queue>
 #include <thread>
 
+#include "liph/concurrency/lock.h"
+
 namespace liph {
 
 class timer {
@@ -16,16 +18,16 @@ public:
         thread_ = std::thread([&]() {
             int current_time = 0;
             while (running_) {
-                lock_.lock();
+                std::unique_lock lock(lock_);
                 if (queue_.empty()) {
-                    lock_.unlock();
+                    unique_unlock unlock(lock);
                     std::this_thread::sleep_for(std::chrono::seconds(1));
                     continue;
                 }
 
                 job j = std::move(queue_.top());
                 queue_.pop();
-                lock_.unlock();
+                unique_unlock unlock(lock);
 
                 int sleep_time = j.next_time - current_time;
                 if (sleep_time > 0) std::this_thread::sleep_for(std::chrono::seconds(sleep_time));
@@ -60,7 +62,7 @@ private:
     };
 
     void add(job j) {
-        std::lock_guard guard(lock_);
+        std::unique_lock lock(lock_);
         queue_.push(std::move(j));
     }
 

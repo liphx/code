@@ -37,6 +37,6 @@ int main(int argc, char **argv) {
     if (flag_out.empty()) {
         liph::print(res.to_string(4, true));
     } else {
-        liph::write_file(flag_out, res.to_string(4, true));
+        (void)liph::write_file(flag_out, res.to_string(4, true));
     }
 }
