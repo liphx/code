@@ -60,8 +60,10 @@ std::ostream& operator<<(std::ostream& o, const std::unordered_map<K, V>& map) {
 
 inline void print() { std::cout << std::endl; }
 
+inline void print(bool b) { std::cout << (b ? "true" : "false") << std::endl; }
+
 template <class T>
-void print(T&& t) {
+void print(const T& t) {
     std::cout << t << std::endl;
 }
 

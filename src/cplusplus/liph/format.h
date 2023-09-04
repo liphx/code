@@ -29,17 +29,17 @@ std::string format(std::string fmt, const Args&...args) {
             state = 1;
         } else if (state == 0 && fmt[i] == '}') {
             state = 2;
-        } else if (state == 1 && fmt[i] == '{') {  // {{ 转义 {
+        } else if (state == 1 && fmt[i] == '{') {  // {{ for {
             state = 0;
             ret += '{';
-        } else if (state == 2 && fmt[i] == '}') {  // }} 转义 }
+        } else if (state == 2 && fmt[i] == '}') {  // }} for }
             state = 0;
             ret += '}';
-        } else if (state == 1 && fmt[i] != '{' && fmt[i] != '}') {  // 非法
+        } else if (state == 1 && fmt[i] != '{' && fmt[i] != '}') {  // Illegal
             throw std::runtime_error("Illegal format string");
-        } else if (state == 2 && fmt[i] != '}') {  // 非法
+        } else if (state == 2 && fmt[i] != '}') {  // Illegal
             throw std::runtime_error("Illegal format string");
-        } else if (state == 1 && fmt[i] == '}') {  // 替换域
+        } else if (state == 1 && fmt[i] == '}') {  // replacement field
             state = 0;
             int i = 0;
             (void)std::initializer_list<int>{(

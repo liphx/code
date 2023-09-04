@@ -1,5 +1,5 @@
 #define ABCD 2
-#include <stdio.h>
+#include <cstdio>
 
 #define ABCD 2
 // #define ABCD 1  // Wmacro-redefined

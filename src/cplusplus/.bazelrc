@@ -9,7 +9,7 @@ build --cxxopt=-Werror
 build --cxxopt=-fdiagnostics-color
 build --cxxopt=-Wfatal-errors
 
-build --cxxopt=-fsanitize=address
-build --linkopt=-fsanitize=address
+# build --cxxopt=-fsanitize=address
+# build --linkopt=-fsanitize=address
 
 build --spawn_strategy=standalone

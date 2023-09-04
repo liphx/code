@@ -19,9 +19,9 @@
 
 ```
 project/
-├── WORKSPACE.bazel
-├── BUILD.bazel
-└── main.cpp
+|-- WORKSPACE.bazel
+|-- BUILD.bazel
+`-- main.cpp
 ```
 
 `WORKSPACE.bazel`

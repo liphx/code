@@ -39,7 +39,7 @@ inline int julianday(int year, int month, int day) {
     return day + (153 * m + 2) / 5 + y * 365 + y / 4 - y / 100 + y / 400 - 32045;
 }
 
-// Tomohiko Sakamoto’s Algorithm
+// Tomohiko Sakamoto's Algorithm
 inline int day_of_the_week(int y, int m, int d) {
     static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};  // array with leading number of days values
     y -= m < 3;                                             // if month is less than 3 reduce year by 1

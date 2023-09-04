@@ -6,55 +6,52 @@ void *operator new(size_t sz) {
     return malloc(sz);
 }
 
-void operator delete(void *m) noexcept {
+void operator delete(void *ptr) noexcept {
     puts("::operator delete");
-    free(m);
+    free(ptr);
 }
 
-class A {
-public:
+struct A {
     A() { puts("A()"); }
     ~A() { puts("~A()"); }
 };
 
-// 为一个类重载new和delete时，尽管不必显示地使用static，但实际上仍是在创建static成员函数
-// 如果一个类重载了 operator new() 和 operator delete()
-// 但要创建这个类的一个数组对象时，全局new将会被调用
-class B {
-public:
+struct B {
     B() { puts("B()"); }
     ~B() { puts("~B()"); }
+
+    // static can be omitted
     void *operator new(size_t sz) {
         puts("B::operator new");
         return malloc(sz);
     }
-    void operator delete(void *m) {
+
+    void operator delete(void *ptr) {
         puts("B::operator delete");
-        free(m);
+        free(ptr);
     }
 };
 
-// 可以通过重载 operator new[], operator delete[] 来控制对象数组的内存分配
-class C {
-public:
+struct C {
     C() { puts("C()"); }
     ~C() { puts("~C()"); }
+
     void *operator new[](size_t sz) {
         puts("C::operator new[]");
         return malloc(sz);
     }
-    void operator delete[](void *m) {
+    void operator delete[](void *ptr) {
         puts("C::operator delete[]");
-        free(m);
+        free(ptr);
     }
 };
 
-// 定位new
-class D {
-public:
+struct D {
     int i;
     D(int ii = 0) : i(ii) { printf("D(), i = %d\n", i); }
     ~D() { printf("~D(), i = %d\n", i); }
+
+    // Placement new
     void *operator new(size_t, void *loc) {
         puts("D::operator new");
         return loc;
@@ -62,24 +59,43 @@ public:
 };
 
 int main() {
-    int *pi = new int;  // ::operator new
+    int *pi = new int;
     delete pi;
 
-    A *pa = new A;  // ::operator new
+    A *pa = new A;
     delete pa;
+    // ::operator new
+    // A()
+    // ~A()
+    // ::operator delete
 
-    B *pb = new B;  // B::operator new
+    B *pb = new B;
     delete pb;
+    // B::operator new
+    // B()
+    // ~B()
+    // B::operator delete
 
-    B *pbs = new B[1];  // ::operator new
+    B *pbs = new B[1];
     delete[] pbs;
+    // B()
+    // ~B()
 
-    C *pcs = new C[1];  // C::operator new[]
+    C *pcs = new C[1];
     delete[] pcs;
+    // C::operator new[]
+    // C()
+    // ~C()
+    // C::operator delete[]
 
     D d1(1);
     D *pd1 = &d1;
     (void)new (pd1) D(2);
     printf("i = %d\n", d1.i);
-    // 只析构了一次
+    // D(), i = 1
+    // D::operator new
+    // D(), i = 2
+    // i = 2
+    // ~D(), i = 2 (destruct once)
 }
+
