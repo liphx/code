@@ -3,3 +3,5 @@ bazel-cplusplus
 bazel-out
 bazel-testlogs
 *.log
+*.pb.cc
+*.pb.h

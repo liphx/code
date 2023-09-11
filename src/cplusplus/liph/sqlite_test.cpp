@@ -13,7 +13,7 @@ TEST(sqlite, db) {
     const char *db_path = "./.test.db";
     sqlite db(db_path);
     int ret = SQLITE_OK;
-    ret |= db.execute("create table IF NOT EXISTS t(aaa string, bbb int, ccc string)");
+    ret |= db.execute("create table IF NOT EXISTS t(aaa text, bbb int, ccc text)");
     ret |= db.execute("insert into t values('kkk', 123, 'hello')");
     ret |= db.execute("insert into t values('liph', -98, 'cc')");
     ret |= db.execute("insert into t(aaa) values('okk')");
@@ -28,7 +28,7 @@ TEST(sqlite, db) {
     }
 
     LOG << "PreparedStatement";
-    PreparedStatement st(db, "select * from t");
+    prepared_statement st(db, "select * from t");
     LOG << "aaa\tbbb";
     LOG << "===\t===";
     while (st.step() == SQLITE_ROW) {

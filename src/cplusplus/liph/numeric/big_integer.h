@@ -45,4 +45,9 @@ private:
 
 }  // namespace liph
 
+inline liph::big_integer operator""_bi(const char *str, std::size_t size) {
+    liph::big_integer bi(std::string(str, size));
+    return bi;
+}
+
 #endif  // LIPH_NUMERIC_BIG_INTEGER_H_

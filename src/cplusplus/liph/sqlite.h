@@ -30,9 +30,13 @@ public:
 
     bool open(const std::string& filename) { return open(filename.c_str()); }
 
+    bool is_open() const { return db_ != nullptr; }
+
     ~sqlite() {
-        sqlite3_close(db_);
-        db_ = nullptr;
+        if (is_open()) {
+            sqlite3_close(db_);
+            db_ = nullptr;
+        }
     }
 
     int execute(const char *sql) { return sqlite3_exec(db_, sql, nullptr, nullptr, nullptr); }
@@ -83,18 +87,20 @@ private:
     sqlite3 *db_{nullptr};
 };
 
-class PreparedStatement {
+class prepared_statement {
 public:
-    PreparedStatement(sqlite& db, const char *sql) : st(nullptr) {
+    prepared_statement(sqlite& db, const char *sql) : st(nullptr) {
         int ret = sqlite3_prepare_v2(db.db(), sql, -1, &st, nullptr);
         if (ret != SQLITE_OK) {
             throw std::runtime_error(sqlite3_errmsg(db.db()));
         }
     }
 
-    ~PreparedStatement() {
-        sqlite3_finalize(st);
-        st = nullptr;
+    ~prepared_statement() {
+        if (st) {
+            sqlite3_finalize(st);
+            st = nullptr;
+        }
     }
 
     int reset() { return sqlite3_reset(st); }
@@ -104,7 +110,7 @@ public:
     std::string column_text(int index) { return (char *)sqlite3_column_text(st, index); }
 
 private:
-    sqlite3_stmt *st;
+    sqlite3_stmt *st{nullptr};
 };
 
 }  // namespace liph
