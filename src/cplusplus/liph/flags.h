@@ -14,10 +14,10 @@ class flags {
 public:
     flags() = default;
 
-    bool register_bool_flag(const std::string& name, bool default_value = false);
-    bool register_int32_flag(const std::string& name, int32_t default_value = 0);
-    bool register_double_flag(const std::string& name, double default_value = 0.0);
-    bool register_string_flag(const std::string& name, std::string default_value = "");
+    bool register_bool_flag(const std::string& name, bool default_value = false, std::string help_message = "");
+    bool register_int32_flag(const std::string& name, int32_t default_value = 0, std::string help_message = "");
+    bool register_double_flag(const std::string& name, double default_value = 0.0, std::string help_message = "");
+    bool register_string_flag(const std::string& name, std::string default_value = "", std::string help_message = "");
 
     // parse command line and remove registered flags
     bool parse_flags(int argc, char ***argv);
@@ -36,6 +36,7 @@ private:
     struct flag_info {
         flag_type type;
         size_t idx;
+        std::string help_message;
     };
     std::unordered_map<std::string, flag_info> registered_flags_;
     std::vector<bool> values_bool_;

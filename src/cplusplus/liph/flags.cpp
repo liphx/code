@@ -4,6 +4,8 @@
 #include <cassert>
 #include <stdexcept>
 
+#include "liph/format.h"
+
 namespace liph {
 
 namespace {
@@ -14,30 +16,30 @@ bool check_flag_name(const std::string& name) {
 
 }  // namespace
 
-bool flags::register_bool_flag(const std::string& name, bool default_value) {
+bool flags::register_bool_flag(const std::string& name, bool default_value, std::string help_message) {
     if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
-    registered_flags_[name] = {flag_bool, values_bool_.size()};
+    registered_flags_[name] = {flag_bool, values_bool_.size(), std::move(help_message)};
     values_bool_.emplace_back(default_value);
     return true;
 }
 
-bool flags::register_int32_flag(const std::string& name, int32_t default_value) {
+bool flags::register_int32_flag(const std::string& name, int32_t default_value, std::string help_message) {
     if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
-    registered_flags_[name] = {flag_int32, values_int32_.size()};
+    registered_flags_[name] = {flag_int32, values_int32_.size(), std::move(help_message)};
     values_int32_.emplace_back(default_value);
     return true;
 }
 
-bool flags::register_double_flag(const std::string& name, double default_value) {
+bool flags::register_double_flag(const std::string& name, double default_value, std::string help_message) {
     if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
-    registered_flags_[name] = {flag_double, values_double_.size()};
+    registered_flags_[name] = {flag_double, values_double_.size(), std::move(help_message)};
     values_double_.emplace_back(default_value);
     return true;
 }
 
-bool flags::register_string_flag(const std::string& name, std::string default_value) {
+bool flags::register_string_flag(const std::string& name, std::string default_value, std::string help_message) {
     if (!check_flag_name(name) || registered_flags_.contains(name)) return false;
-    registered_flags_[name] = {flag_string, values_string_.size()};
+    registered_flags_[name] = {flag_string, values_string_.size(), std::move(help_message)};
     values_string_.emplace_back(std::move(default_value));
     return true;
 }
@@ -70,7 +72,7 @@ bool flags::parse_flags(int argc, char ***argv) {
         if (name.empty()) return false;
         auto info_it = registered_flags_.find(name);
         if (info_it == registered_flags_.end()) return false;
-        const auto& [type, idx] = info_it->second;
+        const auto& [type, idx, _] = info_it->second;
         ++it;
         if (it == args.end()) return false;
         std::string value = *it;
@@ -138,7 +140,7 @@ std::string& flags::string_ref(const std::string& name) {
 std::string flags::help() const {
     std::string msg = "flags:\n";
     for (const auto& [name, info] : registered_flags_) {
-        msg += "  --" + name + ": ";
+        msg += format("  --{} ({}): ", name, info.help_message);
         switch (info.type) {
         case flag_bool:
             msg += values_bool_[info.idx] ? "true" : "false";

@@ -1,6 +1,7 @@
 #include "liph/flags.h"
 
 #include "gtest/gtest.h"
+#include "liph/logging.h"
 
 TEST(flags, flags) {
     std::vector<const char *> args{
@@ -20,4 +21,11 @@ TEST(flags, flags) {
 
     EXPECT_THROW(flags.string_ref("enable"), std::exception);
     EXPECT_THROW(flags.string_ref("notfound"), std::exception);
+}
+
+TEST(flags, help_message) {
+    liph::flags flags;
+    flags.register_bool_flag("enable", true, "aaa");
+    flags.register_string_flag("name", "liph", "bbb");
+    LOG << flags.help();
 }

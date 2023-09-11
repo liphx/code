@@ -55,7 +55,7 @@ function install_software() {
         apt upgrade -y
         apt install -y $software_list
     elif which yum > /dev/null 2>&1; then
-        apt install -y $software_list
+        yum install -y $software_list
     elif which zypper > /dev/null 2>&1; then
         zypper install -y $software_list
     else
