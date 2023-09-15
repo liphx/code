@@ -15,8 +15,7 @@ std::string FLAGS_host;
 std::vector<liph::sqlite> db;
 
 void init_db() {
-    std::vector<std::string> paths{
-            FLAGS_db_path + "/liph.db", FLAGS_db_path + "/jasmine.db", FLAGS_db_path + "/library.db"};
+    std::vector<std::string> paths{FLAGS_db_path + "/liph.db", FLAGS_db_path + "/jasmine.db", FLAGS_db_path + "/we.db"};
     db.resize(paths.size());
     for (auto i = 0u; i < paths.size(); ++i) {
         // fail if not found
@@ -63,7 +62,7 @@ void MyMovie(const httplib::Request& req, httplib::Response& res) {
     }
 
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
+    // res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 void MyBook(const httplib::Request& req, httplib::Response& res) {
@@ -90,7 +89,6 @@ void MyBook(const httplib::Request& req, httplib::Response& res) {
     }
 
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 void MyLibrary(const httplib::Request&, httplib::Response& res) {
@@ -102,7 +100,6 @@ void MyLibrary(const httplib::Request&, httplib::Response& res) {
     result = db[2].query(sql.c_str());
     ::to_json(result, ret["data"]);
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 void AddMovie(const httplib::Request& req, httplib::Response& res) {
@@ -137,7 +134,6 @@ void AddMovie(const httplib::Request& req, httplib::Response& res) {
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 void AddBook(const httplib::Request& req, httplib::Response& res) {
@@ -170,7 +166,6 @@ void AddBook(const httplib::Request& req, httplib::Response& res) {
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 void AddLibrary(const httplib::Request& req, httplib::Response& res) {
@@ -205,13 +200,12 @@ void AddLibrary(const httplib::Request& req, httplib::Response& res) {
 
     ret["status"] = db_ret == SQLITE_OK;
     res.set_content(ret.to_string(), "application/json");
-    res.set_header("Access-Control-Allow-Origin", "*");
 }
 
 int main(int argc, char *argv[]) {
     liph::flags flags;
     flags.register_string_flag("host", "0.0.0.0");
-    flags.register_int32_flag("port", 8000);
+    flags.register_int32_flag("port", 9000);
     flags.register_string_flag("db_path", "");
     if (!flags.parse_flags(argc, &argv)) {
         std::cerr << flags.help() << std::endl;

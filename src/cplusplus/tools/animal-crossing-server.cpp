@@ -228,6 +228,7 @@ void MyHalobios(const httplib::Request& req, httplib::Response& res) {
     } while (0)
 
 void AllFish(const httplib::Request& req, httplib::Response& res) {
+    LOG << "GET /api/all_fish";
     std::string user;
     if (req.has_param("user")) {
         user = req.get_param_value("user");
@@ -360,17 +361,11 @@ void HalobiosDetail(const httplib::Request& req, httplib::Response& res) {
     res.set_content(ret.to_string(), "application/json");
 }
 
-void PrepareData() {
-    fs::create_directory("fish");
-    fs::create_directory("insect");
-    fs::create_directory("halobios");
-}
-
 int main(int argc, char *argv[]) {
     liph::flags flags;
     flags.register_string_flag("host", "0.0.0.0");
-    flags.register_int32_flag("port", 8000);
-    flags.register_string_flag("data_path", "");
+    flags.register_int32_flag("port", 9001);
+    flags.register_string_flag("data_path", "/tmp");
     if (!flags.parse_flags(argc, &argv)) {
         std::cerr << flags.help() << std::endl;
         return 1;
@@ -383,8 +378,6 @@ int main(int argc, char *argv[]) {
         std::cerr << flags.help() << std::endl;
         return 1;
     }
-
-    PrepareData();
 
     httplib::Server svr;
 
@@ -399,5 +392,4 @@ int main(int argc, char *argv[]) {
     svr.Post("/api/halobios_detail", HalobiosDetail);
 
     svr.listen(FLAGS_host.c_str(), FLAGS_port);
-    return 0;
 }

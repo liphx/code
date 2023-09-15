@@ -25,9 +25,21 @@ using file_ptr = std::unique_ptr<FILE, decltype([](FILE *f) {
     if (f) fclose(f);
 })>;
 
-inline file_ptr fopen(char const *filename, char const *mode) {
+inline file_ptr fopen(const char *filename, char const *mode) {
     FILE *f = ::fopen(filename, mode);
     return file_ptr(f);
+}
+
+// mkdir, mkdir -p
+// return true if directory exists finally
+inline bool mkdir(const std::filesystem::path& path) {
+    std::error_code ec;
+    return std::filesystem::create_directory(path, ec);
+}
+
+inline bool mkdirp(const std::filesystem::path& path) {
+    std::error_code ec;
+    return std::filesystem::create_directories(path, ec);
 }
 
 }  // namespace liph

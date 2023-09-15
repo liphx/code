@@ -6,10 +6,13 @@ import requests
 
 # list repos from user or organization
 # type: 'users', 'orgs'
-def getRepos(name, type = 'users'):
-    params = { 'accept': 'application/vnd.github.v3+json', 'per_page': 100, 'page': 1 }
+
+
+def getRepos(name, type='users'):
+    params = {'accept': 'application/vnd.github.v3+json',
+              'per_page': 100, 'page': 1}
     url = f'https://api.github.com/{type}/{name}/repos'
-    r = requests.get(url, data = params)
+    r = requests.get(url, data=params)
     if r.status_code != 200:
         print(f'get {url} fail, status_code: {r.status_code}')
         return None
@@ -20,7 +23,9 @@ def getRepos(name, type = 'users'):
     return repos
 
 # get url from full name like liphx/example
-def getUrl(repo, type = 'https'):
+
+
+def getUrl(repo, type='https'):
     if type == 'https':
         return f'https://github.com/{repo}.git'
     elif type == 'ssh' or type == 'git':
@@ -29,11 +34,15 @@ def getUrl(repo, type = 'https'):
         return None
 
 # get local dir from full name like liphx/example
+
+
 def getDir(repo):
     return repo.split('/')[-1]
 
+
 def clone(url):
     os.system(f'git clone {url}')
+
 
 def main():
     repos = getRepos('liphx')
@@ -48,6 +57,7 @@ def main():
             print(f'repo {repo} exists')
         else:
             clone(url)
+
 
 if __name__ == '__main__':
     main()

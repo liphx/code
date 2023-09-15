@@ -33,8 +33,10 @@ def get_isbn(item):
     soup = BeautifulSoup(html, "html.parser")
     return soup.select("#info")[0].get_text().strip().split('ISBN:')[-1].strip()
 
+
 def add_items():
     return open("list.txt", "r").read().split('\n')
+
 
 def main():
     items = []
@@ -42,7 +44,9 @@ def main():
     print(items)
     for item in items:
         if item != "":
-            print(f'update book set isbn = "{get_isbn(item)}" where douban_item = "{item}";')
+            print(
+                f'update book set isbn = "{get_isbn(item)}" where douban_item = "{item}";')
             time.sleep(5)
+
 
 main()

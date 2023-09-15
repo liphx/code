@@ -1,6 +1,6 @@
+from common import *
 from glob import glob
 import time
-import requests
 from bs4 import BeautifulSoup
 import json
 
@@ -13,24 +13,12 @@ headers = {
 }
 
 
-def getUrl(url, try_times=5):
-    if try_times == 0:
-        print(f'Error: get url {url} fail')
-        return None
-    try:
-        r = requests.get(url, headers=headers)
-        return r
-    except:
-        time.sleep(1)
-        return getUrl(url, try_times - 1)
-
-
 def fetch(user, lang=True):
     if (lang == False):
         global headers
         headers = {}
     url = f'https://www.gog.com/u/{user}/games/stats?sort=total_playtime&order=desc&page=1'
-    r = getUrl(url)
+    r = fetch_url(url, headers=headers)
     if r is None:
         return
     items = r.json()['_embedded']['items']

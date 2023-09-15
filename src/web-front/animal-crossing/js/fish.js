@@ -11,7 +11,7 @@
     }
 
     function fish_detail(id) {
-        $.post("http://127.0.0.1:8001/api/fish_detail", JSON.stringify({ 'id': id }), function (data, status) {
+        $.post("/api/fish_detail", JSON.stringify({ 'id': id }), function (data, status) {
             console.log(data);
             let message = data.name;
             message += "\n活跃时间: " + data.active_time + "月";
@@ -23,7 +23,7 @@
     let all_fish;
     let inputs = [];
 
-    $.get("http://127.0.0.1:8001/api/all_fish", { 'user': user }, function (data, status) {
+    $.get("/api/all_fish", { 'user': user }, function (data, status) {
         let h1 = $("<h1>动森北半球鱼类图鉴</h1>");
         $("#fish").append(h1);
 
@@ -100,7 +100,7 @@
             if (change_add == false && change_del == false) {
                 return;
             }
-            $.post("http://127.0.0.1:8001/api/my_fish", JSON.stringify({ "user": user, "data": JSON.stringify(all_fish) }),
+            $.post("/api/my_fish", JSON.stringify({ "user": user, "data": JSON.stringify(all_fish) }),
                 function (data, status) {
                     console.log(status);
                 }

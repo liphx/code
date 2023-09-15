@@ -12,6 +12,8 @@ output = open('out.json', 'w', encoding='utf-8')
 
 
 count = 0
+
+
 def getUrl(url, try_times=5):
     if try_times == 0:
         print(f'Error: get url {url} fail')

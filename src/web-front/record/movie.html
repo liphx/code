@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
-    <script src="js/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/common.css">
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="common.css">
     <title>movie</title>
 </head>
 
@@ -65,7 +65,7 @@
                     alert('empty');
                     return;
                 }
-                $.post("http://127.0.0.1:8000/api/add_movie",
+                $.post("/api/add_movie",
                     JSON.stringify({
                         "title": title,
                         "year": year,
@@ -98,7 +98,7 @@
         <script>
             function get_all_movie() {
                 $("#tab").empty();
-                $.post("http://127.0.0.1:8000/api/my_movie",
+                $.post("/api/my_movie",
                 JSON.stringify({
                         "user": $("#user").val()
                     }),

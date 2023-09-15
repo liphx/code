@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8" />
-    <script src="js/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/common.css">
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="common.css">
     <title>book</title>
 </head>
 
@@ -50,7 +50,7 @@
                     alert('empty');
                     return;
                 }
-                $.post("http://127.0.0.1:8000/api/add_book",
+                $.post("/api/add_book",
                     JSON.stringify({
                         "title": title,
                         "rating": rating,
@@ -79,7 +79,7 @@
         <script>
             function get_all_book() {
                 $("#tab").empty();
-                $.post("http://127.0.0.1:8000/api/my_book",
+                $.post("/api/my_book",
                 JSON.stringify({
                         "user": $("#user").val()
                     }),

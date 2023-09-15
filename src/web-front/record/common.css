@@ -8,13 +8,13 @@ body {
     padding: 0;
     width: 70%;
     position: absolute;
-    left:10%;
+    left: 10%;
     padding-left: 5%; padding-right: 5%;
     background-color: #ffffff;
 }
 
 p, ul {
-    font-family: "Open Sans", "Noto Sans Mono", Consolas, "Courier New", "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+    font-family: "Open Sans", "Noto Sans Mono", Consolas, "Courier New";
 }
 
 h1 {
@@ -38,11 +38,11 @@ pre {
     padding: 20px 15px 20px 15px;
     border-style: none;
     background-color: #f0f0f0f0;
-    font-family:'Consolas', 'Noto Sans Mono', 'Courier New', Courier, monospace, serif;
+    font-family: 'Consolas', 'Noto Sans Mono', 'Courier New', Courier, monospace, serif;
 }
 
 code {
-    font-family:'Consolas', 'Noto Sans Mono', 'Courier New', Courier, monospace, serif;
+    font-family: 'Consolas', 'Noto Sans Mono', 'Courier New', Courier, monospace, serif;
 }
 
 table {

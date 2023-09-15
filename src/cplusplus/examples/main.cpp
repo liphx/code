@@ -1,20 +1,8 @@
-#include <iostream>
+#include "liph/liph.h"
 
-struct A {
-    int *& ref;
-    A(int *& i) : ref(i) {}
-    ~A() { std::cout << *ref << std::endl; }
-};
-
-int main(int argc, char **) {
-    int i = 9;
-    int *p = &i;
-    A a(p);
-    if (argc == 1) {
-        std::cout << "1" << std::endl;
-        return 0;
-    }
-
-    std::cout << "2" << std::endl;
-    return 0;
+int main() {
+    PRINT(liph::mkdir("a"));
+    PRINT(liph::mkdir("b/c"));
+    PRINT(liph::mkdirp("d"));
+    PRINT(liph::mkdirp("e/f"));
 }

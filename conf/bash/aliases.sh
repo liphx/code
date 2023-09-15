@@ -78,3 +78,4 @@ alias copy='xclip -sel clip'
 alias clear_file=': | tee'
 
 alias json='cat | python3 -m json.tool --no-ensure-ascii'
+alias httpserver='python3 -m http.server'
