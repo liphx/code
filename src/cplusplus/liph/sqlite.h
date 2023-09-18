@@ -1,11 +1,11 @@
 #ifndef LIPH_SQLITE_H_
 #define LIPH_SQLITE_H_
 
-#include <sqlite3.h>
-
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "thirdparty/sqlite-3.43.1/sqlite3.h"
 
 namespace liph {
 

@@ -8,8 +8,10 @@ cc_library(
         ],
     ),
     hdrs = glob(["**/*.h"]),
+    deps = [
+        "//thirdparty/sqlite-3.43.1:libsqlite3",
+    ],
     linkopts = [
-        "-lsqlite3",
         "-lcryptopp",
     ],
     visibility = ["//visibility:public"],

@@ -4,7 +4,11 @@ function mkcd() {
     cd "${dir}";
 }
 
-function format-unix() {
+function mktmp() {
+    mkcd "tmp-`date "+%Y%m%d%H%M%S"`"
+}
+
+function format_unix() {
     for file; do
         if [ -f $file ]; then
             dos2unix "$file"
@@ -45,4 +49,40 @@ function when() {
         now
         tput rc
     done &
+}
+
+function extension_name {
+    name=$(basename $1)
+    printf "%s\n" "${name##*.}"
+}
+
+function format() {
+    for file; do
+        extension=$(extension_name $file)
+        case $extension in
+            h|c|cc|cpp) clang-format -i $file;;
+            py) autopep8 -i $file;;
+            go) gofmt -w $file;;
+            *) echo "no format tools for $file";;
+        esac
+    done
+}
+
+function compress() {
+    pack=$1
+    dir=$2
+    case $pack in
+        *.zip) zip -r $pack $dir;;
+        *.tar.gz|*.tgz) tar cjvf $pack $dir;;
+        *) echo "no compress tools for $pack";;
+    esac
+}
+
+function uncompress() {
+    file=$1
+    case $file in
+        *.zip) unzip $file;;
+        *.tar.gz|*.tgz) tar xvf $file;;
+        *) echo "no uncompress tools for $file"
+    esac
 }
