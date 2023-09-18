@@ -5,3 +5,4 @@ bazel-testlogs
 *.log
 *.pb.cc
 *.pb.h
+nohup.out

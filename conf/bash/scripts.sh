@@ -82,7 +82,7 @@ function uncompress() {
     file=$1
     case $file in
         *.zip) unzip $file;;
-        *.tar.gz|*.tgz) tar xvf $file;;
+        *.tar.gz|*.tgz|*.tar.bz2) tar xvf $file;;
         *) echo "no uncompress tools for $file"
     esac
 }

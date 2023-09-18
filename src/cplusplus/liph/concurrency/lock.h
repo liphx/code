@@ -2,6 +2,7 @@
 #define LIPH_CONCURRENCY_LOCK_H_
 
 #include <atomic>
+#include <mutex>
 #include <thread>
 
 // spinlock

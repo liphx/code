@@ -1,6 +1,7 @@
 #ifndef LIPH_TIMER_H_
 #define LIPH_TIMER_H_
 
+#include <functional>
 #include <queue>
 #include <thread>
 
