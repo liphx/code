@@ -26,13 +26,6 @@ git_repository(
 )
 
 git_repository(
-    name = "yhirose_cpp_httplib",
-    remote = "https://github.com/yhirose/cpp-httplib.git",
-    tag = "v0.12.2",
-    build_file = "//bazel/third_party:yhirose_cpp_httplib.BUILD",
-)
-
-git_repository(
     name = "nlohmann_json",
     remote = "https://github.com/nlohmann/json.git",
     commit = "6af826d0bdb55e4b69e3ad817576745335f243ca",
@@ -43,7 +36,7 @@ git_repository(
     name = "gabime_spdlog",
     remote = "https://github.com/gabime/spdlog.git",
     tag = "v1.11.0",
-    build_file = "//bazel/third_party:gabime_spdlog.BUILD",
+    build_file = "//bazel/thirdparty:gabime_spdlog.BUILD",
 )
 
 git_repository(

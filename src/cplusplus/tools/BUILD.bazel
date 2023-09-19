@@ -18,7 +18,7 @@ cc_binary(
     srcs = ["record-server.cpp"],
     deps = [
         "//liph",
-        "@yhirose_cpp_httplib//:httplib",
+        "//thirdparty/httplib-0.14.0:httplib",
     ],
 )
 
@@ -27,6 +27,6 @@ cc_binary(
     srcs = ["animal-crossing-server.cpp"],
     deps = [
         "//liph",
-        "@yhirose_cpp_httplib//:httplib",
+        "//thirdparty/httplib-0.14.0:httplib",
     ],
 )

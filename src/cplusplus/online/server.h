@@ -1,8 +1,8 @@
 #ifndef ONLINE_SERVER_H_
 #define ONLINE_SERVER_H_
 
-#include "httplib.h"
 #include "liph/json.h"
+#include "thirdparty/httplib-0.14.0/httplib.h"
 
 namespace online {
 

@@ -8,6 +8,6 @@ cc_binary(
     ],
     deps = [
         "//liph",
-        "@yhirose_cpp_httplib//:httplib",
+        "//thirdparty/httplib-0.14.0:httplib",
     ],
 )
