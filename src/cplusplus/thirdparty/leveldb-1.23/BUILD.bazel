@@ -34,6 +34,7 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//thirdparty/crc32c-1.1.2:crc32c",
+        "//thirdparty/snappy-1.1.10:snappy",
     ],
 )
 
