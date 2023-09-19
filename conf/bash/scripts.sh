@@ -86,3 +86,7 @@ function uncompress() {
         *) echo "no uncompress tools for $file"
     esac
 }
+
+function terminfo() {
+    echo "`tput cols`x`tput lines` `tput longname`"
+}

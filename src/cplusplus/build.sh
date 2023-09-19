@@ -27,6 +27,7 @@ bazel build ...
 
 # test
 ./bazel-bin/liph/test
+# ./bazel-bin/liph/test --gtest_also_run_disabled_tests
 
 # check headers
 ./bazel-bin/tools/check-cpp-header liph

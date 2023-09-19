@@ -3,8 +3,23 @@ cc_binary(
     srcs = ["glog-vs-spdlog.cpp"],
     deps = [
         "//liph",
-        "@com_github_google_glog//:glog",
+        "//thirdparty/glog-0.6.0:glog",
         "@gabime_spdlog//:spdlog",
     ],
 )
 
+cc_binary(
+    name = "gflags",
+    srcs = ["gflags.cpp"],
+    deps = [
+        "//thirdparty/gflags-2.2.2:gflags",
+    ],
+)
+
+cc_binary(
+    name = "glog",
+    srcs = ["glog.cpp"],
+    deps = [
+        "//thirdparty/glog-0.6.0:glog",
+    ],
+)

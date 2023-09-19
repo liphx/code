@@ -8,18 +8,6 @@ http_archive(
 )
 
 git_repository(
-    name = "com_google_googletest",
-    remote = "https://github.com/google/googletest.git",
-    tag = "v1.13.0",
-)
-
-git_repository(
-    name = "com_github_gflags_gflags",
-    remote = "https://github.com/gflags/gflags.git",
-    tag = "v2.2.2",
-)
-
-git_repository(
     name = "com_google_benchmark",
     remote = "https://github.com/google/benchmark.git",
     tag = "v1.7.1",
@@ -46,32 +34,23 @@ git_repository(
 )
 
 http_archive(
-    name = "com_github_google_glog",
-    sha256 = "122fb6b712808ef43fbf80f75c52a21c9760683dae470154f02bddfc61135022",
-    strip_prefix = "glog-0.6.0",
-    urls = ["https://github.com/google/glog/archive/v0.6.0.zip"],
+  name = "rules_python",  # 2023-07-31T20:39:27Z
+  sha256 = "1250b59a33c591a1c4ba68c62e95fc88a84c334ec35a2e23f46cbc1b9a5a8b55",
+  strip_prefix = "rules_python-e355becc30275939d87116a4ec83dad4bb50d9e1",
+  urls = ["https://github.com/bazelbuild/rules_python/archive/e355becc30275939d87116a4ec83dad4bb50d9e1.zip"],
 )
 
-# # rules_cc defines rules for generating C++ code from Protocol Buffers.
-# http_archive(
-#     name = "rules_cc",
-#     urls = ["https://github.com/bazelbuild/rules_cc/releases/download/0.0.7/rules_cc-0.0.7.tar.gz"],
-#     sha256 = "eb389b5b74862a3d310ee9d6c63348388223b384ae4423ff0fd286fcd123942d",
-#     strip_prefix = "rules_cc-0.0.7",
-# )
-# load("@rules_cc//cc:repositories.bzl", "rules_cc_dependencies", "rules_cc_toolchains")
-# rules_cc_dependencies()
-# rules_cc_toolchains()
+http_archive(
+  name = "platforms",  # 2023-07-28T19:44:27Z
+  sha256 = "40eb313613ff00a5c03eed20aba58890046f4d38dec7344f00bb9a8867853526",
+  strip_prefix = "platforms-4ad40ef271da8176d4fc0194d2089b8a76e19d7b",
+  urls = ["https://github.com/bazelbuild/platforms/archive/4ad40ef271da8176d4fc0194d2089b8a76e19d7b.zip"],
+)
 
-# # rules_proto defines abstract rules for building Protocol Buffers.
-# http_archive(
-#     name = "rules_proto",
-#     sha256 = "dc3fb206a2cb3441b485eb1e423165b231235a1ea9b031b4433cf7bc1fa460dd",
-#     strip_prefix = "rules_proto-5.3.0-21.7",
-#     urls = [
-#         "https://github.com/bazelbuild/rules_proto/archive/refs/tags/5.3.0-21.7.tar.gz",
-#     ],
-# )
-# load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-# rules_proto_dependencies()
-# rules_proto_toolchains()
+http_archive(
+    name = "com_googlesource_code_re2",  # 2023-03-17T11:36:51Z
+    sha256 = "cb8b5312a65f2598954545a76e8bce913f35fbb3a21a5c88797a4448e9f9b9d9",
+    strip_prefix = "re2-578843a516fd1da7084ae46209a75f3613b6065e",
+    urls = ["https://github.com/google/re2/archive/578843a516fd1da7084ae46209a75f3613b6065e.zip"],
+)
+

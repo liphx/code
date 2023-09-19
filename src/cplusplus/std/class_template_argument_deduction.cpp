@@ -2,6 +2,7 @@
 // https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 
 #include <array>
+#include <mutex>
 #include <vector>
 
 int main() {
@@ -13,4 +14,7 @@ int main() {
 
     // std::array arr{0, 1.0};
     // error: types differ
+
+    std::mutex m;
+    std::lock_guard guard(m);
 }

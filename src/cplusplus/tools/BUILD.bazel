@@ -3,7 +3,7 @@
     srcs = [cc_name],
     deps = [
         "//liph",
-        "@com_github_gflags_gflags//:gflags",
+        "//thirdparty/gflags-2.2.2:gflags",
     ],
 ) for cc_name in glob(
     include = ["*.cpp"],

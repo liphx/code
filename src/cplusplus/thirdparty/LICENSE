@@ -9,3 +9,15 @@ https://github.com/yhirose/cpp-httplib/blob/master/LICENSE
 tinyxml2-9.0.0
 https://github.com/leethomason/tinyxml2
 https://github.com/leethomason/tinyxml2/blob/master/LICENSE.txt
+
+gflags-2.2.2
+https://github.com/gflags/gflags
+https://github.com/gflags/gflags/blob/master/COPYING.txt
+
+glog-0.6.0
+https://github.com/google/glog
+https://github.com/google/glog/blob/master/COPYING
+
+googletest-1.14.0
+https://github.com/google/googletest
+https://github.com/google/googletest/blob/main/LICENSE

@@ -1,0 +1,96 @@
+exports_files(["gflags_completions.sh"])
+
+cc_library(
+    name = "gflags",
+    srcs = [
+        "config.h",
+        "gflags.cc",
+        "gflags_completions.cc",
+        "gflags_reporting.cc",
+        "mutex.h",
+        "util.h"
+    ] + select({
+        "@bazel_tools//src/conditions:windows": [
+            "windows_port.cc",
+            "windows_port.h"
+        ],
+        "//conditions:default": []
+    }),
+    hdrs = [
+        "gflags.h",
+        "gflags_declare.h",
+        "gflags_completions.h",
+        "gflags_google.h",
+    ],
+    copts = [
+        "-DGFLAGS_BAZEL_BUILD",
+        "-DGFLAGS_INTTYPES_FORMAT_C99",
+        "-DGFLAGS_IS_A_DLL=0",
+        "-DHAVE_STDINT_H",
+        "-DHAVE_SYS_TYPES_H",
+        "-DHAVE_INTTYPES_H",
+        "-DHAVE_SYS_STAT_H",
+        "-DHAVE_STRTOLL",
+        "-DHAVE_STRTOQ",
+        "-DHAVE_RWLOCK"
+    ] + select({
+        "@bazel_tools//src/conditions:windows": ["-DOS_WINDOWS"],
+        "//conditions:default": [
+            "-DHAVE_UNISTD_H",
+            "-DHAVE_FNMATCH_H",
+            "-DHAVE_PTHREAD"
+        ]
+    }),
+    linkopts = [] + select({
+        "@bazel_tools//src/conditions:windows": [],
+        "//conditions:default": ["-lpthread"]
+    }),
+    visibility = ["//visibility:public"],
+    include_prefix = 'gflags'
+)
+
+cc_library(
+    name = "gflags_nothreads",
+    srcs = [
+        "config.h",
+        "gflags.cc",
+        "gflags_completions.cc",
+        "gflags_reporting.cc",
+        "mutex.h",
+        "util.h"
+    ] + select({
+        "@bazel_tools//src/conditions:windows": [
+            "windows_port.cc",
+            "windows_port.h"
+        ],
+        "//conditions:default": []
+    }),
+    hdrs = [
+        "gflags.h",
+        "gflags_declare.h",
+        "gflags_completions.h",
+        "gflags_google.h",
+    ],
+    copts = [
+        "-DGFLAGS_BAZEL_BUILD",
+        "-DGFLAGS_INTTYPES_FORMAT_C99",
+        "-DGFLAGS_IS_A_DLL=0",
+        "-DHAVE_STDINT_H",
+        "-DHAVE_SYS_TYPES_H",
+        "-DHAVE_INTTYPES_H",
+        "-DHAVE_SYS_STAT_H",
+        "-DHAVE_STRTOLL",
+        "-DHAVE_STRTOQ",
+        "-DHAVE_RWLOCK"
+    ] + select({
+        "@bazel_tools//src/conditions:windows": ["-DOS_WINDOWS"],
+        "//conditions:default": [
+            "-DHAVE_UNISTD_H",
+            "-DHAVE_FNMATCH_H",
+            "-DHAVE_PTHREAD"
+        ]
+    }) + ["-DNO_THREADS"],
+    linkopts = [],
+    visibility = ["//visibility:public"],
+    include_prefix = 'gflags'
+)

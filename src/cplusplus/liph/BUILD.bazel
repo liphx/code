@@ -22,7 +22,7 @@ cc_library(
     srcs = [test_name],
     deps = [
         ":liph",
-        "@com_google_googletest//:gtest_main",
+        "//thirdparty/googletest-1.14.0:gtest_main",
     ],
 ) for test_name in glob(["**/*_test.cpp"])]
 
@@ -33,7 +33,7 @@ cc_test(
     ),
     deps = [
         ":liph",
-        "@com_google_googletest//:gtest_main",
+        "//thirdparty/googletest-1.14.0:gtest_main",
     ],
 )
 

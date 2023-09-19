@@ -5,7 +5,6 @@ case $- in
 esac
 
 export PATH=$HOME/usr/bin:$PATH
-export PATH=$PATH:$HOME/github/liphx/code/src/cplusplus/bazel-bin/tools
 export LD_LIBRARY_PATH=$HOME/usr/lib:$HOME/usr/lib64:$LD_LIBRARY_PATH
 export EDITOR=vim
 export PS1='\u@\h:\w\$ '
@@ -16,6 +15,10 @@ export GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 echo "hello $USER"
 echo "now is $(date '+%F %T')"
+
+if [ ! -d $HOME/usr ]; then
+    mkdir -p $HOME/usr/{app,bin,lib,lib64}
+fi
 
 # history
 HISTCONTROL=ignoreboth      # ignoredups and ignorespace
@@ -38,31 +41,19 @@ fi
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
-fi
-
 function test_and_source() {
     for f in $@; do test -f "$f" && . "$f"; done
 }
 
+test_and_source ~/.bash/aliases.sh ~/.bash/scripts.sh ~/.bash/local.sh
+
 function test_command() {
-    if type $1 > /dev/null 2>&1;
-    then
+    if type $1 > /dev/null 2>&1; then
         return 0;
     else
         return 1;
     fi
 }
-
-test_and_source ~/.bash/aliases.sh ~/.bash/scripts.sh ~/.bash/local.sh
 
 test_command pandoc && eval "$(pandoc --bash-completion)"
 
