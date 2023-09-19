@@ -8,8 +8,7 @@ export PATH=$HOME/usr/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/usr/lib:$HOME/usr/lib64:$LD_LIBRARY_PATH
 export EDITOR=vim
 export PS1='\u@\h:\w\$ '
-export LANG=zh_CN.UTF-8     # default settings
-export LC_MESSAGES=en_US.UTF-8
+export LANG=C.UTF-8     # default settings
 export LC_ALL=
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
 

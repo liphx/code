@@ -1,0 +1,39 @@
+cc_library(
+    name = "leveldb",
+    srcs = glob(
+        include = [
+            "db/**/*.cc",
+            "db/**/*.h",
+            "helpers/**/*.cc",
+            "helpers/**/*.h",
+            "port/**/*.cc",
+            "port/**/*.h",
+            "table/**/*.cc",
+            "table/**/*.h",
+            "util/**/*.cc",
+            "util/**/*.h",
+        ],
+        exclude = [
+            "**/*_test.cc",
+            "**/testutil.*",
+            "**/*_bench.cc",
+            "**/*_windows*",
+            "db/leveldbutil.cc",
+        ],
+    ),
+    hdrs = glob(
+        ["include/**/*.h"],
+    ),
+    includes = [
+        ".",
+        "include",
+    ],
+    copts = [
+        "-std=c++11",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//thirdparty/crc32c-1.1.2:crc32c",
+    ],
+)
+

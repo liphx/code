@@ -1,0 +1,23 @@
+cc_library(
+    name = "crc32c",
+    srcs = [
+        "crc32c.cc",
+        "crc32c_arm64.cc",
+        "crc32c_arm64.h",
+        "crc32c_arm64_check.h",
+        "crc32c_internal.h",
+        "crc32c_portable.cc",
+        "crc32c_prefetch.h",
+        "crc32c_read_le.h",
+        "crc32c_round_up.h",
+        "crc32c_sse42.cc",
+        "crc32c_sse42.h",
+        "crc32c_sse42_check.h",
+    ],
+    hdrs = [
+        "crc32c_config.h",
+        "crc32c.h",
+    ],
+    include_prefix = "crc32c",
+    visibility = ["//visibility:public"],
+)

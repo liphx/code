@@ -23,3 +23,19 @@ cc_binary(
         "//thirdparty/glog-0.6.0:glog",
     ],
 )
+
+cc_binary(
+    name = "leveldb",
+    srcs = ["leveldb.cpp"],
+    deps = [
+        "//thirdparty/leveldb-1.23:leveldb",
+    ],
+)
+
+cc_binary(
+    name = "nlohmann-json",
+    srcs = ["nlohmann-json.cpp"],
+    deps = [
+        "//thirdparty/nlohmann-json-3.11.2:json",
+    ],
+)
