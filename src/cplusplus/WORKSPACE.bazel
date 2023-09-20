@@ -14,13 +14,6 @@ git_repository(
 )
 
 git_repository(
-    name = "gabime_spdlog",
-    remote = "https://github.com/gabime/spdlog.git",
-    tag = "v1.11.0",
-    build_file = "//bazel/thirdparty:gabime_spdlog.BUILD",
-)
-
-git_repository(
     name = "abseil-cpp",
     remote = "https://github.com/abseil/abseil-cpp.git",
     tag = "20230125.2",
