@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "thirdparty/sqlite-3.43.1/sqlite3.h"
+#include "sqlite-3.43.1/sqlite3.h"
 
 namespace liph {
 

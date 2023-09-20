@@ -1,7 +1,0 @@
-cc_library(
-    name = "json",
-    srcs = glob(["**/*.cpp"]),
-    hdrs = glob(["**/*.h", "**/*.hpp"]),
-    include_prefix = "nlohmann",
-    visibility = ["//visibility:public"],
-)

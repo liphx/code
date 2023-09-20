@@ -8,6 +8,6 @@ cc_binary(
     ],
     deps = [
         "//liph",
-        "//thirdparty/httplib-0.14.0:httplib",
+        "@thirdparty//httplib-0.14.0:httplib",
     ],
 )

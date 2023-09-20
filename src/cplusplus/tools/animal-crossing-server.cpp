@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "liph/liph.h"
-#include "thirdparty/httplib-0.14.0/httplib.h"
+#include "httplib-0.14.0/httplib.h"
 
 using json = liph::json;
 
