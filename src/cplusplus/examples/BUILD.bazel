@@ -3,7 +3,6 @@
     srcs = [cc_name],
     deps = [
         "//liph",
-        "//thirdparty/tinyxml2-9.0.0:tinyxml2",
     ],
 ) for cc_name in glob(
     include = ["**/*.cpp"],

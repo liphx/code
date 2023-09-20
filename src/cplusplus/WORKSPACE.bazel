@@ -8,12 +8,6 @@ http_archive(
 )
 
 git_repository(
-    name = "com_google_benchmark",
-    remote = "https://github.com/google/benchmark.git",
-    tag = "v1.7.1",
-)
-
-git_repository(
     name = "abseil-cpp",
     remote = "https://github.com/abseil/abseil-cpp.git",
     tag = "20230125.2",
