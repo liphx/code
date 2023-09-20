@@ -1,14 +1,30 @@
+benchmark-1.8.3
+https://github.com/google/benchmark
+https://github.com/google/benchmark/blob/main/LICENSE
+
 crc32c-1.1.2
 https://github.com/google/crc32c
 https://github.com/google/crc32c/blob/main/LICENSE
+
+cryptopp-8.8.0
+https://www.cryptopp.com
+https://www.cryptopp.com/License.txt
 
 gflags-2.2.2
 https://github.com/gflags/gflags
 https://github.com/gflags/gflags/blob/master/COPYING.txt
 
+glog-0.6.0
+https://github.com/google/glog
+https://github.com/google/glog/blob/master/COPYING
+
 googletest-1.14.0
 https://github.com/google/googletest
 https://github.com/google/googletest/blob/main/LICENSE
+
+httplib-0.14.0
+https://github.com/yhirose/cpp-httplib
+https://github.com/yhirose/cpp-httplib/blob/master/LICENSE
 
 leveldb-1.23
 https://github.com/google/leveldb
@@ -18,21 +34,17 @@ nlohmann-json-3.11.2
 https://github.com/nlohmann/json
 https://github.com/nlohmann/json/blob/develop/LICENSE.MIT
 
-sqlite-3.43.1
-https://www.sqlite.org/index.html
-https://www.sqlite.org/copyright.html
-
-glog-0.6.0
-https://github.com/google/glog
-https://github.com/google/glog/blob/master/COPYING
-
-httplib-0.14.0
-https://github.com/yhirose/cpp-httplib
-https://github.com/yhirose/cpp-httplib/blob/master/LICENSE
-
 snappy-1.1.10
 https://github.com/google/snappy
 https://github.com/google/snappy/blob/main/COPYING
+
+spdlog-1.12.0
+https://github.com/gabime/spdlog
+https://github.com/gabime/spdlog/blob/v1.x/LICENSE
+
+sqlite-3.43.1
+https://www.sqlite.org/index.html
+https://www.sqlite.org/copyright.html
 
 tinyxml2-9.0.0
 https://github.com/leethomason/tinyxml2

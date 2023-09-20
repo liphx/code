@@ -10,9 +10,7 @@ cc_library(
     hdrs = glob(["**/*.h"]),
     deps = [
         "//thirdparty/sqlite-3.43.1:libsqlite3",
-    ],
-    linkopts = [
-        "-lcryptopp",
+        "//thirdparty/cryptopp-8.8.0:cryptopp",
     ],
     visibility = ["//visibility:public"],
 )

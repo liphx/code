@@ -1,0 +1,15 @@
+cc_library(
+    name = "cryptopp",
+    srcs = glob([
+        "*.cpp",
+        "*.h",
+    ]),
+    hdrs = glob([
+        "*.cpp",
+        "*.h",
+    ]),
+    copts = [
+        "-Wno-error",
+    ],
+    visibility = ["//visibility:public"],
+)
