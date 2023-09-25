@@ -10,7 +10,7 @@
 namespace liph {
 
 // read all from pathname, append to output
-[[nodiscard]] bool read_file(const std::string& pathname, std::string& output);
+[[nodiscard]] bool read_file(const std::filesystem::path& pathname, std::string& output);
 
 // write all to pathname
 [[nodiscard]] bool write_file(const std::string& pathname, const std::string& str);

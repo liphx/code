@@ -6,7 +6,7 @@
 
 namespace liph {
 
-bool read_file(const std::string& pathname, std::string& output) {
+bool read_file(const std::filesystem::path& pathname, std::string& output) {
     std::ifstream is{pathname, std::ios::binary | std::ios::ate};
     if (is.is_open()) {
         auto size = is.tellg();

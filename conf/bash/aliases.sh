@@ -71,12 +71,9 @@ alias grep='grep --exclude=tags --color'
 alias nginxreload='sudo nginx -s reload'
 alias nginxtest='sudo nginx -t'
 
-# sudo
 alias update='sudo apt update && sudo apt upgrade -y'
-
-# copy
-alias copy='xclip -sel clip'
 alias clear_file=': | tee'
 
-alias json='cat | python3 -m json.tool --no-ensure-ascii'
+# python3 module
+alias json='python3 -m json.tool --no-ensure-ascii'
 alias httpserver='python3 -m http.server'

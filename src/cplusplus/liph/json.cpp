@@ -6,6 +6,8 @@
 #include <sstream>
 #include <string_view>
 
+#include "liph/file.h"
+
 namespace liph {
 
 namespace {
@@ -429,6 +431,12 @@ json json::parse(const std::string& str) {
     throw std::runtime_error("parse json error");
 }
 
+json json::load(const std::filesystem::path& path) {
+    std::string str;
+    if (read_file(path, str)) return parse(str);
+    throw std::runtime_error("load json error");
+}
+
 const json& json::at(const std::string& key) const {
     if (type_ != object) {
         throw std::logic_error("type error");
@@ -443,6 +451,8 @@ json& json::operator[](const std::string& key) {
     if (type_ != object) throw std::logic_error("type error");
     return (*object_)[key];
 }
+
+const json& json::operator[](const std::string& key) const { return at(key); }
 
 const json& json::at(std::size_t pos) const {
     if (type_ != array) {
@@ -459,6 +469,8 @@ json& json::operator[](std::size_t pos) {
     array_->resize(std::max(pos + 1, array_->size()));
     return (*array_)[pos];
 }
+
+const json& json::operator[](std::size_t pos) const { return at(pos); }
 
 bool json::operator==(const json& other) const {
     if (type_ != other.type_) return false;
@@ -596,5 +608,12 @@ std::unordered_map<std::string, json>& json::object_ref() {
 }
 
 const std::unordered_map<std::string, json>& json::object_ref() const { return const_cast<json&>(*this).object_ref(); }
+
+bool json::is_null() const { return type_ == null; }
+bool json::is_boolean() const { return type_ == boolean; }
+bool json::is_number() const { return type_ == number; }
+bool json::is_string() const { return type_ == string; }
+bool json::is_array() const { return type_ == array; }
+bool json::is_object() const { return type_ == object; }
 
 }  // namespace liph

@@ -83,10 +83,18 @@ function uncompress() {
     case $file in
         *.zip) unzip $file;;
         *.tar.gz|*.tgz|*.tar.bz2) tar xvf $file;;
-        *) echo "no uncompress tools for $file"
+        *) echo "no uncompress tools for $file";;
     esac
 }
 
 function terminfo() {
     echo "`tput cols`x`tput lines` `tput longname`"
+}
+
+function copy() {
+    case `uname -a` in
+        *Linux*) xclip -sel clip;;
+        *Darwin*) pbcopy;;
+        *) ;;
+    esac
 }
