@@ -259,6 +259,10 @@ public:
         while (true) {
             std::cout << "Your selection(0 for fetch one): ";
             std::cin >> select;
+            if (std::cin.eof()) {
+                std::cout << "Exit, goodbye..." << std::endl;
+                exit(0);
+            }
             if (std::cin.fail() || select > cards_heap_.size()) {
                 std::cout << "No such card!" << std::endl;
                 reset_input();

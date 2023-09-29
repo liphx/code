@@ -8,10 +8,10 @@
 
 namespace liph {
 
-// remove whitespace(" \n\r\t\f\v") of s
-std::string ltrim(const std::string& s);
-std::string rtrim(const std::string& s);
-std::string trim(const std::string& s);
+// default charset: whitespace(" \n\r\t\f\v")
+std::string ltrim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
+std::string rtrim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
+std::string trim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
 
 bool startswith(const std::string& s, const std::string& t);
 bool endswith(const std::string& s, const std::string& t);

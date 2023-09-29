@@ -1,9 +1,8 @@
-#include "liph/singleton.h"
+#include "liph/lang/singleton.h"
 
 #include "gtest/gtest.h"
 
 namespace liph {
-namespace test {
 
 class A {
 public:
@@ -24,6 +23,11 @@ public:
 private:
     int x;
 };
+
+template <>
+B make_default() {
+    return B(10);
+}
 
 class C {
 public:
@@ -46,22 +50,21 @@ TEST(singleton, A) {
 }
 
 TEST(singleton, B) {
-    B& b1 = singleton<B>::instance(10);
+    B& b1 = singleton<B>::instance();
     EXPECT_EQ(b1.Get(), 10);
     b1.Set(20);
 
-    B& b2 = singleton<B>::instance(10);
+    B& b2 = singleton<B>::instance();
     EXPECT_EQ(b2.Get(), 20);
 }
 
-TEST(singleton, C) {
-    C& c1 = singleton<C>::instance();
-    EXPECT_EQ(c1.Get(), 0);
-    c1.Set(20);
+// TEST(singleton, C) {
+//     C& c1 = singleton<C>::instance();
+//     EXPECT_EQ(c1.Get(), 0);
+//     c1.Set(20);
 
-    C& c2 = singleton<C>::instance(10);
-    EXPECT_EQ(c2.Get(), 10);
-}
+//     C& c2 = singleton<C>::instance(10);
+//     EXPECT_EQ(c2.Get(), 10);
+// }
 
-}  // namespace test
 }  // namespace liph

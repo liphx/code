@@ -1,0 +1,14 @@
+cc_binary(
+    name = "uno",
+    srcs = [
+        "main.cc",
+        "server.h",
+        "server.cc",
+    ],
+    deps = [
+        "//liph",
+        "@thirdparty//httplib-0.14.0:httplib",
+        "@thirdparty//gflags-2.2.2:gflags",
+        "@thirdparty//glog-0.6.0:glog",
+    ],
+)

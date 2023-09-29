@@ -1,6 +1,6 @@
 #include "liph/file.h"
 #include "liph/flags.h"
-#include "liph/singleton.h"
+#include "liph/lang/singleton.h"
 #include "online/server.h"
 
 int main(int argc, char **argv) {

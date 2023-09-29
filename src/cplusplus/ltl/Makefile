@@ -1,8 +1,8 @@
 CPP     = g++ -g -std=c++20 -W -Wall -Wextra -Wno-ignored-qualifiers -Werror -Wfatal-errors \
-              -I../thirdparty/googletest-1.14.0/googletest/include
+              -I../bazel-cplusplus/external/thirdparty/googletest-1.14.0/googletest/include
 LTL     = -iquote include
 STD     = -Dltl=std
-LDFLAGS = -lgtest -lgtest_main -L../bazel-bin/thirdparty/googletest-1.14.0
+LDFLAGS = -lgtest -lgtest_main -L../bazel-bin/external/thirdparty/googletest-1.14.0
 TESTS   = $(wildcard unittests/*_test.cpp)
 
 .PHONY: all

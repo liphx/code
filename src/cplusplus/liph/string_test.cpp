@@ -10,6 +10,16 @@ TEST(string, trim) {
     EXPECT_EQ(liph::trim(str), "hello");
 }
 
+TEST(string, trim_charset) {
+    EXPECT_EQ(liph::ltrim("0123", "0"), "123");
+    EXPECT_EQ(liph::ltrim("00123", "0"), "123");
+    EXPECT_EQ(liph::ltrim("00123", "01"), "23");
+    EXPECT_EQ(liph::ltrim("000", "0"), "");
+
+    EXPECT_EQ(liph::ltrim("000", ""), "000");
+    EXPECT_EQ(liph::ltrim(""), "");
+}
+
 TEST(string, startswith_endswith) {
     std::string str = "world";
     EXPECT_TRUE(liph::startswith(str, "wor"));

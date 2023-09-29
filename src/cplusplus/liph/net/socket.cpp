@@ -11,12 +11,9 @@
 
 namespace liph::net {
 
-/*
- * 通过IPV4/IPV6/TCP/UDP的按位或创建socket
- * 如果同时设置IPV4, IPV6， 则IPV4生效
- * 如果同时设置TCP, UDP， 则TCP生效
- * 若失败，fd_为-1，可通过operator bool()检测
- */
+// Create socket through bitwise OR of IPV4/IPV6/TCP/UDP
+// High priority: IPv4m TCP
+// 'fd_' set to -1 if fail, check by 'operator bool()'
 socket::socket(int type) : type_(type) {
     int domain = is_ipv4() ? AF_INET : AF_INET6;
     int sock = is_tcp() ? SOCK_STREAM : SOCK_DGRAM;
@@ -39,9 +36,8 @@ socket::socket(const socket& other) {
     }
 }
 
-/*
- * 通过dup复制一个描述符，析构时可以直接调用close
- */
+// Copy a descriptor through dup
+// close directly when destructing
 socket::~socket() {
     if (fd_ != -1) {
         int ret = close(fd_);
@@ -80,7 +76,7 @@ bool socket::bind(int& port) {
             perror("bind fail");
             return false;
         }
-        if (port == 0) {  // 是否动态分配端口
+        if (port == 0) {  // dynamically allocate port
             socklen_t namelen = sizeof(name);
             if (getsockname(fd_, (struct sockaddr *)&name, &namelen) == -1) {
                 perror("getsockname fail");

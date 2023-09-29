@@ -3,6 +3,7 @@ bazel-cplusplus
 bazel-out
 bazel-testlogs
 *.log
+log/
 *.pb.cc
 *.pb.h
 nohup.out

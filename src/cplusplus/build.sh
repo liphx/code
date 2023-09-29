@@ -34,7 +34,8 @@ bazel build ...
 
 # ltl
 cd $cplusplus_root/ltl
+GTEST_PATH=../bazel-bin/external/thirdparty/googletest-1.14.0
 make
-export LD_LIBRARY_PATH=../bazel-bin/thirdparty/googletest-1.14.0
-export DYLD_FALLBACK_LIBRARY_PATH=../bazel-bin/thirdparty/googletest-1.14.0
+export LD_LIBRARY_PATH=$GTEST_PATH
+export DYLD_FALLBACK_LIBRARY_PATH=$GTEST_PATH
 ./test_all && ./test_std_all

@@ -7,8 +7,8 @@
 #include <vector>
 
 #include "liph/concurrency/threadpool.h"
+#include "liph/lang/singleton.h"
 #include "liph/logging.h"
-#include "liph/singleton.h"
 #include "liph/string.h"
 
 namespace liph::net {

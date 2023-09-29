@@ -2,19 +2,17 @@
 
 namespace liph {
 
-constexpr char WHITESPACE[] = " \n\r\t\f\v";
-
-std::string ltrim(const std::string& s) {
-    auto start = s.find_first_not_of(WHITESPACE);
+std::string ltrim(const std::string& s, const std::string& charset) {
+    auto start = s.find_first_not_of(charset);
     return (start == std::string::npos) ? "" : s.substr(start);
 }
 
-std::string rtrim(const std::string& s) {
-    auto end = s.find_last_not_of(WHITESPACE);
+std::string rtrim(const std::string& s, const std::string& charset) {
+    auto end = s.find_last_not_of(charset);
     return (end == std::string::npos) ? "" : s.substr(0, end + 1);
 }
 
-std::string trim(const std::string& s) { return rtrim(ltrim(s)); }
+std::string trim(const std::string& s, const std::string& charset) { return rtrim(ltrim(s, charset), charset); }
 
 bool startswith(const std::string& s, const std::string& t) {
     return s.size() >= t.size() && std::equal(t.cbegin(), t.cend(), s.cbegin());

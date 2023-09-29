@@ -13,7 +13,7 @@
 #include <vector>
 
 #include "liph/lang/noncopyable.h"
-#include "liph/singleton.h"
+#include "liph/lang/singleton.h"
 #include "liph/time.h"
 
 namespace liph {
