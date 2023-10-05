@@ -6,7 +6,9 @@ set -e
 echo "#ifndef LIPH_LIPH_H_" > liph/liph.h
 echo "#define LIPH_LIPH_H_" >> liph/liph.h
 echo >> liph/liph.h
+echo '// clang-format off' >> liph/liph.h
 for i in `find liph -type f -name '*.h' | grep -v liph.h | sort`; do echo "#include \"$i\""; done >> liph/liph.h
+echo '// clang-format on' >> liph/liph.h
 echo >> liph/liph.h
 echo "#endif  // LIPH_LIPH_H_" >> liph/liph.h
 

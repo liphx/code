@@ -6,6 +6,10 @@
 // #include <cryptopp/hex.h>
 // #include <cryptopp/md5.h>
 
+#include <algorithm>
+#include <cstdint>
+#include <vector>
+
 namespace liph {
 
 // std::string md5(const std::string& msg) {
@@ -19,9 +23,6 @@ namespace liph {
 //     StringSource ss(digest, true, new HexEncoder(new StringSink(out)));
 //     return out;
 // }
-
-#include <algorithm>
-#include <cstdint>
 
 namespace {
 
@@ -103,15 +104,39 @@ void md5(const void *input, size_t length, byte digest[16]) {
         round2(C, D, A, B, 7, 14, 31);
         round2(B, C, D, A, 12, 20, 32);
 #define round3(a, b, c, d, k, s, t) a = b + ((a + H(b, c, d) + X[k] + T[i]) << s)
-        // [ABCD  5  4 33]  [DABC  8 11 34]  [CDAB 11 16 35]  [BCDA 14 23 36]
-        // [ABCD  1  4 37]  [DABC  4 11 38]  [CDAB  7 16 39]  [BCDA 10 23 40]
-        // [ABCD 13  4 41]  [DABC  0 11 42]  [CDAB  3 16 43]  [BCDA  6 23 44]
-        // [ABCD  9  4 45]  [DABC 12 11 46]  [CDAB 15 16 47]  [BCDA  2 23 48]
+        round3(A, B, C, D, 5, 4, 33);
+        round3(D, A, B, C, 8, 11, 34);
+        round3(C, D, A, B, 11, 16, 35);
+        round3(B, C, D, A, 14, 23, 36);
+        round3(A, B, C, D, 1, 4, 37);
+        round3(D, A, B, C, 4, 11, 38);
+        round3(C, D, A, B, 7, 16, 39);
+        round3(B, C, D, A, 10, 23, 40);
+        round3(A, B, C, D, 13, 4, 41);
+        round3(D, A, B, C, 0, 11, 42);
+        round3(C, D, A, B, 3, 16, 43);
+        round3(B, C, D, A, 6, 23, 44);
+        round3(A, B, C, D, 9, 4, 45);
+        round3(D, A, B, C, 12, 11, 46);
+        round3(C, D, A, B, 15, 16, 47);
+        round3(B, C, D, A, 2, 23, 48);
 #define round4(a, b, c, d, k, s, t) a = b + ((a + I(b, c, d) + X[k] + T[i]) << s)
-        // [ABCD  0  6 49]  [DABC  7 10 50]  [CDAB 14 15 51]  [BCDA  5 21 52]
-        // [ABCD 12  6 53]  [DABC  3 10 54]  [CDAB 10 15 55]  [BCDA  1 21 56]
-        // [ABCD  8  6 57]  [DABC 15 10 58]  [CDAB  6 15 59]  [BCDA 13 21 60]
-        // [ABCD  4  6 61]  [DABC 11 10 62]  [CDAB  2 15 63]  [BCDA  9 21 64]
+        round4(A, B, C, D, 0, 6, 49);
+        round4(D, A, B, C, 7, 10, 50);
+        round4(C, D, A, B, 14, 15, 51);
+        round4(B, C, D, A, 5, 21, 52);
+        round4(A, B, C, D, 12, 6, 53);
+        round4(D, A, B, C, 3, 10, 54);
+        round4(C, D, A, B, 10, 15, 55);
+        round4(B, C, D, A, 1, 21, 56);
+        round4(A, B, C, D, 8, 6, 57);
+        round4(D, A, B, C, 15, 10, 58);
+        round4(C, D, A, B, 6, 15, 59);
+        round4(B, C, D, A, 13, 21, 60);
+        round4(A, B, C, D, 4, 6, 61);
+        round4(D, A, B, C, 11, 10, 62);
+        round4(C, D, A, B, 2, 15, 63);
+        round4(B, C, D, A, 9, 21, 64);
 
         A = A + AA;
         B = B + BB;
@@ -127,8 +152,8 @@ std::string md5(const std::string& msg) {
     md5(msg.data(), msg.length(), digest);
     std::string ret(32, '0');
     for (size_t i = 0; i < 16; ++i) {
-        ret[i * 2] = digest[i] & 0xff + 'A';
-        ret[i * 2 + 1] = digest[i] & 0xff00 + 'A';
+        ret[i * 2] = (digest[i] & 0xff) + 'A';
+        ret[i * 2 + 1] = (digest[i] & 0xff00) + 'A';
     }
     return ret;
 }
