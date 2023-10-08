@@ -18,8 +18,8 @@
 #include "liph/flags.h"
 #include "liph/format.h"
 #include "liph/io/descriptor.h"
-#include "liph/io/poll.h"
 #include "liph/io/poller.h"
+#include "liph/io/poll.h"
 #include "liph/json.h"
 #include "liph/lang/make_default.h"
 #include "liph/lang/no_destructor.h"
@@ -39,6 +39,7 @@
 #include "liph/sort.h"
 #include "liph/sqlite.h"
 #include "liph/string.h"
+#include "liph/terminal.h"
 #include "liph/time.h"
 #include "liph/timer.h"
 // clang-format on
