@@ -6,6 +6,9 @@
 namespace liph {
 
 // md5sum of str, returns 32 uppercase hexadecimal letters
+std::string MD5(const std::string& str);
+
+// md5sum of str, returns 32 lowercase hexadecimal letters
 std::string md5(const std::string& str);
 
 }  // namespace liph

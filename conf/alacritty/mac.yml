@@ -22,3 +22,7 @@ key_bindings:
   - { key: Key8, mods: Command, chars: "\x028" } #                ... 8
   - { key: Key9, mods: Command, chars: "\x029" } #                ... 9
   - { key: L, mods: Command, chars: "\x02l" }    # tmux switch between two latest windows
+  - { key: H, mods: Command, chars: "\x02\x1b" } # C-b ESC
+
+scrolling:
+  history: 100000
