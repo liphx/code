@@ -10,7 +10,7 @@ font:
   size: 20.0
 
 key_bindings:
-  - { key: T, mods: Command, chars: "\x02\x63" } # tmux new window
+  - { key: T, mods: Command, chars: "\x02c" }    # tmux new window C-b c
   - { key: Key0, mods: Command, chars: "\x020" } # tmux select window 0
   - { key: Key1, mods: Command, chars: "\x021" } #                ... 1
   - { key: Key2, mods: Command, chars: "\x022" } #                ... 2
@@ -22,7 +22,9 @@ key_bindings:
   - { key: Key8, mods: Command, chars: "\x028" } #                ... 8
   - { key: Key9, mods: Command, chars: "\x029" } #                ... 9
   - { key: L, mods: Command, chars: "\x02l" }    # tmux switch between two latest windows
-  - { key: H, mods: Command, chars: "\x02\x1b" } # C-b ESC
+  - { key: H, mods: Command, chars: "\x02\x1b" }      # C-b ESC
+  - { key: LBracket, mods: Command, chars: "\x02(" }  # C-b (
+  - { key: RBracket, mods: Command, chars: "\x02)" }  # C-b )
 
 scrolling:
   history: 100000

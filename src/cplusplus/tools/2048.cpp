@@ -1,21 +1,13 @@
-#include <unistd.h>
-
-#include <cassert>
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <numeric>
-#include <vector>
-
-#include "liph/terminal.h"
+#include "liph/liph.h"
 
 int arr[4][4];
+int arr_back[4][4];
 
 struct p {
     int x;
     int y;
     p(int x, int y) : x(x), y(y) {}
+    bool operator==(p other) { return x == other.x && y == other.y; }
 };
 
 p npos = {-1, -1};
@@ -46,14 +38,33 @@ void init() {
     arr[p1.x][p1.y] = 2;
     p p2 = new2();
     arr[p2.x][p2.y] = 2;
+    memcpy(&arr_back[0][0], &arr[0][0], 16 * sizeof(int));
 }
 
-std::string color_normal = "\033[0m";
-std::map<int, std::string> num2color = {{0, color_normal}, {2, "\033[;41m"}, {4, "\033[;42m"}, {8, "\033[;43m"},
-        {16, "\033[;44m"}, {32, "\033[;45m"}, {64, "\033[;46m"}, {128, "\033[;48m"}, {256, "\033[;49m"}};
+// clang-format off
+std::map<int, int> num2color = {
+    {2,     1},
+    {4,     2},
+    {8,     3},
+    {16,    4},
+    {32,    5},
+    {64,    6},
+    {128,   7},
+    {256,   8},
+    {512,   9},
+    {1024,  10},
+    {2048,  11},
+    {4096,  12},
+    {8192,  13},
+    {16384,  14},
+    {32768,  15},
+    {65536,  16}
+};
+// clang-format on
 
 void show() {
-    std::cout << "\033[2J";
+    liph::clear_screen();
+    liph::clear_scrollback_buffer();
     std::cout << "score: " << score() << std::endl;
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
@@ -64,8 +75,7 @@ void show() {
                 ss << "     ";
             else
                 ss << arr[i][j] << " ";
-            std::string str = num2color[arr[i][j]] + ss.str() + color_normal;
-            std::cout << str;
+            std::cout << liph::color256bg(num2color[arr[i][j]]) << ss.str() << liph::color_reset();
         }
         std::cout << std::setw(4) << std::endl;
     }
@@ -113,6 +123,8 @@ int merge(int& a, int& b, int& c, int& d) {
 }
 
 void move(int di) {
+    int arr_tmp[4][4];
+    memcpy(&arr_tmp[0][0], &arr[0][0], 16 * sizeof(int));
     bool change = false;
     switch (di) {
     case 1:  // left
@@ -140,18 +152,28 @@ void move(int di) {
     }
     if (change) {
         p p1 = new2();
+        if (p1 == npos) {
+            std::cout << "Game Over!" << std::endl;
+            exit(0);
+        }
         arr[p1.x][p1.y] = 2;
+        memcpy(&arr_back[0][0], &arr_tmp[0][0], 16 * sizeof(int));
     }
+    show();
+}
+
+void back() {
+    memcpy(&arr[0][0], &arr_back[0][0], 16 * sizeof(int));
     show();
 }
 
 int main() {
     init();
     show();
+    liph::stdin_echo_off();
+    liph::stdin_buffering_off();
     while (true) {
-        liph::echo_off(0);
         char ch = getchar();
-        liph::echo_on(0);
         if (ch == EOF) break;
         switch (ch) {
         case 'a':
@@ -165,6 +187,9 @@ int main() {
             break;
         case 's':
             move(4);
+            break;
+        case '0':
+            back();
             break;
         default:
             break;

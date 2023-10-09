@@ -1,23 +1,22 @@
 #ifndef LIPH_TERMINAL_H_
 #define LIPH_TERMINAL_H_
 
-#include <termios.h>
+#include <string>
 
 namespace liph {
 
-inline bool echo_on(int fd) {
-    struct termios tm;
-    if (tcgetattr(fd, &tm) != 0) return false;
-    tm.c_lflag |= ECHO;
-    return tcsetattr(fd, TCSANOW, &tm) == 0;
-}
+bool stdin_echo_on();
+bool stdin_echo_off();
+bool stdin_buffering_on();
+bool stdin_buffering_off();
+void clear_screen();
+void clear_scrollback_buffer();
 
-inline bool echo_off(int fd) {
-    struct termios tm;
-    if (tcgetattr(fd, &tm) != 0) return false;
-    tm.c_lflag &= ~ECHO;
-    return tcsetattr(fd, TCSANOW, &tm) == 0;
-}
+std::string color256fg(unsigned char);
+std::string color256bg(unsigned char);
+std::string color_reset();
+
+extern std::string color256name[256];
 
 }  // namespace liph
 
