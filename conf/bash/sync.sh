@@ -2,6 +2,8 @@
 
 set -xe
 
+cd $(dirname $0)
+
 cp -f ./profile         ~/.bash_profile
 cp -f ./bashrc          ~/.bashrc
 cp -f ./bash_logout     ~/.bash_logout

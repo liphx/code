@@ -43,6 +43,7 @@ alias gdc='git diff --cached'
 alias gdh='git diff HEAD~1'
 alias gk='git checkout'
 alias gmv='git mv'
+alias clone='git clone'
 
 # vim
 alias vi=vim

@@ -39,7 +39,6 @@
 
 /* my header */
 #include "list.h"
-#include "terminal.h"
 
 typedef void *(*start_rtn)(void *);
 

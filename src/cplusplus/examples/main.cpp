@@ -2,7 +2,14 @@
 using namespace liph;
 
 int main() {
-    for (int i = 0; i < 256; ++i) {
-        std::cout << color256bg(i) << i << color_reset() << std::endl;
+    stdin_echo_off();
+    stdin_buffering_off();
+    char ch;
+    while (std::cin.get(ch)) {
+        if (ch == 4) {
+            break;
+        }
+        std::cout << static_cast<int>(ch) << std::endl;
     }
+    std::cout << color_reset();
 }

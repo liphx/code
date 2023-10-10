@@ -8,6 +8,10 @@ function mktmp() {
     mkcd "tmp-`date "+%Y%m%d%H%M%S"`"
 }
 
+function lcd() {
+    cd "$1" && ls
+}
+
 function format_unix() {
     for file; do
         if [ -f $file ]; then
@@ -97,4 +101,8 @@ function copy() {
         *Darwin*) pbcopy;;
         *) ;;
     esac
+}
+
+function run() {
+    bazel build $1 && ./bazel-bin/$1
 }
