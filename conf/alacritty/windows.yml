@@ -1,0 +1,47 @@
+live_config_reload: true
+
+env:
+  TERM: xterm-256color
+
+window:
+  opacity: 0.9
+
+import:
+ - ~/.config/alacritty/base16-alacritty/colors/base16-solarized-dark-256.yml
+
+selection:
+  save_to_clipboard: true
+
+font:
+  normal:
+    family: Consolas
+    style: Regular
+  size: 16.0
+
+key_bindings:
+  # for tmux
+  - { key: T, mods: Alt, chars: "\x02c" }           # new window C-b c
+  - { key: Key0, mods: Alt, chars: "\x020" }        # select window 0
+  - { key: Key1, mods: Alt, chars: "\x021" }        #           ... 1
+  - { key: Key2, mods: Alt, chars: "\x022" }        #           ... 2
+  - { key: Key3, mods: Alt, chars: "\x023" }        #           ... 3
+  - { key: Key4, mods: Alt, chars: "\x024" }        #           ... 4
+  - { key: Key5, mods: Alt, chars: "\x025" }        #           ... 5
+  - { key: Key6, mods: Alt, chars: "\x026" }        #           ... 6
+  - { key: Key7, mods: Alt, chars: "\x027" }        #           ... 7
+  - { key: Key8, mods: Alt, chars: "\x028" }        #           ... 8
+  - { key: Key9, mods: Alt, chars: "\x029" }        #           ... 9
+  - { key: L, mods: Alt, chars: "\x02l" }           # switch between two latest windows
+  - { key: H, mods: Alt, chars: "\x02\x1b" }        # C-b ESC
+  - { key: LBracket, mods: Alt, chars: "\x02(" }    # C-b (
+  - { key: RBracket, mods: Alt, chars: "\x02)" }    # C-b )
+
+scrolling:
+  history: 100000
+
+shell:
+  program: C:/Program Files/Git/bin/bash.exe
+  args:
+    - --login
+
+working_directory: C:/
