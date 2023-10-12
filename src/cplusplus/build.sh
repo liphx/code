@@ -2,6 +2,11 @@
 
 set -e
 
+# cd ~/usr/bin/
+# wget https://github.com/bazelbuild/bazel/releases/download/6.3.2/bazel-6.3.2-linux-x86_64
+# chmod +x bazel-6.3.2-linux-x86_64
+# ln -s bazel-6.3.2-linux-x86_64 bazel
+
 # make liph/liph.h
 echo "#ifndef LIPH_LIPH_H_" > liph/liph.h
 echo "#define LIPH_LIPH_H_" >> liph/liph.h
