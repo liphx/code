@@ -1,4 +1,12 @@
 cc_binary(
+    name = "fmt",
+    srcs = ["fmt.cpp"],
+    deps = [
+        "@thirdparty//fmt-10.1.1:fmt",
+    ],
+)
+
+cc_binary(
     name = "glog-spdlog",
     srcs = ["glog-spdlog.cpp"],
     deps = [
