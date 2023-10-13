@@ -5,12 +5,18 @@ env:
 
 window:
   opacity: 0.9
+  padding:
+    x: 0
+    y: 0
 
 import:
  - ~/.config/alacritty/base16-alacritty/colors/base16-solarized-dark-256.yml
 
 selection:
   save_to_clipboard: true
+
+mouse_bindings:
+  - { mouse: Right, action: Paste }
 
 font:
   normal:

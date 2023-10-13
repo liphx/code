@@ -75,6 +75,16 @@ std::string color256bg(uint8_t);
 inline std::string color256fg(color256 c) { return color256fg(static_cast<uint8_t>(c)); }
 inline std::string color256bg(color256 c) { return color256bg(static_cast<uint8_t>(c)); }
 std::string color_reset();
+// https://en.wikipedia.org/wiki/ANSI_escape_code#Terminal_output_sequences
+inline std::string text_bold() { return "\033[01m"; }
+inline std::string text_faint() { return "\033[02m"; }
+inline std::string text_italic() { return "\033[03m"; }
+inline std::string text_underline() { return "\033[04m"; }
+inline std::string text_blink() { return "\033[05m"; }
+inline std::string text_rapid_blink() { return "\033[06m"; }
+inline std::string text_reverse() { return "\033[07m"; }
+inline std::string text_conceal() { return "\033[08m"; }
+inline std::string text_strikethrough() { return "\033[09m"; }
 
 struct rgb {
     uint8_t r, g, b;
