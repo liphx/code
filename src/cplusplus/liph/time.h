@@ -1,14 +1,20 @@
 #ifndef LIPH_TIME_H_
 #define LIPH_TIME_H_
 
-#include <sys/time.h>
-
 #include <cstdint>
 #include <cstdio>
 #include <ctime>
 #include <string>
 
+#include "liph/macros.h"
+
+#ifdef OS_UNIX
+#include <sys/time.h>
+#endif
+
 namespace liph {
+
+#ifdef OS_UNIX
 
 inline int64_t gettimeofday_us() {
     struct timeval now;
@@ -31,6 +37,19 @@ inline std::string time_format(time_t t = time(nullptr)) {
     }
     return str;
 }
+
+#endif
+
+#ifdef OS_WINDOWS
+inline std::string time_format(time_t t = time(nullptr)) {
+    struct tm *tm = localtime(&t);
+    char str[32];
+    if (strftime(str, sizeof(str), "%Y-%m-%d %H:%M:%S", tm) == 0) {
+        return "";
+    }
+    return str;
+}
+#endif
 
 inline int julianday(int year, int month, int day) {
     int a = (14 - month) / 12;
