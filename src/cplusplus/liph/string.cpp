@@ -69,4 +69,16 @@ std::string dirname(std::string_view path) {
     return std::string(path);
 }
 
+void skip_whitespace(std::string_view& sv) {
+    std::string_view::size_type pos = 0;
+    while (pos < sv.size() && isspace(sv[pos])) pos++;
+    sv = sv.substr(pos);
+}
+
+bool eat_symbol(std::string_view& sv, std::string_view symbol) {
+    if (sv.compare(0, symbol.size(), symbol) != 0) return false;
+    sv = sv.substr(symbol.size());
+    return true;
+}
+
 }  // namespace liph

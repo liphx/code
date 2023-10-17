@@ -37,6 +37,9 @@ std::string to_string(const T& t) {
     return os.str();
 }
 
+void skip_whitespace(std::string_view& sv);
+bool eat_symbol(std::string_view& sv, std::string_view symbol);
+
 }  // namespace liph
 
 #endif  // LIPH_STRING_H_

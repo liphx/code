@@ -7,30 +7,17 @@
 #include <string_view>
 
 #include "liph/file.h"
+#include "liph/string.h"
 
 namespace liph {
 
 namespace {
 
-void skip_whitespace(std::string_view& sv);
-bool eat_symbol(std::string_view& sv, std::string_view symbol);
 json parse_value(std::string_view& sv);
 json parse_number(std::string_view& sv);
 json parse_string(std::string_view& sv);
 json parse_array(std::string_view& sv);
 json parse_object(std::string_view& sv);
-
-void skip_whitespace(std::string_view& sv) {
-    std::string_view::size_type pos = 0;
-    while (pos < sv.size() && isspace(sv[pos])) pos++;
-    sv = sv.substr(pos);
-}
-
-bool eat_symbol(std::string_view& sv, std::string_view symbol) {
-    if (sv.compare(0, symbol.size(), symbol) != 0) return false;
-    sv = sv.substr(symbol.size());
-    return true;
-}
 
 size_t eat_digits(std::string_view& sv, std::string& str) {
     size_t i = 0;
