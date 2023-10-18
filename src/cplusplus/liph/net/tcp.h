@@ -1,6 +1,8 @@
 #ifndef LIPH_NET_TCP_H_
 #define LIPH_NET_TCP_H_
 
+#include "liph/macros.h"
+
 #ifdef OS_UNIX
 
 #include <functional>

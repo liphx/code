@@ -1,6 +1,8 @@
 #ifndef LIPH_IO_POLL_H_
 #define LIPH_IO_POLL_H_
 
+#include "liph/macros.h"
+
 #ifdef OS_UNIX
 
 #include <poll.h>

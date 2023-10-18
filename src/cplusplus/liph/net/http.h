@@ -1,6 +1,8 @@
 #ifndef LIPH_NET_HTTP_H_
 #define LIPH_NET_HTTP_H_
 
+#include "liph/macros.h"
+
 #ifdef OS_UNIX
 
 #include <map>

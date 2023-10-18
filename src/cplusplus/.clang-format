@@ -1,15 +1,22 @@
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-# clang-format version 16.0.6
+# clang-format version 16.0.4
 ---
-Language:                           Cpp
-BasedOnStyle:                       Google
-ColumnLimit:                        120
-IndentWidth:                        4
-AccessModifierOffset:               -4
-ConstructorInitializerIndentWidth:  8
-ContinuationIndentWidth:            8
-PointerAlignment:                   Right
-ReferenceAlignment:                 Left
-DerivePointerAlignment:             false
-IndentCaseLabels:                   false
-AlignAfterOpenBracket:              DontAlign
+IndentWidth: 4
+---
+Language: Cpp
+BasedOnStyle: Google
+ColumnLimit: 120
+IndentWidth: 4
+AccessModifierOffset: -4
+ConstructorInitializerIndentWidth: 8
+ContinuationIndentWidth: 8
+PointerAlignment: Right
+ReferenceAlignment: Left
+DerivePointerAlignment: false
+IndentCaseLabels: false
+AlignAfterOpenBracket: DontAlign
+---
+Language: Proto
+BasedOnStyle: Google
+IndentWidth: 4
+...

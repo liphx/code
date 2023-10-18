@@ -1,6 +1,6 @@
-#ifdef OS_UNIX
-
 #include "liph/net/http.h"
+
+#ifdef OS_UNIX
 
 #include <algorithm>
 #include <functional>

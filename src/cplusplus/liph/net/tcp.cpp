@@ -1,6 +1,6 @@
-#ifdef OS_UNIX
-
 #include "liph/net/tcp.h"
+
+#ifdef OS_UNIX
 
 #include <cerrno>
 #include <cstring>
