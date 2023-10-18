@@ -1,6 +1,8 @@
 #ifndef LIPH_IO_POLL_H_
 #define LIPH_IO_POLL_H_
 
+#ifdef OS_UNIX
+
 #include <poll.h>
 
 #include <cstdint>
@@ -129,5 +131,7 @@ public:
 };
 
 }  // namespace liph::io
+
+#endif
 
 #endif  // LIPH_IO_POLL_H_

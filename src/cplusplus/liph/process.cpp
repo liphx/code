@@ -1,5 +1,7 @@
 #include "liph/process.h"
 
+#ifdef OS_LINUX
+
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -56,3 +58,5 @@ int become_daemon(int flags) {
 }
 
 }  // namespace liph
+
+#endif

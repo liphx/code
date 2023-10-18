@@ -1,6 +1,8 @@
 #ifndef LIPH_SQLITE_H_
 #define LIPH_SQLITE_H_
 
+#ifndef NOSQLITE
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -114,5 +116,7 @@ private:
 };
 
 }  // namespace liph
+
+#endif
 
 #endif  // LIPH_SQLITE_H_

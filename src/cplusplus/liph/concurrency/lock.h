@@ -3,6 +3,7 @@
 
 #include <atomic>
 #include <mutex>
+#include <stdexcept>
 #include <thread>
 
 // spinlock

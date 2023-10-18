@@ -7,3 +7,4 @@ log/
 *.pb.cc
 *.pb.h
 nohup.out
+build/

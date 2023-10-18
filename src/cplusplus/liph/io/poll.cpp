@@ -1,5 +1,7 @@
 #include "liph/io/poll.h"
 
+#ifdef OS_UNIX
+
 #ifdef __linux__
 #include <sys/epoll.h>
 #elif __APPLE__
@@ -84,3 +86,5 @@ bool Poll::wait(std::vector<void *>&) { return false; }
 #endif  // __linux__ or __APPLE__
 
 }  // namespace liph::io
+
+#endif

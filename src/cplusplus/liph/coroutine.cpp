@@ -1,6 +1,6 @@
 #include "liph/coroutine.h"
 
-#ifndef __APPLE__
+#ifdef OS_LINUX
 
 #include <cassert>
 

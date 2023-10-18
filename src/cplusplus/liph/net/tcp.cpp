@@ -1,3 +1,5 @@
+#ifdef OS_UNIX
+
 #include "liph/net/tcp.h"
 
 #include <cerrno>
@@ -87,3 +89,5 @@ void tcp_server::run(std::function<void(tcp_connect&)> handle) {
 }
 
 }  // namespace liph::net
+
+#endif

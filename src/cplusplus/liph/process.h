@@ -1,6 +1,8 @@
 #ifndef LIPH_PROCESS_H_
 #define LIPH_PROCESS_H_
 
+#include "liph/macros.h"
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>

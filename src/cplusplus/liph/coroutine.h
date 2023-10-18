@@ -3,7 +3,8 @@
 
 // C++ version of https://github.com/cloudwu/coroutine
 
-#ifndef __APPLE__
+#include "liph/macros.h"
+#ifdef OS_LINUX
 
 #include <ucontext.h>
 

@@ -1,13 +1,17 @@
 #include "liph/terminal.h"
+#include "liph/macros.h"
 
+#ifdef OS_UNIX
 #include <termios.h>
 #include <unistd.h>
+#endif
 
 #include <cstdio>
 #include <cstdlib>
 
 namespace liph {
 
+#ifdef OS_UNIX
 bool stdin_echo_on() {
     struct termios tm;
     if (tcgetattr(STDIN_FILENO, &tm) != 0) return false;
@@ -36,6 +40,8 @@ bool stdin_buffering_off() {
 void clear_screen() { printf("\033[2J"); }
 void clear_scrollback_buffer() { printf("\033[3J"); }
 void reset_screen() { system("reset"); }
+
+#endif
 
 std::string color256fg(unsigned char n) { return "\033[38;5;" + std::to_string(static_cast<int>(n)) + "m"; }
 std::string color256bg(unsigned char n) { return "\033[48;5;" + std::to_string(static_cast<int>(n)) + "m"; }

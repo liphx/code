@@ -1,3 +1,5 @@
+#ifdef OS_UNIX
+
 #include "liph/net/http.h"
 
 #include <algorithm>
@@ -133,3 +135,5 @@ void http_response::set_content(const std::string& co, const std::string& type) 
 }
 
 }  // namespace liph::net
+
+#endif

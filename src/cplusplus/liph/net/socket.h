@@ -1,6 +1,8 @@
 #ifndef LIPH_NET_SOCKET_H_
 #define LIPH_NET_SOCKET_H_
 
+#ifdef OS_UNIX
+
 #include <sys/types.h>
 
 #include <memory>
@@ -47,5 +49,7 @@ private:
 };
 
 }  // namespace liph::net
+
+#endif
 
 #endif  // LIPH_NET_SOCKET_H_

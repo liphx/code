@@ -15,4 +15,19 @@
 #define OS_UNIX
 #endif
 
+#if __cplusplus < 201103L
+#define USE_CPP98
+#define USE_CPP03
+#elif __cplusplus >= 201103L && __cplusplus < 201402L
+#define USE_CPP11
+#elif __cplusplus >= 201402L && __cplusplus < 201703L
+#define USE_CPP14
+#elif __cplusplus >= 201703L && __cplusplus < 202002L
+#define USE_CPP17
+#elif __cplusplus >= 202002L && __cplusplus < 202302L
+#define USE_CPP20
+#elif __cplusplus >= 202302L
+#define USE_CPP23
+#endif
+
 #endif  // LIPH_MACROS_H_

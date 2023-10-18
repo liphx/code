@@ -1,6 +1,8 @@
 #ifndef LIPH_NET_TCP_H_
 #define LIPH_NET_TCP_H_
 
+#ifdef OS_UNIX
+
 #include <functional>
 #include <memory>
 #include <string>
@@ -44,5 +46,7 @@ private:
 };
 
 }  // namespace liph::net
+
+#endif
 
 #endif  // LIPH_NET_TCP_H_

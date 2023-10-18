@@ -12,6 +12,9 @@ export PS1='\u@\h:\w\$ '
 # export LC_ALL=
 export GOPROXY=https://mirrors.aliyun.com/goproxy/
 
+if [ -z $USER ]; then
+    export USER=$USERNAME  # windows
+fi
 echo "hello $USER"
 echo "now is $(date '+%F %T')"
 

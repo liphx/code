@@ -1,6 +1,7 @@
 #ifndef LIPH_NUMERIC_BIG_INTEGER_H_
 #define LIPH_NUMERIC_BIG_INTEGER_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
 

@@ -1,5 +1,7 @@
 #include "liph/net/socket.h"
 
+#ifdef OS_UNIX
+
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <sys/socket.h>
@@ -147,3 +149,5 @@ ssize_t socket::recv(void *buf, size_t nbytes, int flags) { return ::recv(fd_, b
 ssize_t socket::send(const void *buf, size_t nbytes, int flags) { return ::send(fd_, buf, nbytes, flags); }
 
 }  // namespace liph::net
+
+#endif

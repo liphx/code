@@ -1,6 +1,8 @@
 #ifndef LIPH_IO_POLLER_H_
 #define LIPH_IO_POLLER_H_
 
+#ifdef OS_LINUX
+
 #include <poll.h>
 
 namespace liph {
@@ -19,5 +21,7 @@ private:
 };
 
 }  // namespace liph
+
+#endif
 
 #endif  // LIPH_IO_POLLER_H_
