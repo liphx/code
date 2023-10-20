@@ -21,6 +21,7 @@
 #include "liph/io/poll.h"
 #include "liph/io/poller.h"
 #include "liph/json.h"
+#include "liph/lang/demangle.h"
 #include "liph/lang/make_default.h"
 #include "liph/lang/no_destructor.h"
 #include "liph/lang/noncopyable.h"
