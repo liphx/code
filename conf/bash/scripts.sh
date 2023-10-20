@@ -64,7 +64,7 @@ function format() {
     for file; do
         extension=$(extension_name $file)
         case $extension in
-            h|c|cc|cpp) clang-format -i $file;;
+            h|c|cc|cpp|proto) clang-format -i $file;;
             py) autopep8 -i $file;;
             go) gofmt -w $file;;
             *) echo "no format tools for $file";;

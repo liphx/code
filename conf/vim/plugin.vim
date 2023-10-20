@@ -11,6 +11,7 @@ nnoremap <leader>\ :.Commentary<CR>
 vnoremap <leader>\ :Commentary<CR>
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
+autocmd FileType proto setlocal commentstring=//\ %s
 
 " fzf
 "$ sudo apt install fzf

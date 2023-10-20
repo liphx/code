@@ -1,19 +1,4 @@
-# liph's C++ codes
-
-## lib
-
-- numeric
-  - big\_integer
-  - random
-- concurrency
-  - blocking\_queue
-  - lock
-  - thread
-  - threadpool
-- logging
-- string
-- file
-- json
+# Liph's C++ Codes
 
 ## quick start with bazel
 
