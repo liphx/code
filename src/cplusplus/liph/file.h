@@ -9,16 +9,16 @@
 
 namespace liph {
 
-// read all from pathname, append to output
+/// read all from pathname, append to output
 [[nodiscard]] bool read_file(const std::filesystem::path& pathname, std::string& output);
 
-// write all to pathname
+/// write all to pathname
 [[nodiscard]] bool write_file(const std::string& pathname, const std::string& str);
 
-// check path(file or directory) exists
+/// check path(file or directory) exists
 [[nodiscard]] bool path_exists(const std::string& pathname);
 
-// list all files(including directories) in pathname recursively and sort by names
+/// list all files(including directories) in pathname recursively and sort by names
 [[nodiscard]] std::vector<std::string> list_files(const std::string& pathname);
 
 #ifdef USE_CPP20
@@ -34,13 +34,15 @@ inline file_ptr fopen(const char *filename, char const *mode) {
 
 #endif
 
-// mkdir, mkdir -p
-// return true if directory exists finally
+/// mkdir
+/// @retval return true if directory exists finally
 inline bool mkdir(const std::filesystem::path& path) {
     std::error_code ec;
     return std::filesystem::create_directory(path, ec);
 }
 
+/// mkdir -p
+/// @retval return true if directory exists finally
 inline bool mkdirp(const std::filesystem::path& path) {
     std::error_code ec;
     return std::filesystem::create_directories(path, ec);

@@ -3,7 +3,7 @@ add_library(liph
     crypto/md5.cpp
     csv.cpp
     file.cpp
-    # flags.cpp
+    flags.cpp
     io/poll.cpp
     json.cpp
     net/http.cpp
