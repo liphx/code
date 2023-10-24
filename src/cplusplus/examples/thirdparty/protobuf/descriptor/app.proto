@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package app.main;
+
+extend google.protobuf.FieldOptions {
+    string cpp_type = 10000;
+}
+
+message Request {
+    int64 id = 1;
+    string name = 2;
+    int32 size = 3 [(cpp_type) = "int16"];
+}
