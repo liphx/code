@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message Request {
+    int64 id = 1;
+    string name = 3;
+    int32 size = 10;
+}

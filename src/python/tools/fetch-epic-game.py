@@ -1,12 +1,9 @@
 from common import *
-from glob import glob
-import time
-from bs4 import BeautifulSoup
-import json
+import sys
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0',
-    'Cookie': ''
+    'Cookie': sys.argv[1]
 }
 
 
@@ -22,11 +19,13 @@ def fetch(url):
             #     description = description[1:-1]
             print(description)
     nextPageToken = data['nextPageToken']
-    # url = f'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&locale=zh-Hans&nextPageToken={nextPageToken}'
-    url = f'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&nextPageToken={nextPageToken}'
+    if not nextPageToken:
+        return
+    url = f'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&locale=zh-Hans&nextPageToken={nextPageToken}'
+    # url = f'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&nextPageToken={nextPageToken}'
     fetch(url)
 
 
-# url = 'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&locale=zh-Hans'
-url = 'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE'
+url = 'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE&locale=zh-Hans'
+# url = 'https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory?sortDir=DESC&sortBy=DATE'
 fetch(url)
