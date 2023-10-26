@@ -2,6 +2,10 @@
 
 set -e
 
+cplusplus_root=$(dirname $(readlink -f $0))
+git_root=$cplusplus_root/../..
+docs_root=$git_root/docs
+
 # cd ~/usr/bin/
 # wget https://github.com/bazelbuild/bazel/releases/download/6.3.2/bazel-6.3.2-linux-x86_64
 # chmod +x bazel-6.3.2-linux-x86_64
@@ -18,8 +22,6 @@ echo >> liph/liph.h
 echo "#endif  // LIPH_LIPH_H_" >> liph/liph.h
 
 # clang-format
-cplusplus_root=$(dirname $(readlink -f $0))
-git_root=$cplusplus_root/../..
 cd $git_root
 for f in $(git diff --cached --name-only --diff-filter=AM); do
     if [[ $f =~ .*\.(cpp|h|hpp|cc)$ ]]; then
@@ -40,7 +42,10 @@ bazel build ...
 ./bazel-bin/tools/check-cpp-header liph
 
 # doxygen
+rm -rf $docs_root
+mkdir $docs_root
 doxygen
+echo 'code.liph.ink' > $docs_root/CNAME
 
 # ltl
 cd $cplusplus_root/ltl
