@@ -1,4 +1,4 @@
-// docs/rfc1321.txt
+// rfc1321.txt
 
 #include "liph/crypto/md5.h"
 
