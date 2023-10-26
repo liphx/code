@@ -45,7 +45,7 @@ bazel build ...
 rm -rf $docs_root
 mkdir $docs_root
 doxygen
-echo 'code.liph.ink' > $docs_root/CNAME
+echo 'code.lipenghua.com' > $docs_root/CNAME
 
 # ltl
 cd $cplusplus_root/ltl
