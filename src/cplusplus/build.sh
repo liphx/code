@@ -40,7 +40,6 @@ bazel build ...
 ./bazel-bin/tools/check-cpp-header liph
 
 # doxygen
-cd $cplusplus_root/liph
 doxygen
 
 # ltl

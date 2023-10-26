@@ -19,7 +19,7 @@ public:
     bool register_double_flag(const std::string& name, double default_value = 0.0, std::string help_message = "");
     bool register_string_flag(const std::string& name, std::string default_value = "", std::string help_message = "");
 
-    // parse command line and remove registered flags
+    /// parse command line and remove registered flags
     bool parse_flags(int argc, char ***argv);
 
     bool has_flag(const std::string& name) const;

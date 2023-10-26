@@ -1,6 +1,4 @@
-# Liph's C++ Codes
-
-## quick start with bazel
+**quick start with bazel**
 
 ```
 project/
@@ -44,7 +42,7 @@ int main() {
 }
 ```
 
-## env
+**env**
 
 Linux
 

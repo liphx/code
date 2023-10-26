@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LIPH&#39;s C++ Codes: flags.h Source File</title>
+<title>LIPH&#39;s C++ Codes: liph/flags.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,7 +108,6 @@ $(document).ready(function(){initNavTree('flags_8h_source.html',''); initResizab
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classliph_1_1flags.html#a553e0b07bfc1e3689afd8355d578a556">register_double_flag</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">double</span> default_value = 0.0, std::string help_message = <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classliph_1_1flags.html#a5a7af4e5d8d0fb6b979c07f9f9a1df09">register_string_flag</a>(<span class="keyword">const</span> std::string&amp; name, std::string default_value = <span class="stringliteral">&quot;&quot;</span>, std::string help_message = <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// parse command line and remove registered flags</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classliph_1_1flags.html#a7c168b0c7225add22641aa8930c848f7">parse_flags</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> ***argv);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classliph_1_1flags.html#a3b083448cfd4624415c459d7c02cfd2a">has_flag</a>(<span class="keyword">const</span> std::string&amp; name) <span class="keyword">const</span>;</div>
@@ -147,7 +146,7 @@ $(document).ready(function(){initNavTree('flags_8h_source.html',''); initResizab
 <div class="ttc" id="aclassliph_1_1flags_html_a4b4f6d8300bbed48ddab9404a62d06bd"><div class="ttname"><a href="classliph_1_1flags.html#a4b4f6d8300bbed48ddab9404a62d06bd">liph::flags::help</a></div><div class="ttdeci">std::string help() const</div><div class="ttdef"><b>Definition:</b> flags.cpp:140</div></div>
 <div class="ttc" id="aclassliph_1_1flags_html_a553e0b07bfc1e3689afd8355d578a556"><div class="ttname"><a href="classliph_1_1flags.html#a553e0b07bfc1e3689afd8355d578a556">liph::flags::register_double_flag</a></div><div class="ttdeci">bool register_double_flag(const std::string &amp;name, double default_value=0.0, std::string help_message=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> flags.cpp:33</div></div>
 <div class="ttc" id="aclassliph_1_1flags_html_a5a7af4e5d8d0fb6b979c07f9f9a1df09"><div class="ttname"><a href="classliph_1_1flags.html#a5a7af4e5d8d0fb6b979c07f9f9a1df09">liph::flags::register_string_flag</a></div><div class="ttdeci">bool register_string_flag(const std::string &amp;name, std::string default_value=&quot;&quot;, std::string help_message=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> flags.cpp:40</div></div>
-<div class="ttc" id="aclassliph_1_1flags_html_a7c168b0c7225add22641aa8930c848f7"><div class="ttname"><a href="classliph_1_1flags.html#a7c168b0c7225add22641aa8930c848f7">liph::flags::parse_flags</a></div><div class="ttdeci">bool parse_flags(int argc, char ***argv)</div><div class="ttdef"><b>Definition:</b> flags.cpp:47</div></div>
+<div class="ttc" id="aclassliph_1_1flags_html_a7c168b0c7225add22641aa8930c848f7"><div class="ttname"><a href="classliph_1_1flags.html#a7c168b0c7225add22641aa8930c848f7">liph::flags::parse_flags</a></div><div class="ttdeci">bool parse_flags(int argc, char ***argv)</div><div class="ttdoc">parse command line and remove registered flags</div><div class="ttdef"><b>Definition:</b> flags.cpp:47</div></div>
 <div class="ttc" id="aclassliph_1_1flags_html_a94874b2f42201fb655218a9c67f488ee"><div class="ttname"><a href="classliph_1_1flags.html#a94874b2f42201fb655218a9c67f488ee">liph::flags::register_bool_flag</a></div><div class="ttdeci">bool register_bool_flag(const std::string &amp;name, bool default_value=false, std::string help_message=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> flags.cpp:19</div></div>
 <div class="ttc" id="aclassliph_1_1flags_html_ac18ffc63801fdd669ccae8ecfad6f4bf"><div class="ttname"><a href="classliph_1_1flags.html#ac18ffc63801fdd669ccae8ecfad6f4bf">liph::flags::int32_ref</a></div><div class="ttdeci">int32_t &amp; int32_ref(const std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> flags.cpp:122</div></div>
 <div class="ttc" id="aclassliph_1_1flags_html_ace438c16aa19265cb227210967fa1de4"><div class="ttname"><a href="classliph_1_1flags.html#ace438c16aa19265cb227210967fa1de4">liph::flags::flags</a></div><div class="ttdeci">flags()=default</div></div>
@@ -160,7 +159,7 @@ $(document).ready(function(){initNavTree('flags_8h_source.html',''); initResizab
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="flags_8h.html">flags.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7eaddc0a53ddac9b61a8121e2e7e2bc3.html">liph</a></li><li class="navelem"><a class="el" href="flags_8h.html">flags.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
