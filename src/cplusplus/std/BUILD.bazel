@@ -2,7 +2,6 @@
     name = cc_name.split('.')[0],
     srcs = [cc_name],
     copts = [
-        "-std=c++2b",
         "-Wall",
         "-Wno-error",
     ],

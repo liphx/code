@@ -39,10 +39,19 @@ bazel build ...
 # check headers
 ./bazel-bin/tools/check-cpp-header liph
 
+# doxygen
+cd $cplusplus_root/liph
+doxygen
+
 # ltl
 cd $cplusplus_root/ltl
 GTEST_PATH=../bazel-bin/external/thirdparty/googletest-1.14.0
 make
-export LD_LIBRARY_PATH=$GTEST_PATH
-export DYLD_FALLBACK_LIBRARY_PATH=$GTEST_PATH
+export LD_LIBRARY_PATH=$GTEST_PATH:$LD_LIBRARY_PATH
+export DYLD_FALLBACK_LIBRARY_PATH=$GTEST_PATH:$DYLD_FALLBACK_LIBRARY_PATH
 ./test_all && ./test_std_all
+
+# cmake
+# cmake -S .- B build
+# cmake --build build
+# ./build/main

@@ -8,13 +8,24 @@
 
 namespace liph {
 
-// default charset: whitespace(" \n\r\t\f\v")
-std::string ltrim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
-std::string rtrim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
-std::string trim(const std::string& s, const std::string& charset = " \n\r\t\f\v");
+/// Remove whitespace characters to the left of s
+/// @param charset default: whitespace(" \n\r\t\f\v")
+/// @return sub string_view of s
+std::string_view ltrim(std::string_view s, std::string_view charset = " \n\r\t\f\v");
 
-bool startswith(const std::string& s, const std::string& t);
-bool endswith(const std::string& s, const std::string& t);
+/// Remove whitespace characters to the right of s
+/// @see ltrim
+std::string_view rtrim(std::string_view s, std::string_view charset = " \n\r\t\f\v");
+
+/// Remove whitespace characters to the left and right of s
+/// @see ltrim
+std::string_view trim(std::string_view s, std::string_view charset = " \n\r\t\f\v");
+
+/// @return true if s starts with t
+bool startswith(std::string_view s, std::string_view t);
+
+/// @return true if s ends with t
+bool endswith(std::string_view s, std::string_view t);
 
 void split(std::vector<std::string>& tokens, const std::string& s, const std::string& delimiters = " ");
 std::vector<std::string> split(const std::string& s, const std::string& delimiters = " ");

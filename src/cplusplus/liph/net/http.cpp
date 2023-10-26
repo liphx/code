@@ -83,7 +83,7 @@ bool http_request::parse_header(std::string& ss) {
         auto pos = line.find_first_of(":");
         if (pos == std::string::npos) goto ERR;
         std::string key = std::string(line, 0, pos);
-        std::string value = ltrim(std::string(line, pos + 1));
+        auto value = ltrim(std::string_view(line).substr(pos + 1));
 
         if (key.empty() || value.empty()) goto ERR;
         header_[key] = value;

@@ -2,23 +2,23 @@
 
 namespace liph {
 
-std::string ltrim(const std::string& s, const std::string& charset) {
+std::string_view ltrim(std::string_view s, std::string_view charset) {
     auto start = s.find_first_not_of(charset);
     return (start == std::string::npos) ? "" : s.substr(start);
 }
 
-std::string rtrim(const std::string& s, const std::string& charset) {
+std::string_view rtrim(std::string_view s, std::string_view charset) {
     auto end = s.find_last_not_of(charset);
     return (end == std::string::npos) ? "" : s.substr(0, end + 1);
 }
 
-std::string trim(const std::string& s, const std::string& charset) { return rtrim(ltrim(s, charset), charset); }
+std::string_view trim(std::string_view s, std::string_view charset) { return rtrim(ltrim(s, charset), charset); }
 
-bool startswith(const std::string& s, const std::string& t) {
+bool startswith(std::string_view s, std::string_view t) {
     return s.size() >= t.size() && std::equal(t.cbegin(), t.cend(), s.cbegin());
 }
 
-bool endswith(const std::string& s, const std::string& t) {
+bool endswith(std::string_view s, std::string_view t) {
     return s.size() >= t.size() && std::equal(t.crbegin(), t.crend(), s.crbegin());
 }
 

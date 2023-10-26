@@ -5,7 +5,7 @@
 #include "liph/string.h"
 
 std::string deal_oneline(const std::string& s, int space_num = 4) {
-    std::string str = liph::rtrim(s);
+    auto str = liph::rtrim(s);
     std::string ret;
     ret.reserve(str.length());
     int i = 0;

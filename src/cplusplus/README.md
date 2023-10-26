@@ -44,12 +44,9 @@ int main() {
 }
 ```
 
-## tools
+## env
 
-```
-gcc (Debian 12.2.0-14) 12.2.0
-bazel 6.3.2
+Linux
 
-Apple clang version 14.0.3 (clang-1403.0.22.14.1)
-bazel 6.3.1-homebrew
-```
+- gcc 13.2.0
+- bazel 6.3.2

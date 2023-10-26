@@ -11,10 +11,10 @@ void get_conf() {
     string str;
     if (!read_file(conf_file, str)) return;
     auto lines = split(str, "\n");
-    for (auto& line : lines) {
+    for (const auto& line : lines) {
         auto s = trim(line);
         if (s.empty()) continue;
-        stringstream ss(s);
+        stringstream ss{std::string(s)};
         int n;
         string path;
         ss >> n;

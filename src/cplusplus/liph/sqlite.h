@@ -5,8 +5,10 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
+#include "liph/format.h"
 #include "sqlite-3.43.1/sqlite3.h"
 
 namespace liph {
@@ -15,22 +17,18 @@ class sqlite {
 public:
     sqlite() {}
 
-    sqlite(const char *filename) : db_(nullptr) {
-        int ret = sqlite3_open(filename, &db_);
+    sqlite(std::string_view filename) : db_(nullptr) {
+        int ret = sqlite3_open(filename.data(), &db_);
         if (ret != SQLITE_OK) {
             std::string msg = sqlite3_errmsg(db_);
-            throw std::runtime_error(msg + ": " + filename);
+            throw std::runtime_error(format("{}: {}", msg, filename));
         }
     }
 
-    sqlite(const std::string& filename) : sqlite(filename.c_str()) {}
-
-    bool open(const char *filename) {
+    bool open(std::string_view filename) {
         if (db_) return false;
-        return sqlite3_open(filename, &db_) == SQLITE_OK;
+        return sqlite3_open(filename.data(), &db_) == SQLITE_OK;
     }
-
-    bool open(const std::string& filename) { return open(filename.c_str()); }
 
     bool is_open() const { return db_ != nullptr; }
 
@@ -41,16 +39,13 @@ public:
         }
     }
 
-    int execute(const char *sql) { return sqlite3_exec(db_, sql, nullptr, nullptr, nullptr); }
-    int execute(const std::string& sql) { return execute(sql.c_str()); }
-
-    std::vector<std::vector<std::string>> query(const std::string& sql) const { return query(sql.c_str()); }
+    int execute(std::string_view sql) { return sqlite3_exec(db_, sql.data(), nullptr, nullptr, nullptr); }
 
     // the first column returns the field name if the result is not empty
-    std::vector<std::vector<std::string>> query(const char *sql) const {
+    std::vector<std::vector<std::string>> query(std::string_view sql) const {
         std::vector<std::vector<std::string>> result;
         int ret = sqlite3_exec(
-                db_, sql,
+                db_, sql.data(),
                 [](void *data, int num, char **fields, char **names) {
                     auto *result = (std::vector<std::vector<std::string>> *)data;
                     if (result->empty()) {

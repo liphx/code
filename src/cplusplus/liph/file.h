@@ -35,14 +35,14 @@ inline file_ptr fopen(const char *filename, char const *mode) {
 #endif
 
 /// mkdir
-/// @retval return true if directory exists finally
+/// @return true if directory exists finally
 inline bool mkdir(const std::filesystem::path& path) {
     std::error_code ec;
     return std::filesystem::create_directory(path, ec);
 }
 
 /// mkdir -p
-/// @retval return true if directory exists finally
+/// @return true if directory exists finally
 inline bool mkdirp(const std::filesystem::path& path) {
     std::error_code ec;
     return std::filesystem::create_directories(path, ec);
