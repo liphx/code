@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['g_455',['g',['../structliph_1_1rgb.html#a76cc41ebd265ca29cbf8615cdeb39ab3',1,'liph::rgb']]]
+  ['g_0',['g',['../structliph_1_1rgb.html#a76cc41ebd265ca29cbf8615cdeb39ab3',1,'liph::rgb']]]
 ];

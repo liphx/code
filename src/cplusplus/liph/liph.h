@@ -19,7 +19,6 @@
 #include "liph/format.h"
 #include "liph/io/descriptor.h"
 #include "liph/io/poll.h"
-#include "liph/io/poller.h"
 #include "liph/json.h"
 #include "liph/lang/demangle.h"
 #include "liph/lang/make_default.h"
