@@ -41,7 +41,7 @@ bazel build ...
 # check headers
 ./bazel-bin/tools/check-cpp-header liph
 
-# doxygen
+# doxygen 1.9.8
 rm -rf $docs_root
 mkdir $docs_root
 doxygen

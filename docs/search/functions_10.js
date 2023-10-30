@@ -17,5 +17,5 @@ var searchData=
   ['stop_14',['stop',['../classliph_1_1timer.html#a129ee8537fa54914b38696eca36e8684',1,'liph::timer']]],
   ['stream_15',['stream',['../classliph_1_1log__message.html#a52c5a6f3be75507129dae7ca1a93c00f',1,'liph::log_message']]],
   ['string_5fref_16',['string_ref',['../classliph_1_1json.html#a2b636031c5fad742416f95a653f59c8a',1,'liph::json::string_ref() const'],['../classliph_1_1json.html#a7edf98faac122c991e7438b76bad9bbf',1,'liph::json::string_ref()'],['../classliph_1_1flags.html#a08429859b53f2be1684da2e1a5a9b3c2',1,'liph::flags::string_ref()']]],
-  ['switch_17',['Switch',['../classliph_1_1DoubleBufferWithSharedPtr.html#a659f10c2551f44e4c828f6a2c9245895',1,'liph::DoubleBufferWithSharedPtr::Switch()'],['../classliph_1_1DoubleBuffer.html#ad56766d3322277eafc3c2413b2914106',1,'liph::DoubleBuffer::Switch()']]]
+  ['swap_17',['swap',['../classliph_1_1double__buffer__with__shared__ptr.html#aa9ec4ec77a5ad20bb210dadc72745556',1,'liph::double_buffer_with_shared_ptr::swap()'],['../classliph_1_1double__buffer.html#aa294eb6ee2322eddc3a74f999c89d669',1,'liph::double_buffer::swap()']]]
 ];

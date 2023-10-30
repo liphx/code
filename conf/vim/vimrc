@@ -101,6 +101,10 @@ if filereadable(expand("~/.vim/plugin.vim"))
     source ~/.vim/plugin.vim
 endif
 
+if filereadable(expand("~/.vim/local.vim"))
+    source ~/.vim/local.vim
+endif
+
 if filereadable("./.workspace.vim")
     source ./.workspace.vim
 endif

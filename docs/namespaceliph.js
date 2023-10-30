@@ -2,8 +2,8 @@ var namespaceliph =
 [
     [ "avl", "classliph_1_1avl.html", "classliph_1_1avl" ],
     [ "csv", "classliph_1_1csv.html", "classliph_1_1csv" ],
-    [ "DoubleBuffer", "classliph_1_1DoubleBuffer.html", "classliph_1_1DoubleBuffer" ],
-    [ "DoubleBufferWithSharedPtr", "classliph_1_1DoubleBufferWithSharedPtr.html", "classliph_1_1DoubleBufferWithSharedPtr" ],
+    [ "double_buffer", "classliph_1_1double__buffer.html", "classliph_1_1double__buffer" ],
+    [ "double_buffer_with_shared_ptr", "classliph_1_1double__buffer__with__shared__ptr.html", "classliph_1_1double__buffer__with__shared__ptr" ],
     [ "flags", "classliph_1_1flags.html", "classliph_1_1flags" ],
     [ "json", "classliph_1_1json.html", "classliph_1_1json" ],
     [ "log_message", "classliph_1_1log__message.html", "classliph_1_1log__message" ],

@@ -8,14 +8,13 @@ var searchData=
   ['lightsteelblue_5',['LightSteelBlue',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80aaa88feafc512a95f9419eb107f991827',1,'liph']]],
   ['lime_6',['Lime',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80afc1cebf02dc2ee68655f3e7bf1b84230',1,'liph']]],
   ['liph_7',['liph',['../namespaceliph.html',1,'']]],
-  ['liph_27s_20c_2b_2b_20codes_8',['LIPH&apos;s C++ Codes',['../index.html',1,'']]],
+  ['liph_20s_20c_20codes_8',['LIPH&apos;s C++ Codes',['../index.html',1,'']]],
   ['liph_2eh_9',['liph.h',['../liph_8h.html',1,'']]],
   ['list_5ffiles_10',['list_files',['../namespaceliph.html#a5326f4d978edc5084d73c41ba2a4ca00',1,'liph']]],
   ['load_11',['load',['../classliph_1_1json.html#aca039d5b131174840d90d84d2108a2f3',1,'liph::json']]],
-  ['log_12',['log',['../classliph_1_1logger.html#ae609be706ac088dcb85024a9dfdba8a0',1,'liph::logger']]],
-  ['log_13',['LOG',['../logging_8h.html#a159ca84d25a5487d8e81e4438725df19',1,'logging.h']]],
-  ['log_5fmessage_14',['log_message',['../classliph_1_1log__message.html',1,'liph::log_message'],['../classliph_1_1log__message.html#ac7146c2c7c2c736212e5bed8eaea1182',1,'liph::log_message::log_message()']]],
-  ['logger_15',['logger',['../classliph_1_1logger.html',1,'liph::logger'],['../classliph_1_1logger.html#a731d11412186c2de75d5cc64e5210e9e',1,'liph::logger::logger()']]],
-  ['logging_2eh_16',['logging.h',['../logging_8h.html',1,'']]],
-  ['ltrim_17',['ltrim',['../namespaceliph.html#a01126831d759068cf82b73a417efed14',1,'liph']]]
+  ['log_12',['log',['../classliph_1_1logger.html#ae609be706ac088dcb85024a9dfdba8a0',1,'liph::logger::log()'],['../logging_8h.html#a159ca84d25a5487d8e81e4438725df19',1,'LOG:&#160;logging.h']]],
+  ['log_5fmessage_13',['log_message',['../classliph_1_1log__message.html#ac7146c2c7c2c736212e5bed8eaea1182',1,'liph::log_message::log_message()'],['../classliph_1_1log__message.html',1,'liph::log_message']]],
+  ['logger_14',['logger',['../classliph_1_1logger.html#a731d11412186c2de75d5cc64e5210e9e',1,'liph::logger::logger()'],['../classliph_1_1logger.html',1,'liph::logger']]],
+  ['logging_2eh_15',['logging.h',['../logging_8h.html',1,'']]],
+  ['ltrim_16',['ltrim',['../namespaceliph.html#a01126831d759068cf82b73a417efed14',1,'liph']]]
 ];

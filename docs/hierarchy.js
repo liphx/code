@@ -2,8 +2,8 @@ var hierarchy =
 [
     [ "liph::avl< T, Compare >", "classliph_1_1avl.html", null ],
     [ "liph::csv", "classliph_1_1csv.html", null ],
-    [ "liph::DoubleBuffer< T >", "classliph_1_1DoubleBuffer.html", null ],
-    [ "liph::DoubleBufferWithSharedPtr< T >", "classliph_1_1DoubleBufferWithSharedPtr.html", null ],
+    [ "liph::double_buffer< T >", "classliph_1_1double__buffer.html", null ],
+    [ "liph::double_buffer_with_shared_ptr< T >", "classliph_1_1double__buffer__with__shared__ptr.html", null ],
     [ "liph::flags", "classliph_1_1flags.html", null ],
     [ "liph::json", "classliph_1_1json.html", null ],
     [ "liph::log_message", "classliph_1_1log__message.html", null ],

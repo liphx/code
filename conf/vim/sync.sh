@@ -2,6 +2,8 @@
 
 set -xe
 
+cd $(dirname $0)
+
 if [ ! -d ~/.vim/pack/bundle/start ]; then
     mkdir -p ~/.vim/pack/bundle/start
 fi
@@ -11,6 +13,7 @@ if [ ! -d ~/.vim/pack/bundle/opt ]; then
 fi
 
 cp vimrc plugin.vim ~/.vim
+touch ~/.vim/local.vim
 
 # neovim
 
