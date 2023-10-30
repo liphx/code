@@ -7,12 +7,12 @@ var annotated_dup =
       [ "DoubleBufferWithSharedPtr", "classliph_1_1DoubleBufferWithSharedPtr.html", "classliph_1_1DoubleBufferWithSharedPtr" ],
       [ "flags", "classliph_1_1flags.html", "classliph_1_1flags" ],
       [ "json", "classliph_1_1json.html", "classliph_1_1json" ],
-      [ "logger", "classliph_1_1logger.html", "classliph_1_1logger" ],
       [ "log_message", "classliph_1_1log__message.html", "classliph_1_1log__message" ],
-      [ "prime_sieve", "classliph_1_1prime__sieve.html", "classliph_1_1prime__sieve" ],
-      [ "sqlite", "classliph_1_1sqlite.html", "classliph_1_1sqlite" ],
+      [ "logger", "classliph_1_1logger.html", "classliph_1_1logger" ],
       [ "prepared_statement", "classliph_1_1prepared__statement.html", "classliph_1_1prepared__statement" ],
+      [ "prime_sieve", "classliph_1_1prime__sieve.html", "classliph_1_1prime__sieve" ],
       [ "rgb", "structliph_1_1rgb.html", "structliph_1_1rgb" ],
+      [ "sqlite", "classliph_1_1sqlite.html", "classliph_1_1sqlite" ],
       [ "timer", "classliph_1_1timer.html", "classliph_1_1timer" ]
     ] ]
 ];

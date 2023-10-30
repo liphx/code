@@ -1,6 +1,6 @@
 var terminal_8h =
 [
-    [ "rgb", "structliph_1_1rgb.html", "structliph_1_1rgb" ],
+    [ "liph::rgb", "structliph_1_1rgb.html", "structliph_1_1rgb" ],
     [ "color256", "terminal_8h.html#af9459ee7737aa19ef652c69b26c3ab80", [
       [ "Black", "terminal_8h.html#af9459ee7737aa19ef652c69b26c3ab80ae90dfb84e30edf611e326eeb04d680de", null ],
       [ "Maroon", "terminal_8h.html#af9459ee7737aa19ef652c69b26c3ab80ad87fa7a1a056e269cdd6e102e507a822", null ],
