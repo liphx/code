@@ -70,6 +70,7 @@ var namespaceliph =
     [ "become_daemon", "namespaceliph.html#a8b7a82e2d68585e2b22547246d83de90", null ],
     [ "bit_cast", "namespaceliph.html#a3d4211ca9e3e6a3dcfbe3d19a35a9a90", null ],
     [ "bkdr_hash", "namespaceliph.html#adb1c8cd8f91dba486d5a536990f1652f", null ],
+    [ "bkdr_hash64", "namespaceliph.html#a604368d40fbbab08cbcc536b527cc789", null ],
     [ "bubble_sort", "namespaceliph.html#a69a396bb0941228c01c247258be5c7fe", null ],
     [ "bucket_sort", "namespaceliph.html#a701ddd09e99e73fc07a00f90d2621812", null ],
     [ "bzero", "namespaceliph.html#a8ba8822f59066559224bb29eb57b5395", null ],
