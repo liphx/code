@@ -11,6 +11,7 @@ var string_8h =
     [ "split", "string_8h.html#a0ffec017fc41e66fe5dc2f0104ba8ebb", null ],
     [ "split", "string_8h.html#a72a766b2eccff933f321805cfecabb84", null ],
     [ "startswith", "string_8h.html#a4e027cd01e84046ccf4679b9cd2a1a60", null ],
+    [ "to_int", "string_8h.html#afb398eb47623ff48fe40652c77e46200", null ],
     [ "to_string", "string_8h.html#aec666a91beeefdbb9a279b6579e7a2f0", null ],
     [ "trim", "string_8h.html#a3fc92498c389b209b3e1fd4b071e5dbc", null ]
 ];

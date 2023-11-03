@@ -16,9 +16,10 @@ var searchData=
   ['time_2eh_13',['time.h',['../time_8h.html',1,'']]],
   ['timer_14',['timer',['../classliph_1_1timer.html#a2b3e083f2e6af8f892ba8ce336dc99e2',1,'liph::timer::timer()'],['../classliph_1_1timer.html',1,'liph::timer']]],
   ['timer_2eh_15',['timer.h',['../timer_8h.html',1,'']]],
-  ['to_5fstring_16',['to_string',['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json::to_string()'],['../namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0',1,'liph::to_string(const T &amp;t)']]],
-  ['topk_17',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
-  ['trace_18',['TRACE',['../print_8h.html#a494d31903e7b0333dfa03b0778679113',1,'print.h']]],
-  ['trim_19',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
-  ['type_20',['type',['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json']]]
+  ['to_5fint_16',['to_int',['../namespaceliph.html#afb398eb47623ff48fe40652c77e46200',1,'liph']]],
+  ['to_5fstring_17',['to_string',['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json::to_string()'],['../namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0',1,'liph::to_string(const T &amp;t)']]],
+  ['topk_18',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
+  ['trace_19',['TRACE',['../print_8h.html#a494d31903e7b0333dfa03b0778679113',1,'print.h']]],
+  ['trim_20',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
+  ['type_21',['type',['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json']]]
 ];

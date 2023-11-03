@@ -1,5 +1,7 @@
 #include "liph/string.h"
 
+#include <charconv>
+
 namespace liph {
 
 std::string_view ltrim(std::string_view s, std::string_view charset) {
@@ -79,6 +81,13 @@ bool eat_symbol(std::string_view& sv, std::string_view symbol) {
     if (sv.compare(0, symbol.size(), symbol) != 0) return false;
     sv = sv.substr(symbol.size());
     return true;
+}
+
+std::optional<int> to_int(std::string_view s) {
+    int r = 0;
+    auto [ptr, ec] = std::from_chars(s.begin(), s.end(), r);
+    if (ec == std::errc()) return r;
+    return std::nullopt;
 }
 
 }  // namespace liph

@@ -141,6 +141,7 @@ var namespaceliph =
     [ "text_reverse", "namespaceliph.html#ae29b127179b6e90a1b439afdf91f02f7", null ],
     [ "text_strikethrough", "namespaceliph.html#a0029775b5aadffd61c52eaeee05a7549", null ],
     [ "text_underline", "namespaceliph.html#aff8c8255ed5f70fc0da8c65fc7ce58b5", null ],
+    [ "to_int", "namespaceliph.html#afb398eb47623ff48fe40652c77e46200", null ],
     [ "to_string", "namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0", null ],
     [ "topk", "namespaceliph.html#a30179e039947b493d35ebd67734cc452", null ],
     [ "trim", "namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc", null ],

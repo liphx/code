@@ -1,6 +1,7 @@
 #ifndef LIPH_STRING_H_
 #define LIPH_STRING_H_
 
+#include <optional>
 #include <sstream>
 #include <string>
 #include <string_view>
@@ -50,6 +51,8 @@ std::string to_string(const T& t) {
 
 void skip_whitespace(std::string_view& sv);
 bool eat_symbol(std::string_view& sv, std::string_view symbol);
+
+std::optional<int> to_int(std::string_view);
 
 }  // namespace liph
 

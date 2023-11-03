@@ -10,8 +10,9 @@ var searchData=
   ['text_5fstrikethrough_7',['text_strikethrough',['../namespaceliph.html#a0029775b5aadffd61c52eaeee05a7549',1,'liph']]],
   ['text_5funderline_8',['text_underline',['../namespaceliph.html#aff8c8255ed5f70fc0da8c65fc7ce58b5',1,'liph']]],
   ['timer_9',['timer',['../classliph_1_1timer.html#a2b3e083f2e6af8f892ba8ce336dc99e2',1,'liph::timer']]],
-  ['to_5fstring_10',['to_string',['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json::to_string()'],['../namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0',1,'liph::to_string(const T &amp;t)']]],
-  ['topk_11',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
-  ['trim_12',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
-  ['type_13',['type',['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json']]]
+  ['to_5fint_10',['to_int',['../namespaceliph.html#afb398eb47623ff48fe40652c77e46200',1,'liph']]],
+  ['to_5fstring_11',['to_string',['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json::to_string()'],['../namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0',1,'liph::to_string(const T &amp;t)']]],
+  ['topk_12',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
+  ['trim_13',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
+  ['type_14',['type',['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json']]]
 ];
