@@ -1,11 +1,11 @@
 function mkcd() {
-    dir="$1";
-    mkdir -p "${dir}";
-    cd "${dir}";
+    dir="$1"
+    mkdir -p "${dir}"
+    cd "${dir}"
 }
 
 function mktmp() {
-    mkcd "tmp-`date "+%Y%m%d%H%M%S"`"
+    mkcd "tmp-$(date "+%Y%m%d%H%M%S")"
 }
 
 function lcd() {
@@ -49,7 +49,7 @@ function update() {
 function when() {
     while sleep 1; do
         tput sc
-        tput cup 0 $(($(tput cols)-29))
+        tput cup 0 $(($(tput cols) - 29))
         now
         tput rc
     done &
@@ -64,10 +64,11 @@ function format() {
     for file; do
         extension=$(extension_name $file)
         case $extension in
-            h|c|cc|cpp|proto) clang-format -i $file;;
-            py) autopep8 -i $file;;
-            go) gofmt -w $file;;
-            *) echo "no format tools for $file";;
+            h | c | cc | cpp | proto) clang-format -i $file ;;
+            py) autopep8 -i $file ;;
+            go) gofmt -w $file ;;
+            sh) shfmt -w -i 4 -ci -sr $file ;;
+            *) echo "no format tools for $file" ;;
         esac
     done
 }
@@ -76,29 +77,29 @@ function compress() {
     pack=$1
     dir=$2
     case $pack in
-        *.zip) zip -r $pack $dir;;
-        *.tar.gz|*.tgz) tar cjvf $pack $dir;;
-        *) echo "no compress tools for $pack";;
+        *.zip) zip -r $pack $dir ;;
+        *.tar.gz | *.tgz) tar cjvf $pack $dir ;;
+        *) echo "no compress tools for $pack" ;;
     esac
 }
 
 function uncompress() {
     file=$1
     case $file in
-        *.zip) unzip $file;;
-        *.tar.gz|*.tgz|*.tar.bz2) tar xvf $file;;
-        *) echo "no uncompress tools for $file";;
+        *.zip) unzip $file ;;
+        *.tar.gz | *.tgz | *.tar.bz2) tar xvf $file ;;
+        *) echo "no uncompress tools for $file" ;;
     esac
 }
 
 function terminfo() {
-    echo "`tput cols`x`tput lines` `tput longname`"
+    echo "$(tput cols)x$(tput lines) $(tput longname)"
 }
 
 function copy() {
-    case `uname -a` in
-        *Linux*) xclip -sel clip;;
-        *Darwin*) pbcopy;;
+    case $(uname -a) in
+        *Linux*) xclip -sel clip ;;
+        *Darwin*) pbcopy ;;
         *) ;;
     esac
 }

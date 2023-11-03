@@ -18,7 +18,7 @@ function error() {
 }
 
 function main() {
-    if [ `id -u` -ne 0 ]; then
+    if [ $(id -u) -ne 0 ]; then
         error "should run as root"
     fi
 
