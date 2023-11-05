@@ -1,3 +1,4 @@
+from common import *
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -12,24 +13,11 @@ today = datetime.datetime.now().strftime('%Y%m%d')
 output = open(f'douban-top250-{today}.json', 'w', encoding='utf-8')
 
 
-def getUrl(url, try_times=5):
-    if try_times == 0:
-        print(f'Error: get url {url} fail')
-        return None
-    time.sleep(1)
-    try:
-        r = requests.get(url, headers=headers)
-        return r
-    except:
-        time.sleep(5)
-        return getUrl(url, try_times - 1)
-
-
 def getItem(url):
     data = {}
     data['no'] = len(result) + 1
     data['url'] = url
-    r = getUrl(url)
+    r = fetch_url(url, headers=headers)
     if r is None:
         return
     soup = BeautifulSoup(r.text, "html.parser")
@@ -44,7 +32,7 @@ def main():
     urls = [
         'https://movie.douban.com/top250?start={}'.format(str(i)) for i in range(0, 250, 25)]
     for url in urls:
-        r = getUrl(url)
+        r = fetch_url(url, headers=headers)
         soup = BeautifulSoup(r.text, "html.parser")
         items = soup.select(".item .hd a")
         for item in items:

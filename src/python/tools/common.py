@@ -30,4 +30,4 @@ def fetch_url(url, headers=headers, try_times=5, sleep_interval=1):
         return requests.get(url, headers=headers)
     except Exception:
         time.sleep(sleep_interval)
-        return fetch_url(url, try_times - 1)
+        return fetch_url(url, headers=headers, try_times=try_times - 1)

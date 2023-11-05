@@ -1,30 +1,24 @@
+from common import *
 import time
 import requests
 from bs4 import BeautifulSoup
 import json
+import sys
 
 
-def getUrl(url, try_times=5):
-    if try_times == 0:
-        print(f'Error: get url {url} fail')
-        return None
-
-    try:
-        r = requests.get(url, headers=headers)
-        return r
-    except:
-        time.sleep(5)
-        return getUrl(url, try_times - 1)
+cookie = sys.argv[1]
+headers = {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0', 'Cookie': cookie}
 
 
 def get_imdb(item):
     url = f'https://movie.douban.com/subject/{item}/'
-    r = getUrl(url)
+    r = fetch_url(url, headers=headers)
     if r is None:
         return ''
     html = r.text
     soup = BeautifulSoup(html, "html.parser")
-    print(soup.select("#info")[0].get_text().strip())
+    # print(soup.select("#info")[0].get_text().strip())
     return soup.select("#info")[0].get_text().strip().split('IMDb:')[-1].strip().split('\n')[0].split(' ')[0]
 
 
@@ -41,7 +35,7 @@ def main():
             try:
                 imdb = get_imdb(item)
                 print(
-                    f'update movie set imdb_item = "{imdb}" where douban_item = "{item}";')
+                    f'update movietop250 set imdb = "{imdb}" where douban = "{item}";')
             except:
                 pass
             time.sleep(2)

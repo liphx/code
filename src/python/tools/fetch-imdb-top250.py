@@ -7,3 +7,6 @@ soup = BeautifulSoup(r.text, "html.parser")
 items = soup.select('.ipc-title__text')
 for item in items:
     print(item.get_text())
+urls = soup.select('.ipc-title-link-wrapper')
+for url in urls:
+    print(url.get('href'))
