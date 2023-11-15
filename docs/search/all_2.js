@@ -16,7 +16,7 @@ var searchData=
   ['blue_13',['Blue',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80a9594eec95be70e7b1710f730fdda33d9',1,'liph']]],
   ['blueviolet_14',['BlueViolet',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80a26bf81923cd49d7471e5a52da4f5c203',1,'liph']]],
   ['bool_5f_15',['bool_',['../classliph_1_1json.html#ac4ef8ac81f536cd13e7352d7187615d1',1,'liph::json']]],
-  ['bool_5fref_16',['bool_ref',['../classliph_1_1json.html#a787509155732deaed867e214424d7599',1,'liph::json::bool_ref() const'],['../classliph_1_1json.html#ade03b518684ac6732c3d61370ead2f65',1,'liph::json::bool_ref()'],['../classliph_1_1flags.html#af20bc7dd4638098cb77369f19bf532e9',1,'liph::flags::bool_ref()']]],
+  ['bool_5fref_16',['bool_ref',['../classliph_1_1json.html#ade03b518684ac6732c3d61370ead2f65',1,'liph::json::bool_ref()'],['../classliph_1_1json.html#a787509155732deaed867e214424d7599',1,'liph::json::bool_ref() const'],['../classliph_1_1flags.html#af20bc7dd4638098cb77369f19bf532e9',1,'liph::flags::bool_ref()']]],
   ['boolean_17',['boolean',['../classliph_1_1json.html#a7a7ee4f6e59fda7116228b84f92ca039a4f9a29115c40a3755fc993443f37ada6',1,'liph::json']]],
   ['bubble_5fsort_18',['bubble_sort',['../namespaceliph.html#a69a396bb0941228c01c247258be5c7fe',1,'liph']]],
   ['bucket_5fsort_19',['bucket_sort',['../namespaceliph.html#a701ddd09e99e73fc07a00f90d2621812',1,'liph']]],

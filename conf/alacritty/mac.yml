@@ -40,6 +40,7 @@ key_bindings:
   - { key: H, mods: Command, chars: "\x02\x1b" }      # C-b ESC
   - { key: LBracket, mods: Command, chars: "\x02(" }  # C-b (
   - { key: RBracket, mods: Command, chars: "\x02)" }  # C-b )
+  - { key: W, mods: Command, chars: "\x02Q" }         # kill current window
 
 scrolling:
   history: 100000

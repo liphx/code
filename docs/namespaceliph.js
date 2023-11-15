@@ -119,6 +119,7 @@ var namespaceliph =
     [ "quick_sort", "namespaceliph.html#aba69e09aaece1ced95cc5045d7ffa05c", null ],
     [ "radix_sort", "namespaceliph.html#a7217c737def2db8eb6d95aa6abd3a280", null ],
     [ "read_file", "namespaceliph.html#a1d813d71d26ca1388718be153d4da587", null ],
+    [ "replace", "namespaceliph.html#ab97fa5f7490a10a0a0b6eeca62b46aaa", null ],
     [ "reset_screen", "namespaceliph.html#abdd34e715ee05877cd91a540e94f3d47", null ],
     [ "rtrim", "namespaceliph.html#a50668420efc7b4951050c1bd7c569682", null ],
     [ "selection_sort", "namespaceliph.html#a72cb2ee6a70c2bb2c7f2d92afcbfa49b", null ],

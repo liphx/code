@@ -28,6 +28,8 @@ bool startswith(std::string_view s, std::string_view t);
 /// @return true if s ends with t
 bool endswith(std::string_view s, std::string_view t);
 
+std::string replace(std::string_view str, std::string_view old, std::string_view n);
+
 void split(std::vector<std::string>& tokens, const std::string& s, const std::string& delimiters = " ");
 std::vector<std::string> split(const std::string& s, const std::string& delimiters = " ");
 
