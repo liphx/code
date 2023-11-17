@@ -42,6 +42,7 @@ bazel build ...
 ./bazel-bin/tools/check-cpp-header liph
 
 # doxygen 1.9.8
+# git submodule update --init
 rm -rf $docs_root
 mkdir $docs_root
 doxygen
