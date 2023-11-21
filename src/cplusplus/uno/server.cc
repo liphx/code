@@ -10,7 +10,7 @@ using json = liph::json;
 
 void Server::Whoami(const httplib::Request& req, httplib::Response& res) {
     json ret;
-    ret["id"] = liph::random_string(8);
+    ret["id"] = liph::random::gen_str(8);
     res.set_content(ret.to_string(), "application/json");
 }
 

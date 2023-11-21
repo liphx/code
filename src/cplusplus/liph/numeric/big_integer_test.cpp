@@ -100,3 +100,12 @@ TEST(big_integer, extra) {
 }
 
 TEST(big_integer, literal) { EXPECT_EQ(big_integer("7124174278192181984714"), "7124174278192181984714"_bi); }
+
+#include <iostream>
+TEST(big_integer, rand) {
+    std::cout << big_integer::rand(-1).string() << std::endl;
+    std::cout << big_integer::rand(0).string() << std::endl;
+    std::cout << big_integer::rand(1).string() << std::endl;
+    std::cout << big_integer::rand(64).string() << std::endl;
+    std::cout << big_integer::rand(128).string() << std::endl;
+}

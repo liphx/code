@@ -43,10 +43,12 @@ bazel build ...
 
 # doxygen 1.9.8
 # git submodule update --init
-rm -rf $docs_root
-mkdir $docs_root
-doxygen
-echo 'code.lipenghua.com' > $docs_root/CNAME
+if [[ $1 = 'docs' ]]; then
+    rm -rf $docs_root
+    mkdir $docs_root
+    doxygen
+    echo 'code.lipenghua.com' > $docs_root/CNAME
+fi
 
 # ltl
 cd $cplusplus_root/ltl

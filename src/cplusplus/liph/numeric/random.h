@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include <random>
+#include <string>
+#include <string_view>
 
 namespace liph {
 
@@ -28,19 +30,19 @@ struct random {
     /// generate random double
     static double next_double() { return next<double>(); }
 
-    /// generate random int32_t range [0, a)
-    /// if a <= 0, return 0
-    static int32_t gen_int(int32_t a) { return gen_int(0, a); }
+    /// generate random int32_t range [0, n)
+    /// if n <= 0, return 0
+    static int32_t gen_int(int32_t n) { return n <= 0 ? 0 : (next_uint32() / 2) % n; }
 
     /// generate random int32_t range [a, b)
     /// if a >= b, return a
-    static int32_t gen_int(int32_t a, int32_t b) {
-        if (a >= b) return a;
-        return next_uint32() % (b - a) + a;
-    }
+    static int32_t gen_int(int32_t a, int32_t b) { return a + gen_int(b - a); }
 
     /// generate double range [0, 1)
     static double gen_real() { return (next_uint64() >> 11) * (1.0 / 9007199254740992.0); }
+
+    /// generate random string of length size from charset
+    static std::string gen_str(size_t size, std::string_view charset = "0123456789");
 
 private:
     template <class T>
@@ -51,6 +53,7 @@ private:
     }
 };
 
+#if 0
 class randomizer {
 public:
     explicit randomizer(uint64_t n) : n_(n), d_(0, n_) {}
@@ -65,16 +68,7 @@ private:
     static std::random_device r;
     static std::default_random_engine e;
 };
-
-inline std::string random_string(size_t size, const std::string& charset = "0123456789") {
-    if (size == 0 || charset.empty()) return "";
-    std::string str(size, 0);
-    randomizer rand(charset.size() - 1);
-    for (size_t i = 0; i < size; ++i) {
-        str[i] = charset[rand()];
-    }
-    return str;
-}
+#endif
 
 }  // namespace liph
 

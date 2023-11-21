@@ -29,7 +29,18 @@ bool random::next_bytes(void *ptr, size_t n) {
     return true;
 }
 
+std::string random::gen_str(size_t size, std::string_view charset) {
+    if (size == 0 || charset.empty()) return "";
+    std::string str(size, 0);
+    for (size_t i = 0; i < size; ++i) {
+        str[i] = charset[gen_int(charset.size())];
+    }
+    return str;
+}
+
+#if 0
 std::random_device randomizer::r;
 std::default_random_engine randomizer::e(randomizer::r());
+#endif
 
 }  // namespace liph

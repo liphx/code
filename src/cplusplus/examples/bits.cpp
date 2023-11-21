@@ -232,4 +232,13 @@ unsigned floatPower2(int x) {
     return exp << 23;
 }
 
-int main() {}
+#include <cassert>
+int main() {
+    int m[]{123, 11, 4, 8888, 9891};
+    int n[]{1, 2, 4, 8, 16};
+    for (int a : m) {
+        for (int b : n) {
+            assert((a % b) == (a & (b - 1)));
+        }
+    }
+}

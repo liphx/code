@@ -4,10 +4,9 @@
 import os
 import requests
 
+
 # list repos from user or organization
 # type: 'users', 'orgs'
-
-
 def getRepos(name, type='users'):
     params = {'accept': 'application/vnd.github.v3+json',
               'per_page': 100, 'page': 1}
@@ -22,9 +21,8 @@ def getRepos(name, type='users'):
         repos.append(repo['full_name'])
     return repos
 
+
 # get url from full name like liphx/example
-
-
 def getUrl(repo, type='https'):
     if type == 'https':
         return f'https://github.com/{repo}.git'

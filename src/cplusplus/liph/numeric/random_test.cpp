@@ -38,9 +38,9 @@ TEST(random, random) {
 }
 
 TEST(random, random_string) {
-    auto str = liph::random_string(8);
+    auto str = random::gen_str(8);
     LOG << str;
-    str = liph::ltrim(str, "0");
+    str = ltrim(str, "0");
     if (str.empty()) {
         str = "0";
     }
