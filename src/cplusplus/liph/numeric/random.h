@@ -70,6 +70,39 @@ private:
 };
 #endif
 
+class rand {
+public:
+#if 0
+    rand(uint32_t seed = 1) { ::srand(seed); }
+    uint32_t operator()() { return ::rand(); }
+#endif
+
+    rand(uint32_t seed = 1) : seed_(seed & 0x7fffffffu) {
+        if (seed_ == 0 || seed_ == 2147483647L) {
+            seed_ = 1;
+        }
+    }
+
+    /// generate random number range [min(), max()]
+    uint32_t operator()() {
+        static const uint32_t M = 2147483647L;
+        static const uint64_t A = 16807;
+        // seed_ = (seed_ * A) % M
+        uint64_t product = seed_ * A;
+        seed_ = static_cast<uint32_t>((product >> 31) + (product & M));
+        if (seed_ > M) {
+            seed_ -= M;
+        }
+        return seed_;
+    }
+
+    static uint32_t min() { return 1; }            // seed: 1407677000
+    static uint32_t max() { return 2147483646L; }  // seed: 739806647
+
+private:
+    uint32_t seed_;
+};
+
 }  // namespace liph
 
 #endif  // LIPH_NUMERIC_RANDOM_H_

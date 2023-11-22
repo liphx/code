@@ -47,4 +47,13 @@ TEST(random, random_string) {
     LOG << str;
 }
 
+TEST(random, simple_rand) {
+    std::vector<uint32_t> res[2];
+    rand r;
+    for (int i = 0; i < 10; i++) res[0].emplace_back(r());
+    rand r2;
+    for (int i = 0; i < 10; i++) res[1].emplace_back(r2());
+    for (int i = 0; i < 10; i++) EXPECT_EQ(res[0][i], res[1][i]);
+}
+
 }  // namespace liph

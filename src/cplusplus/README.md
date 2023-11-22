@@ -51,5 +51,5 @@ Linux
 
 Mac
 
-- bazel 6.3.1-homebrew
-- Apple clang version 14.0.3 (clang-1403.0.22.14.1)
+- bazel 6.4.0-homebrew
+- Apple clang version 15.0.0 (clang-1500.0.40.1)
