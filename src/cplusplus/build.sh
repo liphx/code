@@ -6,10 +6,13 @@ cplusplus_root=$(dirname $(readlink -f $0))
 git_root=$cplusplus_root/../..
 docs_root=$git_root/docs
 
+# version=6.4.0
+# platform=x86_64
+# os=linux or darwin
 # cd ~/usr/bin/
-# wget https://github.com/bazelbuild/bazel/releases/download/6.3.2/bazel-6.3.2-linux-x86_64
-# chmod +x bazel-6.3.2-linux-x86_64
-# ln -s bazel-6.3.2-linux-x86_64 bazel
+# wget https://github.com/bazelbuild/bazel/releases/download/$version/bazel-$version-$os-$platform
+# chmod +x bazel-$version-$os-$platform
+# ln -sf bazel-$version-$os-$platform bazel
 
 # make liph/liph.h
 echo "#ifndef LIPH_LIPH_H_" > liph/liph.h

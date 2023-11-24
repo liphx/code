@@ -1,5 +1,7 @@
 #include "liph/numeric/random.h"
 
+#include <cstring>
+
 namespace liph {
 
 #if 0

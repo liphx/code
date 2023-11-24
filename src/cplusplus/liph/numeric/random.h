@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <random>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 

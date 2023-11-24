@@ -114,9 +114,9 @@ $(document).ready(function(){initNavTree('tcp_8h_source.html',''); initResizable
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="poll_8h.html">liph/io/poll.h</a>&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="socket_8h.html">liph/net/socket.h</a>&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">liph::net</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_function" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">liph::net</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">class </span><a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">tcp_connect</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">class </span><a class="code hl_function" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">tcp_connect</a> {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    tcp_connect(std::shared_ptr&lt;socket&gt; socket) : socket_(<a class="code hl_enumvalue" href="namespaceliph_1_1io.html#ac538369c39a25cb1f3eff362d886f4cea61f2529360aec54f5dc9804b842cf3fa">socket</a>) {}</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
@@ -125,7 +125,7 @@ $(document).ready(function(){initNavTree('tcp_8h_source.html',''); initResizable
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::shared_ptr&lt;socket&gt; socket_;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">tcp_server</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_function" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">tcp_server</a> {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 构造函数，server被动打开，参数port默认为0，表明动态分配端口，构造函数失败抛出runtime_error</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    tcp_server(<span class="keywordtype">int</span> port = 0, <span class="keywordtype">bool</span> ipv6 = <span class="keyword">false</span>);</div>
@@ -155,7 +155,7 @@ $(document).ready(function(){initNavTree('tcp_8h_source.html',''); initResizable
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_NET_TCP_H_</span></div>
 <div class="ttc" id="amacros_8h_html"><div class="ttname"><a href="macros_8h.html">macros.h</a></div></div>
 <div class="ttc" id="anamespaceliph_1_1io_html_ac538369c39a25cb1f3eff362d886f4cea61f2529360aec54f5dc9804b842cf3fa"><div class="ttname"><a href="namespaceliph_1_1io.html#ac538369c39a25cb1f3eff362d886f4cea61f2529360aec54f5dc9804b842cf3fa">liph::io::descriptor_type::socket</a></div><div class="ttdeci">@ socket</div></div>
-<div class="ttc" id="anamespaceliph_html_a73e2c6d8103e82c3c8ebf5f0e093bf85"><div class="ttname"><a href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">liph::implicit_cast</a></div><div class="ttdeci">To implicit_cast(From const &amp;f)</div><div class="ttdef"><b>Definition</b> casts.h:58</div></div>
+<div class="ttc" id="anamespaceliph_html_aa3a8f95478b1601cfb409ddc155cdab0"><div class="ttname"><a href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">liph::implicit_cast</a></div><div class="ttdeci">To implicit_cast(const From &amp;f)</div><div class="ttdef"><b>Definition</b> casts.h:11</div></div>
 <div class="ttc" id="apoll_8h_html"><div class="ttname"><a href="poll_8h.html">poll.h</a></div></div>
 <div class="ttc" id="asocket_8h_html"><div class="ttname"><a href="socket_8h.html">socket.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

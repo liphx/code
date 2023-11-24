@@ -9,7 +9,6 @@ var dir_7eaddc0a53ddac9b61a8121e2e7e2bc3 =
     [ "numeric", "dir_ba2f675ed55a6515888cdd2c82104fd5.html", "dir_ba2f675ed55a6515888cdd2c82104fd5" ],
     [ "algorithm.h", "algorithm_8h.html", "algorithm_8h" ],
     [ "avl.h", "avl_8h.html", "avl_8h" ],
-    [ "casts.h", "casts_8h.html", "casts_8h" ],
     [ "coroutine.cpp", "coroutine_8cpp.html", null ],
     [ "coroutine.h", "coroutine_8h.html", null ],
     [ "csv.cpp", "csv_8cpp.html", null ],

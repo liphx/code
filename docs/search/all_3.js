@@ -3,7 +3,7 @@ var searchData=
   ['c_20codes_0',['LIPH&apos;s C++ Codes',['../index.html',1,'']]],
   ['cadetblue_1',['CadetBlue',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80aebb9498dab66c3619530d634c1e95b34',1,'liph']]],
   ['casts_2eh_2',['casts.h',['../casts_8h.html',1,'']]],
-  ['clear_3',['clear',['../classliph_1_1skip__list.html#abab9742c7eee9fa93780f2e5eecb6d6b',1,'liph::skip_list::clear()'],['../classliph_1_1json.html#afa5124711f4eaea618854aab9d04ce95',1,'liph::json::clear()'],['../classliph_1_1avl.html#a6a2d6f6263f437aad40e57a18d2e38b2',1,'liph::avl::clear()']]],
+  ['clear_3',['clear',['../classliph_1_1json.html#afa5124711f4eaea618854aab9d04ce95',1,'liph::json::clear()'],['../classliph_1_1avl.html#a6a2d6f6263f437aad40e57a18d2e38b2',1,'liph::avl::clear()'],['../classliph_1_1skip__list.html#abab9742c7eee9fa93780f2e5eecb6d6b',1,'liph::skip_list::clear()']]],
   ['clear_5fscreen_4',['clear_screen',['../namespaceliph.html#a0a8dbfe4bc799d345b2aeb155fda07d7',1,'liph']]],
   ['clear_5fscrollback_5fbuffer_5',['clear_scrollback_buffer',['../namespaceliph.html#a69b4d193060d6bc8c7af75d5073fb1cd',1,'liph']]],
   ['codes_6',['LIPH&apos;s C++ Codes',['../index.html',1,'']]],

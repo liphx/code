@@ -1,6 +1,6 @@
 build --cxxopt=-g
 build --cxxopt=-O3
-build --cxxopt=-std=c++2b
+build --cxxopt=-std=c++23
 build --cxxopt=-Wall
 # build --cxxopt=-Werror
 build --cxxopt=-fdiagnostics-color
@@ -10,3 +10,5 @@ build --cxxopt=-Wfatal-errors
 # build --linkopt=-fsanitize=address
 
 build --spawn_strategy=standalone
+
+build --linkopt='-lstdc++'

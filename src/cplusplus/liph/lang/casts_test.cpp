@@ -1,6 +1,8 @@
 #define NDEBUG
 #include "liph/lang/casts.h"
 
+#include <cmath>
+
 #include "gtest/gtest.h"
 
 namespace liph {

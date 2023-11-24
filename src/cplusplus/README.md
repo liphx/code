@@ -44,12 +44,7 @@ int main() {
 
 **env**
 
-Linux
+Linux & Mac
 
-- [gcc 13.2.0](https://gcc.gnu.org/gcc-13/)
-- [bazel 6.3.2](https://github.com/bazelbuild/bazel/releases/download/6.3.2/bazel-6.3.2-linux-x86_64)
-
-Mac
-
-- bazel 6.4.0-homebrew
-- Apple clang version 15.0.0 (clang-1500.0.40.1)
+- [GCC 13.2.0](https://gcc.gnu.org/gcc-13/)
+- [bazel 6.4.0](https://github.com/bazelbuild/bazel/releases)

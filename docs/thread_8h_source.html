@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('thread_8h_source.html',''); initResiza
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classliph_1_1scoped__thread.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classliph_1_1scoped__thread.html">scoped_thread</a> {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classliph_1_1scoped__thread.html#abf83e9102be687829b0f8a0591f17368">   28</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classliph_1_1scoped__thread.html#abf83e9102be687829b0f8a0591f17368">scoped_thread</a>(std::thread t_) : t(<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">std</a>::<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">move</a>(t_)) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classliph_1_1scoped__thread.html#abf83e9102be687829b0f8a0591f17368">   28</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classliph_1_1scoped__thread.html#abf83e9102be687829b0f8a0591f17368">scoped_thread</a>(std::thread t_) : t(std::move(t_)) {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">if</span> (!t.joinable()) <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;No thread&quot;</span>);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
 </div>
@@ -159,7 +159,6 @@ $(document).ready(function(){initNavTree('thread_8h_source.html',''); initResiza
 <div class="ttc" id="aclassliph_1_1thread__guard_html_a2ae54c66a8d30e64de991b98aa9457f1"><div class="ttname"><a href="classliph_1_1thread__guard.html#a2ae54c66a8d30e64de991b98aa9457f1">liph::thread_guard::operator=</a></div><div class="ttdeci">thread_guard &amp; operator=(const thread_guard &amp;)=delete</div></div>
 <div class="ttc" id="aclassliph_1_1thread__guard_html_acb44199658937ec8e87c552fdadde1f5"><div class="ttname"><a href="classliph_1_1thread__guard.html#acb44199658937ec8e87c552fdadde1f5">liph::thread_guard::thread_guard</a></div><div class="ttdeci">thread_guard(const thread_guard &amp;)=delete</div></div>
 <div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:9</div></div>
-<div class="ttc" id="anamespaceliph_html_a73e2c6d8103e82c3c8ebf5f0e093bf85"><div class="ttname"><a href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">liph::implicit_cast</a></div><div class="ttdeci">To implicit_cast(From const &amp;f)</div><div class="ttdef"><b>Definition</b> casts.h:58</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

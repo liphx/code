@@ -121,40 +121,40 @@ $(document).ready(function(){initNavTree('blocking__queue_8h_source.html',''); i
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#afbd179b7bbff44830eede460eed8d934">   20</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#afbd179b7bbff44830eede460eed8d934">size</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        std::shared_lock&lt;std::shared_mutex&gt; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">rlock</a>(mutex_);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        std::shared_lock&lt;std::shared_mutex&gt; rlock(mutex_);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">return</span> queue_.size();</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
 </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">push</a>(<span class="keyword">const</span> <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">T</a>&amp; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">v</a>) {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        std::unique_lock&lt;std::shared_mutex&gt; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">wlock</a>(mutex_);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        queue_.push(<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">v</a>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">push</a>(<span class="keyword">const</span> T&amp; v) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        std::unique_lock&lt;std::shared_mutex&gt; wlock(mutex_);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        queue_.push(v);</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">Args</a>&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</div>
 <div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a1f8549fdacb9933e8d406587adc1e3ce">   31</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a1f8549fdacb9933e8d406587adc1e3ce">emplace</a>(<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">Args</a>&amp;&amp;...<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">args</a>) {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        std::unique_lock&lt;std::shared_mutex&gt; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">wlock</a>(mutex_);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        queue_.emplace(std::forward&lt;Args&gt;(<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">args</a>)...);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a1f8549fdacb9933e8d406587adc1e3ce">   31</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a1f8549fdacb9933e8d406587adc1e3ce">emplace</a>(Args&amp;&amp;...args) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        std::unique_lock&lt;std::shared_mutex&gt; wlock(mutex_);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        queue_.emplace(std::forward&lt;Args&gt;(args)...);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
 </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a21db5a1fec44fdd9f7ae7f88c9f2642b">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a21db5a1fec44fdd9f7ae7f88c9f2642b">pop</a>() {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        std::unique_lock&lt;std::shared_mutex&gt; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">wlock</a>(mutex_);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        std::unique_lock&lt;std::shared_mutex&gt; wlock(mutex_);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (!queue_.empty()) queue_.pop();</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
 </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a8416d372e563a3e988dacfad5db3896d">   41</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a8416d372e563a3e988dacfad5db3896d">pop</a>(<a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">T</a>&amp; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">v</a>) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::unique_lock&lt;std::shared_mutex&gt; <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">wlock</a>(mutex_);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classliph_1_1blocking__queue.html#a8416d372e563a3e988dacfad5db3896d">   41</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classliph_1_1blocking__queue.html#a8416d372e563a3e988dacfad5db3896d">pop</a>(T&amp; v) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::unique_lock&lt;std::shared_mutex&gt; wlock(mutex_);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (queue_.empty()) {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_function" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">v</a> = std::move(queue_.front());</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        v = std::move(queue_.front());</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        queue_.pop();</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
@@ -180,7 +180,6 @@ $(document).ready(function(){initNavTree('blocking__queue_8h_source.html',''); i
 <div class="ttc" id="aclassliph_1_1blocking__queue_html_afbd179b7bbff44830eede460eed8d934"><div class="ttname"><a href="classliph_1_1blocking__queue.html#afbd179b7bbff44830eede460eed8d934">liph::blocking_queue::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdef"><b>Definition</b> blocking_queue.h:20</div></div>
 <div class="ttc" id="aclassliph_1_1noncopyable___1_1noncopyable_html"><div class="ttname"><a href="classliph_1_1noncopyable___1_1noncopyable.html">liph::noncopyable_::noncopyable</a></div><div class="ttdef"><b>Definition</b> noncopyable.h:30</div></div>
 <div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:9</div></div>
-<div class="ttc" id="anamespaceliph_html_a73e2c6d8103e82c3c8ebf5f0e093bf85"><div class="ttname"><a href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">liph::implicit_cast</a></div><div class="ttdeci">To implicit_cast(From const &amp;f)</div><div class="ttdef"><b>Definition</b> casts.h:58</div></div>
 <div class="ttc" id="anoncopyable_8h_html"><div class="ttname"><a href="noncopyable_8h.html">noncopyable.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
