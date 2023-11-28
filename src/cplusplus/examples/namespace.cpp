@@ -1,3 +1,23 @@
+#include <iostream>
+using namespace std;  // using-directive
+
+namespace liph {
+
+template <class T>
+void swap(T& a, T& b) {
+    T tmp = a;
+    a = b;
+    b = tmp;
+}
+
+};  // namespace liph
+
+int main() {
+    int i = 0, j = 1;
+    using liph::swap;  // using-declaration
+    swap(i, j);
+    cout << i << " " << j << endl;  // 1 0
+}
 /*
 # 名字控制
 
@@ -76,5 +96,3 @@ int A::i = 1;
 在C++中使用C库函数 extern "C" float(int a,char b);
 告诉编译器f()是C连接，这样就不会转换函数名
 */
-
-int main() {}

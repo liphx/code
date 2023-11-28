@@ -1,34 +1,34 @@
-/* template <class T> */
-/* class A { */
-/* public: */
-/*     void f() {} */
-/* }; */
+#include <iostream>
+using namespace std;
 
-/* /1* template<> class A<int> {}; *1/ */
+template <class T>
+struct A {
+    void foo() { cout << "A<T>::foo" << endl; }
+};
 
-/* template <class T> */
-/* class B : public A<T> { */
-/* public: */
-/*     void g() { */
-/*         /1* f(); *1/ */
-/*         this->f(); */
-/*     } */
+// template <>
+// struct A<int> {};
 
-/*     void h() { */
-/*         /1* f(); *1/ */
-/*         using A<T>::f; */
-/*         f(); */
-/*     } */
+template <class T>
+struct B : A<T> {
+    void bar() {
+        // foo();
+        this->foo();
+    }
 
-/*     void i() { */
-/*         /1* f(); *1/ */
-/*         A<T>::f(); */
-/*     } */
-/* }; */
+    void bar2() {
+        // foo();
+        using A<T>::foo;
+        foo();
+    }
 
-/* int main() { */
-/*     B<int> b; */
-/*     b.f(); */
-/* } */
+    void bar3() {
+        // foo();
+        A<T>::foo();
+    }
+};
 
-int main() {}
+int main() {
+    B<int> b;
+    b.foo();
+}

@@ -1,38 +1,34 @@
 #include <iostream>
 #include <typeinfo>
-using namespace std;
 
-class A {
-public:
-    virtual ~A() {}
-    virtual void f() { cout << "A::f()" << endl; };
+struct A {
+    virtual ~A() { std::cout << "~A" << std::endl; }
+    virtual void f() { std::cout << "A::f" << std::endl; };
 };
 
-class B : public A {
-public:
-    ~B() {}
-    void f() { cout << "B::f()" << endl; };
+struct B : A {
+    ~B() { std::cout << "~B" << std::endl; }
+    void f() { std::cout << "B::f" << std::endl; };
 };
 
 int main() {
     A *a = new A;
+    a->f();  // A::f
     A *b = new B;
-    // 多态
-    a->f();
-    b->f();
+    b->f();  // B::f
+
     B *c = dynamic_cast<B *>(b);
-    cout << c << endl;
+    std::cout << c << std::endl;
     B *d = dynamic_cast<B *>(a);
-    cout << d << endl;
-    //=>0
+    std::cout << d << std::endl;  // 0
 
-    cout << typeid(a).name() << endl;   //=>P1A
-    cout << typeid(b).name() << endl;   //=>P1A
-    cout << typeid(*a).name() << endl;  //=>1A
-    cout << typeid(*b).name() << endl;  //=>1B
+    std::cout << typeid(a).name() << std::endl;   // P1A
+    std::cout << typeid(b).name() << std::endl;   // P1A
+    std::cout << typeid(*a).name() << std::endl;  // 1A
+    std::cout << typeid(*b).name() << std::endl;  // 1B
 
-    delete a;
+    delete a;  // ~A
     delete b;
-
-    return 0;
+    // ~B
+    // ~A
 }

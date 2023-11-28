@@ -14,4 +14,8 @@ int main() {
         std::cerr << e.what() << std::endl;
         // std::get: wrong index for variant
     }
+
+    std::cout << std::boolalpha;
+    std::cout << std::holds_alternative<int>(var) << std::endl;          // true
+    std::cout << std::holds_alternative<std::string>(var) << std::endl;  // false
 }

@@ -1,12 +1,6 @@
 #include <iostream>
 #include <vector>
 
-/*
- * 命令模式
- * 通过将函数封装为对象就能够以参数的形式将其传递给其他函数或对象
- * 告诉它们在履行请求的过程中执行特定的操作
- * 用来消除与事件处理的耦合
- */
 class Command {
 public:
     virtual void execute() = 0;

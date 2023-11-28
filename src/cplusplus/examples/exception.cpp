@@ -1,33 +1,36 @@
 #include <exception>
 #include <iostream>
 
-class E {};
-class A : public E {};
-class B : public E {};
+struct E {};
+struct A : E {};
+struct B : E {};
 
-class C {
-public:
-    int *p;
+struct C {
+    int *ptr;
+
     C() {
         try {
-            p = new int;
+            ptr = new int;
             throw std::exception();
         } catch (...) {
-            delete p;
+            delete ptr;
             throw;
         }
     }
-    ~C() { delete p; }
+
+    ~C() { delete ptr; }
 };
 
-void f(int n) try {
+void foo(int n) try {
     if (n < 0) throw std::out_of_range("n < 0");
 } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
 }
 
 int main() {
-#if 0
+    foo(0);
+    foo(-1);
+
     try {
         throw B();
     } catch (E&) {
@@ -55,8 +58,4 @@ int main() {
     } catch (std::exception& e) {
         std::cout << "catch exception" << std::endl;
     }
-
-    f(0);
-    f(-1);
-#endif
 }

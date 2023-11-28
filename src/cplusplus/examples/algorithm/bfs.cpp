@@ -1,28 +1,20 @@
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <iostream>
 #include <queue>
 #include <string>
 #include <vector>
-
-/*
- * for test
- * linux: g++ -g bfs.cpp -lgtest -lpthread
- * win: g++ -g bfs.cpp -I${GTEST_PATH}/include -L${GTEST_PATH}/lib -lgtest
- * case filter: ./a.out | ./a.exe --gtest_filter=patterns
- */
 using namespace std;
 
 struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    TreeNode *left;
+    TreeNode *right;
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-/*
- * 从上到下按层打印二叉树，同一层结点从左至右输出
- */
+// 从上到下按层打印二叉树，同一层结点从左至右输出
 vector<vector<int>> PrintTree(TreeNode *tree) {
     vector<vector<int>> ans;
     deque<TreeNode *> q;
@@ -51,7 +43,7 @@ void test_PrintTree() {
     tree[2].right = &tree[6];
 
     vector<vector<int>> ans = {{8}, {6, 10}, {5, 7, 9, 11}};
-    /* EXPECT_EQ(ans, PrintTree(&tree[0])); */
+    assert(ans == PrintTree(&tree[0]));
 }
 
 /*
@@ -61,7 +53,6 @@ void test_PrintTree() {
  * grid.size > 0, grid[i].size > 0
  * grid[i][j] 的值为 '0' 或 '1'
  */
-
 void visitGrid(vector<vector<char>>& grid, deque<pair<int, int>>& q, int x, int y) {
     int m = grid.size(), n = grid[0].size();
     if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == '1') {
@@ -98,7 +89,7 @@ int numIslands(vector<vector<char>>& grid) {
 void test_numIslands() {
     vector<vector<char>> grid{
             {'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
-    /* EXPECT_EQ(numIslands(grid), 3); */
+    assert(numIslands(grid) == 3);
 }
 
 /*
@@ -108,6 +99,7 @@ void test_numIslands() {
  * 初始位置为0，求成功的最小跳跃次数
  * jump.size() > 0
  */
+
 inline void visit(vector<bool>& visited, queue<int>& q, int i) {
     if (!visited[i]) {
         visited[i] = true;
@@ -139,10 +131,14 @@ int minJump(vector<int>& jump) {
 
 void test_minJump() {
     vector<int> jump{2, 5, 1, 1, 1, 1};
-    /* EXPECT_EQ(minJump(jump), 3); */
+    assert(minJump(jump) == 3);
 
     vector<int> jump2{3, 7, 6, 1, 4, 3, 7, 8, 1, 2, 8, 5, 9, 8, 3, 2, 7, 5, 1, 1};
-    /* EXPECT_EQ(minJump(jump2), 6); */
+    assert(minJump(jump2) == 6);
 }
 
-int main(int argc, char **argv) {}
+int main(int argc, char **argv) {
+    test_PrintTree();
+    test_numIslands();
+    test_minJump();
+}

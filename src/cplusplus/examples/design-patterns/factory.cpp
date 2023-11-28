@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
 
-/*
- * 工厂模式
- * 强制用一个通用的工厂来创建对象，而不允许将创建对象的代码散布整个系统
- */
 class Shape {
 public:
     virtual void f() = 0;
@@ -42,6 +38,4 @@ int main() {
 
     delete s1;
     delete s2;
-
-    return 0;
 }

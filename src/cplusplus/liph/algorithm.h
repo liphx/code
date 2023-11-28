@@ -38,6 +38,21 @@ T find_kth(const std::vector<T>& data, size_t k) {
     return q.top();
 }
 
+template <class T>
+int binary_search(T a[], int n, T val) {
+    int i = 0, j = n, mid;
+    while (i < j) {
+        mid = i + (j - i) / 2;
+        if (a[mid] == val) return mid;
+        if (a[mid] < val) {
+            i = mid + 1;
+        } else {
+            j = mid;
+        }
+    }
+    return -1;
+}
+
 }  // namespace liph
 
 #endif  // LIPH_ALGORITHM_H_

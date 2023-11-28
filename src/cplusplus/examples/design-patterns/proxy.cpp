@@ -32,6 +32,4 @@ int main() {
     p.f();
     p.g();
     p.h();
-
-    return 0;
 }

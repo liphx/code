@@ -1,9 +1,6 @@
 [cc_binary(
     name = cc_name.split('.')[0],
     srcs = [cc_name],
-    deps = [
-        "//liph",
-    ],
 ) for cc_name in glob(
     include = ["**/*.cpp"],
 )]

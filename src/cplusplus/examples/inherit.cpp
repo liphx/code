@@ -8,8 +8,8 @@ void f(const A&) {}
 void f() {
     f(A());
     f(B());
-    /* f(C()); */
-    /* f(D()); */
+    // f(C());
+    // f(D());
 }
 
 class AA {

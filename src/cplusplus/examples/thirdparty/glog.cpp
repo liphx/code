@@ -9,6 +9,8 @@ int main(int argc, char *argv[]) {
     // Optional: parse command line flags
     gflags::ParseCommandLineFlags(&argc, &argv, true);
 
+    FLAGS_logtostderr = true;
+
     LOG(INFO) << "Hello, world!";
 
     // glog/stl_logging.h allows logging STL containers.
@@ -18,5 +20,6 @@ int main(int argc, char *argv[]) {
     x.push_back(3);
     LOG(INFO) << "ABC, it's easy as " << x;
 
-    return 0;
+    std::set set{1, 2, 3};
+    LOG(INFO) << set;
 }
