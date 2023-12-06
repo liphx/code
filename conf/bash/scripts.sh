@@ -68,6 +68,7 @@ function format() {
             py) autopep8 -i $file ;;
             go) gofmt -w $file ;;
             sh) shfmt -w -i 4 -ci -sr $file ;;
+            js) prettier -w --tab-width 4 --log-level silent $file ;;
             *) echo "no format tools for $file" ;;
         esac
     done
