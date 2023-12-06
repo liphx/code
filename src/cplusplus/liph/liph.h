@@ -4,7 +4,6 @@
 // clang-format off
 #include "liph/algorithm.h"
 #include "liph/avl.h"
-#include "liph/casts.h"
 #include "liph/concurrency/blocking_queue.h"
 #include "liph/concurrency/lock.h"
 #include "liph/concurrency/thread.h"
@@ -20,6 +19,7 @@
 #include "liph/io/descriptor.h"
 #include "liph/io/poll.h"
 #include "liph/json.h"
+#include "liph/lang/casts.h"
 #include "liph/lang/demangle.h"
 #include "liph/lang/make_default.h"
 #include "liph/lang/no_destructor.h"

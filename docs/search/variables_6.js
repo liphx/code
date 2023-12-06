@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['object_5f_0',['object_',['../classliph_1_1json.html#a616f19dcbb3ef34c755afdcf1434f76b',1,'liph::json']]]
+  ['max_5fsize_0',['max_size',['../classliph_1_1prime__sieve.html#a44159c90cda80d2572ce38e0b1d896d4',1,'liph::prime_sieve']]]
 ];

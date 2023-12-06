@@ -90,4 +90,14 @@ std::optional<int> to_int(std::string_view s) {
     return std::nullopt;
 }
 
+std::string replace(std::string_view str, std::string_view s, std::string_view t) {
+    std::string ret;
+    std::string_view::size_type i = 0, j = str.find(s, i);
+    for (; j != std::string_view::npos; j = str.find(s, i)) {
+        ret.append(str.substr(i, j - i)).append(t);
+        i = j + s.length();
+    }
+    return ret.append(str.substr(i));
+}
+
 }  // namespace liph

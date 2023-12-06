@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LIPH&#39;s C++ Codes: liph/casts.h File Reference</title>
+<title>LIPH&#39;s C++ Codes: liph/lang/casts.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,7 +97,9 @@ $(document).ready(function(){initNavTree('casts_8h.html',''); initResizable(); }
   <div class="headertitle"><div class="title">casts.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 </div>
 <p><a href="casts_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -108,17 +110,17 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a73e2c6d8103e82c3c8ebf5f0e093bf85" id="r_a73e2c6d8103e82c3c8ebf5f0e093bf85"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
-<tr class="memitem:a73e2c6d8103e82c3c8ebf5f0e093bf85"><td class="memTemplItemLeft" align="right" valign="top">To&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">liph::implicit_cast</a> (From const &amp;f)</td></tr>
-<tr class="separator:a73e2c6d8103e82c3c8ebf5f0e093bf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5016d01212a23804c962d7ef0d9a65e1" id="r_a5016d01212a23804c962d7ef0d9a65e1"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a> , <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> &gt; </td></tr>
-<tr class="memitem:a5016d01212a23804c962d7ef0d9a65e1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a5016d01212a23804c962d7ef0d9a65e1">liph::down_cast</a> (<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> *<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">f</a>)</td></tr>
+<tr class="memitem:aa3a8f95478b1601cfb409ddc155cdab0" id="r_aa3a8f95478b1601cfb409ddc155cdab0"><td class="memTemplParams" colspan="2">template&lt;typename To , typename From &gt; </td></tr>
+<tr class="memitem:aa3a8f95478b1601cfb409ddc155cdab0"><td class="memTemplItemLeft" align="right" valign="top">To&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">liph::implicit_cast</a> (const From &amp;f)</td></tr>
+<tr class="separator:aa3a8f95478b1601cfb409ddc155cdab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5016d01212a23804c962d7ef0d9a65e1" id="r_a5016d01212a23804c962d7ef0d9a65e1"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a> , <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> &gt; </td></tr>
+<tr class="memitem:a5016d01212a23804c962d7ef0d9a65e1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a5016d01212a23804c962d7ef0d9a65e1">liph::down_cast</a> (<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> *<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">f</a>)</td></tr>
 <tr class="separator:a5016d01212a23804c962d7ef0d9a65e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12217b8311859976df84a030cf3b890b" id="r_a12217b8311859976df84a030cf3b890b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a> , <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> &gt; </td></tr>
-<tr class="memitem:a12217b8311859976df84a030cf3b890b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a12217b8311859976df84a030cf3b890b">liph::down_cast</a> (<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> &amp;<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">f</a>)</td></tr>
+<tr class="memitem:a12217b8311859976df84a030cf3b890b" id="r_a12217b8311859976df84a030cf3b890b"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a> , <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> &gt; </td></tr>
+<tr class="memitem:a12217b8311859976df84a030cf3b890b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a12217b8311859976df84a030cf3b890b">liph::down_cast</a> (<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> &amp;<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">f</a>)</td></tr>
 <tr class="separator:a12217b8311859976df84a030cf3b890b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d4211ca9e3e6a3dcfbe3d19a35a9a90" id="r_a3d4211ca9e3e6a3dcfbe3d19a35a9a90"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a> , <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">typename</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> &gt; </td></tr>
-<tr class="memitem:a3d4211ca9e3e6a3dcfbe3d19a35a9a90"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a3d4211ca9e3e6a3dcfbe3d19a35a9a90">liph::bit_cast</a> (<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">const</a> <a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">From</a> &amp;<a class="el" href="namespaceliph.html#a73e2c6d8103e82c3c8ebf5f0e093bf85">from</a>)</td></tr>
+<tr class="memitem:a3d4211ca9e3e6a3dcfbe3d19a35a9a90" id="r_a3d4211ca9e3e6a3dcfbe3d19a35a9a90"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a> , <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">typename</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> &gt; </td></tr>
+<tr class="memitem:a3d4211ca9e3e6a3dcfbe3d19a35a9a90"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">To</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceliph.html#a3d4211ca9e3e6a3dcfbe3d19a35a9a90">liph::bit_cast</a> (<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">const</a> <a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">From</a> &amp;<a class="el" href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">from</a>)</td></tr>
 <tr class="separator:a3d4211ca9e3e6a3dcfbe3d19a35a9a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -126,7 +128,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7eaddc0a53ddac9b61a8121e2e7e2bc3.html">liph</a></li><li class="navelem"><a class="el" href="casts_8h.html">casts.h</a></li>
+    <li class="navelem"><a class="el" href="dir_7eaddc0a53ddac9b61a8121e2e7e2bc3.html">liph</a></li><li class="navelem"><a class="el" href="dir_6d2e6685c6c2c52d2f1b380c08315b8f.html">lang</a></li><li class="navelem"><a class="el" href="casts_8h.html">casts.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

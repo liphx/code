@@ -1,8 +1,3 @@
-#include "liph/liph.h"
-using namespace liph;
+#include <iostream>
 
-int main() {
-    print(demangle<int>());
-    print(demangle<std::string>());
-    print(__cplusplus);
-}
+int main() { std::cout << "hello, world." << std::endl; }

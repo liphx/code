@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../classliph_1_1json.html#a7a7ee4f6e59fda7116228b84f92ca039',1,'liph::json']]]
+  ['descriptor_5ftype_0',['descriptor_type',['../namespaceliph_1_1io.html#ac538369c39a25cb1f3eff362d886f4ce',1,'liph::io']]]
 ];

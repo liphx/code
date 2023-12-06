@@ -3,14 +3,14 @@
 
 class Text {
 public:
-    Text(std::string s = "") : str(s) {}
+    Text(std::string s = "") : str(std::move(s)) {}
 
     const char& operator[](std::size_t pos) const {
         std::cout << "const operator[] called." << std::endl;
         return str[pos];
     }
 
-    // non-const 版本调用 const 版本代码实现
+    // non-const version calls const version
     char& operator[](std::size_t pos) {
         std::cout << "non-const operator[] called." << std::endl;
         return const_cast<char&>(static_cast<const Text&>(*this)[pos]);

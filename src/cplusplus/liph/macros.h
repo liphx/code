@@ -7,11 +7,11 @@
 #define OS_WINDOWS
 #elif defined(__linux__)
 #define OS_LINUX
-#elif define(__APPLE__)
+#elif defined(__APPLE__)
 #define OS_APPLE
 #endif
 
-#if defined(unix) || defined(__unix__) || defined(__unix)
+#if defined(OS_LINUX) || defined(OS_APPLE) || defined(unix) || defined(__unix__) || defined(__unix)
 #define OS_UNIX
 #endif
 

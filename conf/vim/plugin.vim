@@ -16,7 +16,11 @@ autocmd FileType proto setlocal commentstring=//\ %s
 " fzf
 "$ sudo apt install fzf
 "$ git clone https://github.com/junegunn/fzf.git ~/.vim/pack/bundle/start/fzf
+"$ git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/bundle/start/fzf.vim
 nnoremap <C-p> :FZF<CR>
+nnoremap <leader>p :Windows<CR>
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = []
 
 " clang-format
 "$ git clone https://github.com/rhysd/vim-clang-format.git ~/.vim/pack/bundle/start/vim-clang-format

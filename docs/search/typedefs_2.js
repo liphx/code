@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../classliph_1_1avl.html#a6d85c2ea3c74a7af9c888db9deca2e1f',1,'liph::avl']]]
+  ['noncopyable_0',['noncopyable',['../namespaceliph.html#a833410743ec3cfc1094b9f68365f25a3',1,'liph']]]
 ];

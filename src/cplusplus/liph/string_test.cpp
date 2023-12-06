@@ -72,4 +72,10 @@ TEST(string, to_int) {
     EXPECT_FALSE(i);
 }
 
+TEST(string, replace) {
+    EXPECT_EQ(replace("abcabc", "ab", "ba"), "bacbac");
+    EXPECT_EQ(replace("aaaa", "aa", "a"), "aa");
+    EXPECT_EQ(replace("aaa", "aa", "a"), "aa");
+}
+
 }  // namespace liph

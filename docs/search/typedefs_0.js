@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difference_5ftype_0',['difference_type',['../classliph_1_1avl.html#aca533f658a8f2f36bd525e6f0d9720c2',1,'liph::avl']]]
+  ['byte_0',['byte',['../classliph_1_1big__integer.html#a6cffbbf6069a422c01666b47f9ff9833',1,'liph::big_integer']]]
 ];

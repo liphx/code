@@ -7,6 +7,16 @@
 
 namespace liph {
 
+template <class T>
+void sort(T& v) {
+    std::sort(v.begin(), v.end());
+}
+
+template <class T, class C>
+void sort(T& v, C cmp) {
+    std::sort(v.begin(), v.end(), cmp);
+}
+
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void bubble_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     using Distance = typename std::iterator_traits<RandomIt>::difference_type;
@@ -61,9 +71,7 @@ void quick_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     }
 }
 
-/*
- * 将有序的[first, mid) 和 [mid, last) 合并为有序的 [first, last)
- */
+/// 将有序的[first, mid) 和 [mid, last) 合并为有序的 [first, last)
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void merge(RandomIt first, RandomIt mid, RandomIt last, Compare comp = Compare()) {
     using value_type = typename std::iterator_traits<RandomIt>::value_type;
@@ -115,10 +123,8 @@ void insert_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     }
 }
 
-/*
- * 增量为 dk 的插入排序
- * dk = 1 => insert_sort
- */
+/// 增量为 dk 的插入排序
+/// dk = 1 => insert_sort
 template <class RandomIt, class Distance,
         class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void shell_insert(RandomIt first, RandomIt last, Distance dk, Compare comp = Compare()) {
@@ -150,11 +156,9 @@ void shell_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     shell_insert(first, last, 1, comp);
 }
 
-/*
- * 计数排序
- * 对于 A[0, n)中的每个元素 i, 0 <= i < max
- * n > 0, k > 0
- */
+// 计数排序
+// 对于 A[0, n)中的每个元素 i, 0 <= i < max
+// n > 0, k > 0
 void counting_sort(int A[], int n, int max) {
     // int count[max] = {0};
     int *count = new int[max]{0};

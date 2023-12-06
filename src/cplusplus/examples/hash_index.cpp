@@ -1,12 +1,12 @@
+#include <algorithm>
 #include <cstdint>
 #include <filesystem>
 #include <fstream>
 #include <functional>
+#include <iostream>
 #include <string>
 #include <utility>
 #include <vector>
-
-namespace liph {
 
 class allocator {
 public:
@@ -184,11 +184,6 @@ private:
     std::vector<uint32_t> entry_idx_;
 };
 
-}  // namespace liph
-
-using namespace liph;
-#include <iostream>
-
 int main() {
     {
         hash_map<int, int> map;
@@ -252,5 +247,4 @@ int main_(int argc, char **argv) {
         void *ptr = alloc.address(offset);
         std::cout << *(int *)ptr << std::endl;
     }
-    return 0;
 }

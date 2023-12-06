@@ -1,13 +1,15 @@
 #include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <vector>
 
-#include "liph/liph.h"
-
-namespace liph {
-
-class db {
+class DB {
 public:
-    db(std::string pathname) : path(std::move(pathname)) {}
-    ~db() { stream.sync(); }
+    DB(std::string pathname) : path(std::move(pathname)) {}
+    ~DB() { stream.sync(); }
 
     bool init();
     bool get(uint64_t key, std::string& value);
@@ -28,7 +30,7 @@ private:
     static const int index_element_size = 16;        // key(uint64_t) + offset(uint32_t) + length(uint32_t)
 };
 
-bool db::init() {
+bool DB::init() {
     if (path.empty()) {
         return false;
     }
@@ -44,7 +46,6 @@ bool db::init() {
 
     uint32_t current = 0;
     while (end >= current + index_size * index_element_size) {
-        liph::print(current, end, index_size * index_element_size);
         char buffer[index_size * index_element_size];
         stream.seekg(current);
         stream.read(buffer, sizeof(buffer));
@@ -63,7 +64,7 @@ bool db::init() {
     return true;
 }
 
-bool db::get(uint64_t key, std::string& value) {
+bool DB::get(uint64_t key, std::string& value) {
     auto it = map.find(key);
     if (it == map.end()) return false;
     uint32_t offset = static_cast<uint32_t>(it->second >> 32);
@@ -75,7 +76,7 @@ bool db::get(uint64_t key, std::string& value) {
     return stream.good();
 }
 
-bool db::put(uint64_t key, const std::string& value) {
+bool DB::put(uint64_t key, const std::string& value) {
     auto it = map.find(key);
     if (it == map.end()) {  // add
         if (current_index == index_size) {
@@ -110,7 +111,7 @@ bool db::put(uint64_t key, const std::string& value) {
     return stream.good();
 }
 
-bool db::del(uint64_t key) {
+bool DB::del(uint64_t key) {
     auto it = map.find(key);
     if (it == map.end()) {
         return false;
@@ -124,7 +125,7 @@ bool db::del(uint64_t key) {
     return stream.good();
 }
 
-std::unordered_map<uint64_t, std::string> db::dump() {
+std::unordered_map<uint64_t, std::string> DB::dump() {
     std::unordered_map<uint64_t, std::string> ret;
     for (auto it = map.begin(); it != map.end(); ++it) {
         auto key = it->first;
@@ -134,19 +135,17 @@ std::unordered_map<uint64_t, std::string> db::dump() {
     return ret;
 }
 
-}  // namespace liph
-
 int main() {
-    liph::db db("tmp.db");
-    DEBUG(db.init());
-    liph::print(db.dump());
+    DB db("tmp.db");
+    db.init();
+    db.dump();
     std::vector<std::string> vc{"abc001", "bcd002", "cdef0003"};
-    for (auto i = 0U; i < vc.size(); i++) DEBUG(db.put(i, vc[i]));
-    liph::print(db.dump());
-    DEBUG(db.put(0, "000"));
-    liph::print(db.dump());
-    DEBUG(db.del(0));
-    liph::print(db.dump());
-    DEBUG(db.del(0));
+    for (auto i = 0U; i < vc.size(); i++) db.put(i, vc[i]);
+    db.dump();
+    db.put(0, "000");
+    db.dump();
+    db.del(0);
+    db.dump();
+    db.del(0);
     std::filesystem::remove("tmp.db");
 }
