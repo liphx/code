@@ -13,6 +13,7 @@
 #include "liph/crypto/md5.h"
 #include "liph/csv.h"
 #include "liph/double_buffer.h"
+#include "liph/encoding/base64.h"
 #include "liph/file.h"
 #include "liph/flags.h"
 #include "liph/format.h"
