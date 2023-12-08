@@ -6,6 +6,34 @@
 
 namespace liph {
 
+TEST(algorithm, erase) {
+    std::vector v{1, 2};
+    std::set<size_t> idx{};
+    erase(v, idx);
+    EXPECT_EQ(v, (std::vector{1, 2}));
+}
+
+TEST(algorithm, erase_2) {
+    std::vector<int> v;
+    std::set<size_t> idx{0, 2};
+    erase(v, idx);
+    EXPECT_EQ(v, (std::vector<int>{}));
+}
+
+TEST(algorithm, erase_3) {
+    std::vector v{0, 2, 4, 6, 8, 10, 12};
+    std::set<size_t> idx{0, 1, 5};
+    erase(v, idx);
+    EXPECT_EQ(v, (std::vector{4, 6, 8, 12}));
+}
+
+TEST(algorithm, erase_4) {
+    std::vector v{0, 2, 4};
+    std::set<size_t> idx{0, 1, 5};
+    erase(v, idx);
+    EXPECT_EQ(v, (std::vector{4}));
+}
+
 TEST(algorithm, topk) {
     const std::vector<int> data{1, 3, 2, 3};
     auto ans = topk(data, 2);
