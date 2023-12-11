@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+  <title>Sqlite3 Reader</title>
+</head>
+
+<body>
+  <h1>{{db}}.{{table}}</h1>
+  <hr>
+
+  <table>
+    {% for row in data %}
+    <tr>
+      {% for col in row %}
+      <td>{{col}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+
+</body>
+
+</html>
