@@ -3,6 +3,7 @@ export module vector;
 export class vector {
 public:
     vector(int);
+    ~vector();
     double& operator[](int);
     const double& operator[](int) const;
     int size() const;
@@ -13,6 +14,7 @@ private:
 };
 
 vector::vector(int s) : ptr{new double[s]}, sz{s} {}
+vector::~vector() { delete[] ptr; }
 double& vector::operator[](int i) { return ptr[i]; }
 const double& vector::operator[](int i) const { return ptr[i]; }
 int vector::size() const { return sz; }

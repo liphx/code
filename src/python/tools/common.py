@@ -2,11 +2,13 @@ __all__ = [
     'eprint',
     'lines',
     'fetch_url',
+    'format_time',
 ]
 
 import sys
 import time
 import requests
+from datetime import datetime
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/117.0'}
@@ -31,3 +33,7 @@ def fetch_url(url, headers=headers, try_times=5, sleep_interval=1):
     except Exception:
         time.sleep(sleep_interval)
         return fetch_url(url, headers=headers, try_times=try_times - 1)
+
+
+def format_time(timestamp):
+    return datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
