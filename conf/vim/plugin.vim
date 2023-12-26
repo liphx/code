@@ -55,7 +55,10 @@ augroup END
 "$ python3 install.py --all
 "$ python3 install.py --clangd-completer
 "$ git clone git://github.com/godlygeek/tabular.git ~/.vim/pack/bundle/start/tabular
-"$ git clone https://github.com/preservim/vim-markdown.git ~/.vim/pack/bundle/start/vim-markdown
+
+" preservim/vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
 " YouCompleteMe
 " let g:ycm_key_invoke_completion = '<C-z>'
 " set completeopt=menu,menuone

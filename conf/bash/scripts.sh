@@ -108,3 +108,9 @@ function copy() {
 function run() {
     bazel build $1 && ./bazel-bin/$1
 }
+
+function vim_install() {
+    for repo; do
+        git clone https://github.com/$repo.git ~/.vim/pack/bundle/start/$(basename $repo)
+    done
+}
