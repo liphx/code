@@ -22,6 +22,7 @@
 #include "liph/json.h"
 #include "liph/lang/casts.h"
 #include "liph/lang/demangle.h"
+#include "liph/lang/finally.h"
 #include "liph/lang/make_default.h"
 #include "liph/lang/no_destructor.h"
 #include "liph/lang/noncopyable.h"

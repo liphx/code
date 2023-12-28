@@ -1,9 +1,11 @@
-// Class template argument deduction (CTAD) (since C++17)
+// class template argument deduction (CTAD) (since C++17)
 // https://en.cppreference.com/w/cpp/language/class_template_argument_deduction
 
 #include <array>
 #include <mutex>
+#include <utility>
 #include <vector>
+using namespace std::literals;
 
 int main() {
     std::vector vc{0, 1, 2};                     // vector<int>
@@ -17,4 +19,10 @@ int main() {
 
     std::mutex m;
     std::lock_guard guard(m);
+
+    std::pair p{1, 3.14};
+
+    std::vector vs{"hello", "world"};     // vector<const char *>
+    std::vector vs2{"hello"s, "world"s};  // vector<string>
+    std::vector vs3(vs2.begin(), vs2.end());
 }

@@ -1,8 +1,6 @@
-#include <iostream>
-
-int operator""_k(unsigned long long n) { return n * 1000; }
+constexpr int operator""_k(unsigned long long n) { return n * 1000; }
 
 int main() {
-    std::cout << 1_k << std::endl;
-    std::cout << 2_k - 121 << std::endl;
+    static_assert(1_k == 1000);
+    static_assert(2_k - 121 == 1_k + 879);
 }

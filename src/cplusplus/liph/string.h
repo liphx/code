@@ -56,6 +56,21 @@ bool eat_symbol(std::string_view& sv, std::string_view symbol);
 
 std::optional<int> to_int(std::string_view);
 
+template <std::ranges::input_range Range>
+std::string join(const Range& range, const std::string& sep = " ") {
+    std::string str;
+    bool first = true;
+    for (const auto& value : range) {
+        if (!first) str += sep;
+        first = false;
+        if constexpr (std::is_same<std::ranges::range_value_t<Range>, std::string>::value)
+            str += value;
+        else
+            str += std::to_string(value);
+    }
+    return str;
+}
+
 }  // namespace liph
 
 #endif  // LIPH_STRING_H_

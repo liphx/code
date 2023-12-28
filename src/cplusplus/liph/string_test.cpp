@@ -1,5 +1,7 @@
 #include "liph/string.h"
 
+#include <list>
+
 #include "gtest/gtest.h"
 #include "liph/print.h"
 
@@ -76,6 +78,13 @@ TEST(string, replace) {
     EXPECT_EQ(replace("abcabc", "ab", "ba"), "bacbac");
     EXPECT_EQ(replace("aaaa", "aa", "a"), "aa");
     EXPECT_EQ(replace("aaa", "aa", "a"), "aa");
+}
+
+TEST(string, join) {
+    EXPECT_EQ(join(std::vector{1, 2, 3}, ", "), "1, 2, 3");
+    EXPECT_EQ(join(std::list{1, 2, 3}), "1 2 3");
+    std::string arr[]{"hello", "world"};
+    EXPECT_EQ(join(arr, ", "), "hello, world");
 }
 
 }  // namespace liph
