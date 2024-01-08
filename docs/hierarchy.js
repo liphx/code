@@ -1,12 +1,14 @@
 var hierarchy =
 [
     [ "liph::avl< T, Compare >", "classliph_1_1avl.html", null ],
+    [ "liph::base64", "structliph_1_1base64.html", null ],
     [ "liph::noncopyable_::base_token", "structliph_1_1noncopyable___1_1base__token.html", null ],
     [ "liph::big_integer", "classliph_1_1big__integer.html", null ],
     [ "liph::csv", "classliph_1_1csv.html", null ],
     [ "liph::io::descriptor", "classliph_1_1io_1_1descriptor.html", null ],
     [ "liph::double_buffer< T >", "classliph_1_1double__buffer.html", null ],
     [ "liph::double_buffer_with_shared_ptr< T >", "classliph_1_1double__buffer__with__shared__ptr.html", null ],
+    [ "liph::final_action< F >", "classliph_1_1final__action.html", null ],
     [ "liph::flags", "classliph_1_1flags.html", null ],
     [ "liph::hierarchical_mutex", "classliph_1_1hierarchical__mutex.html", null ],
     [ "liph::json", "classliph_1_1json.html", null ],

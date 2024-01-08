@@ -3,6 +3,7 @@ var dir_7eaddc0a53ddac9b61a8121e2e7e2bc3 =
     [ "concurrency", "dir_75cc352c401dbbbdd90eac631edce05d.html", "dir_75cc352c401dbbbdd90eac631edce05d" ],
     [ "container", "dir_633d97577823b10a386a6bf616e7e2f8.html", "dir_633d97577823b10a386a6bf616e7e2f8" ],
     [ "crypto", "dir_f376c54e2437134b413814a57dcada9a.html", "dir_f376c54e2437134b413814a57dcada9a" ],
+    [ "encoding", "dir_a32905fcf2c8aef44a4d3f701ee267e6.html", "dir_a32905fcf2c8aef44a4d3f701ee267e6" ],
     [ "io", "dir_687a398abe69e4b082204fb347dee7b5.html", "dir_687a398abe69e4b082204fb347dee7b5" ],
     [ "lang", "dir_6d2e6685c6c2c52d2f1b380c08315b8f.html", "dir_6d2e6685c6c2c52d2f1b380c08315b8f" ],
     [ "net", "dir_2a1442d1b5c6e7c1b8bc11ab73130ce3.html", "dir_2a1442d1b5c6e7c1b8bc11ab73130ce3" ],

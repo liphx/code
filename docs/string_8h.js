@@ -5,6 +5,7 @@ var string_8h =
     [ "eat_symbol", "string_8h.html#a6f761f8717e2231607124ace8a590694", null ],
     [ "endswith", "string_8h.html#aaf2e1fbcc8f712bf454c84663b2113a2", null ],
     [ "from_string", "string_8h.html#a9ceacaa411888d2b2b6797dc81868b8f", null ],
+    [ "join", "string_8h.html#ab7aadd6bdc99e67125089bf3200de41a", null ],
     [ "ltrim", "string_8h.html#a01126831d759068cf82b73a417efed14", null ],
     [ "replace", "string_8h.html#ab97fa5f7490a10a0a0b6eeca62b46aaa", null ],
     [ "rtrim", "string_8h.html#a50668420efc7b4951050c1bd7c569682", null ],

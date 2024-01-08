@@ -50,7 +50,7 @@ if [[ $1 = 'docs' ]]; then
     rm -rf $docs_root
     mkdir $docs_root
     doxygen
-    echo 'code.lipenghua.com' > $docs_root/CNAME
+    echo 'cpp.lipenghua.com' > $docs_root/CNAME
 fi
 
 # ltl

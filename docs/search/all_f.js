@@ -11,10 +11,11 @@ var searchData=
   ['prepared_5fstatement_8',['prepared_statement',['../classliph_1_1prepared__statement.html#a19eee87066b685c235d07c83ca0825ab',1,'liph::prepared_statement::prepared_statement()'],['../classliph_1_1prepared__statement.html',1,'liph::prepared_statement']]],
   ['prime_5fsieve_9',['prime_sieve',['../classliph_1_1prime__sieve.html',1,'liph::prime_sieve'],['../classliph_1_1prime__sieve.html#aea7ea07cd5a46a5376e4d15e90a6f8d6',1,'liph::prime_sieve::prime_sieve()']]],
   ['prime_5fsieve_2eh_10',['prime_sieve.h',['../prime__sieve_8h.html',1,'']]],
-  ['print_11',['print',['../namespaceliph.html#a7dc21e469f025d0c007dd5e73a1f1b1d',1,'liph::print(const T &amp;t)'],['../namespaceliph.html#adb098c72df65d7a92ae3dde8e78f9b4c',1,'liph::print(T &amp;&amp;head, Args &amp;&amp;...args)'],['../namespaceliph.html#ab8d795d8eb042c036eadcd928495e63f',1,'liph::print(bool b)'],['../print_8h.html#a15bb631053a1fce9c5470701900984c7',1,'PRINT:&#160;print.h'],['../namespaceliph.html#a4f1bf4c6831b8aa37fa004b0a1a30303',1,'liph::print()']]],
+  ['print_11',['print',['../namespaceliph.html#af26bdd706305a34587a26c62a8dc01e7',1,'liph::print(bool head, Args &amp;&amp;...args)'],['../namespaceliph.html#a6c064930842eb8da7d3fe1a57fd71531',1,'liph::print(T &amp;&amp;t)'],['../namespaceliph.html#ab8d795d8eb042c036eadcd928495e63f',1,'liph::print(bool b)'],['../namespaceliph.html#adb098c72df65d7a92ae3dde8e78f9b4c',1,'liph::print(T &amp;&amp;head, Args &amp;&amp;...args)'],['../print_8h.html#a15bb631053a1fce9c5470701900984c7',1,'PRINT:&#160;print.h']]],
   ['print_2eh_12',['print.h',['../print_8h.html',1,'']]],
-  ['process_2ecpp_13',['process.cpp',['../process_8cpp.html',1,'']]],
-  ['process_2eh_14',['process.h',['../process_8h.html',1,'']]],
-  ['purple_15',['Purple',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80ab9ba865fec061c9706d2fd7ce49c0cc7',1,'liph']]],
-  ['push_16',['push',['../classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749',1,'liph::blocking_queue']]]
+  ['println_13',['println',['../namespaceliph.html#ad4cf8af826c7b7fc703148591bdaf31b',1,'liph']]],
+  ['process_2ecpp_14',['process.cpp',['../process_8cpp.html',1,'']]],
+  ['process_2eh_15',['process.h',['../process_8h.html',1,'']]],
+  ['purple_16',['Purple',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80ab9ba865fec061c9706d2fd7ce49c0cc7',1,'liph']]],
+  ['push_17',['push',['../classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749',1,'liph::blocking_queue']]]
 ];

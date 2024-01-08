@@ -155,11 +155,11 @@ $(document).ready(function(){initNavTree('threadpool_8h_source.html',''); initRe
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">template</span> &lt;<span class="keyword">class </span>Function, <span class="keyword">class</span>... Args&gt;</div>
 <div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">AddTask</a>(Function&amp;&amp; func, Args&amp;&amp;...args) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">AddTask</a>(Function&amp;&amp; <a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, Args&amp;&amp;...args) {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">if</span> (shutdown_) {</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;Add task after thread pool shutdown&quot;</span>);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">auto</span> entry = std::bind(func, std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">auto</span> entry = std::bind(<a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, std::forward&lt;Args&gt;(args)...);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        tasks_.<a class="code hl_function" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">push</a>(entry);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        cv_.notify_one();</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
@@ -204,6 +204,7 @@ $(document).ready(function(){initNavTree('threadpool_8h_source.html',''); initRe
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}  <span class="comment">// namespace liph</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_CONCURRENCY_THREADPOOL_H_</span></div>
+<div class="ttc" id="abase64_8cpp_html_adbdd219529651d8e8c9fa2a3df87fae8"><div class="ttname"><a href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a></div><div class="ttdeci">#define func(V)</div></div>
 <div class="ttc" id="ablocking__queue_8h_html"><div class="ttname"><a href="blocking__queue_8h.html">blocking_queue.h</a></div></div>
 <div class="ttc" id="aclassliph_1_1_thread_pool_html"><div class="ttname"><a href="classliph_1_1_thread_pool.html">liph::ThreadPool</a></div><div class="ttdef"><b>Definition</b> threadpool.h:16</div></div>
 <div class="ttc" id="aclassliph_1_1_thread_pool_html_a02b1fcabbe69f1509c147ff96e583f81"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81">liph::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool(ThreadPool &amp;&amp;)=delete</div></div>
@@ -220,7 +221,7 @@ $(document).ready(function(){initNavTree('threadpool_8h_source.html',''); initRe
 <div class="ttc" id="aclassliph_1_1blocking__queue_html_a21db5a1fec44fdd9f7ae7f88c9f2642b"><div class="ttname"><a href="classliph_1_1blocking__queue.html#a21db5a1fec44fdd9f7ae7f88c9f2642b">liph::blocking_queue::pop</a></div><div class="ttdeci">void pop()</div><div class="ttdef"><b>Definition</b> blocking_queue.h:36</div></div>
 <div class="ttc" id="aclassliph_1_1blocking__queue_html_a5811e19c0224139b45a760030fe3e749"><div class="ttname"><a href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">liph::blocking_queue::push</a></div><div class="ttdeci">void push(const T &amp;v)</div><div class="ttdef"><b>Definition</b> blocking_queue.h:25</div></div>
 <div class="ttc" id="aclassliph_1_1blocking__queue_html_ad2714559e5fac71f33898b9d5ef8786b"><div class="ttname"><a href="classliph_1_1blocking__queue.html#ad2714559e5fac71f33898b9d5ef8786b">liph::blocking_queue::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdef"><b>Definition</b> blocking_queue.h:18</div></div>
-<div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:9</div></div>
+<div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

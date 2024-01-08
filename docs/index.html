@@ -103,6 +103,12 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="fragment"><div class="line">load(&quot;@bazel_tools//tools/build_defs/repo:git.bzl&quot;, &quot;git_repository&quot;)</div>
 <div class="line"> </div>
 <div class="line">git_repository(</div>
+<div class="line">    name = &quot;thirdparty&quot;,</div>
+<div class="line">    remote = &quot;https://github.com/liphx/cpp-thirdparty.git&quot;,</div>
+<div class="line">    branch = &quot;master&quot;,</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">git_repository(</div>
 <div class="line">    name = &quot;liph&quot;,</div>
 <div class="line">    remote = &quot;https://github.com/liphx/code.git&quot;,</div>
 <div class="line">    branch = &quot;main&quot;,</div>
@@ -120,10 +126,10 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="liph_8h.html">liph/liph.h</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    <a class="code hl_function" href="namespaceliph.html#a4f1bf4c6831b8aa37fa004b0a1a30303">liph::print</a>(std::vector&lt;int&gt;{10, 9, 42});</div>
+<div class="line">    <a class="code hl_function" href="namespaceliph.html#ab8d795d8eb042c036eadcd928495e63f">liph::print</a>(std::vector&lt;int&gt;{10, 9, 42});</div>
 <div class="line">}</div>
 <div class="ttc" id="aliph_8h_html"><div class="ttname"><a href="liph_8h.html">liph.h</a></div></div>
-<div class="ttc" id="anamespaceliph_html_a4f1bf4c6831b8aa37fa004b0a1a30303"><div class="ttname"><a href="namespaceliph.html#a4f1bf4c6831b8aa37fa004b0a1a30303">liph::print</a></div><div class="ttdeci">void print()</div><div class="ttdef"><b>Definition</b> print.h:61</div></div>
+<div class="ttc" id="anamespaceliph_html_ab8d795d8eb042c036eadcd928495e63f"><div class="ttname"><a href="namespaceliph.html#ab8d795d8eb042c036eadcd928495e63f">liph::print</a></div><div class="ttdeci">void print(bool b)</div><div class="ttdef"><b>Definition</b> print.h:72</div></div>
 </div><!-- fragment --><p><b>env</b></p>
 <p>Linux &amp; Mac</p>
 <ul>

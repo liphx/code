@@ -105,52 +105,92 @@ $(document).ready(function(){initNavTree('algorithm_8h_source.html',''); initRes
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespaceliph.html">    9</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceliph.html">liph</a> {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">   12</a></span>std::vector&lt;T&gt; <a class="code hl_function" href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">topk</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, <span class="keywordtype">size_t</span> k) {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">if</span> (k == 0) <span class="keywordflow">return</span> {};</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> (data.size() &lt;= k) <span class="keywordflow">return</span> data;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::vector&lt;T&gt; ans;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::priority_queue&lt;T, std::vector&lt;T&gt;, std::greater&lt;T&gt;&gt; q(data.begin(), data.begin() + k);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = k; i &lt; data.size(); i++) {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (data[i] &gt; q.top()) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            q.pop();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            q.push(data[i]);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; k; i++) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        ans.emplace_back(q.top());</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        q.pop();</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespaceliph.html">   10</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceliph.html">liph</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespaceliph.html#a7a069688d572e2427fc261a2526863ba">   14</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespaceliph.html#a7a069688d572e2427fc261a2526863ba">erase</a>(std::vector&lt;T&gt;&amp; v, <span class="keyword">const</span> std::set&lt;size_t&gt;&amp; idx) {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">if</span> (idx.empty()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">auto</span> it = idx.begin();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">size_t</span> size = 0;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; v.size(); ++i) {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (it != idx.end() &amp;&amp; i == *it) {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            ++it;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">if</span> (size != i) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                v[size] = std::move(v[i]);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            ++size;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> ans;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    v.resize(size);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
 <div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">   32</a></span>T <a class="code hl_function" href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">find_kth</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, <span class="keywordtype">size_t</span> k) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    assert(data.size() &gt; 0 &amp;&amp; k &gt;= 1 &amp;&amp; k &lt;= data.size());</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::priority_queue&lt;T&gt; q(data.begin(), data.end());</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; k - 1; i++) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        q.pop();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> q.top();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">   32</a></span>std::vector&lt;T&gt; <a class="code hl_function" href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">topk</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, <span class="keywordtype">size_t</span> k) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (k == 0) <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">if</span> (data.size() &lt;= k) <span class="keywordflow">return</span> data;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::vector&lt;T&gt; ans;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::priority_queue&lt;T, std::vector&lt;T&gt;, std::greater&lt;T&gt;&gt; q(data.begin(), data.begin() + k);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = k; i &lt; data.size(); i++) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (data[i] &gt; q.top()) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            q.pop();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            q.push(data[i]);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; k; i++) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        ans.emplace_back(q.top());</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        q.pop();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> ans;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}  <span class="comment">// namespace liph</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">   52</a></span>T <a class="code hl_function" href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">find_kth</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, <span class="keywordtype">size_t</span> k) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    assert(data.size() &gt; 0 &amp;&amp; k &gt;= 1 &amp;&amp; k &lt;= data.size());</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::priority_queue&lt;T&gt; q(data.begin(), data.end());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; k - 1; i++) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        q.pop();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> q.top();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_ALGORITHM_H_</span></div>
-<div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:9</div></div>
-<div class="ttc" id="anamespaceliph_html_a18696714c9a3b981ec4f6293742fa889"><div class="ttname"><a href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">liph::find_kth</a></div><div class="ttdeci">T find_kth(const std::vector&lt; T &gt; &amp;data, size_t k)</div><div class="ttdef"><b>Definition</b> algorithm.h:32</div></div>
-<div class="ttc" id="anamespaceliph_html_a30179e039947b493d35ebd67734cc452"><div class="ttname"><a href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">liph::topk</a></div><div class="ttdeci">std::vector&lt; T &gt; topk(const std::vector&lt; T &gt; &amp;data, size_t k)</div><div class="ttdef"><b>Definition</b> algorithm.h:12</div></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="namespaceliph.html#a56935d3f21daff774ff134fe31ad4a67">   62</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="namespaceliph.html#a56935d3f21daff774ff134fe31ad4a67">binary_search</a>(T a[], <span class="keywordtype">int</span> n, T val) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> i = 0, j = n, mid;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">while</span> (i &lt; j) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        mid = i + (j - i) / 2;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (a[mid] == val) <span class="keywordflow">return</span> mid;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (a[mid] &lt; val) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            i = mid + 1;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            j = mid;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}  <span class="comment">// namespace liph</span></div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_ALGORITHM_H_</span></div>
+<div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:10</div></div>
+<div class="ttc" id="anamespaceliph_html_a18696714c9a3b981ec4f6293742fa889"><div class="ttname"><a href="namespaceliph.html#a18696714c9a3b981ec4f6293742fa889">liph::find_kth</a></div><div class="ttdeci">T find_kth(const std::vector&lt; T &gt; &amp;data, size_t k)</div><div class="ttdef"><b>Definition</b> algorithm.h:52</div></div>
+<div class="ttc" id="anamespaceliph_html_a30179e039947b493d35ebd67734cc452"><div class="ttname"><a href="namespaceliph.html#a30179e039947b493d35ebd67734cc452">liph::topk</a></div><div class="ttdeci">std::vector&lt; T &gt; topk(const std::vector&lt; T &gt; &amp;data, size_t k)</div><div class="ttdef"><b>Definition</b> algorithm.h:32</div></div>
+<div class="ttc" id="anamespaceliph_html_a56935d3f21daff774ff134fe31ad4a67"><div class="ttname"><a href="namespaceliph.html#a56935d3f21daff774ff134fe31ad4a67">liph::binary_search</a></div><div class="ttdeci">int binary_search(T a[], int n, T val)</div><div class="ttdef"><b>Definition</b> algorithm.h:62</div></div>
+<div class="ttc" id="anamespaceliph_html_a7a069688d572e2427fc261a2526863ba"><div class="ttname"><a href="namespaceliph.html#a7a069688d572e2427fc261a2526863ba">liph::erase</a></div><div class="ttdeci">void erase(std::vector&lt; T &gt; &amp;v, const std::set&lt; size_t &gt; &amp;idx)</div><div class="ttdoc">Erases the specified elements from v, according to index in idx.</div><div class="ttdef"><b>Definition</b> algorithm.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

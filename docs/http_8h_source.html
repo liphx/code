@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('http_8h_source.html',''); initResizabl
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">typedef</span> void (*http_handle)(<span class="keyword">const</span> http_request&amp; req, http_response&amp; res);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    http_server(<span class="keywordtype">int</span> port = 80);</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    ~http_server();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> set_handle(<span class="keyword">const</span> std::string&amp; url, http_handle func);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> set_handle(<span class="keyword">const</span> std::string&amp; url, http_handle <a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> set_static_sever(<span class="keyword">const</span> std::string&amp; url, <span class="keyword">const</span> std::string&amp; path);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> start();</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
@@ -178,6 +178,7 @@ $(document).ready(function(){initNavTree('http_8h_source.html',''); initResizabl
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_NET_HTTP_H_</span></div>
+<div class="ttc" id="abase64_8cpp_html_adbdd219529651d8e8c9fa2a3df87fae8"><div class="ttname"><a href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a></div><div class="ttdeci">#define func(V)</div></div>
 <div class="ttc" id="amacros_8h_html"><div class="ttname"><a href="macros_8h.html">macros.h</a></div></div>
 <div class="ttc" id="anamespaceliph_html_aa3a8f95478b1601cfb409ddc155cdab0"><div class="ttname"><a href="namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0">liph::implicit_cast</a></div><div class="ttdeci">To implicit_cast(const From &amp;f)</div><div class="ttdef"><b>Definition</b> casts.h:11</div></div>
 <div class="ttc" id="atcp_8h_html"><div class="ttname"><a href="tcp_8h.html">tcp.h</a></div></div>

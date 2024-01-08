@@ -98,11 +98,11 @@ $(document).ready(function(){initNavTree('process_8h.html',''); initResizable();
   <div class="headertitle"><div class="title">process.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="macros_8h_source.html">liph/macros.h</a>&quot;</code><br />
-<code>#include &lt;cstdio&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstdio&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="macros_8h_source.html">liph/macros.h</a>&quot;</code><br />
 </div>
 <p><a href="process_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -113,15 +113,15 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a3a89f7a274d234c4866b910c53cbec9a" id="r_a3a89f7a274d234c4866b910c53cbec9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a3a89f7a274d234c4866b910c53cbec9a">BD_NO_CHDIR</a>&#160;&#160;&#160;1          /* Don't chdir(&quot;/&quot;) */</td></tr>
+<tr class="memitem:a3a89f7a274d234c4866b910c53cbec9a" id="r_a3a89f7a274d234c4866b910c53cbec9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a3a89f7a274d234c4866b910c53cbec9a">BD_NO_CHDIR</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a3a89f7a274d234c4866b910c53cbec9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72c552cffea0b0409d7b9aa8ae2a6fe4" id="r_a72c552cffea0b0409d7b9aa8ae2a6fe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a72c552cffea0b0409d7b9aa8ae2a6fe4">BD_NO_CLOSE_FILES</a>&#160;&#160;&#160;2    /* Don't close all open files */</td></tr>
+<tr class="memitem:a72c552cffea0b0409d7b9aa8ae2a6fe4" id="r_a72c552cffea0b0409d7b9aa8ae2a6fe4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a72c552cffea0b0409d7b9aa8ae2a6fe4">BD_NO_CLOSE_FILES</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a72c552cffea0b0409d7b9aa8ae2a6fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56355447dd456e02c27cf26e5856267c" id="r_a56355447dd456e02c27cf26e5856267c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a56355447dd456e02c27cf26e5856267c">BD_NO_REOPEN_STD_FDS</a>&#160;&#160;&#160;4 /* Don't reopen stdin, stdout, and stderr to /dev/null */</td></tr>
+<tr class="memitem:a56355447dd456e02c27cf26e5856267c" id="r_a56355447dd456e02c27cf26e5856267c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a56355447dd456e02c27cf26e5856267c">BD_NO_REOPEN_STD_FDS</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:a56355447dd456e02c27cf26e5856267c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adee8d26f05c2ad9f920112d056c0a185" id="r_adee8d26f05c2ad9f920112d056c0a185"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#adee8d26f05c2ad9f920112d056c0a185">BD_NO_UMASK0</a>&#160;&#160;&#160;8         /* Don't do a umask(0) */</td></tr>
+<tr class="memitem:adee8d26f05c2ad9f920112d056c0a185" id="r_adee8d26f05c2ad9f920112d056c0a185"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#adee8d26f05c2ad9f920112d056c0a185">BD_NO_UMASK0</a>&#160;&#160;&#160;8</td></tr>
 <tr class="separator:adee8d26f05c2ad9f920112d056c0a185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71e9998ade96595a681444b44c613ba3" id="r_a71e9998ade96595a681444b44c613ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a71e9998ade96595a681444b44c613ba3">BD_MAX_CLOSE</a>&#160;&#160;&#160;8192      /* Maximum file descriptors to close if sysconf(_SC_OPEN_MAX) is indeterminate */</td></tr>
+<tr class="memitem:a71e9998ade96595a681444b44c613ba3" id="r_a71e9998ade96595a681444b44c613ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="process_8h.html#a71e9998ade96595a681444b44c613ba3">BD_MAX_CLOSE</a>&#160;&#160;&#160;8192</td></tr>
 <tr class="separator:a71e9998ade96595a681444b44c613ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -145,7 +145,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BD_MAX_CLOSE&#160;&#160;&#160;8192      /* Maximum file descriptors to close if sysconf(_SC_OPEN_MAX) is indeterminate */</td>
+          <td class="memname">#define BD_MAX_CLOSE&#160;&#160;&#160;8192</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -159,7 +159,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BD_NO_CHDIR&#160;&#160;&#160;1          /* Don't chdir(&quot;/&quot;) */</td>
+          <td class="memname">#define BD_NO_CHDIR&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -173,7 +173,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BD_NO_CLOSE_FILES&#160;&#160;&#160;2    /* Don't close all open files */</td>
+          <td class="memname">#define BD_NO_CLOSE_FILES&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BD_NO_REOPEN_STD_FDS&#160;&#160;&#160;4 /* Don't reopen stdin, stdout, and stderr to /dev/null */</td>
+          <td class="memname">#define BD_NO_REOPEN_STD_FDS&#160;&#160;&#160;4</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +201,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BD_NO_UMASK0&#160;&#160;&#160;8         /* Don't do a umask(0) */</td>
+          <td class="memname">#define BD_NO_UMASK0&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">
