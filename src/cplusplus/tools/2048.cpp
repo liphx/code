@@ -25,7 +25,7 @@ p new2() {
     if (free.empty()) {
         return npos;
     }
-    return free[rand() % free.size()];
+    return free[::rand() % free.size()];
 }
 
 int score() {
@@ -64,7 +64,7 @@ void init() {
     std::cout << color256bg(color256::Black);
     std::cout << color256fg(color256::White);
 
-    srand(0);
+    ::srand(0);
     p p1 = new2();
     arr[p1.x][p1.y] = 2;
     p p2 = new2();

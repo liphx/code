@@ -15,7 +15,7 @@ if [ ! -f ${config_file} ]; then
     exit 2
 fi
 
-if ! which expect > /dev/null 2>&1 ; then
+if ! which expect > /dev/null 2>&1; then
     echo "expect: command not found"
     exit 3
 fi

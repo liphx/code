@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "liph/liph.h"
 
 int main(int argc, char **argv) {

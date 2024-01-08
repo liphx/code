@@ -1,49 +1,46 @@
-#include "liph/liph.h"
+#include <iostream>
+#include <iterator>
+#include <vector>
 using namespace std;
 
 template <class T>
-void print(const vector<T>& vc) {
-    if (vc.empty()) return;
-    /* vector<int>::const_iterator = vc.cbegin(); */
-    // 必须要有 typename
-    typename vector<int>::const_iterator it = vc.begin();
-    cout << *it << endl;
+void foo(const vector<T>& vc) {
+    // vector<T>::const_iterator it = vc.cbegin();
+    typename vector<T>::const_iterator it = vc.cbegin();
 
-    // or
     auto it2 = vc.begin();
-    cout << *it2 << endl;
 
-    typedef typename vector<int>::const_iterator iter;
-    iter it3 = vc.begin();
+    typedef typename vector<T>::const_iterator Iter;
+    Iter it3 = vc.begin();
 
-    using iter2 = typename vector<int>::const_iterator;
-    iter2 it4 = vc.begin();
+    using It = typename vector<T>::const_iterator;
+    It it4 = vc.begin();
 }
 
 template <class T>
-/* void add(vector<T>& vc, vector<T>::const_iterator it) */
-// 必须要有 typename
+// void add(vector<T>& vc, vector<T>::const_iterator it)
 void add(vector<T>& vc, typename vector<T>::const_iterator it) {
     vc.emplace_back(*it);
 }
 
 template <class T>
-class A {
+struct A {
     struct Nested {};
 };
 
 template <class T>
-/* class B: public typename A<T>::Nested {}; */
-// 不能有 typename
-class B : public A<T>::Nested {
-public:
-    /* B(): typename A<T>::Nested() {} */
-    // 不能有 typename
+// class B: typename A<T>::Nested {};
+struct B : A<T>::Nested {
+    // B(): typename A<T>::Nested() {}
     B() : A<T>::Nested() {
-        /* A<T>::Nested tmp; */
-        // 必须要有 typename
+        // A<T>::Nested tmp;
         typename A<T>::Nested tmp;
     }
 };
 
-int main() {}
+int main() {
+    vector v{1, 2, 3, 4};
+    vector v2{0};
+    foo(v);
+    add(v2, v.cbegin());
+}

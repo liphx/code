@@ -79,3 +79,5 @@ alias clear_file=': | tee'
 # python3 module
 alias json='python3 -m json.tool --no-ensure-ascii'
 alias httpserver='python3 -m http.server'
+
+alias bb='bazel build'

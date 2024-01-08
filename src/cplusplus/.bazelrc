@@ -10,3 +10,5 @@ build --cxxopt=-Wfatal-errors
 # build --linkopt=-fsanitize=address
 
 build --spawn_strategy=standalone
+
+build --linkopt='-lstdc++'

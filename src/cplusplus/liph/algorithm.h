@@ -4,9 +4,29 @@
 #include <cassert>
 #include <functional>
 #include <queue>
+#include <set>
 #include <vector>
 
 namespace liph {
+
+/// Erases the specified elements from v, according to index in idx
+template <class T>
+void erase(std::vector<T>& v, const std::set<size_t>& idx) {
+    if (idx.empty()) return;
+    auto it = idx.begin();
+    size_t size = 0;
+    for (size_t i = 0; i < v.size(); ++i) {
+        if (it != idx.end() && i == *it) {
+            ++it;
+        } else {
+            if (size != i) {
+                v[size] = std::move(v[i]);
+            }
+            ++size;
+        }
+    }
+    v.resize(size);
+}
 
 template <class T>
 std::vector<T> topk(const std::vector<T>& data, size_t k) {
@@ -36,6 +56,21 @@ T find_kth(const std::vector<T>& data, size_t k) {
         q.pop();
     }
     return q.top();
+}
+
+template <class T>
+int binary_search(T a[], int n, T val) {
+    int i = 0, j = n, mid;
+    while (i < j) {
+        mid = i + (j - i) / 2;
+        if (a[mid] == val) return mid;
+        if (a[mid] < val) {
+            i = mid + 1;
+        } else {
+            j = mid;
+        }
+    }
+    return -1;
 }
 
 }  // namespace liph

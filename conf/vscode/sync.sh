@@ -2,7 +2,7 @@
 
 dir=""
 
-case `uname` in
+case $(uname) in
     Darwin) dir="$HOME/Library/Application Support/Code/User/" ;;
     Linux) dir="$HOME/.config/Code/User/" ;;
     *) dir="$HOME/AppData/Roaming/Code/User/" ;;

@@ -1,125 +1,113 @@
-#include "liph/liph.h"
+#include <iostream>
+#include <vector>
+
 using namespace std;
-using namespace liph;
 
-struct A {
-    A() { std::cout << "A()" << std::endl; }
-    A(const A&) { std::cout << "A(A&)" << std::endl; }
-};
-
-void f() {
-    std::vector<A> vc;
-    vc.reserve(2);
-    std::cout << "=====" << std::endl;
-
-    A a;
-    vc.push_back(a);
-
-    std::cout << "=====" << std::endl;
-
-    vc.emplace_back();
-}
-
-void f2() {
-    // std::vector<int&> vc;
-    // https://stackoverflow.com/questions/922360/why-cant-i-make-a-vector-of-references
-
-    // std::vector<const int> d{0, 0, 1, 1};
-    // std::cout << d.size() << std::endl;
-    // std::cout << d[0] << std::endl;
-    // d[0] = 1;
-    // d.emplace_back(0);
-    // const int a = 0;
-    // d.emplace_back(a);
+template <class T>
+void print(vector<T>& vc) {
+    cout << "[";
+    bool first = true;
+    for (const auto& x : vc) {
+        if (!first) cout << ",";
+        cout << x;
+        first = false;
+    }
+    cout << "]\n";
 }
 
 int main() {
-    f();
-    f2();
+    {
+        struct A {
+            A() { cout << "A()\n"; }
+            A(const A&) { cout << "A(A&)\n"; }
+        };
 
-    // 创建vector
-    vector<int> data1;
-    cout << data1.size() << endl;      // 大小 0
-    cout << data1.capacity() << endl;  // 容量 0
+        vector<A> vc;
+        vc.reserve(2);
 
-    // 增加容器的容量，若容量不小于参数则无效
-    data1.reserve(20);
-    cout << data1.size() << endl;      // 0
-    cout << data1.capacity() << endl;  // 20
+        A a;
+        vc.push_back(a);
 
-    // 初始化列表创建vector
-    vector<int> data2{1, 2, 3, 4, 5};
+        vc.emplace_back();
+    }
+    {
+            // vector<int&> vc;
+            // https://stackoverflow.com/questions/922360/why-cant-i-make-a-vector-of-references
 
-    // 初始化元素的个数，默认值为0
-    vector<int> data3(10);
-    cout << data3.size() << endl;      // 10
-    cout << data3.capacity() << endl;  // 10
-    print(data3);                      // 0 0 0 0 0 0 0 0 0 0
+            // vector<const int> d{0, 0, 1, 1};
+            // cout << d.size() << endl;
+            // cout << d[0] << endl;
+            // d[0] = 1;
+            // d.emplace_back(0);
+            // const int a = 0;
+            // d.emplace_back(a);
+    }
 
-    // 指定其他默认值
-    vector<int> data4(5, -1);
-    print(data4);  // -1 -1 -1 -1 -1
+    {
+        vector<int> data1;
+        cout << data1.size() << endl;      // 0
+        cout << data1.capacity() << endl;  // 0
 
-    // 改变大小
-    vector<int> data5{1, 2};
-    data5.resize(3);
-    print(data5);  // 1 2 0
-    data5.resize(5, -1);
-    print(data5);  // 1 2 0 -1 -1
-    data5.resize(4);
-    print(data5);  // 1 2 0 -1
+        data1.reserve(20);
+        cout << data1.size() << endl;      // 0
+        cout << data1.capacity() << endl;  // 20
 
-    // 访问元素,但不能生成新元素
-    cout << data5[3] << endl;     // -1
-    cout << data5.at(0) << endl;  // 1
+        vector<int> data2{1, 2, 3, 4, 5};
 
-    // 返回第一个元素的引用
-    data5.front()++;
-    cout << data5[0] << endl;  // 2
+        vector<int> data3(10);
+        cout << data3.size() << endl;      // 10
+        cout << data3.capacity() << endl;  // 10
+        print(data3);                      // [0,0,0,0,0,0,0,0,0,0]
 
-    // 返回最后一个元素的引用
-    data5.back()--;
-    cout << *(data5.end() - 1) << endl;  // -2
+        vector<int> data4(5, -1);
+        print(data4);  // [-1,-1,-1,-1,-1]
 
-    // data()返回指向数组的指针
-    (void)data5.data();
+        vector<int> data5{1, 2};
+        data5.resize(3);
+        print(data5);  // [1,2,0]
+        data5.resize(5, -1);
+        print(data5);  // [1,2,0,-1,-1]
+        data5.resize(4);
+        print(data5);  // [1,2,0,-1]
 
-    // 在末尾增加元素
-    data5.push_back(100);
-    cout << data5.size() << endl;  // 5
-    cout << data5.back() << endl;  // 100
+        cout << data5[3] << endl;     // -1
+        cout << data5.at(0) << endl;  // 1
 
-    // 使用emplace_back添加元素
-    vector<string> data6;
-    string str = "hello";
-    data6.emplace_back(str, 0, 3);  // 调用string的构造函数生成对象
-    cout << data6[0] << endl;       // hel
+        data5.front()++;
+        cout << data5[0] << endl;  // 2
 
-    // emplace插入一个元素
-    auto iter = data6.begin();
-    data6.emplace(iter, str, 1, 3);
-    print(data6);  // ell hel
+        data5.back()--;
+        cout << *(data5.end() - 1) << endl;  // -2
 
-    // insert插入一个或多个元素
-    data6.insert(data6.begin(), "00");
-    data6.insert(data6.end(), {"11", "22"});
-    print(data6);  // 00 ell hel 11 22
+        (void)data5.data();
 
-    // 删除尾部元素
-    data6.pop_back();
+        data5.push_back(100);
+        cout << data5.size() << endl;  // 5
+        cout << data5.back() << endl;  // 100
 
-    // 去掉容器中多余的容量
-    data6.shrink_to_fit();
+        vector<string> data6;
+        string str = "hello";
+        data6.emplace_back(str, 0, 3);
+        cout << data6[0] << endl;  // hel
 
-    // 删除一个或多个元素
-    data6.erase(data6.begin());
+        auto iter = data6.begin();
+        data6.emplace(iter, str, 1, 3);
+        print(data6);  // [ell,hel]
 
-    // 删除所有元素
-    data6.clear();
-    cout << data6.size() << endl;  // 0
+        data6.insert(data6.begin(), "00");
+        data6.insert(data6.end(), {"11", "22"});
+        print(data6);  // [00,ell,hel,11,22]
 
-    // 迭代器
-    // 同array，插入或删除可能破坏迭代器，需要重新获取
+        data6.pop_back();
 
-    return 0;
+        data6.shrink_to_fit();
+
+        data6.erase(data6.begin());
+
+        data6.clear();
+        cout << data6.size() << endl;      // 0
+        cout << data6.capacity() << endl;  // 4
+        data6.shrink_to_fit();
+        cout << data6.capacity() << endl;  // 0
+    }
 }

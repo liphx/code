@@ -4,6 +4,7 @@
 #include <cxxabi.h>
 
 #include <string>
+#include <typeinfo>
 
 namespace liph {
 

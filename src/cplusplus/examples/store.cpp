@@ -1,8 +1,31 @@
 #include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string_view>
 
-#include "liph/liph.h"
+bool startswith(std::string_view s, std::string_view t) {
+    return s.size() >= t.size() && std::equal(t.cbegin(), t.cend(), s.cbegin());
+}
 
-namespace liph::store {
+std::string basename(std::string_view path) {
+    std::string ret;
+    bool start = true;
+    for (char ch : path) {
+        if (ch != '/' && start) {
+            ret += ch;
+        } else if (ch == '/') {
+            start = false;
+        } else if (ch != '/' && !start) {
+            ret.clear();
+            ret += ch;
+            start = true;
+        }
+    }
+    if (!path.empty() && path.back() == '/' && ret.empty()) return "/";
+    return ret;
+}
 
 class segment {
 public:
@@ -116,10 +139,10 @@ private:
     std::map<std::string, uint32_t> map_;
 };
 
-class db {
+class DB {
 public:
-    db(const std::string& store_path) : store_path_(store_path) {}
-    ~db() {
+    DB(const std::string& store_path) : store_path_(store_path) {}
+    ~DB() {
         if (!mem_map_.empty()) {
             dump();
         }
@@ -204,20 +227,18 @@ private:
     static const int mem_map_max_size_ = 128;
 };
 
-}  // namespace liph::store
-
 int main() {
-    liph::store::db db("/tmp/store");
-    DEBUG(db.init());
+    DB db("/tmp/store");
+    db.init();
     for (int i = 100; i < 1000; i++) {
         if (!db.put("key_" + std::to_string(i), "value_" + std::to_string(i))) {
-            PRINT("put err");
+            puts("put err");
         }
     }
     std::string str;
-    DEBUG(db.get("key_666", str));
-    DEBUG(str);
+    db.get("key_666", str);
+    std::cout << str << std::endl;
 
     db.del("key_555");
-    DEBUG(db.get("key_555", str));
+    db.get("key_555", str);
 }

@@ -21,8 +21,6 @@ namespace liph {
 /// list all files(including directories) in pathname recursively and sort by names
 [[nodiscard]] std::vector<std::string> list_files(const std::string& pathname);
 
-#ifdef USE_CPP20
-
 using file_ptr = std::unique_ptr<FILE, decltype([](FILE *f) {
     if (f) fclose(f);
 })>;
@@ -31,8 +29,6 @@ inline file_ptr fopen(const char *filename, char const *mode) {
     FILE *f = ::fopen(filename, mode);
     return file_ptr(f);
 }
-
-#endif
 
 /// mkdir
 /// @return true if directory exists finally

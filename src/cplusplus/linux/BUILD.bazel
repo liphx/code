@@ -1,0 +1,10 @@
+[cc_binary(
+    name = cc_name.split('.')[0],
+    srcs = [cc_name],
+    copts = [
+        "-Wall",
+        "-Wno-error",
+    ],
+) for cc_name in glob(
+    include = ["**/*.cc"],
+)]

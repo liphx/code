@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['i64_5f_0',['i64_',['../classliph_1_1json.html#a50d6df949bc94320e03fc99567772c9a',1,'liph::json']]]
+  ['g_0',['g',['../structliph_1_1rgb.html#a76cc41ebd265ca29cbf8615cdeb39ab3',1,'liph::rgb']]]
 ];

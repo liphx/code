@@ -1,4 +1,5 @@
 #include "liph/terminal.h"
+
 #include "liph/macros.h"
 
 #ifdef OS_UNIX

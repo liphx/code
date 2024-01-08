@@ -1,0 +1,14 @@
+load("@com_github_rnburn_bazel_cpp20_modules//cc_module:defs.bzl", "cc_module", "cc_module_binary")
+
+cc_module_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [":vector"],
+    copts = ['-std=c++23', '-fmodules-ts'],
+)
+
+cc_module(
+    name = "vector",
+    src = "vector.cpp",
+    copts = ['-std=c++23', '-fmodules-ts'],
+)

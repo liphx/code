@@ -37,7 +37,7 @@ public:
     big_integer operator-() const;
     big_integer abs() const;
 
-    static big_integer rand(uint64_t max_size = 128);
+    static big_integer rand(int max_size = 128);
 
 private:
     int sign_{0};

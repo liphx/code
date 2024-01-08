@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['string_5f_0',['string_',['../classliph_1_1json.html#ab0c6c17c1eab63784d5fb2c5e43c0e8c',1,'liph::json']]]
+  ['r_0',['r',['../structliph_1_1rgb.html#aa4185abfe0413e6e2582af25a7c72f07',1,'liph::rgb']]]
 ];
