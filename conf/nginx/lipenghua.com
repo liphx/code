@@ -1,12 +1,16 @@
 server {
-    listen 80;
-    listen [::]:80;
-    server_name lipenghua.com www.lipenghua.com;
-    location / {
-        root /home/liph/liphx.github.io/docs;
-        index index.html;
-        charset urf-8;
-    }
+  listen 443 ssl;
+  server_name lipenghua.com www.lipenghua.com;
+  location / {
+    root /home/liph/liphx.github.io/docs;
+    index index.html;
+    charset urf-8;
+  }
 
-    error_page 404 /404.html;
+  error_page 404 /404.html;
+
+  ssl_certificate /etc/letsencrypt/live/lipenghua.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/lipenghua.com/privkey.pem;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_ciphers HIGH:!aNULL:!MD5;
 }
