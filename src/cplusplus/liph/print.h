@@ -3,10 +3,12 @@
 
 #include <cstring>
 #include <iostream>
+#include <list>
 #include <map>
 #include <set>
 #include <sstream>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -25,13 +27,18 @@ inline std::ostream& operator<<(std::ostream& o, const std::vector<bool>& vb) {
     return o;
 }
 
-template <class T>
-std::ostream& operator<<(std::ostream& o, const std::vector<T>& vc) {
+inline std::ostream& operator<<(std::ostream& o, const char *s) { return std::operator<<(o, s); }
+inline std::ostream& operator<<(std::ostream& o, const std::string& s) { return std::operator<<(o, s); }
+inline std::ostream& operator<<(std::ostream& o, std::string_view s) { return std::operator<<(o, s); }
+
+template <std::ranges::input_range Range>
+std::ostream& operator<<(std::ostream& o, const Range& range) {
     o << "[";
-    std::string sep;
-    for (const auto& x : vc) {
-        o << sep << x;
-        sep = ", ";
+    bool first = true;
+    for (const auto& value : range) {
+        if (!first) o << ", ";
+        first = false;
+        o << value;
     }
     return o << "]";
 }
@@ -39,10 +46,11 @@ std::ostream& operator<<(std::ostream& o, const std::vector<T>& vc) {
 template <class K, class V>
 std::ostream& operator<<(std::ostream& o, const std::map<K, V>& map) {
     o << "{";
-    std::string sep;
-    for (const auto& x : map) {
-        o << sep << x;
-        sep = ", ";
+    bool first = true;
+    for (const auto& value : map) {
+        if (!first) o << ", ";
+        first = false;
+        o << value;
     }
     return o << "}";
 }
@@ -50,26 +58,36 @@ std::ostream& operator<<(std::ostream& o, const std::map<K, V>& map) {
 template <class K, class V>
 std::ostream& operator<<(std::ostream& o, const std::unordered_map<K, V>& map) {
     o << "{";
-    std::string sep;
-    for (const auto& x : map) {
-        o << sep << x;
-        sep = ", ";
+    bool first = true;
+    for (const auto& value : map) {
+        if (!first) o << ", ";
+        first = false;
+        o << value;
     }
     return o << "}";
 }
 
-inline void print() { std::cout << std::endl; }
+inline void println() { std::cout << std::endl; }
 
 inline void print(bool b) { std::cout << (b ? "true" : "false") << std::endl; }
 
 template <class T>
-void print(const T& t) {
+concept Printable = requires(T t) { std::cout << t; };
+
+template <Printable T>
+void print(T&& t) {
     std::cout << t << std::endl;
 }
 
-template <class T, class... Args>
+template <Printable T, Printable... Args>
 void print(T&& head, Args&&...args) {
     std::cout << head << ' ';
+    print(args...);
+}
+
+template <Printable... Args>
+void print(bool head, Args&&...args) {
+    std::cout << (head ? "true" : "false") << ' ';
     print(args...);
 }
 

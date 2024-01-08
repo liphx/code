@@ -1,23 +1,43 @@
 #include <iostream>
 #include <string_view>
-using std::string_view;
+using namespace std;
+using namespace std::literals::string_view_literals;
 
-std::string_view get() { return "view"; }
-std::string_view get(const std::string& str) { return str; }
-// std::string_view get(std::string str) { return str; }
+string_view get() { return "view"; }
+string_view get(const string& str) { return str; }
+// string_view get(string str) { return str; }
 
 int main() {
     {
         auto s = get();
-        std::cout << s << std::endl;
-        std::cout << (void *)s.data() << " " << s.size() << std::endl;
+        cout << s << endl;
+        cout << (void *)s.data() << " " << s.size() << endl;
     }
 
     {
-        std::string str = "hello";
+        string str = "hello";
         auto s = get(str);
-        std::cout << (void *)str.data() << std::endl;
-        std::cout << s << std::endl;
-        std::cout << (void *)s.data() << " " << s.size() << std::endl;
+        cout << (void *)str.data() << endl;
+        cout << s << endl;
+        cout << (void *)s.data() << " " << s.size() << endl;
+    }
+
+    {
+        string str{"hello"};
+        string_view sv{&str[2], 2};
+        cout << sv << endl;  // ll
+    }
+
+    {
+        // string_view_literals: the length is computed at compile time
+        string_view sv = "hello"sv;
+        cout << sv << endl;  // hello
+    }
+
+    {
+        string s = "hello";
+        string_view sv = s;
+        // sv[0] = 'H';
+        // compile error: assignment of read-only location
     }
 }

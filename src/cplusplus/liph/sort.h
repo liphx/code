@@ -7,16 +7,6 @@
 
 namespace liph {
 
-template <class T>
-void sort(T& v) {
-    std::sort(v.begin(), v.end());
-}
-
-template <class T, class C>
-void sort(T& v, C cmp) {
-    std::sort(v.begin(), v.end(), cmp);
-}
-
 template <class RandomIt, class Compare = std::less<typename std::iterator_traits<RandomIt>::value_type>>
 void bubble_sort(RandomIt first, RandomIt last, Compare comp = Compare()) {
     using Distance = typename std::iterator_traits<RandomIt>::difference_type;
