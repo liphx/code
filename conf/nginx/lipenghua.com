@@ -8,6 +8,7 @@ server {
     try_files $uri $uri/ @rewrite;
   }
   location @rewrite {
+    rewrite ^(.+)$ $1.html permanent;
     rewrite ^(.+)/$ $1.html permanent;
   }
   error_page 404 /404.html;
