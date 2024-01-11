@@ -17,6 +17,7 @@ std::ostream& operator<<(std::ostream& os, const Date& d) {
 std::ostream& nl(std::ostream& os) { return os << '\n'; }
 
 int main() {
+    std::ios_base::sync_with_stdio(false);
     Date d{2022, 8, 29};
     std::cout << d << nl;
 }

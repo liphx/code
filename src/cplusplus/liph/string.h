@@ -36,19 +36,12 @@ std::vector<std::string> split(const std::string& s, const std::string& delimite
 std::string basename(std::string_view path);
 std::string dirname(std::string_view path);
 
-template <class T>
-T from_string(const std::string& s) {
-    std::istringstream is(s);
-    T t;
-    is >> t;
-    return t;
-}
-
-template <class T>
-std::string to_string(const T& t) {
-    std::ostringstream os;
-    os << t;
-    return os.str();
+template <typename Target = std::string, typename Source = std::string>
+Target to(const Source& s) {
+    std::stringstream buf;
+    Target result;
+    if (!(buf << s) || !(buf >> result) || !(buf >> std::ws).eof()) throw std::runtime_error{"to<>() failed"};
+    return result;
 }
 
 void skip_whitespace(std::string_view& sv);

@@ -87,4 +87,10 @@ TEST(string, join) {
     EXPECT_EQ(join(arr, ", "), "hello, world");
 }
 
+TEST(string, to) {
+    EXPECT_EQ(to<std::string>(0), "0");
+    EXPECT_EQ(to(3.14), "3.14");
+    EXPECT_EQ(to<double>("3.14"), 3.14);
+}
+
 }  // namespace liph

@@ -16,6 +16,7 @@ int main() {
         cout << m.size() << endl;   // 1
         cout << m.str() << endl;    // hello
 
+        // sregex_iterator: regex_iterator<string>
         auto iter = sregex_iterator(str.begin(), str.end(), re);
         for (; iter != sregex_iterator(); iter++) {
             string match = iter->str();
@@ -51,5 +52,23 @@ int main() {
         smatch m;
         regex_search(str, m, re);
         cout << m.str() << endl;  // a
+    }
+
+    {
+        string str = "(ab)c";
+        regex re("(.*)c");
+        smatch m;
+        regex_match(str, m, re);
+        cout << m.size() << endl;  // 2
+        cout << m[0] << endl;      // (ab)c
+        cout << m[1] << endl;      // (ab)
+    }
+    {
+        string str = "(ab)c";
+        regex re("(?:.*)c");  // not a subpattern
+        smatch m;
+        regex_match(str, m, re);
+        cout << m.size() << endl;  // 1
+        cout << m[0] << endl;      // (ab)c
     }
 }
