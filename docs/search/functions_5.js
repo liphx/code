@@ -7,7 +7,5 @@ var searchData=
   ['find_4',['find',['../classliph_1_1skip__list.html#a05aeac80c93ff375130270d3117f9a74',1,'liph::skip_list::find(const Key &amp;key)'],['../classliph_1_1skip__list.html#ae955e85588d7ea7f4e38f03dfef59326',1,'liph::skip_list::find(const Key &amp;key) const'],['../classliph_1_1avl.html#afce686a96d38fe492f4c53f912ca4c34',1,'liph::avl::find()']]],
   ['find_5fkth_5',['find_kth',['../namespaceliph.html#a18696714c9a3b981ec4f6293742fa889',1,'liph']]],
   ['flags_6',['flags',['../classliph_1_1flags.html#ace438c16aa19265cb227210967fa1de4',1,'liph::flags']]],
-  ['fopen_7',['fopen',['../namespaceliph.html#aef2ac377c839a8a206577ed60b38429d',1,'liph']]],
-  ['format_8',['format',['../namespaceliph.html#a1f4c2baf53dbd54a5c5bc5a22bc4befe',1,'liph']]],
-  ['from_5fstring_9',['from_string',['../namespaceliph.html#a9ceacaa411888d2b2b6797dc81868b8f',1,'liph']]]
+  ['fopen_7',['fopen',['../namespaceliph.html#aef2ac377c839a8a206577ed60b38429d',1,'liph']]]
 ];

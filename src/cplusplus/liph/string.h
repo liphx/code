@@ -23,19 +23,27 @@ std::string_view rtrim(std::string_view s, std::string_view charset = " \n\r\t\f
 std::string_view trim(std::string_view s, std::string_view charset = " \n\r\t\f\v");
 
 /// @return true if s starts with t
-bool startswith(std::string_view s, std::string_view t);
+constexpr bool startswith(std::string_view s, std::string_view t) noexcept { return s.starts_with(t); }
 
 /// @return true if s ends with t
-bool endswith(std::string_view s, std::string_view t);
+constexpr bool endswith(std::string_view s, std::string_view t) noexcept { return s.ends_with(t); }
 
-std::string replace(std::string_view str, std::string_view old, std::string_view n);
+/// Replace all @old in @str with @New
+std::string replace(std::string_view str, std::string_view old, std::string_view New);
 
+/// Split @s to tokens by @delimiters and append to @tokens
 void split(std::vector<std::string>& tokens, const std::string& s, const std::string& delimiters = " ");
+
+/// Split @s to tokens by @delimiters and return
 std::vector<std::string> split(const std::string& s, const std::string& delimiters = " ");
 
+/// Return basename of @path
 std::string basename(std::string_view path);
+
+/// Return dirname of @path
 std::string dirname(std::string_view path);
 
+/// Convert source to target
 template <typename Target = std::string, typename Source = std::string>
 Target to(const Source& s) {
     std::stringstream buf;
@@ -44,11 +52,17 @@ Target to(const Source& s) {
     return result;
 }
 
+/// @sv skips leading whitespace characters and be the substr
 void skip_whitespace(std::string_view& sv);
+
+/// @sv skips leading @symbol and be the substr
+/// @return true if @sv start swith @symbol
 bool eat_symbol(std::string_view& sv, std::string_view symbol);
 
-std::optional<int> to_int(std::string_view);
+/// Convert @str to int
+std::optional<int> to_int(std::string_view str);
 
+/// Join all items in @range into a string, using @sep as separator
 template <std::ranges::input_range Range>
 std::string join(const Range& range, const std::string& sep = " ") {
     std::string str;

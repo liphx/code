@@ -67,7 +67,7 @@ alias ping='ping -c 4'
 alias now='date "+%F %T"'
 alias tree='tree --charset=ansi'
 alias remote='bash ~/.bash/ssh.sh ~/.config/ssh_passwd'
-alias grep='grep --exclude=tags --color'
+alias grep='grep --exclude=tags --exclude-dir=.git --color'
 
 # nginx
 alias nginxreload='sudo nginx -s reload'

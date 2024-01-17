@@ -8,7 +8,7 @@ var searchData=
   ['register_5fdouble_5fflag_5',['register_double_flag',['../classliph_1_1flags.html#a553e0b07bfc1e3689afd8355d578a556',1,'liph::flags']]],
   ['register_5fint32_5fflag_6',['register_int32_flag',['../classliph_1_1flags.html#a0c3f5e312d46cbbc01b314e89ee2982a',1,'liph::flags']]],
   ['register_5fstring_5fflag_7',['register_string_flag',['../classliph_1_1flags.html#a5a7af4e5d8d0fb6b979c07f9f9a1df09',1,'liph::flags']]],
-  ['replace_8',['replace',['../namespaceliph.html#ab97fa5f7490a10a0a0b6eeca62b46aaa',1,'liph']]],
+  ['replace_8',['replace',['../namespaceliph.html#a7a08be22cab6560f7efc12e9f9eaaa8e',1,'liph']]],
   ['request_9',['request',['../namespaceliph_1_1requests.html#ada03faad04717644db7cea6b3c3f8a8b',1,'liph::requests']]],
   ['reset_10',['reset',['../classliph_1_1prepared__statement.html#ad8040cfaf4efc8d18e27064bd7880b2e',1,'liph::prepared_statement::reset()'],['../classliph_1_1json.html#a62d6fd6145d62432a984888a9a9d54df',1,'liph::json::reset()']]],
   ['reset_5fscreen_11',['reset_screen',['../namespaceliph.html#abdd34e715ee05877cd91a540e94f3d47',1,'liph']]],

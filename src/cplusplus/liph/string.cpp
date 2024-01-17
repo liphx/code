@@ -16,13 +16,13 @@ std::string_view rtrim(std::string_view s, std::string_view charset) {
 
 std::string_view trim(std::string_view s, std::string_view charset) { return rtrim(ltrim(s, charset), charset); }
 
-bool startswith(std::string_view s, std::string_view t) {
-    return s.size() >= t.size() && std::equal(t.cbegin(), t.cend(), s.cbegin());
-}
+// constexpr bool startswith(std::string_view s, std::string_view t) noexcept {
+//     return s.size() >= t.size() && std::equal(t.cbegin(), t.cend(), s.cbegin());
+// }
 
-bool endswith(std::string_view s, std::string_view t) {
-    return s.size() >= t.size() && std::equal(t.crbegin(), t.crend(), s.crbegin());
-}
+// constexpr bool endswith(std::string_view s, std::string_view t) noexcept {
+//     return s.size() >= t.size() && std::equal(t.crbegin(), t.crend(), s.crbegin());
+// }
 
 void split(std::vector<std::string>& tokens, const std::string& s, const std::string& delimiters) {
     auto last_pos = s.find_first_not_of(delimiters, 0);

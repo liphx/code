@@ -25,4 +25,12 @@ int main() {
     double sum = 0;
     for (double x : std::views::elements<0>(vc)) sum += x;
     std::cout << "sum = " << sum << '\n';  // 8
+
+    // generator
+    for (int i : std::ranges::iota_view(10, 15)) std::cout << i << ' ';
+    std::cout << '\n';  // 10 11 12 13 14
+
+    // pipeline
+    for (int i : v | std::views::filter([](int x) { return x % 2 == 0; }) | std::views::take(2)) std::cout << i << ' ';
+    std::cout << '\n';  // 2 4
 }

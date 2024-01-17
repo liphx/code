@@ -14,33 +14,23 @@ mutex io;
 condition_variable cv;
 condition_variable cv2;
 
-class producer {
-public:
+struct producer {
     void produce(int x) {
         unique_lock<mutex> lock(mtx);
-        while (q.size() >= k) {
-            cv.wait(lock);
-        }
+        while (q.size() >= k) cv.wait(lock);
         q.emplace(x);
-        if (q.size() == 1) {
-            cv2.notify_one();
-        }
+        if (q.size() == 1) cv2.notify_one();
     }
 };
 
-class consumer {
-public:
+struct consumer {
     int consume() {
         int ret;
         unique_lock<mutex> lock(mtx);
-        while (q.size() == 0) {
-            cv2.wait(lock);
-        }
+        while (q.size() == 0) cv2.wait(lock);
         ret = q.front();
         q.pop();
-        if (q.size() == k - 1) {
-            cv.notify_one();
-        }
+        if (q.size() == k - 1) cv.notify_one();
         return ret;
     }
 };

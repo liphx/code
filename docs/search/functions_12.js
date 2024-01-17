@@ -12,10 +12,11 @@ var searchData=
   ['thread_5fguard_9',['thread_guard',['../classliph_1_1thread__guard.html#a0a87575a2d84a8f69b0e626e0162a8be',1,'liph::thread_guard::thread_guard(std::thread &amp;t)'],['../classliph_1_1thread__guard.html#acb44199658937ec8e87c552fdadde1f5',1,'liph::thread_guard::thread_guard(const thread_guard &amp;)=delete']]],
   ['threadpool_10',['threadpool',['../classliph_1_1_thread_pool.html#a9acfcd711c1d14142caeb89c3e793846',1,'liph::ThreadPool::ThreadPool(size_t size=0)'],['../classliph_1_1_thread_pool.html#a1f900a0addb6db25c84a9452e8c506f7',1,'liph::ThreadPool::ThreadPool(const ThreadPool &amp;)=delete'],['../classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81',1,'liph::ThreadPool::ThreadPool(ThreadPool &amp;&amp;)=delete']]],
   ['timer_11',['timer',['../classliph_1_1timer.html#a2b3e083f2e6af8f892ba8ce336dc99e2',1,'liph::timer']]],
-  ['to_5fint_12',['to_int',['../namespaceliph.html#afb398eb47623ff48fe40652c77e46200',1,'liph']]],
-  ['to_5fstring_13',['to_string',['../namespaceliph.html#aec666a91beeefdbb9a279b6579e7a2f0',1,'liph::to_string()'],['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json::to_string()']]],
-  ['topk_14',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
-  ['trim_15',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
-  ['try_5flock_16',['try_lock',['../classliph_1_1spinlock.html#af62d0e7b7534571c396b8c9b17c673e2',1,'liph::spinlock::try_lock()'],['../classliph_1_1hierarchical__mutex.html#a36a57487aebfe1a579522c19d3d844d4',1,'liph::hierarchical_mutex::try_lock()']]],
-  ['type_17',['type',['../classliph_1_1io_1_1descriptor.html#a624c5ce88fd6bb8939aebebad2f34f8c',1,'liph::io::descriptor::type()'],['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json::type()']]]
+  ['to_12',['to',['../namespaceliph.html#ad6e794b6af600d9be235212f7253d328',1,'liph']]],
+  ['to_5fint_13',['to_int',['../namespaceliph.html#a62f18f785687416531ed559a167011ec',1,'liph']]],
+  ['to_5fstring_14',['to_string',['../classliph_1_1json.html#a3216fcc78ddc411e3f948ec319533c16',1,'liph::json']]],
+  ['topk_15',['topk',['../namespaceliph.html#a30179e039947b493d35ebd67734cc452',1,'liph']]],
+  ['trim_16',['trim',['../namespaceliph.html#a3fc92498c389b209b3e1fd4b071e5dbc',1,'liph']]],
+  ['try_5flock_17',['try_lock',['../classliph_1_1spinlock.html#af62d0e7b7534571c396b8c9b17c673e2',1,'liph::spinlock::try_lock()'],['../classliph_1_1hierarchical__mutex.html#a36a57487aebfe1a579522c19d3d844d4',1,'liph::hierarchical_mutex::try_lock()']]],
+  ['type_18',['type',['../classliph_1_1io_1_1descriptor.html#a624c5ce88fd6bb8939aebebad2f34f8c',1,'liph::io::descriptor::type()'],['../classliph_1_1json.html#abd1ff48b5f44ef22c16698243e810f46',1,'liph::json::type()']]]
 ];
