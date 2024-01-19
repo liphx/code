@@ -1,33 +1,26 @@
 #include <iostream>
 #include <syncstream>
 #include <thread>
+#include <vector>
 using namespace std;
 
-void foo() {
-    for (int i = 0; i < 1000; ++i) {
-        cout << i << " foo " << this_thread::get_id() << endl;
-    }
-}
+void foo() { cout << "foo " << this_thread::get_id() << endl; }
 
 void bar() {
-    for (int i = 0; i < 1000; ++i) {
-        osyncstream oss(cout);
-        oss << i << " bar " << this_thread::get_id() << endl;
-    }
+    osyncstream oss(cout);
+    oss << "bar " << this_thread::get_id() << endl;
 }
 
 int main() {
     {
-        thread t(foo);
-        thread t2(foo);
-        t.join();
-        t2.join();
+        vector<thread> threads(100);
+        for (auto& t : threads) t = thread(foo);
+        for (auto& t : threads) t.join();
     }
     cout << "======" << endl;
     {
-        thread t(bar);
-        thread t2(bar);
-        t.join();
-        t2.join();
+        vector<thread> threads(100);
+        for (auto& t : threads) t = thread(bar);
+        for (auto& t : threads) t.join();
     }
 }

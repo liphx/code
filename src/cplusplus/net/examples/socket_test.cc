@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "socket.h"
+#include "net/socket.h"
 
 using namespace liph::net;
 
@@ -29,11 +29,3 @@ int main(int argc, char **argv) {
         std::cout << sock.ok() << " " << sock.error() << '\n';
     }
 }
-
-// Output:
-// true
-// true
-// false Connect by invalid socket
-// false Socket is already connected
-// true
-// false No route to host

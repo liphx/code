@@ -1,0 +1,21 @@
+cc_library(
+    name = "net",
+    srcs = [
+        "socket.cc",
+        "poll.cc",
+        "server.cc",
+    ],
+    hdrs = [
+        "util.h",
+        "socket.h",
+        "poll.h",
+        "server.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+[cc_binary(
+    name = cc_name.split('.')[0],
+    srcs = [cc_name],
+    deps = [":net"]
+) for cc_name in glob(["examples/*.cc"])]
