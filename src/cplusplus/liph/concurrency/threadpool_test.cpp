@@ -1,22 +1,42 @@
 #include "liph/concurrency/threadpool.h"
 
 #include "gtest/gtest.h"
-#include "liph/logging.h"
+#include "liph/concurrency/thread.h"
 
 namespace liph {
-namespace test {
 
-TEST(threadpool, DISABLED_all) {
-    auto *pool = new ThreadPool;
-    LOG << "thread pool size = " << pool->Size();
-    pool->Start();
+TEST(threadpool, size) {
+    threadpool pool;
+    EXPECT_GT(pool.size(), 0);
+}
+
+TEST(threadpool, start) {
+    threadpool pool;
+    EXPECT_THROW(pool.add([] {}), std::runtime_error);  // not started
+    pool.stop();
+    EXPECT_THROW(pool.add([] {}), std::runtime_error);  // stopped
+}
+
+TEST(threadpool, threadpool) {
+    threadpool pool;
+    pool.start();
     int i = 0;
-    auto entry = [](int *n) { *n = 100; };
-    pool->AddTask(entry, &i);
-    sleep(1);  // wait
-    delete pool;
+    pool.add([&i] { i = 100; });
+    pool.stop();
     EXPECT_EQ(i, 100);
 }
 
-}  // namespace test
+TEST(threadpool, more) {
+    threadpool pool(6);
+    pool.start();
+    std::atomic<int> n = 0;
+    for (size_t i = 0; i < pool.size() + 1; ++i)
+        pool.add([&n] {
+            ++n;
+            sleepms(10);
+        });
+    pool.stop();
+    EXPECT_EQ(n, 7);
+}
+
 }  // namespace liph

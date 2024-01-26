@@ -24,12 +24,12 @@ void http_server::set_handle(const std::string& url, http_handle func) { url_map
 void http_server::start() {
     tcp_server svc(port_, false);
     auto server = svc.get_socket();
-    auto pool = std::make_shared<ThreadPool>();
-    pool->Start();
+    auto pool = std::make_shared<threadpool>();
+    pool->start();
     while (true) {
         std::shared_ptr<socket> client = server->accept();
         if (!*client) continue;
-        pool->AddTask(http_server::handle, client);
+        pool->add(http_server::handle, client);
     }
 }
 

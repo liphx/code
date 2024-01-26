@@ -8,6 +8,9 @@
 
 namespace liph {
 
+inline void sleeps(int n) { std::this_thread::sleep_for(std::chrono::seconds(n)); }
+inline void sleepms(int n) { std::this_thread::sleep_for(std::chrono::microseconds(n)); }
+
 class thread_guard {
 public:
     explicit thread_guard(std::thread& t) : t_(t) {}

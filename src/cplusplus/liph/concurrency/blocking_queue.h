@@ -40,9 +40,7 @@ public:
 
     bool pop(T& v) {
         std::unique_lock<std::shared_mutex> wlock(mutex_);
-        if (queue_.empty()) {
-            return false;
-        }
+        if (queue_.empty()) return false;
         v = std::move(queue_.front());
         queue_.pop();
         return true;
