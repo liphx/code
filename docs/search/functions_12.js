@@ -10,7 +10,7 @@ var searchData=
   ['text_5fstrikethrough_7',['text_strikethrough',['../namespaceliph.html#a0029775b5aadffd61c52eaeee05a7549',1,'liph']]],
   ['text_5funderline_8',['text_underline',['../namespaceliph.html#aff8c8255ed5f70fc0da8c65fc7ce58b5',1,'liph']]],
   ['thread_5fguard_9',['thread_guard',['../classliph_1_1thread__guard.html#a0a87575a2d84a8f69b0e626e0162a8be',1,'liph::thread_guard::thread_guard(std::thread &amp;t)'],['../classliph_1_1thread__guard.html#acb44199658937ec8e87c552fdadde1f5',1,'liph::thread_guard::thread_guard(const thread_guard &amp;)=delete']]],
-  ['threadpool_10',['threadpool',['../classliph_1_1_thread_pool.html#a9acfcd711c1d14142caeb89c3e793846',1,'liph::ThreadPool::ThreadPool(size_t size=0)'],['../classliph_1_1_thread_pool.html#a1f900a0addb6db25c84a9452e8c506f7',1,'liph::ThreadPool::ThreadPool(const ThreadPool &amp;)=delete'],['../classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81',1,'liph::ThreadPool::ThreadPool(ThreadPool &amp;&amp;)=delete']]],
+  ['threadpool_10',['threadpool',['../classliph_1_1threadpool.html#a623c6cfd3492fb1e6743801308c97e62',1,'liph::threadpool::threadpool(size_t size=0)'],['../classliph_1_1threadpool.html#a9d63a48bd3009760bf71d16e8cb46f89',1,'liph::threadpool::threadpool(const threadpool &amp;)=delete'],['../classliph_1_1threadpool.html#a1d1586b2379efd713adfb67f4af391ae',1,'liph::threadpool::threadpool(threadpool &amp;&amp;)=delete']]],
   ['timer_11',['timer',['../classliph_1_1timer.html#a2b3e083f2e6af8f892ba8ce336dc99e2',1,'liph::timer']]],
   ['to_12',['to',['../namespaceliph.html#ad6e794b6af600d9be235212f7253d328',1,'liph']]],
   ['to_5fint_13',['to_int',['../namespaceliph.html#a62f18f785687416531ed559a167011ec',1,'liph']]],

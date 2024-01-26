@@ -24,7 +24,7 @@ var searchData=
   ['black_21',['Black',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80ae90dfb84e30edf611e326eeb04d680de',1,'liph']]],
   ['blocking_5fqueue_22',['blocking_queue',['../classliph_1_1blocking__queue.html#aebe0e82d38a26026afd2feb7b1227de7',1,'liph::blocking_queue::blocking_queue()'],['../classliph_1_1blocking__queue.html',1,'liph::blocking_queue&lt; T &gt;']]],
   ['blocking_5fqueue_2eh_23',['blocking_queue.h',['../blocking__queue_8h.html',1,'']]],
-  ['blocking_5fqueue_3c_20task_20_3e_24',['blocking_queue&lt; Task &gt;',['../classliph_1_1blocking__queue.html',1,'liph']]],
+  ['blocking_5fqueue_3c_20task_20_3e_24',['blocking_queue&lt; task &gt;',['../classliph_1_1blocking__queue.html',1,'liph']]],
   ['blue_25',['Blue',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80a9594eec95be70e7b1710f730fdda33d9',1,'liph']]],
   ['blueviolet_26',['BlueViolet',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80a26bf81923cd49d7471e5a52da4f5c203',1,'liph']]],
   ['bool_5f_27',['bool_',['../classliph_1_1json.html#ac4ef8ac81f536cd13e7352d7187615d1',1,'liph::json']]],

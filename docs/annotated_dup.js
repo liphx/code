@@ -36,7 +36,7 @@ var annotated_dup =
       [ "spinlock", "classliph_1_1spinlock.html", "classliph_1_1spinlock" ],
       [ "sqlite", "classliph_1_1sqlite.html", "classliph_1_1sqlite" ],
       [ "thread_guard", "classliph_1_1thread__guard.html", "classliph_1_1thread__guard" ],
-      [ "ThreadPool", "classliph_1_1_thread_pool.html", "classliph_1_1_thread_pool" ],
+      [ "threadpool", "classliph_1_1threadpool.html", "classliph_1_1threadpool" ],
       [ "timer", "classliph_1_1timer.html", "classliph_1_1timer" ],
       [ "unique_unlock", "classliph_1_1unique__unlock.html", "classliph_1_1unique__unlock" ]
     ] ]

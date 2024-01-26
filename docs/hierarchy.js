@@ -15,7 +15,7 @@ var hierarchy =
     [ "liph::log_message", "classliph_1_1log__message.html", null ],
     [ "liph::no_destructor< T >", "classliph_1_1no__destructor.html", null ],
     [ "liph::noncopyable_::noncopyable", "classliph_1_1noncopyable___1_1noncopyable.html", [
-      [ "liph::blocking_queue< Task >", "classliph_1_1blocking__queue.html", null ],
+      [ "liph::blocking_queue< task >", "classliph_1_1blocking__queue.html", null ],
       [ "liph::blocking_queue< T >", "classliph_1_1blocking__queue.html", null ],
       [ "liph::logger", "classliph_1_1logger.html", null ],
       [ "liph::skip_list< Key, Compare, Allocator >", "classliph_1_1skip__list.html", null ]
@@ -32,7 +32,7 @@ var hierarchy =
     [ "liph::spinlock", "classliph_1_1spinlock.html", null ],
     [ "liph::sqlite", "classliph_1_1sqlite.html", null ],
     [ "liph::thread_guard", "classliph_1_1thread__guard.html", null ],
-    [ "liph::ThreadPool", "classliph_1_1_thread_pool.html", null ],
+    [ "liph::threadpool", "classliph_1_1threadpool.html", null ],
     [ "liph::timer", "classliph_1_1timer.html", null ],
     [ "liph::unique_unlock< Mutex >", "classliph_1_1unique__unlock.html", null ]
 ];

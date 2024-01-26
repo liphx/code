@@ -15,7 +15,7 @@ var searchData=
   ['_7escoped_5fthread_12',['~scoped_thread',['../classliph_1_1scoped__thread.html#af997f20f28923da70a5cf91a9bb1e8d8',1,'liph::scoped_thread']]],
   ['_7esqlite_13',['~sqlite',['../classliph_1_1sqlite.html#af6dba16441f859b1981665487e24857c',1,'liph::sqlite']]],
   ['_7ethread_5fguard_14',['~thread_guard',['../classliph_1_1thread__guard.html#a02692e56c715cd92653e38a1420bfbdf',1,'liph::thread_guard']]],
-  ['_7ethreadpool_15',['~ThreadPool',['../classliph_1_1_thread_pool.html#a82edc9d3438dd4af39a4380a300b44d7',1,'liph::ThreadPool']]],
+  ['_7ethreadpool_15',['~threadpool',['../classliph_1_1threadpool.html#a859390922872c590c2fa69269bb38508',1,'liph::threadpool']]],
   ['_7etimer_16',['~timer',['../classliph_1_1timer.html#a1584f3ad0b38256dbc18296cb565da4a',1,'liph::timer']]],
   ['_7eunique_5funlock_17',['~unique_unlock',['../classliph_1_1unique__unlock.html#a6ce9eba04ae6c9b3da5c3906cac995dc',1,'liph::unique_unlock']]]
 ];

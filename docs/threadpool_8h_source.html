@@ -115,112 +115,64 @@ $(document).ready(function(){initNavTree('threadpool_8h_source.html',''); initRe
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceliph.html">liph</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a9acfcd711c1d14142caeb89c3e793846">   18</a></span>    <a class="code hl_function" href="classliph_1_1_thread_pool.html#a9acfcd711c1d14142caeb89c3e793846">ThreadPool</a>(<span class="keywordtype">size_t</span> size = 0) : size_(size), shutdown_(false) {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (size_ == 0) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            size_ = std::thread::hardware_concurrency();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keywordflow">if</span> (size_ == 0) size_ = 1;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
-</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a1f900a0addb6db25c84a9452e8c506f7">   25</a></span>    <a class="code hl_function" href="classliph_1_1_thread_pool.html#a1f900a0addb6db25c84a9452e8c506f7">ThreadPool</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81">   26</a></span>    <a class="code hl_function" href="classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81">ThreadPool</a>(<a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a3952336e4de1df5be9b1712ad7ef7395">   27</a></span>    <a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp; <a class="code hl_function" href="classliph_1_1_thread_pool.html#a3952336e4de1df5be9b1712ad7ef7395">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a9b6b7434e0cce2808261ba9d38477e70">   28</a></span>    <a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp; <a class="code hl_function" href="classliph_1_1_thread_pool.html#a9b6b7434e0cce2808261ba9d38477e70">operator=</a>(<a class="code hl_class" href="classliph_1_1_thread_pool.html">ThreadPool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="classliph_1_1threadpool.html#a83bf276e643f5c12571fbe288fefa877">size</a> = 0);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="classliph_1_1threadpool.html#a859390922872c590c2fa69269bb38508">~threadpool</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a9d63a48bd3009760bf71d16e8cb46f89">   21</a></span>    <a class="code hl_function" href="classliph_1_1threadpool.html#a9d63a48bd3009760bf71d16e8cb46f89">threadpool</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a1d1586b2379efd713adfb67f4af391ae">   22</a></span>    <a class="code hl_function" href="classliph_1_1threadpool.html#a1d1586b2379efd713adfb67f4af391ae">threadpool</a>(<a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a1169dc59a5f7799798a7c0a47376492d">   23</a></span>    <a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp; <a class="code hl_function" href="classliph_1_1threadpool.html#a1169dc59a5f7799798a7c0a47376492d">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a4a9be4cc578820e725900ec3ccaf1e16">   24</a></span>    <a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp; <a class="code hl_function" href="classliph_1_1threadpool.html#a4a9be4cc578820e725900ec3ccaf1e16">operator=</a>(<a class="code hl_class" href="classliph_1_1threadpool.html">threadpool</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1threadpool.html#aa92c85b268a5a06abc5c285c4678c770">start</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1threadpool.html#ad3a61249eff3e3924d586ee630336a54">stop</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">template</span> &lt;<span class="keyword">class </span>Function, <span class="keyword">class</span>... Args&gt;</div>
 <div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a82edc9d3438dd4af39a4380a300b44d7">   30</a></span>    <a class="code hl_function" href="classliph_1_1_thread_pool.html#a82edc9d3438dd4af39a4380a300b44d7">~ThreadPool</a>() {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_function" href="classliph_1_1_thread_pool.html#a808ad8b5bedd500699c53da0cf47b1f9">Stop</a>();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        cv_.notify_all();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : threads_) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            t.join();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        threads_.clear();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a2c9469998ca2676c71ac7eb689720984">   30</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1threadpool.html#a2c9469998ca2676c71ac7eb689720984">add</a>(Function&amp;&amp; <a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, Args&amp;&amp;...args) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (stopped_) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Thread pool already stopped or not started&quot;</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        std::unique_lock&lt;std::mutex&gt; lock(lock_);  <span class="comment">// need lock here</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        tasks_.<a class="code hl_function" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">push</a>(std::bind(<a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, std::forward&lt;Args&gt;(args)...));</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        cv_.notify_one();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
 </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classliph_1_1threadpool.html#a83bf276e643f5c12571fbe288fefa877">   37</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classliph_1_1threadpool.html#a83bf276e643f5c12571fbe288fefa877">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> size_; }</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a9b0498a6e06db6f1376e3de033365e35">   39</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#a9b0498a6e06db6f1376e3de033365e35">Start</a>() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> (!threads_.empty()) <span class="keywordflow">return</span>;  <span class="comment">// already started</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; size_; i++) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            threads_.emplace_back(std::thread(&amp;ThreadPool::Run, <span class="keyword">this</span>));</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">using </span>task = std::function&lt;void()&gt;;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> run();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    task take();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size_;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::atomic&lt;bool&gt; stopped_;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::atomic&lt;bool&gt; shutdown_;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::vector&lt;std::thread&gt; threads_;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::mutex lock_;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::condition_variable cv_;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="classliph_1_1blocking__queue.html">liph::blocking_queue&lt;task&gt;</a> tasks_;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a808ad8b5bedd500699c53da0cf47b1f9">   46</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#a808ad8b5bedd500699c53da0cf47b1f9">Stop</a>() { shutdown_ = <span class="keyword">true</span>; }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">template</span> &lt;<span class="keyword">class </span>Function, <span class="keyword">class</span>... Args&gt;</div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">AddTask</a>(Function&amp;&amp; <a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, Args&amp;&amp;...args) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">if</span> (shutdown_) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;Add task after thread pool shutdown&quot;</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">auto</span> entry = std::bind(<a class="code hl_define" href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a>, std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        tasks_.<a class="code hl_function" href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">push</a>(entry);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        cv_.notify_one();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
-</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classliph_1_1_thread_pool.html#a5cb1a9712031f7c78cf2f2731081faac">   58</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classliph_1_1_thread_pool.html#a5cb1a9712031f7c78cf2f2731081faac">Size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> size_; }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">typedef</span> std::function&lt;void()&gt; Task;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> Run() {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">while</span> (!shutdown_) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            Task task = Take();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keywordflow">if</span> (task) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                task();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                std::unique_lock&lt;std::mutex&gt; lock(lock_);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                cv_.wait(lock);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    Task Take() {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (tasks_.<a class="code hl_function" href="classliph_1_1blocking__queue.html#ad2714559e5fac71f33898b9d5ef8786b">empty</a>()) {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        Task ret;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        tasks_.<a class="code hl_function" href="classliph_1_1blocking__queue.html#a21db5a1fec44fdd9f7ae7f88c9f2642b">pop</a>(ret);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size_;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    std::atomic&lt;bool&gt; shutdown_;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::vector&lt;std::thread&gt; threads_;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    std::mutex lock_;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::condition_variable cv_;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_class" href="classliph_1_1blocking__queue.html">liph::blocking_queue&lt;Task&gt;</a> tasks_;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
-</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}  <span class="comment">// namespace liph</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_CONCURRENCY_THREADPOOL_H_</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace liph</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif  </span><span class="comment">// LIPH_CONCURRENCY_THREADPOOL_H_</span></div>
 <div class="ttc" id="abase64_8cpp_html_adbdd219529651d8e8c9fa2a3df87fae8"><div class="ttname"><a href="base64_8cpp.html#adbdd219529651d8e8c9fa2a3df87fae8">func</a></div><div class="ttdeci">#define func(V)</div></div>
 <div class="ttc" id="ablocking__queue_8h_html"><div class="ttname"><a href="blocking__queue_8h.html">blocking_queue.h</a></div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html"><div class="ttname"><a href="classliph_1_1_thread_pool.html">liph::ThreadPool</a></div><div class="ttdef"><b>Definition</b> threadpool.h:16</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a02b1fcabbe69f1509c147ff96e583f81"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a02b1fcabbe69f1509c147ff96e583f81">liph::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool(ThreadPool &amp;&amp;)=delete</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a1f900a0addb6db25c84a9452e8c506f7"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a1f900a0addb6db25c84a9452e8c506f7">liph::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool(const ThreadPool &amp;)=delete</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a3952336e4de1df5be9b1712ad7ef7395"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a3952336e4de1df5be9b1712ad7ef7395">liph::ThreadPool::operator=</a></div><div class="ttdeci">ThreadPool &amp; operator=(const ThreadPool &amp;)=delete</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a5cb1a9712031f7c78cf2f2731081faac"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a5cb1a9712031f7c78cf2f2731081faac">liph::ThreadPool::Size</a></div><div class="ttdeci">unsigned int Size() const</div><div class="ttdef"><b>Definition</b> threadpool.h:58</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a808ad8b5bedd500699c53da0cf47b1f9"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a808ad8b5bedd500699c53da0cf47b1f9">liph::ThreadPool::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdef"><b>Definition</b> threadpool.h:46</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a82edc9d3438dd4af39a4380a300b44d7"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a82edc9d3438dd4af39a4380a300b44d7">liph::ThreadPool::~ThreadPool</a></div><div class="ttdeci">~ThreadPool()</div><div class="ttdef"><b>Definition</b> threadpool.h:30</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a9acfcd711c1d14142caeb89c3e793846"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a9acfcd711c1d14142caeb89c3e793846">liph::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool(size_t size=0)</div><div class="ttdef"><b>Definition</b> threadpool.h:18</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a9b0498a6e06db6f1376e3de033365e35"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a9b0498a6e06db6f1376e3de033365e35">liph::ThreadPool::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition</b> threadpool.h:39</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_a9b6b7434e0cce2808261ba9d38477e70"><div class="ttname"><a href="classliph_1_1_thread_pool.html#a9b6b7434e0cce2808261ba9d38477e70">liph::ThreadPool::operator=</a></div><div class="ttdeci">ThreadPool &amp; operator=(ThreadPool &amp;&amp;)=delete</div></div>
-<div class="ttc" id="aclassliph_1_1_thread_pool_html_af0dfb42ad9d0ed83810b96f2f6c1230b"><div class="ttname"><a href="classliph_1_1_thread_pool.html#af0dfb42ad9d0ed83810b96f2f6c1230b">liph::ThreadPool::AddTask</a></div><div class="ttdeci">void AddTask(Function &amp;&amp;func, Args &amp;&amp;...args)</div><div class="ttdef"><b>Definition</b> threadpool.h:49</div></div>
 <div class="ttc" id="aclassliph_1_1blocking__queue_html"><div class="ttname"><a href="classliph_1_1blocking__queue.html">liph::blocking_queue</a></div><div class="ttdef"><b>Definition</b> blocking_queue.h:13</div></div>
-<div class="ttc" id="aclassliph_1_1blocking__queue_html_a21db5a1fec44fdd9f7ae7f88c9f2642b"><div class="ttname"><a href="classliph_1_1blocking__queue.html#a21db5a1fec44fdd9f7ae7f88c9f2642b">liph::blocking_queue::pop</a></div><div class="ttdeci">void pop()</div><div class="ttdef"><b>Definition</b> blocking_queue.h:36</div></div>
 <div class="ttc" id="aclassliph_1_1blocking__queue_html_a5811e19c0224139b45a760030fe3e749"><div class="ttname"><a href="classliph_1_1blocking__queue.html#a5811e19c0224139b45a760030fe3e749">liph::blocking_queue::push</a></div><div class="ttdeci">void push(const T &amp;v)</div><div class="ttdef"><b>Definition</b> blocking_queue.h:25</div></div>
-<div class="ttc" id="aclassliph_1_1blocking__queue_html_ad2714559e5fac71f33898b9d5ef8786b"><div class="ttname"><a href="classliph_1_1blocking__queue.html#ad2714559e5fac71f33898b9d5ef8786b">liph::blocking_queue::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdef"><b>Definition</b> blocking_queue.h:18</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html"><div class="ttname"><a href="classliph_1_1threadpool.html">liph::threadpool</a></div><div class="ttdef"><b>Definition</b> threadpool.h:16</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a1169dc59a5f7799798a7c0a47376492d"><div class="ttname"><a href="classliph_1_1threadpool.html#a1169dc59a5f7799798a7c0a47376492d">liph::threadpool::operator=</a></div><div class="ttdeci">threadpool &amp; operator=(const threadpool &amp;)=delete</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a1d1586b2379efd713adfb67f4af391ae"><div class="ttname"><a href="classliph_1_1threadpool.html#a1d1586b2379efd713adfb67f4af391ae">liph::threadpool::threadpool</a></div><div class="ttdeci">threadpool(threadpool &amp;&amp;)=delete</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a2c9469998ca2676c71ac7eb689720984"><div class="ttname"><a href="classliph_1_1threadpool.html#a2c9469998ca2676c71ac7eb689720984">liph::threadpool::add</a></div><div class="ttdeci">void add(Function &amp;&amp;func, Args &amp;&amp;...args)</div><div class="ttdef"><b>Definition</b> threadpool.h:30</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a4a9be4cc578820e725900ec3ccaf1e16"><div class="ttname"><a href="classliph_1_1threadpool.html#a4a9be4cc578820e725900ec3ccaf1e16">liph::threadpool::operator=</a></div><div class="ttdeci">threadpool &amp; operator=(threadpool &amp;&amp;)=delete</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a83bf276e643f5c12571fbe288fefa877"><div class="ttname"><a href="classliph_1_1threadpool.html#a83bf276e643f5c12571fbe288fefa877">liph::threadpool::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdef"><b>Definition</b> threadpool.h:37</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a859390922872c590c2fa69269bb38508"><div class="ttname"><a href="classliph_1_1threadpool.html#a859390922872c590c2fa69269bb38508">liph::threadpool::~threadpool</a></div><div class="ttdeci">~threadpool()</div><div class="ttdef"><b>Definition</b> threadpool.cpp:12</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_a9d63a48bd3009760bf71d16e8cb46f89"><div class="ttname"><a href="classliph_1_1threadpool.html#a9d63a48bd3009760bf71d16e8cb46f89">liph::threadpool::threadpool</a></div><div class="ttdeci">threadpool(const threadpool &amp;)=delete</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_aa92c85b268a5a06abc5c285c4678c770"><div class="ttname"><a href="classliph_1_1threadpool.html#aa92c85b268a5a06abc5c285c4678c770">liph::threadpool::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition</b> threadpool.cpp:14</div></div>
+<div class="ttc" id="aclassliph_1_1threadpool_html_ad3a61249eff3e3924d586ee630336a54"><div class="ttname"><a href="classliph_1_1threadpool.html#ad3a61249eff3e3924d586ee630336a54">liph::threadpool::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> threadpool.cpp:20</div></div>
 <div class="ttc" id="anamespaceliph_html"><div class="ttname"><a href="namespaceliph.html">liph</a></div><div class="ttdef"><b>Definition</b> algorithm.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
