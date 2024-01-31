@@ -7,7 +7,9 @@
 // #include <cryptopp/md5.h>
 
 #include <algorithm>
+#include <cassert>
 #include <cstdint>
+#include <cstring>
 #include <vector>
 
 namespace liph {
@@ -37,7 +39,7 @@ using word = uint32_t;
 // input: message of arbitrary length
 // output: 128-bit digest
 void md5(const void *input, size_t length, byte digest[16]) {
-    // assert(input);
+    assert(input);
 
     // Step 1. Append Padding Bits(Bytes)
     // 448 / 8 = 56, 512 / 8 = 64
@@ -45,14 +47,14 @@ void md5(const void *input, size_t length, byte digest[16]) {
     size_t padding_size = mod < 56 ? 56 - mod : 64 - mod + 56;
     std::vector<byte> padding(length + padding_size + 8);
     std::copy(static_cast<const byte *>(input), static_cast<const byte *>(input) + length, padding.begin());
+    assert(padding.size() > length);
     padding[length] = 0x80;  // 1000 0000
     std::fill_n(padding.begin() + length + 1, padding_size - 1, 0);
 
     // Step 2. Append Length
     uint64_t input_size = length;
-    std::copy(reinterpret_cast<byte *>(&input_size), reinterpret_cast<byte *>(&input_size) + 8,
-            padding.begin() + padding_size);
-    // assert(padding.size() % 64 == 0);
+    memcpy(padding.data() + padding_size, &input_size, 8);
+    assert(padding.size() % 64 == 0);
 
     // Step 3. Initialize MD Buffer
     word state[4] = {0x01234567, 0x89abcdef, 0xfedcba98, 0x76543210};
