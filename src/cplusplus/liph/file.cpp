@@ -24,7 +24,7 @@ bool read_file(const std::filesystem::path& pathname, std::string& output) {
     return false;
 }
 
-bool write_file(const std::string& pathname, const std::string& str) {
+bool write_file(const std::filesystem::path& pathname, const std::string& str) {
     std::ofstream out(pathname);
     if (out.is_open()) {
         out.write(str.data(), str.size());

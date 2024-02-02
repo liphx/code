@@ -100,7 +100,9 @@ $(document).ready(function(){initNavTree('md5_8cpp.html',''); initResizable(); }
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="md5_8h_source.html">liph/crypto/md5.h</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -232,7 +234,7 @@ Functions</h2></td></tr>
 <div class="line">        (a) += (b);                            \</div>
 <div class="line">    }</div>
 <div class="ttc" id="amd5_8cpp_html_a7417fd4e875360c0533fa5b412cdab49"><div class="ttname"><a href="md5_8cpp.html#a7417fd4e875360c0533fa5b412cdab49">ROTATE_LEFT</a></div><div class="ttdeci">#define ROTATE_LEFT(x, n)</div></div>
-<div class="ttc" id="amd5_8cpp_html_a96d73bbd7af15cb1fc38c3f4a3bd82e9"><div class="ttname"><a href="md5_8cpp.html#a96d73bbd7af15cb1fc38c3f4a3bd82e9">F</a></div><div class="ttdeci">#define F(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:32</div></div>
+<div class="ttc" id="amd5_8cpp_html_a96d73bbd7af15cb1fc38c3f4a3bd82e9"><div class="ttname"><a href="md5_8cpp.html#a96d73bbd7af15cb1fc38c3f4a3bd82e9">F</a></div><div class="ttdeci">#define F(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:34</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -330,7 +332,7 @@ Functions</h2></td></tr>
 <div class="line">        (a) = <a class="code hl_define" href="md5_8cpp.html#a7417fd4e875360c0533fa5b412cdab49">ROTATE_LEFT</a>((a), (s));           \</div>
 <div class="line">        (a) += (b);                            \</div>
 <div class="line">    }</div>
-<div class="ttc" id="amd5_8cpp_html_ad96b7cf3182ce2ba85e5a7a93b12c441"><div class="ttname"><a href="md5_8cpp.html#ad96b7cf3182ce2ba85e5a7a93b12c441">G</a></div><div class="ttdeci">#define G(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:33</div></div>
+<div class="ttc" id="amd5_8cpp_html_ad96b7cf3182ce2ba85e5a7a93b12c441"><div class="ttname"><a href="md5_8cpp.html#ad96b7cf3182ce2ba85e5a7a93b12c441">G</a></div><div class="ttdeci">#define G(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:35</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -428,7 +430,7 @@ Functions</h2></td></tr>
 <div class="line">        (a) = <a class="code hl_define" href="md5_8cpp.html#a7417fd4e875360c0533fa5b412cdab49">ROTATE_LEFT</a>((a), (s));           \</div>
 <div class="line">        (a) += (b);                            \</div>
 <div class="line">    }</div>
-<div class="ttc" id="amd5_8cpp_html_ae42219072d798876e6b08e6b78614ff6"><div class="ttname"><a href="md5_8cpp.html#ae42219072d798876e6b08e6b78614ff6">H</a></div><div class="ttdeci">#define H(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:34</div></div>
+<div class="ttc" id="amd5_8cpp_html_ae42219072d798876e6b08e6b78614ff6"><div class="ttname"><a href="md5_8cpp.html#ae42219072d798876e6b08e6b78614ff6">H</a></div><div class="ttdeci">#define H(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -526,7 +528,7 @@ Functions</h2></td></tr>
 <div class="line">        (a) = <a class="code hl_define" href="md5_8cpp.html#a7417fd4e875360c0533fa5b412cdab49">ROTATE_LEFT</a>((a), (s));           \</div>
 <div class="line">        (a) += (b);                            \</div>
 <div class="line">    }</div>
-<div class="ttc" id="amd5_8cpp_html_ac0eafdc9ee161b71e7af98af736952fd"><div class="ttname"><a href="md5_8cpp.html#ac0eafdc9ee161b71e7af98af736952fd">I</a></div><div class="ttdeci">#define I(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:35</div></div>
+<div class="ttc" id="amd5_8cpp_html_ac0eafdc9ee161b71e7af98af736952fd"><div class="ttname"><a href="md5_8cpp.html#ac0eafdc9ee161b71e7af98af736952fd">I</a></div><div class="ttdeci">#define I(x, y, z)</div><div class="ttdef"><b>Definition</b> md5.cpp:37</div></div>
 </div><!-- fragment -->
 </div>
 </div>

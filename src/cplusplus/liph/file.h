@@ -13,7 +13,7 @@ namespace liph {
 [[nodiscard]] bool read_file(const std::filesystem::path& pathname, std::string& output);
 
 /// write all to pathname
-[[nodiscard]] bool write_file(const std::string& pathname, const std::string& str);
+[[nodiscard]] bool write_file(const std::filesystem::path& pathname, const std::string& str);
 
 /// check path(file or directory) exists
 [[nodiscard]] bool path_exists(const std::string& pathname);
