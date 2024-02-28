@@ -193,6 +193,12 @@ std::optional<std::pair<socket, std::string>> socket::accept() {
 
 socket::ssize_t socket::send(const void *buffer, size_t size) { return ::write(_descriptor->fd(), buffer, size); }
 socket::ssize_t socket::recv(void *buffer, size_t size) { return ::read(_descriptor->fd(), buffer, size); }
+socket::ssize_t socket::send(const void *buffer, size_t size, int flags) {
+    return ::send(_descriptor->fd(), buffer, size, flags);
+}
+socket::ssize_t socket::recv(void *buffer, size_t size, int flags) {
+    return ::recv(_descriptor->fd(), buffer, size, flags);
+}
 
 void socket::send(std::string_view sv) {
     auto n = sv.size();

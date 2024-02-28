@@ -1,28 +1,11 @@
-live_config_reload: true
-
-env:
-  TERM: xterm-256color
-
-window:
-  opacity: 1
-  padding:
-    x: 0
-    y: 0
-
 import:
- - ~/.config/alacritty/base16-alacritty/colors/base16-solarized-dark-256.yml
-
-selection:
-  save_to_clipboard: true
-
-mouse_bindings:
-  - { mouse: Right, action: Paste }
+ - ~/.config/alacritty/common.yml
 
 font:
   normal:
     family: Courier New
     style: Regular
-  size: 20.0
+  size: 20
 
 key_bindings:
   - { key: T,         mods: Command, chars: "\x02c" }     #  tmux new window C-b c
@@ -35,12 +18,9 @@ key_bindings:
   - { key: Key6,      mods: Command, chars: "\x026" }     #                 ... 6
   - { key: Key7,      mods: Command, chars: "\x027" }     #                 ... 7
   - { key: Key8,      mods: Command, chars: "\x028" }     #                 ... 8
-  - { key: Key9,      mods: Command, chars: "\x029" }     #                ... 9
+  - { key: Key9,      mods: Command, chars: "\x029" }     #                 ... 9
   - { key: L,         mods: Command, chars: "\x02l" }     # tmux switch between two latest windows
   - { key: W,         mods: Command, chars: "\x02Q" }     # kill current window
   - { key: H,         mods: Command, chars: "\x02\x1b" }  # C-b ESC
   - { key: LBracket,  mods: Command, chars: "\x02(" }     # C-b (
   - { key: RBracket,  mods: Command, chars: "\x02)" }     # C-b )
-
-scrolling:
-  history: 100000

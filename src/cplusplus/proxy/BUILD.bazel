@@ -1,0 +1,12 @@
+cc_binary(
+    name = "proxy",
+    srcs = [
+        "main.cc",
+    ],
+    deps = [
+        "//liph",
+        "//net",
+        "@thirdparty//gflags-2.2.2:gflags",
+        "@thirdparty//glog-0.6.0:glog",
+    ],
+)

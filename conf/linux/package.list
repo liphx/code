@@ -1,0 +1,15 @@
+build-essential
+cmake
+fzf
+g++
+gcc
+golang
+libssl-dev
+nginx
+nmap
+pandoc
+python3
+python3-dev
+rsync
+ufw
+vim

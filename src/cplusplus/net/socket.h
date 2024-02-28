@@ -38,9 +38,15 @@ public:
     std::optional<int> bind(int port);
     bool listen();
     bool connect(const char *ip, int port);
+    bool connect(const std::string& ip, int port) { return connect(ip.c_str(), port); }
+    bool connect(std::pair<std::string, int> host) { return connect(host.first, host.second); }
     std::optional<std::pair<socket, std::string>> accept();
+
     ssize_t send(const void *buffer, size_t size);
     ssize_t recv(void *buffer, size_t size);
+    ssize_t send(const void *buffer, size_t size, int flags);
+    ssize_t recv(void *buffer, size_t size, int flags);
+
     void send(std::string_view sv);
     std::string recv();
 
