@@ -79,8 +79,6 @@ struct Buffer {
     }
 
 private:
-    char buffer_[8192];
-    std::string data_;
     net::socket& socket_;
 };
 
@@ -92,10 +90,9 @@ void server_loop(net::socket& socket) {
             continue;
         }
         auto& [client_sock, client_addr] = *client;
-        // LOG(INFO) << "client addr: " << client_addr;
+        LOG(INFO) << "client addr: " << client_addr;
         std::packaged_task task([](net::socket client_sock) {
             Buffer buffer(client_sock);
-            bool is_http_tunnel = false;
             std::string header_buffer;
             auto start_line = buffer.readline();
             if (!start_line) {
@@ -104,9 +101,6 @@ void server_loop(net::socket& socket) {
             }
             header_buffer += *start_line;
             header_buffer += "\r\n";
-            if (startswith(*start_line, "CONNECT")) {
-                is_http_tunnel = true;
-            }
             std::map<std::string, std::string> header;
             while (true) {
                 auto line = buffer.readline();
@@ -126,7 +120,6 @@ void server_loop(net::socket& socket) {
                 std::string value = std::string(trim(line->substr(pos + 1)));
                 header[key] = value;
             }
-            // LOG(INFO) << "header: " << header_buffer;
 
             net::socket proxy_client{net::domain::ipv4, net::protocol::tcp};
             if (!FLAGS_next_proxy.empty()) {
@@ -134,13 +127,13 @@ void server_loop(net::socket& socket) {
                     LOG(ERROR) << "connect fail: " << proxy_client.error();
                     return;
                 }
-                // LOG(INFO) << "connect success: " << FLAGS_next_proxy << ":" << FLAGS_next_proxy_port;
             } else {
                 auto host = header.find("Host");
                 if (host == header.end()) {
                     LOG(ERROR) << "no host, bad request";
                     return;
                 }
+                LOG(INFO) << "Host: " << *host;
                 auto host_port = parse_host(host->second);
                 if (!host_port) {
                     LOG(ERROR) << "host/port error, bad request";
@@ -155,7 +148,6 @@ void server_loop(net::socket& socket) {
                     LOG(ERROR) << "connect fail: " << proxy_client.error();
                     return;
                 }
-                // LOG(INFO) << "connect success: " << remoteip << ":" << host_port->second;
             }
 
             if (!FLAGS_daemon) proxy_client.send(header_buffer);

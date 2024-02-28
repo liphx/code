@@ -3,6 +3,7 @@ cc_library(
     srcs = glob(
         include = ["**/*.cpp",],
         exclude = [
+            "net/*",
             "**/*_test.cpp",
             "**/*_benchmark.cpp",
         ],
@@ -14,7 +15,7 @@ cc_library(
     ],
     copts = [
         "-Wall",
-        "-Werror",
+        # "-Werror",
     ],
     visibility = ["//visibility:public"],
 )
