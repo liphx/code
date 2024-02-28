@@ -8,6 +8,7 @@
 #include "glog/logging.h"
 #include "glog/stl_logging.h"
 #include "liph/concurrency/thread.h"
+#include "liph/encoding/base64.h"
 #include "liph/string.h"
 #include "net/socket.h"
 
@@ -15,8 +16,31 @@ DEFINE_bool(daemon, false, "");
 DEFINE_int32(port, 0, "");
 DEFINE_string(next_proxy, "", "");
 DEFINE_int32(next_proxy_port, 0, "");
+DEFINE_string(username, "", "");
+DEFINE_string(password, "", "");
 
 namespace liph {
+
+bool authentication(const std::string& msg) {
+    static const std::string prefix = "Basic ";
+    if (!startswith(msg, prefix)) return false;
+    auto str = base64::decode(msg.substr(prefix.size()));
+    auto tokens = split(str, ":");
+    if (tokens.size() != 2) return false;
+    return tokens[0] == FLAGS_username && tokens[1] == FLAGS_password;
+}
+
+void send_forbidden(net::socket& socket) {
+    static const std::string rsp = "HTTP/1.1 403 Forbidden";
+    socket.send(rsp);
+}
+
+void send_need_auth(net::socket& socket) {
+    static const std::string rsp =
+            "HTTP/1.1 407 Proxy Authentication Required\r\n"
+            "Proxy-Authenticate: Basic\r\n\r\n";
+    socket.send(rsp);
+}
 
 void send_tunnel_ok(net::socket& socket) {
     static const std::string rsp = "HTTP/1.1 200 Connection Established\r\n\r\n";
@@ -120,6 +144,16 @@ void server_loop(net::socket& socket) {
                 std::string value = std::string(trim(line->substr(pos + 1)));
                 header[key] = value;
             }
+            // LOG(INFO) << "header: " << header;
+            auto auth = header.find("Proxy-Authorization");
+            if (auth == header.end()) {
+                send_need_auth(client_sock);
+                return;
+            }
+            if (!authentication(auth->second)) {
+                send_forbidden(client_sock);
+                return;
+            }
 
             net::socket proxy_client{net::domain::ipv4, net::protocol::tcp};
             if (!FLAGS_next_proxy.empty()) {
@@ -150,6 +184,7 @@ void server_loop(net::socket& socket) {
                 }
             }
 
+            // LOG(INFO) << header_buffer;
             if (!FLAGS_daemon) proxy_client.send(header_buffer);
             if (FLAGS_daemon) send_tunnel_ok(client_sock);
 
