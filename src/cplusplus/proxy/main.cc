@@ -95,6 +95,9 @@ struct Buffer {
             if (n == 0 || (n < 0 && errno != EINTR)) {
                 return {};
             }
+            if (FLAGS_daemon) {
+                ch ^= 42;
+            }
             if (ch == '\n') break;
             line += ch;
         }
@@ -185,8 +188,11 @@ void server_loop(net::socket& socket) {
             }
 
             // LOG(INFO) << header_buffer;
-            if (!FLAGS_daemon) proxy_client.send(header_buffer);
-            if (FLAGS_daemon) send_tunnel_ok(client_sock);
+            if (!FLAGS_daemon) {
+                for (auto& ch : header_buffer) ch ^= 42;
+                proxy_client.send(header_buffer);
+            } else
+                send_tunnel_ok(client_sock);
 
             auto fut = std::async(std::launch::async, forward_data, std::ref(client_sock), std::ref(proxy_client));
             auto fut2 = std::async(std::launch::async, forward_data, std::ref(proxy_client), std::ref(client_sock));
