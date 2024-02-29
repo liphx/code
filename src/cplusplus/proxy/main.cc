@@ -1,5 +1,6 @@
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <signal.h>
 
 #include <future>
 #include <regex>
