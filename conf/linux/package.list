@@ -3,6 +3,7 @@ cmake
 fzf
 g++
 gcc
+gdb
 golang
 libssl-dev
 nginx

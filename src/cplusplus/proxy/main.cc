@@ -31,7 +31,7 @@ bool authentication(const std::string& msg) {
 }
 
 void send_forbidden(net::socket& socket) {
-    static const std::string rsp = "HTTP/1.1 403 Forbidden";
+    static const std::string rsp = "HTTP/1.1 403 Forbidden\r\n\r\n";
     socket.send(rsp);
 }
 
@@ -207,9 +207,10 @@ void start_server() {
     net::socket socket{net::domain::ipv4, net::protocol::tcp};
     CHECK(socket.ok()) << socket.error();
     CHECK(socket.set_reuse_addr());
-    CHECK(socket.bind(FLAGS_port));
+    auto port = socket.bind(FLAGS_port);
+    CHECK(port);
     CHECK(socket.listen());
-    LOG(INFO) << "start server at port " << FLAGS_port;
+    LOG(INFO) << "start server at port " << *port << ", pid: " << getpid();
     server_loop(socket);
 }
 
@@ -219,5 +220,7 @@ int main(int argc, char *argv[]) {
     google::InitGoogleLogging(argv[0]);
     gflags::ParseCommandLineFlags(&argc, &argv, true);
     FLAGS_logtostderr = true;
+
+    signal(SIGPIPE, SIG_IGN);
     liph::start_server();
 }
