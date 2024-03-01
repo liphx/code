@@ -9,6 +9,7 @@
 
 // #else
 #include "fmt/format.h"
+#include "fmt/std.h"
 namespace liph {
 using fmt::format;
 }

@@ -12,6 +12,7 @@
 #include <thread>
 #include <vector>
 
+#include "liph/format.h"
 #include "liph/lang/noncopyable.h"
 #include "liph/lang/singleton.h"
 #include "liph/time.h"
@@ -26,8 +27,11 @@ public:
     logger() {
         producer_ = &buffer_[0];
         consumer_ = &buffer_[1];
-        write_file_.open(logfilename, std::ios_base::out | std::ios_base::app);
-        if (!write_file_.is_open()) std::cerr << "open log file fail, use stderr\n";
+        file_.open(logfilename, std::ios_base::out | std::ios_base::app);
+        if (!file_.is_open()) {
+            logtostderr_ = true;
+            std::cerr << "open log file fail, use stderr\n";
+        }
         started_ = true;
         tid_ = std::thread(&logger::run, this);
     }
@@ -35,7 +39,7 @@ public:
     ~logger() {
         started_ = false;
         if (tid_.joinable()) tid_.join();
-        if (write_file_.is_open()) write_file_.close();
+        if (file_.is_open()) file_.close();
     }
 
     void log(std::ostringstream& ss) {
@@ -43,17 +47,19 @@ public:
         producer_->emplace_back(std::move(ss).str());
     }
 
+    void set_logtostderr(bool b) { logtostderr_ = b; }
+
 private:
     void run() {
-        std::ostream& os = write_file_.is_open() ? write_file_ : std::cerr;
         while (started_) {
-            consume(os);
+            consume();
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
-        consume(os);
+        consume();
     }
 
-    void consume(std::ostream& os) {
+    void consume() {
+        std::ostream& os = (logtostderr_ || !file_.is_open()) ? std::cerr : file_;
         {
             std::lock_guard<std::mutex> lock(lock_);
             std::swap(producer_, consumer_);
@@ -67,19 +73,20 @@ private:
         }
     }
 
-    std::ofstream write_file_;
+    std::ofstream file_;
     std::atomic<bool> started_;
     std::thread tid_;
     std::vector<std::string> *producer_, *consumer_;
     std::vector<std::string> buffer_[2];
     mutable std::mutex lock_;
+    std::atomic<bool> logtostderr_{false};
 };
 
 class log_message {
 public:
     log_message(const char *filename, int line) {
         ss_.str("");
-        ss_ << '[' << time_format() << ' ' << filename << ':' << line << "] ";
+        ss_ << format("[{} {} {}:{}] ", time_format(), std::this_thread::get_id(), filename, line);
     }
 
     std::ostringstream& stream() { return ss_; }
