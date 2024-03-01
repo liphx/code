@@ -10,6 +10,8 @@
 
 namespace liph::net {
 
+using port_t = uint16_t;  // port range [0, 65535]
+
 enum class domain { ipv4, ipv6 };
 enum class protocol { tcp, udp };
 class descriptor;
@@ -35,10 +37,10 @@ public:
     bool set_reuse_addr();
 
     // dynamically allocate if port = 0
-    std::optional<int> bind(int port);
+    std::optional<port_t> bind(port_t port);
     bool listen();
-    bool connect(const char *ip, int port);
-    bool connect(const std::string& ip, int port) { return connect(ip.c_str(), port); }
+    bool connect(const char *ip, port_t port);
+    bool connect(const std::string& ip, port_t port) { return connect(ip.c_str(), port); }
     bool connect(std::pair<std::string, int> host) { return connect(host.first, host.second); }
     std::optional<std::pair<socket, std::string>> accept();
 

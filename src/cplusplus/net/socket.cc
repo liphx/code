@@ -81,7 +81,7 @@ socket::~socket() {
     }
 }
 
-bool socket::connect(const char *ip, int port) {
+bool socket::connect(const char *ip, port_t port) {
     if (!_descriptor) error("Invalid socket");
     if (!ok()) return false;
     if (_domain == domain::ipv4) {
@@ -107,7 +107,7 @@ bool socket::connect(const char *ip, int port) {
     return true;
 }
 
-std::optional<int> socket::bind(int port) {
+std::optional<port_t> socket::bind(port_t port) {
     if (!_descriptor) error("Invalid socket");
     if (_protocol == protocol::udp) error("Unsupported protocol");
     if (!ok()) return {};

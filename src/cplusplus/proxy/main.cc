@@ -55,6 +55,8 @@ void forward_data(net::socket& src, net::socket& dst) {
         for (int i = 0; i < n; ++i) buffer[i] ^= 42;
         dst.send(buffer, n, 0);
     }
+    src.close_read();
+    dst.close_write();
 }
 
 std::string host2ip(const std::string& host) {
