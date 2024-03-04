@@ -17,7 +17,7 @@ var searchData=
   ['decode_14',['decode',['../structliph_1_1base64.html#acd90f34ca69187876a59d61d0503c83f',1,'liph::base64']]],
   ['demangle_15',['demangle',['../namespaceliph.html#ae43e390676d3f11d00728fb4c5a968b6',1,'liph::demangle()'],['../namespaceliph.html#a273acff5424363d4bd2d5a2bd1d81012',1,'liph::demangle(const T &amp;t)']]],
   ['demangle_2eh_16',['demangle.h',['../demangle_8h.html',1,'']]],
-  ['descriptor_17',['descriptor',['../classliph_1_1io_1_1descriptor.html',1,'liph::io::descriptor'],['../classliph_1_1io_1_1descriptor.html#af50f53527e58166b9c0b1d44047a4cd7',1,'liph::io::descriptor::descriptor()']]],
+  ['descriptor_17',['descriptor',['../classliph_1_1io_1_1descriptor.html#af50f53527e58166b9c0b1d44047a4cd7',1,'liph::io::descriptor::descriptor()'],['../classliph_1_1io_1_1descriptor.html',1,'liph::io::descriptor']]],
   ['descriptor_2eh_18',['descriptor.h',['../descriptor_8h.html',1,'']]],
   ['descriptor_5ftype_19',['descriptor_type',['../namespaceliph_1_1io.html#ac538369c39a25cb1f3eff362d886f4ce',1,'liph::io']]],
   ['difference_5ftype_20',['difference_type',['../classliph_1_1avl.html#aca533f658a8f2f36bd525e6f0d9720c2',1,'liph::avl']]],
@@ -26,6 +26,6 @@ var searchData=
   ['double_5fbuffer_23',['double_buffer',['../classliph_1_1double__buffer.html#aed10169f7d23a01fc63553da405d60ac',1,'liph::double_buffer::double_buffer()'],['../classliph_1_1double__buffer.html',1,'liph::double_buffer&lt; T &gt;']]],
   ['double_5fbuffer_2eh_24',['double_buffer.h',['../double__buffer_8h.html',1,'']]],
   ['double_5fbuffer_5fwith_5fshared_5fptr_25',['double_buffer_with_shared_ptr',['../classliph_1_1double__buffer__with__shared__ptr.html',1,'liph']]],
-  ['double_5fref_26',['double_ref',['../classliph_1_1json.html#abc015297437ffd4d9dbdb381f964f269',1,'liph::json::double_ref()'],['../classliph_1_1flags.html#add93d2b5d7b61110a221ff11779e7ef5',1,'liph::flags::double_ref()'],['../classliph_1_1json.html#a930ee4bf37c88d4d966a919077c71b11',1,'liph::json::double_ref()']]],
+  ['double_5fref_26',['double_ref',['../classliph_1_1json.html#abc015297437ffd4d9dbdb381f964f269',1,'liph::json::double_ref() const'],['../classliph_1_1json.html#a930ee4bf37c88d4d966a919077c71b11',1,'liph::json::double_ref()'],['../classliph_1_1flags.html#add93d2b5d7b61110a221ff11779e7ef5',1,'liph::flags::double_ref()']]],
   ['down_5fcast_27',['down_cast',['../namespaceliph.html#a5016d01212a23804c962d7ef0d9a65e1',1,'liph::down_cast(From *f)'],['../namespaceliph.html#a12217b8311859976df84a030cf3b890b',1,'liph::down_cast(From &amp;f)']]]
 ];

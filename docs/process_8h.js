@@ -9,5 +9,6 @@ var process_8h =
     [ "bzero", "process_8h.html#a8ba8822f59066559224bb29eb57b5395", null ],
     [ "err_exit", "process_8h.html#a4e076d83469a16f870628e61c0163c4a", null ],
     [ "err_exit", "process_8h.html#a132d20500dfe487ff030bf2926f401b8", null ],
-    [ "err_exit_if", "process_8h.html#a96ef3a4829f311bb5a8e881482d9ed30", null ]
+    [ "err_exit_if", "process_8h.html#a96ef3a4829f311bb5a8e881482d9ed30", null ],
+    [ "single_proc", "process_8h.html#a8158e4f76e6b7727046c87191cf030da", null ]
 ];

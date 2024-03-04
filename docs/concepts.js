@@ -1,6 +1,6 @@
 var concepts =
 [
     [ "liph", "namespaceliph.html", [
-      [ "Printable", "conceptliph_1_1_printable.html", null ]
+      [ "Printable", "conceptliph_1_1Printable.html", null ]
     ] ]
 ];

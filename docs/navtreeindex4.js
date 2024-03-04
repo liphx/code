@@ -1,6 +1,10 @@
 var NAVTREEINDEX4 =
 {
+"structliph_1_1rgb.html#a76cc41ebd265ca29cbf8615cdeb39ab3":[2,0,0,21,5],
+"structliph_1_1rgb.html#a886cc770b817ffc4ea51828cf95ec072":[2,0,0,21,1],
+"structliph_1_1rgb.html#a886cc770b817ffc4ea51828cf95ec072":[0,0,0,21,1],
 "structliph_1_1rgb.html#aa4185abfe0413e6e2582af25a7c72f07":[0,0,0,21,6],
+"structliph_1_1rgb.html#aa4185abfe0413e6e2582af25a7c72f07":[2,0,0,21,6],
 "structliph_1_1rgb.html#ac565ad44fc023a34c50b5ee4b7305775":[2,0,0,21,3],
 "structliph_1_1rgb.html#ac565ad44fc023a34c50b5ee4b7305775":[0,0,0,21,3],
 "structliph_1_1singleton.html":[2,0,0,23],

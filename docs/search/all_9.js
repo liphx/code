@@ -2,7 +2,7 @@ var searchData=
 [
   ['i_0',['I',['../md5_8cpp.html#ac0eafdc9ee161b71e7af98af736952fd',1,'md5.cpp']]],
   ['i64_5f_1',['i64_',['../classliph_1_1json.html#a50d6df949bc94320e03fc99567772c9a',1,'liph::json']]],
-  ['i64_5fref_2',['i64_ref',['../classliph_1_1json.html#a1fec5c21645e5111bddc5afd29610cd3',1,'liph::json::i64_ref() const'],['../classliph_1_1json.html#afd0ad351025ebbdc0e29263e050907f5',1,'liph::json::i64_ref()']]],
+  ['i64_5fref_2',['i64_ref',['../classliph_1_1json.html#afd0ad351025ebbdc0e29263e050907f5',1,'liph::json::i64_ref()'],['../classliph_1_1json.html#a1fec5c21645e5111bddc5afd29610cd3',1,'liph::json::i64_ref() const']]],
   ['ii_3',['II',['../md5_8cpp.html#aea978d7b49bb7908dbd9aebbcd471511',1,'md5.cpp']]],
   ['implicit_5fcast_4',['implicit_cast',['../namespaceliph.html#aa3a8f95478b1601cfb409ddc155cdab0',1,'liph']]],
   ['indianred_5',['IndianRed',['../namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80a183eafaa05fc6691bbe97d273570dde8',1,'liph']]],

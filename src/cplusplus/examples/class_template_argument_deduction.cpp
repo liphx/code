@@ -3,6 +3,7 @@
 
 #include <array>
 #include <mutex>
+#include <string>
 #include <utility>
 #include <vector>
 using namespace std::literals;

@@ -31,7 +31,7 @@ var namespaceliph =
     [ "threadpool", "classliph_1_1threadpool.html", "classliph_1_1threadpool" ],
     [ "timer", "classliph_1_1timer.html", "classliph_1_1timer" ],
     [ "unique_unlock", "classliph_1_1unique__unlock.html", "classliph_1_1unique__unlock" ],
-    [ "Printable", "conceptliph_1_1_printable.html", null ],
+    [ "Printable", "conceptliph_1_1Printable.html", null ],
     [ "file_ptr", "namespaceliph.html#afa6f773fa30cfab69771c9ce24bbb00d", null ],
     [ "noncopyable", "namespaceliph.html#a833410743ec3cfc1094b9f68365f25a3", null ],
     [ "color256", "namespaceliph.html#af9459ee7737aa19ef652c69b26c3ab80", [
@@ -158,6 +158,7 @@ var namespaceliph =
     [ "selection_sort", "namespaceliph.html#a72cb2ee6a70c2bb2c7f2d92afcbfa49b", null ],
     [ "shell_insert", "namespaceliph.html#a41951b4906cc0c083be44d0d4fb2b7f1", null ],
     [ "shell_sort", "namespaceliph.html#a52f170b3d1f89d03ddf1139da57c3a0e", null ],
+    [ "single_proc", "namespaceliph.html#a8158e4f76e6b7727046c87191cf030da", null ],
     [ "skip_whitespace", "namespaceliph.html#a37af694c9297d9977776e51e5e26bac7", null ],
     [ "sleepms", "namespaceliph.html#ab98f40c6ae6fbe0f5f063be4cb741ecc", null ],
     [ "sleeps", "namespaceliph.html#a29d5adac5acea79620ceb3dfaa2ab53e", null ],
