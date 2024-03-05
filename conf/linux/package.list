@@ -1,5 +1,7 @@
+bison
 build-essential
 cmake
+flex
 fzf
 g++
 gcc

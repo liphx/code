@@ -49,11 +49,11 @@ ssh_login() {
     expect -c "${cmd}"
 }
 
-read -d "" -ra name_arr <<< $(awk '{print $1}' ${config_file})
-read -d "" -ra user_arr <<< $(awk '{print $2}' ${config_file})
-read -d "" -ra ip_arr <<< $(awk '{print $3}' ${config_file})
-read -d "" -ra port_arr <<< $(awk '{print $4}' ${config_file})
-read -d "" -ra passwd_arr <<< $(awk '{print $5}' ${config_file})
+read -d "" -ra name_arr     <<< $(grep -v '^#' ${config_file} | awk '{print $1}')
+read -d "" -ra user_arr     <<< $(grep -v '^#' ${config_file} | awk '{print $2}')
+read -d "" -ra ip_arr       <<< $(grep -v '^#' ${config_file} | awk '{print $3}')
+read -d "" -ra port_arr     <<< $(grep -v '^#' ${config_file} | awk '{print $4}')
+read -d "" -ra passwd_arr   <<< $(grep -v '^#' ${config_file} | awk '{print $5}')
 
 if [[ -z $2 ]]; then
     echo "ssh information:"
