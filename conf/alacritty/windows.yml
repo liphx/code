@@ -1,22 +1,5 @@
-live_config_reload: true
-
-env:
-  TERM: xterm-256color
-
-window:
-  opacity: 0.9
-  padding:
-    x: 0
-    y: 0
-
 import:
- - ~/.config/alacritty/base16-alacritty/colors/base16-solarized-dark-256.yml
-
-selection:
-  save_to_clipboard: true
-
-mouse_bindings:
-  - { mouse: Right, action: Paste }
+ - ~/.config/alacritty/common.yml
 
 font:
   normal:
@@ -42,9 +25,6 @@ key_bindings:
   - { key: LBracket, mods: Alt, chars: "\x02(" }    # C-b (
   - { key: RBracket, mods: Alt, chars: "\x02)" }    # C-b )
   - { key: W, mods: Alt, chars: "\x02Q" }           # kill current window
-
-scrolling:
-  history: 100000
 
 shell:
   program: C:/Program Files/Git/bin/bash.exe
