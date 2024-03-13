@@ -1,4 +1,4 @@
-# cmake -S . -B build -DCMAKE_PREFIX_PATH=~/Qt/6.6.2/macos/lib/cmake && cmake --build build
+# rm -rf build/ && cmake -S . -B build -DCMAKE_PREFIX_PATH=~/Qt/6.6.2/macos/lib/cmake && cmake --build build
 
 # cmake -S . -B build -DCMAKE_PREFIX_PATH=C:\\Qt\\6.6.0\\mingw_64\\lib\\cmake -G "MinGW Makefiles" && cmake --build build
 # /c/Qt/6.6.0/mingw_64/bin/windeployqt build/main.exe
@@ -17,6 +17,7 @@ qt_standard_project_setup()
 add_executable(main
     main.cc
     mainwindow.ui
+    2048.h
 )
 
 # target_link_libraries(main PRIVATE Qt6::Core)
