@@ -3,13 +3,20 @@
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include <cstdlib>
+#include <iostream>
 #include <vector>
+
+#include "mainwindow.h"
 
 class Widget2048 : public QWidget {
 public:
-    Widget2048(QWidget *parent = nullptr) : QWidget(parent) {
-        layout = new QGridLayout(this);
+    Widget2048(MainWindow *window_) : QWidget(window_), window(window_) {
+        window->setWindowTitle("2048");
+
+        auto layout = new QGridLayout(this);
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -19,18 +26,47 @@ public:
             }
         }
 
+        auto vlayout = new QVBoxLayout;
+        layout->addLayout(vlayout, 3, 4, 1, 1);
+
+        auto back = new QPushButton(this);
+        vlayout->addWidget(back);
+        back->setText("back");
+        QObject::connect(back, &QPushButton::clicked, [this]() {
+            memcpy(&arr[0][0], &arr_back[0][0], sizeof(arr));
+            show();
+        });
+
+        auto restart = new QPushButton(this);
+        vlayout->addWidget(restart);
+        restart->setText("restart");
+        QObject::connect(restart, &QPushButton::clicked, [this]() { init(); });
+
+        auto exit = new QPushButton(this);
+        vlayout->addWidget(exit);
+        exit->setText("exit");
+        QObject::connect(exit, &QPushButton::clicked, [this]() {
+            close();
+            window->init();
+        });
+
+        setFocusPolicy(Qt::StrongFocus);
+
+        init();
+    }
+
+    ~Widget2048() {}
+
+    void init() {
+        memset(&arr[0][0], 0, sizeof(arr));
         std::srand(time(nullptr));
         p p1 = new2();
         arr[p1.x][p1.y] = 2;
         p p2 = new2();
         arr[p2.x][p2.y] = 2;
-        memcpy(&arr_back[0][0], &arr[0][0], 16 * sizeof(int));
-
+        memcpy(&arr_back[0][0], &arr[0][0], sizeof(arr));
         show();
-        setFocusPolicy(Qt::StrongFocus);
     }
-
-    ~Widget2048() {}
 
     void keyPressEvent(QKeyEvent *event) override {
         if (event->key() == Qt::Key_Left) {
@@ -107,7 +143,7 @@ private:
 
     void move(int di) {
         int arr_tmp[4][4];
-        memcpy(&arr_tmp[0][0], &arr[0][0], 16 * sizeof(int));
+        memcpy(&arr_tmp[0][0], &arr[0][0], sizeof(arr));
         bool change = false;
         switch (di) {
         case 1:  // left
@@ -140,13 +176,8 @@ private:
                 close();
             }
             arr[p1.x][p1.y] = 2;
-            memcpy(&arr_back[0][0], &arr_tmp[0][0], 16 * sizeof(int));
+            memcpy(&arr_back[0][0], &arr_tmp[0][0], sizeof(arr));
         }
-        show();
-    }
-
-    void back() {
-        memcpy(&arr[0][0], &arr_back[0][0], 16 * sizeof(int));
         show();
     }
 
@@ -166,9 +197,10 @@ private:
     }
 
 private:
-    QGridLayout *layout;
-    int arr[4][4];
-    int arr_back[4][4];
+    int arr[4][4]{};
+    int arr_back[4][4]{};
+    static inline const p npos = {-1, -1};
+
+    MainWindow *window;
     QLabel *labels[4][4];
-    p npos = {-1, -1};
 };
