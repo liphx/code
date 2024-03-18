@@ -27,8 +27,8 @@ key_bindings:
   - { key: W, mods: Alt, chars: "\x02Q" }           # kill current window
 
 shell:
-  program: C:/Program Files/Git/bin/bash.exe
+  program: C:\Program Files\Git\bin\bash.exe
   args:
     - --login
 
-working_directory: C:/
+working_directory: C:\Users\liph
