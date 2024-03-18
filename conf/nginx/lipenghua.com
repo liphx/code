@@ -4,7 +4,7 @@ server {
   location / {
     root /home/liph/liphx.github.io/docs;
     index index.html;
-    charset urf-8;
+    charset UTF-8;
     try_files $uri $uri/ @rewrite;
   }
   location @rewrite {
@@ -24,7 +24,24 @@ server {
   location / {
     root /home/liph/elden_ring/docs;
     index index.html;
-    charset urf-8;
+    charset UTF-8;
+  }
+  ssl_certificate /etc/letsencrypt/live/*.lipenghua.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/*.lipenghua.com/privkey.pem;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+}
+
+server {
+  listen 443 ssl;
+  server_name resource.lipenghua.com;
+  charset UTF-8;
+  location / {
+    root /home/liph/resource;
+    index index.html;
+    autoindex on;
+    autoindex_exact_size off;
+    autoindex_localtime on;
   }
   ssl_certificate /etc/letsencrypt/live/*.lipenghua.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/*.lipenghua.com/privkey.pem;
