@@ -4,28 +4,33 @@
 #include "sudoku.h"
 
 MainWindow::MainWindow(QWidget *parent, const QString& name) : QMainWindow(parent), title(name) {
-    resize(800, 450);
+    resize(1920, 1080);
     init();
 }
 
 void MainWindow::init() {
+    setWindowTitle(title);
     auto body = new QWidget(this);
     setCentralWidget(body);
-    setWindowTitle(title);
-
-    auto start_2048 = new QPushButton(body);
+    auto layout = new QVBoxLayout;
+    body->setLayout(layout);
+    auto start_2048 = new QPushButton;
+    auto sudoku = new QPushButton;
+    auto exit = new QPushButton;
+    layout->addStretch();
+    layout->addWidget(start_2048);
+    layout->addWidget(sudoku);
+    layout->addWidget(exit);
+    layout->addStretch();
+    layout->setSpacing(0);
+    start_2048->setFixedSize(120, 60);
+    sudoku->setFixedSize(120, 60);
+    exit->setFixedSize(120, 60);
     start_2048->setText("2048");
-    start_2048->setGeometry(QRect(560, 110, 120, 60));
-    QObject::connect(start_2048, &QPushButton::clicked, [this]() { setCentralWidget(new Widget2048(this)); });
-
-    auto sudoku = new QPushButton(body);
     sudoku->setText("sudoku");
-    sudoku->setGeometry(QRect(560, 190, 120, 60));
-    QObject::connect(sudoku, &QPushButton::clicked, [this]() { setCentralWidget(new Sudoku(this)); });
-
-    auto exit = new QPushButton(body);
     exit->setText("exit");
-    exit->setGeometry(QRect(560, 270, 120, 60));
+    QObject::connect(start_2048, &QPushButton::clicked, [this]() { setCentralWidget(new Widget2048(this)); });
+    QObject::connect(sudoku, &QPushButton::clicked, [this]() { setCentralWidget(new Sudoku(this)); });
     QObject::connect(exit, &QPushButton::clicked, [this]() { close(); });
 }
 

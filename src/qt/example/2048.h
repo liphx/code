@@ -17,21 +17,33 @@ public:
         window->setWindowTitle("2048");
 
         auto layout = new QGridLayout(this);
+        layout->setRowStretch(0, 4);
+        layout->setRowStretch(1, 1);
+        layout->setColumnStretch(0, 4);
+        layout->setColumnStretch(1, 1);
 
+        auto grid = new QGridLayout;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 labels[i][j] = new QLabel(this);
+                labels[i][j]->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
                 labels[i][j]->setStyleSheet("border: 1px solid;");
-                layout->addWidget(labels[i][j], i, j, 1, 1);
+                auto font = labels[i][j]->font();
+                font.setPointSize(24);
+                labels[i][j]->setFont(font);
+                grid->addWidget(labels[i][j], i, j);
             }
         }
 
+        layout->addLayout(grid, 0, 0, 2, 1);
+
         auto vlayout = new QVBoxLayout;
-        layout->addLayout(vlayout, 3, 4, 1, 1);
+        layout->addLayout(vlayout, 1, 1);
 
         auto back = new QPushButton(this);
         vlayout->addWidget(back);
         back->setText("back");
+        back->setFixedSize(180, 90);
         QObject::connect(back, &QPushButton::clicked, [this]() {
             memcpy(&arr[0][0], &arr_back[0][0], sizeof(arr));
             show();
@@ -40,11 +52,13 @@ public:
         auto restart = new QPushButton(this);
         vlayout->addWidget(restart);
         restart->setText("restart");
+        restart->setFixedSize(180, 90);
         QObject::connect(restart, &QPushButton::clicked, [this]() { init(); });
 
         auto exit = new QPushButton(this);
         vlayout->addWidget(exit);
         exit->setText("exit");
+        exit->setFixedSize(180, 90);
         QObject::connect(exit, &QPushButton::clicked, [this]() {
             close();
             window->init();

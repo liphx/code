@@ -1,12 +1,13 @@
 #pragma once
 
+#include <QDebug>
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPushButton>
+#include <QSpacerItem>
 #include <QVBoxLayout>
 #include <cstdlib>
-#include <iostream>
 #include <set>
 #include <vector>
 
@@ -16,23 +17,15 @@
 class Sudoku : public QWidget {
 public:
     Sudoku(MainWindow *window_) : QWidget(window_), window(window_) {
-        window->setWindowTitle("sudoku");
-
-        layout = new QGridLayout(this);
+        setui();
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                labels[i][j] = new ClickableLabel(this);
-                labels[i][j]->setStyleSheet("border: 1px solid; font-size: 20px;");
-                layout->addWidget(labels[i][j], i, j, 1, 1);
                 QObject::connect(labels[i][j], &ClickableLabel::clicked, [i, j, this]() {
-                    // std::cout << "clicked [" << i << "," << j << "]\n";
-                    // std::cout << arr_init[i][j] << '\n';
+                    qDebug("clicked [%d, %d]: %d", i, j, arr_init[i][j]);
                     if (arr_init[i][j]) return;
-                    delete_selector();
-                    selector = new QGridLayout;
-                    layout->addLayout(selector, 1, 10, 5, 2);
-                    std::set numbers{1, 2, 3, 4, 5, 6, 7, 8, 9};
+                    clear_selector();
+                    std::set numbers{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
                     for (int k = 0; k < 9; k++) {
                         if (k != j && arr[i][k]) {
                             numbers.erase(arr[i][k]);
@@ -43,79 +36,111 @@ public:
                             numbers.erase(arr[k][j]);
                         }
                     }
-                    int k = 0;
                     for (int number : numbers) {
                         auto label = new ClickableLabel;
-                        selector->addWidget(label, k++, 1, 1, 1);
-                        label->setText(QString::number(number));
-                        label->setStyleSheet("font-size: 20px;");
+                        selector->addWidget(label);
+                        if (number) {
+                            label->setText(QString::number(number));
+                        } else {
+                            label->setText("clear");
+                        }
+                        auto font = label->font();
+                        font.setPointSize(14);
+                        label->setFont(font);
+                        label->setStyleSheet("border: 1px solid;");
+                        label->setFixedSize(100, 50);
                         QObject::connect(label, &ClickableLabel::clicked, [i, j, number, this]() {
                             arr[i][j] = number;
-                            delete_selector();
+                            clear_selector();
                             show();
                         });
                     }
-                    auto label = new ClickableLabel;
-                    selector->addWidget(label, k, 1, 1, 1);
-                    label->setText("clear");
-                    label->setStyleSheet("font-size: 20px;");
-                    QObject::connect(label, &ClickableLabel::clicked, [i, j, this]() {
-                        arr[i][j] = 0;
-                        delete_selector();
-                        show();
-                    });
-
-                    // for (int k1 = 0; k1 < 5; k1++) {
-                    //     for (int k2 = 0; k2 < 2; k2++) {
-                    //         auto label = new ClickableLabel;
-                    //         selector->addWidget(label, k1, k2, 1, 1);
-                    //         int number = k1 * 2 + k2 + 1;
-                    //         if (number < 10) {
-                    //             label->setText(QString::number(number));
-                    //         } else {
-                    //             label->setText("clear");
-                    //             number = 0;
-                    //         }
-                    //         QObject::connect(label, &ClickableLabel::clicked, [i, j, number, this]() {
-                    //             arr[i][j] = number;
-                    //             delete_selector();
-                    //             show();
-                    //         });
-                    //     }
-                    // }
+                    selector->addStretch();
+                    selector->setSpacing(0);
                 });
             }
         }
 
-        auto vlayout = new QVBoxLayout;
-        layout->addLayout(vlayout, 7, 10, 2, 2);
+        init();
+    }
 
+    void setui() {
+        window->setWindowTitle("sudoku");
+
+        // main layout: 16:9
+        auto layout = new QGridLayout(this);
+        layout->setRowStretch(0, 1);
+        layout->setRowStretch(1, 7);
+        layout->setRowStretch(2, 1);
+        layout->setColumnStretch(0, 9);
+        layout->setColumnStretch(1, 14);
+        layout->setColumnStretch(2, 9);
+
+        QGridLayout *grid = new QGridLayout;
+        layout->addLayout(grid, 1, 1);
+        grid->setHorizontalSpacing(15);
+        grid->setVerticalSpacing(15);
+        QGridLayout *grids[9];
+        for (int i = 0; i < 9; i++) {
+            grids[i] = new QGridLayout;
+            grids[i]->setHorizontalSpacing(0);
+            grids[i]->setVerticalSpacing(0);
+            grid->addLayout(grids[i], i / 3, i % 3);
+        }
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                labels[i][j] = new ClickableLabel(this);
+                labels[i][j]->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+                labels[i][j]->setStyleSheet("border: 1px solid;");
+                auto font = labels[i][j]->font();
+                font.setPointSize(16);
+                labels[i][j]->setFont(font);
+                grids[(i / 3) * 3 + j / 3]->addWidget(labels[i][j], i % 3, j % 3);
+            }
+        }
+
+        auto select = new QGridLayout;
+        layout->addLayout(select, 1, 2);
+        select->setRowStretch(0, 2);
+        select->setRowStretch(1, 1);
+        select->setColumnStretch(0, 1);
+        select->setColumnStretch(1, 3);
+        select->setColumnStretch(2, 3);
+
+        selector = new QVBoxLayout;
+        select->addLayout(selector, 0, 1);
+
+        auto vlayout = new QVBoxLayout;
+        select->addLayout(vlayout, 1, 1);
+        vlayout->addStretch();
         auto restart = new QPushButton(this);
         vlayout->addWidget(restart);
         restart->setText("restart");
+        restart->setFixedSize(100, 50);
         QObject::connect(restart, &QPushButton::clicked, [this]() {
             memcpy(&arr[0][0], &arr_init[0][0], sizeof(arr));
-            delete_selector();
+            clear_selector();
             show();
         });
 
         auto random = new QPushButton(this);
         vlayout->addWidget(random);
         random->setText("random");
+        random->setFixedSize(100, 50);
         QObject::connect(random, &QPushButton::clicked, [this]() {
-            delete_selector();
+            clear_selector();
             init();
         });
 
         auto exit = new QPushButton(this);
         vlayout->addWidget(exit);
         exit->setText("exit");
+        exit->setFixedSize(100, 50);
         QObject::connect(exit, &QPushButton::clicked, [this]() {
             close();
             window->init();
         });
-
-        init();
     }
 
     void init() {
@@ -125,11 +150,13 @@ public:
             memset(&arr[0][0], 0, sizeof(arr));
         }
         memcpy(&arr_answer[0][0], &arr[0][0], sizeof(arr));
+        auto dbg = qDebug();
+        dbg << "answer:\n";
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                std::cout << arr_answer[i][j] << ' ';
+                dbg << arr_answer[i][j];
             }
-            std::cout << std::endl;
+            dbg << '\n';
         }
         GenerateProblem();
         memcpy(&arr_init[0][0], &arr[0][0], sizeof(arr));
@@ -193,18 +220,14 @@ public:
         return true;
     }
 
-    bool CanFillIn2(int num, int row, int col) const
-    {
-        if (num == 0)
-            return true;
+    bool CanFillIn2(int num, int row, int col) const {
+        if (num == 0) return true;
 
         for (int i = 1; i <= 9; i++) {
-            if (i != col && GetNum(row, i) == num)
-                return false;
+            if (i != col && GetNum(row, i) == num) return false;
         }
         for (int i = 1; i <= 9; i++) {
-            if (i != row && GetNum(i, col) == num)
-                return false;
+            if (i != row && GetNum(i, col) == num) return false;
         }
 
         int grid_row = 1 + (row - 1) / 3 * 3;
@@ -213,10 +236,8 @@ public:
             for (int j = 0; j < 3; j++) {
                 int x = grid_row + i;
                 int y = grid_col + j;
-                if (x == row && y == col)
-                    continue;
-                if (GetNum(x, y) == num)
-                    return false;
+                if (x == row && y == col) continue;
+                if (GetNum(x, y) == num) return false;
             }
         }
 
@@ -224,8 +245,7 @@ public:
     }
 
     bool CanFillIn(int num, int row, int col) const {
-        if (GetNum(row, col) != 0)
-            return false;
+        if (GetNum(row, col) != 0) return false;
 
         for (int i = 1; i <= 9; i++) {
             if (i != col && GetNum(row, i) == num) return false;
@@ -276,25 +296,24 @@ public:
         }
     }
 
-    void delete_selector() {
-        if (!selector) return;
-        layout->removeItem(selector);
+    void clear_selector() {
         for (auto item = selector->takeAt(0); item; item = selector->takeAt(0)) {
             auto label = item->widget();
-            label->hide();
-            delete label;
+            if (label) {
+                label->hide();
+                delete label;
+            }
         }
-        delete selector;
-        selector = nullptr;
     }
 
 private:
+    // ui
     MainWindow *window;
-    QGridLayout *layout;
-    QGridLayout *selector{nullptr};
+    QVBoxLayout *selector;
+    ClickableLabel *labels[9][9];
 
+    // data
     int arr[9][9]{};
     int arr_answer[9][9]{};
     int arr_init[9][9]{};
-    ClickableLabel *labels[9][9];
 };
