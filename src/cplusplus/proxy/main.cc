@@ -78,7 +78,15 @@ std::string host2ip(const std::string& host) {
     }
     if (result) {  // do not need result->ai_next
         char addr[128];
-        inet_ntop(result->ai_socktype, result->ai_addr, addr, sizeof(addr));
+        void *src = nullptr;
+        if (result->ai_family == AF_INET) {
+            src = &(((struct sockaddr_in *)result->ai_addr)->sin_addr.s_addr);
+        } else if (result->ai_family == AF_INET6) {
+            src = &(((struct sockaddr_in6 *)result->ai_addr)->sin6_addr);
+        } else {
+            return {};
+        }
+        inet_ntop(result->ai_family, src, addr, sizeof(addr));
         freeaddrinfo(result);
         return addr;
     }
