@@ -66,14 +66,23 @@ std::string host2ip(const std::string& host) {
     if (std::regex_match(host, ipv4_match, valid_ipv4_re)) {
         return host;
     }
-    struct hostent *server = gethostbyname(host.c_str());
-    if (!server) {
-        LOG(ERROR) << "gethostbyname fail, host: " << host;
+    struct addrinfo hints;
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;  // IPv4 or IPv6
+    struct addrinfo *result;
+    int r = getaddrinfo(host.c_str(), nullptr, &hints, &result);
+    if (r != 0) {
+        LOG(ERROR) << "host: " << host;
+        LOG(ERROR) << "getaddrinfo fail: " << gai_strerror(r);
         return {};
     }
-    char addr[128];
-    inet_ntop(server->h_addrtype, server->h_addr, addr, sizeof(addr));
-    return addr;
+    if (result) {  // do not need result->ai_next
+        char addr[128];
+        inet_ntop(result->ai_socktype, result->ai_addr, addr, sizeof(addr));
+        freeaddrinfo(result);
+        return addr;
+    }
+    return {};
 }
 
 std::optional<std::pair<std::string, int>> parse_host(std::string str) {
@@ -180,6 +189,7 @@ void server_loop(net::socket& socket) {
                     return;
                 }
                 auto remoteip = host2ip(host_port->first);
+                LOG(INFO) << host_port->first << " -> " << remoteip;
                 if (remoteip.empty()) {
                     LOG(ERROR) << "get ip from host fail";
                     return;
