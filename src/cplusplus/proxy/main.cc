@@ -60,35 +60,35 @@ void forward_data(net::socket& src, net::socket& dst) {
 }
 
 std::string host2ip(const std::string& host) {
-    if (host.empty()) return {};
-    std::regex valid_ipv4_re(R"(^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$)");
-    std::smatch ipv4_match;
-    if (std::regex_match(host, ipv4_match, valid_ipv4_re)) {
-        return host;
-    }
     struct addrinfo hints;
     memset(&hints, 0, sizeof(hints));
     hints.ai_family = AF_UNSPEC;  // IPv4 or IPv6
-    struct addrinfo *result;
+    struct addrinfo *result = nullptr;
     int r = getaddrinfo(host.c_str(), nullptr, &hints, &result);
     if (r != 0) {
         LOG(ERROR) << "host: " << host;
         LOG(ERROR) << "getaddrinfo fail: " << gai_strerror(r);
         return {};
     }
-    if (result) {  // do not need result->ai_next
-        char addr[128];
-        void *src = nullptr;
-        if (result->ai_family == AF_INET) {
-            src = &(((struct sockaddr_in *)result->ai_addr)->sin_addr.s_addr);
-        } else if (result->ai_family == AF_INET6) {
-            src = &(((struct sockaddr_in6 *)result->ai_addr)->sin6_addr);
-        } else {
+    std::unique_ptr<struct addrinfo, decltype([](struct addrinfo *ptr) { if (ptr) freeaddrinfo(ptr); })> res(result);
+    if (res) {  // do not need ai_next
+        void *addr = nullptr;
+        switch (res->ai_family) {
+        case AF_INET:
+            addr = &(reinterpret_cast<struct sockaddr_in *>(res->ai_addr)->sin_addr);
+            break;
+        case AF_INET6:
+            addr = &(reinterpret_cast<struct sockaddr_in6 *>(res->ai_addr)->sin6_addr);
+            break;
+        default:
             return {};
         }
-        inet_ntop(result->ai_family, src, addr, sizeof(addr));
-        freeaddrinfo(result);
-        return addr;
+        if (addr) {
+            char buffer[128];
+            inet_ntop(res->ai_family, addr, buffer, sizeof(buffer));
+            return buffer;
+        }
+        return {};
     }
     return {};
 }
