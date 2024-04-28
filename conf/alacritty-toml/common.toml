@@ -1,0 +1,22 @@
+import = ["~/.config/alacritty/base16-alacritty/colors/base16-solarized-dark-256.toml"]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[[mouse.bindings]]
+action = "Paste"
+mouse = "Right"
+
+[scrolling]
+history = 100000
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 1
+
+[window.padding]
+x = 0
+y = 0
